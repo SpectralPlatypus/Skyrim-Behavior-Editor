@@ -38,7 +38,7 @@ bool TreeGraphicsView::drawGraph(DataIconManager *rootData, bool allowDuplicates
 }
 
 void TreeGraphicsView::wheelEvent(QWheelEvent *event){
-    zoom(event->delta());
+    zoom(event->angleDelta().y());
 }
 
 void TreeGraphicsView::zoom(int delta){

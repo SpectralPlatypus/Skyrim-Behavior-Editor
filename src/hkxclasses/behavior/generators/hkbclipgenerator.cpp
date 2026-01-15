@@ -224,13 +224,17 @@ void hkbClipGenerator::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     setReference(ref);
     setBindingReference(++ref);
-    triggers.data() ? triggers->setReference(++ref) : triggers;
+    if(triggers.data()) {
+        triggers->setReference(++ref);
+    }
 }
 
 QVector<HkxObject *> hkbClipGenerator::getChildrenOtherTypes() const{
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
-    triggers.data() ? list.append(triggers.data()) : triggers;
+    if(triggers.data()) {
+        list.append(triggers.data());
+    }
     return list;
 }
 

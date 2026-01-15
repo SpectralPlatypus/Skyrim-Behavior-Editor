@@ -274,7 +274,12 @@ int hkbBehaviorGraphStringData::addCharacterPropertyName(const QString &name, bo
     }else{
         characterPropertyNames.append(name);
         index = characterPropertyNames.size() - 1;
-        (wasadded) ? *wasadded = false : setIsFileChanged(true);
+        if(wasadded) {
+            *wasadded = false;
+        }
+        else{
+            setIsFileChanged(true);
+        }
     }
     return index;
 }
@@ -290,7 +295,11 @@ int hkbBehaviorGraphStringData::addEventName(const QString &name, bool * wasadde
     }else{
         eventNames.append(name);
         index = eventNames.size() - 1;
-        (wasadded) ? *wasadded = false : setIsFileChanged(true);
+        if(wasadded) {
+            *wasadded = false;
+        } else {
+            setIsFileChanged(true);
+        }
     }
     return index;
 }
@@ -306,7 +315,11 @@ bool hkbBehaviorGraphStringData::addVariableName(const QString &name, bool * was
     }else{
         variableNames.append(name);
         index = variableNames.size() - 1;
-        (wasadded) ? *wasadded = false : setIsFileChanged(true);
+        if(wasadded) {
+            *wasadded = false;
+        } else {
+            setIsFileChanged(true);
+        }
     }
     return index;
 }

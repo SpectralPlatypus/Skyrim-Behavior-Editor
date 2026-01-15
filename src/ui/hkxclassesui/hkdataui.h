@@ -2,6 +2,7 @@
 #define HKDATAUI_H
 
 #include <QGroupBox>
+#include <QStackedLayout>
 
 class BehaviorGraphView;
 class AnimationsUI;

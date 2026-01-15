@@ -216,7 +216,7 @@ bool hkbBehaviorGraph::link(){
     }
     ptr = static_cast<BehaviorFile *>(getParentFile())->findGenerator(rootGenerator.getShdPtrReference());
     linkdata(TYPE_GENERATOR, HKB_STATE_MACHINE, rootGenerator, "rootGenerator", false);
-    ptr = &static_cast<BehaviorFile *>(getParentFile())->getGraphData();
+    ptr = static_cast<BehaviorFile *>(getParentFile())->getGraphData();
     linkdata(TYPE_OTHER, HKB_BEHAVIOR_GRAPH_DATA, data, "data", false);
     return true;
 }

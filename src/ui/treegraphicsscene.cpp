@@ -102,7 +102,7 @@ bool TreeGraphicsScene::drawGraph(DataIconManager *rootData, bool allowDuplicate
             if (newIcon && newIcon->isDataDescendant(newIcon)){
                 return false;
             }
-            (objects.first()->hasIcons()) ? children.clear() : children = objects.first()->getChildren();
+            if(objects.first()->hasIcons()){ children.clear();}else{ children = objects.first()->getChildren();}
             numChildren.first()--;
             if (!numChildren.first()){
                 numChildren.removeFirst();

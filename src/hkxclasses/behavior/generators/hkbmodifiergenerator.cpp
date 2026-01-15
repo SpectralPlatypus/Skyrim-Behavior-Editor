@@ -76,7 +76,9 @@ QVector<DataIconManager *> hkbModifierGenerator::getChildren() const{
     std::lock_guard <std::mutex> guard(mutex);
     QVector<DataIconManager *> list;
     auto getchildren = [&](DataIconManager *ptr){
-        ptr ? list.append(ptr) : ptr;
+        if(ptr) {
+            list.append(ptr);
+        }
     };
     getchildren(static_cast<DataIconManager*>(modifier.data()));
     getchildren(static_cast<DataIconManager*>(generator.data()));

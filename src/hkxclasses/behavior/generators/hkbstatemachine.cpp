@@ -403,7 +403,9 @@ bool hkbStateMachine::merge(HkxObject *recessiveObject){ //TO DO: Make thread sa
 void hkbStateMachine::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     auto update = [&](const HkxSharedPtr & shdptr){
-        shdptr.data() ? shdptr.data()->setReference(++ref), shdptr.data()->updateReferences(++ref) : NULL;
+        if (shdptr.data()) {
+            shdptr.data()->setReference(++ref), shdptr.data()->updateReferences(++ref);
+        }
     };
     setReference(ref);
     setBindingReference(++ref);
@@ -415,7 +417,9 @@ QVector<HkxObject *> hkbStateMachine::getChildrenOtherTypes() const{
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
     auto append = [&](const HkxSharedPtr & shdptr){
-        shdptr.data() ? list.append(shdptr.data()) : NULL;
+        if (shdptr.data()) {
+            list.append(shdptr.data());
+        }
     };
     append(eventToSendWhenStateOrTransitionChanges.payload);
     append(wildcardTransitions);

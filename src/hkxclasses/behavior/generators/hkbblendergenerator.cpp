@@ -205,7 +205,7 @@ int hkbBlenderGenerator::getIndexOfChild(hkbBlenderGeneratorChild *child) const{
 
 bool hkbBlenderGenerator::isParametricBlend() const{
     std::lock_guard <std::mutex> guard(mutex);
-    if (flags.contains(FLAG_PARAMETRIC_BLEND)){
+    if (flags.contains(QString::number(FLAG_PARAMETRIC_BLEND))){
         return true;
     }
     return false;

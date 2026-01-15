@@ -59,7 +59,7 @@ QString HkxFile::getRootObjectReferenceString() const{
     if (rootObject.data()){
         return rootObject->getReferenceString();
     }
-    return true;
+    return QString();
 }
 
 bool HkxFile::appendAndReadData(long &index, HkxObject *obj){

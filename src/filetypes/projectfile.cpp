@@ -97,7 +97,11 @@ bool ProjectFile::readAnimationSetData(const QString & filename){
                 LogFile::writeToLog(": 'animationsetdatasinglefile.txt' is missing from the application directory!");
             }
         }
-        (!skyrimAnimSetData->parse(animsetfile)) ? LogFile::writeToLog(": The project animation set data file could not be parsed!!!") : result = true;
+        if (!skyrimAnimSetData->parse(animsetfile)) {
+            LogFile::writeToLog(": The project animation set data file could not be parsed!!!");
+        } else {
+            result = true;
+        }
         delete animsetfile;
     }else{
         LogFile::writeToLog(": 'skyrimAnimData' or 'skyrimAnimSetData' are nullptr!!!");
@@ -553,7 +557,11 @@ void ProjectFile::addProjectToAnimData(){
         projectfiles.append(character->fileName().section("/", -2, -1).replace("/", "\\"));
         projectfiles.append("character assets\\"+character->getSkeletonFileName().replace("/", "\\"));
         auto index = skyrimAnimData->addNewProject(projectName+".txt", projectfiles);
-        (index == -1) ? LogFile::writeToLog(": Project: "+projectName+".txt"+" already exists in the animation data!!!") : projectIndex = index;
+        if (index == -1) {
+            LogFile::writeToLog(": Project: "+projectName+".txt"+" already exists in the animation data!!!");
+        } else {
+            projectIndex = index;
+        }
         if (!skyrimAnimSetData->addNewProject(projectName+"ProjectData\\"+projectName+".txt")){
             LogFile::writeToLog(": Project: "+projectName+".txt"+" failed to append to the animation set data!!!");
         }
@@ -688,8 +696,8 @@ QStringList ProjectFile::getAnimationNames() const{
 QString ProjectFile::findAnimationNameFromEncryptedData(const QString &encryptedname) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ok = true;
-    ULONGLONG value1;
-    ULONGLONG value2 = encryptedname.toULongLong(&ok, 10);
+    uint64_t value1;
+    uint64_t value2 = encryptedname.toULongLong(&ok, 10);
     if (!ok){
         value2 = encryptedname.toULongLong(&ok, 16);
         if (!ok) {

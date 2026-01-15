@@ -233,7 +233,9 @@ QVector<HkxObject *> BSCyclicBlendTransitionGenerator::getChildrenOtherTypes() c
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
     auto append = [&](const HkxSharedPtr & shdptr){
-        shdptr.data() ? list.append(shdptr.data()) : NULL;
+        if (shdptr.data()) {
+            list.append(shdptr.data());
+        }
     };
     append(eventToFreezeBlendValue.payload);
     append(eventToCrossBlend.payload);

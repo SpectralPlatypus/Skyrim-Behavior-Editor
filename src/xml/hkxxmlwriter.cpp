@@ -130,7 +130,7 @@ bool HkxXMLWriter::writeLine(const QString & value){
         for (auto i = 0; i < nestLevel; i++){
             text.append("\t");
         }
-        auto list = value.split('\n', QString::SkipEmptyParts);
+        auto list = value.split('\n', Qt::SkipEmptyParts);
         if (!list.isEmpty()){
             for (auto i = 0; i < list.size(); i++){
                 stream << text+list.at(i)+"\n";

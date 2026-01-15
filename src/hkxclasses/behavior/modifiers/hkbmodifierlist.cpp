@@ -236,7 +236,8 @@ bool hkbModifierList::write(HkxXMLWriter *writer){
         }
         if (modifiers.size() > 0){
             if (refString.endsWith(" \0")){
-                refString.remove(refString.lastIndexOf(" ", 1));
+                // I think it's trying to remove the final nullchar?
+                refString.remove(refString.lastIndexOf(" "), 1);
             }
             writer->writeLine(refString);
             writer->writeLine(writer->parameter, false);

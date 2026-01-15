@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,6 +16,7 @@ QMAKE_TARGET_COMPANY = WK Inc.
 #QMAKE_TARGET_PRODUCT = "Skyrim Behavior Editor"
 QMAKE_TARGET_DESCRIPTION = Skyrim Behavior Editor
 QMAKE_TARGET_COPYRIGHT = Wayne K
+QMAKE_CXXFLAGS += /Zc:referenceBinding-
 
 SOURCES += \
     src/main.cpp \

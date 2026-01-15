@@ -72,8 +72,11 @@ public:
     void mergeEventIndices(int oldindex, int newindex);
     void mergeVariableIndices(int oldindex, int newindex);
     HkxSharedPtr getVariableValues() const;
+    HkxSharedPtr* getVariableValues();
     HkxSharedPtr getStringData() const;
+    HkxSharedPtr* getStringData();
     HkxSharedPtr getGraphData() const;
+    HkxSharedPtr* getGraphData();
     HkxObject * getBehaviorGraphData() const;
     bool isNameUniqueInProject(HkxObject *object) const;
     bool existsInBehavior(HkDynamicObject *object, int startindex = 0) const;

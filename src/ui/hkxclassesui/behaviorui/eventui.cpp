@@ -86,7 +86,12 @@ void EventUI::setEventPayload(){
     if (eventData && file){
         auto payload = static_cast<hkbStringEventPayload *>(eventData->payload.data());
         if (eventPayload->text() != ""){
-            (payload) ? payload->setData(eventPayload->text()) : eventData->payload = HkxSharedPtr(new hkbStringEventPayload(file, eventPayload->text()));
+            if(payload){
+                payload->setData(eventPayload->text());
+            }
+            else{
+                eventData->payload = HkxSharedPtr(new hkbStringEventPayload(file, eventPayload->text()));
+            }
         }else{
             eventData->payload = HkxSharedPtr();
         }

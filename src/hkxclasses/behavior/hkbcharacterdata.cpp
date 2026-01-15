@@ -234,7 +234,7 @@ hkQuadVariable hkbCharacterData::getQuadVariable(int index, bool *ok) const{
         LogFile::writeToLog(getParentFilename()+": "+getClassname()+": Ref: "+getReferenceString()+": variableInitialValues is nullptr!");
     }
     if (ok) {
-        ok = false;
+        *ok = false;
     }
     return hkQuadVariable();
 }
@@ -485,7 +485,8 @@ bool hkbCharacterData::merge(HkxObject *recessiveobj){
                 }
                 if (!found){
                     strings->animationNames.append(otherstrings->animationNames.at(i));
-                    static_cast<CharacterFile *>(getParentFile())->appendAnimation(&static_cast<CharacterFile *>(recessiveobj->getParentFile())->getAnimationMotionData(i));
+                    auto animData = new SkyrimAnimationMotionData(static_cast<CharacterFile*>(recessiveobj->getParentFile())->getAnimationMotionData(i));
+                    static_cast<CharacterFile *>(getParentFile())->appendAnimation(animData);
                     //static_cast<BehaviorFile *>(otherdata->getParentFile())->mergeEventIndices(i, eventInfos.size() - 1);
                 }
             }

@@ -350,7 +350,7 @@ void MainWindow::setProjectExportPath(){
 }
 
 void MainWindow::save(){
-    auto count = 1;
+    int count = 1;
     saveFile(getBehaviorGraphIndex(tabs->tabText(tabs->currentIndex())), count);
 }
 
@@ -412,9 +412,9 @@ void MainWindow::saveProject(bool usenormalsave){
         progress.setWindowModality(Qt::WindowModal);
         auto percent = 0;
         std::vector <std::thread> threads;
-        auto taskCount = projectFile->behaviorFiles.size();
+        int taskCount = projectFile->behaviorFiles.size();
         auto previousCount = taskCount;
-        auto fileindex = 0;
+        int fileindex = 0;
         auto maxThreads = std::thread::hardware_concurrency() - 1;
         auto taskdifference = 0;
         auto numbehaviors = projectFile->behaviorFiles.size();
@@ -574,7 +574,7 @@ void MainWindow::mergeBehaviors(){
 }
 
 void MainWindow::mergeProjects(){
-    QTime timer;
+    QElapsedTimer timer;
     timer.start();
     auto timeelapsed = timer.elapsed();
     auto recessivefilename = QFileDialog::getOpenFileName(this, tr("Select recessive project file..."), QDir::currentPath(), tr("hkx Files (*.hkx)"));
@@ -806,7 +806,7 @@ void MainWindow::addNewBehavior(bool initData){
         if (projectFile->character){
             bool ok;
             auto filename = QInputDialog::getText(this, "Add A New Behavior File To The Current Project!", "Behavior Name:", QLineEdit::Normal, "NEW_BEHAVIOR", &ok);
-            if (ok && !filename.isEmpty() && !filename.contains(QRegExp("^[a-z-A-Z\\]+$"))){
+            if (ok && !filename.isEmpty() && !filename.contains(QRegularExpression("^[a-z-A-Z\\]+$"))){
                 if (filename != ""){
                     projectFile->behaviorFiles.append(new BehaviorFile(this, projectFile, projectFile->character, filename));
                     (initData) ? projectFile->behaviorFiles.last()->generateDefaultCharacterData() : projectFile->behaviorFiles.last()->generateNewBehavior();
@@ -912,7 +912,7 @@ void MainWindow::openProject(QString & filepath, bool loadui, bool loadanimdata,
                 //This also reads files that may not belong to the current project! See dog!!
                 std::vector <std::future<bool>> futures;
                 auto maxThreads = std::thread::hardware_concurrency() - 1;
-                auto taskCount = behaviornames.size();
+                int taskCount = behaviornames.size();
                 auto previousCount = taskCount;
                 auto behaviorIndex = 0;
                 auto taskdifference = 0;
@@ -1039,7 +1039,11 @@ bool MainWindow::openBehavior(const QString & filename, int & taskCount, bool ch
             projectFile->behaviorFiles.append(newbehavior);
             newbehavior = projectFile->behaviorFiles.last();
             mutex.unlock();
-            (!newbehavior->parse()) ? LogFile::writeToLog("MainWindow::openBehavior(): The selected behavior file \""+filename+"\" failed to parse!") : result = true;
+            if (!newbehavior->parse()) {
+                LogFile::writeToLog("MainWindow::openBehavior(): The selected behavior file \""+filename+"\" failed to parse!");
+            } else {
+                result = true;
+            }
         }else{
             LogFile::writeToLog("MainWindow::openBehavior(): No project is opened!");
         }
@@ -1296,7 +1300,7 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
         progress.setWindowModality(Qt::WindowModal);
         std::vector <std::thread> threads;
         auto percent = 0;
-        auto taskCount = filelist.size();
+        int taskCount = filelist.size();
         auto previousCount = taskCount;
         auto fileIndex = 0;
         auto maxThreads = std::thread::hardware_concurrency() - 1;
@@ -1399,7 +1403,7 @@ void MainWindow::closeEvent(QCloseEvent *event){
 void MainWindow::paintEvent(QPaintEvent *){
     QStyleOption opt;
     QPainter p(this);
-    opt.init(this);
+    opt.initFrom(this);
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
 }
 
@@ -1430,7 +1434,7 @@ void MainWindow::createNewProject(){
             }
             bool ok;
             auto projectname = QInputDialog::getText(this, tr("Set project name!"), tr("Project name:"), QLineEdit::Normal, "", &ok);
-            if (ok && projectname != "" && !projectname.contains(QRegExp("^[a-z-A-Z\\]+$"))){
+            if (ok && projectname != "" && !projectname.contains(QRegularExpression("^[a-z-A-Z\\]+$"))){
                 auto projectDirectoryPath = lastFileSelectedPath+"/"+projectname;
                 {
                     QDir projectDirectory(lastFileSelectedPath);

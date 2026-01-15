@@ -219,7 +219,9 @@ bool hkbBlenderGeneratorChild::merge(HkxObject *recessiveObject){ //TO DO: Make 
 
 void hkbBlenderGeneratorChild::setParentBG(hkbGenerator *blend){
     std::lock_guard <std::mutex> guard(mutex);
-    blend ? parentBG = blend : NULL;
+    if (blend) {
+        parentBG = blend;
+    }
 }
 
 bool hkbBlenderGeneratorChild::operator==(const hkbBlenderGeneratorChild & other){

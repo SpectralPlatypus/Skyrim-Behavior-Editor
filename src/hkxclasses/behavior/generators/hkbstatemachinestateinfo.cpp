@@ -32,26 +32,34 @@ const QString hkbStateMachineStateInfo::getClassname(){
 QString hkbStateMachineStateInfo::getStateName(int stateId) const{
     std::lock_guard <std::mutex> guard(mutex);
     QString sname;
-    parentSM ? sname = parentSM->getStateName(stateId) : NULL;
+    if (parentSM) {
+        sname = parentSM->getStateName(stateId);
+    }
     return sname;
 }
 
 QString hkbStateMachineStateInfo::getNestedStateName(int stateId, ulong nestedStateId) const{
     std::lock_guard <std::mutex> guard(mutex);
     QString sname;
-    parentSM ? sname = parentSM->getNestedStateName(stateId, nestedStateId) : NULL;
+    if (parentSM) {
+        sname = parentSM->getNestedStateName(stateId, nestedStateId);
+    }
     return sname;
 }
 
 QString hkbStateMachineStateInfo::getStateNameNoLock(int stateId) const{
     QString sname;
-    parentSM ? sname = parentSM->getStateName(stateId) : NULL;
+    if (parentSM) {
+        sname = parentSM->getStateName(stateId);
+    }
     return sname;
 }
 
 QString hkbStateMachineStateInfo::getNestedStateNameNoLock(int stateId, ulong nestedStateId) const{
     QString sname;
-    parentSM ? sname = parentSM->getNestedStateName(stateId, nestedStateId) : NULL;
+    if (parentSM) {
+        sname = parentSM->getNestedStateName(stateId, nestedStateId);
+    }
     return sname;
 }
 
@@ -63,7 +71,12 @@ QString hkbStateMachineStateInfo::getName() const{
 hkbStateMachine * hkbStateMachineStateInfo::getParentStateMachine() const{
     std::lock_guard <std::mutex> guard(mutex);
     hkbStateMachine *ptr = nullptr;
-    parentSM ? ptr = parentSM : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": "+name+"' has no parent state machine!");
+    if(parentSM) {
+        ptr = parentSM;
+    }
+    else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": "+name+"' has no parent state machine!");
+    }
     return ptr;
 }
 
@@ -113,7 +126,9 @@ void hkbStateMachineStateInfo::removeTransitionsNoLock(){
 void hkbStateMachineStateInfo::removeTransitionToState(int id){
     std::lock_guard <std::mutex> guard(mutex);
     hkbStateMachineTransitionInfoArray *trans = static_cast<hkbStateMachineTransitionInfoArray *>(transitions.data());
-    trans ? trans->removeTransitionToState(id) : trans;
+    if(trans) {
+        trans->removeTransitionToState(id);
+    }
 }
 
 bool hkbStateMachineStateInfo::setStateId(int id){
@@ -285,7 +300,9 @@ hkbStateMachine *hkbStateMachineStateInfo::getNestedStateMachine() const{
 void hkbStateMachineStateInfo::setTransitionsParentSM(hkbStateMachine *parSM){
     std::lock_guard <std::mutex> guard(mutex);
     hkbStateMachineTransitionInfoArray *trans = static_cast<hkbStateMachineTransitionInfoArray *>(transitions.data());
-    trans ? trans->setParentSM(parSM) : NULL;
+    if (trans) {
+        trans->setParentSM(parSM);
+    }
 }
 
 int hkbStateMachineStateInfo::getIndexOfObj(DataIconManager *obj) const{

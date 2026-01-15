@@ -240,7 +240,7 @@ public:
             setCheckState(Qt::Unchecked);
         }
         setTextAlignment(align);
-        setBackgroundColor(backgroundColor);
+        setBackground(backgroundColor);
         setForeground(textColor);
         setToolTip(tip);
     }
@@ -424,7 +424,7 @@ public:
         lyt->addWidget(spinBoxZ);
         lyt->addWidget(spinBoxW);
         setLayout(lyt);
-        lyt->setMargin(0);
+        lyt->setContentsMargins(0,0,0,0);
         spinBoxX->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         spinBoxY->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         spinBoxZ->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

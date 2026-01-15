@@ -555,7 +555,7 @@ HkxSharedPtr& CharacterFile::getMirroredSkeletonInfo(){
     return mirroredSkeletonInfo;
 }
 
-bool CharacterFile::appendAnimation(SkyrimAnimationMotionData *motiondata){
+bool CharacterFile::appendAnimation(SkyrimAnimationMotionData* motiondata){
     //std::lock_guard <std::mutex> guard(mutex);
     if (project){
         return project->appendAnimation(motiondata);

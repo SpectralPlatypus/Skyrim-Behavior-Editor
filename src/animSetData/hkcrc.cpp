@@ -45,7 +45,7 @@ QByteArray HkCRC::compute(const QByteArray & input){
     int polynom[] = {0,0,0,0,4,193,29,183};
     //int init[] = {0,0,0,0,0,0,0,0};
     int crc[] = {0,0,0,0,0,0,0,0,0};
-    int xor[] = {0,0,0,0,0,0,0,0};
+    int _xor[] = {0,0,0,0,0,0,0,0};
     order = crc_order;
 
     // generate bit mask
@@ -85,7 +85,7 @@ QByteArray HkCRC::compute(const QByteArray & input){
     }
     reflect(crc, order, 0);
     for (i=0; i<8; i++){
-        crc [i] ^= xor [i];
+        crc [i] ^= _xor[i];
     }
     output = "";
     flag=0;

@@ -285,7 +285,7 @@ hkQuadVariable hkbBehaviorGraphData::getQuadVariableValueAt(int index, bool *ok)
         LogFile::writeToLog(getParentFilename()+": "+getClassname()+": Ref: "+getReferenceString()+": variableInitialValues is nullptr!");
     }
     if (ok) {
-        ok = false;
+        *ok = false;
     }
     return hkQuadVariable();
 }
@@ -683,9 +683,9 @@ bool hkbBehaviorGraphData::link(){
             shdptr = *ptr;
         }
     };
-    ptr = &static_cast<BehaviorFile *>(getParentFile())->getVariableValues();
+    ptr = static_cast<BehaviorFile *>(getParentFile())->getVariableValues();
     link(variableInitialValues, "variableInitialValues", HKB_VARIABLE_VALUE_SET);
-    ptr = &static_cast<BehaviorFile *>(getParentFile())->getStringData();
+    ptr = static_cast<BehaviorFile *>(getParentFile())->getStringData();
     link(stringData, "stringData", HKB_BEHAVIOR_GRAPH_STRING_DATA);
     return true;
 }

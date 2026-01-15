@@ -404,7 +404,9 @@ bool hkbStateMachineTransitionInfoArray::merge(HkxObject *recessiveObject){ //TO
 void hkbStateMachineTransitionInfoArray::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     auto update = [&](const HkxSharedPtr & shdptr){
-        shdptr.data() ? shdptr.data()->setReference(++ref), shdptr.data()->updateReferences(++ref) : NULL;
+        if (shdptr.data()) {
+            shdptr.data()->setReference(++ref), shdptr.data()->updateReferences(++ref);
+        }
     };
     setReference(ref);
     for (auto i = 0; i < transitions.size(); i++){
@@ -417,7 +419,9 @@ QVector<HkxObject *> hkbStateMachineTransitionInfoArray::getChildrenOtherTypes()
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
     auto append = [&](const HkxSharedPtr & shdptr){
-        shdptr.data() ? list.append(shdptr.data()) : NULL;
+        if (shdptr.data()) {
+            list.append(shdptr.data());
+        }
     };
     for (auto i = 0; i < transitions.size(); i++){
         append(transitions.at(i).transition);

@@ -897,7 +897,12 @@ bool BehaviorFile::existsInBehavior(HkDynamicObject *object, int startindex) con
 hkbStateMachine * BehaviorFile::getRootStateMachine() const{
     //std::lock_guard <std::mutex> guard(mutex);
     hkbStateMachine *ptr = nullptr;
-    behaviorGraph.data() ? ptr = static_cast<hkbBehaviorGraph *>(behaviorGraph.data())->getRootGenerator() : LogFile::writeToLog(fileName()+" behaviorGraph is nullptr!");
+    if(behaviorGraph.data()){
+        ptr = static_cast<hkbBehaviorGraph *>(behaviorGraph.data())->getRootGenerator();
+    }
+    else {
+        LogFile::writeToLog(fileName()+" behaviorGraph is nullptr!");
+    }
     return ptr;
 }
 
@@ -1552,14 +1557,14 @@ void BehaviorFile::write(){
     auto root = getRootObject().data();
     if (root){
         root->setIsWritten(false);
-        stringData.data() ? stringData->setIsWritten(false) : nullptr;
-        variableValues.data() ? variableValues->setIsWritten(false) : nullptr;
-        graphData.data() ? graphData->setIsWritten(false) : nullptr;
+        if(stringData.data()) stringData->setIsWritten(false);
+        if(variableValues.data()) variableValues->setIsWritten(false);
+        if(graphData.data()) graphData->setIsWritten(false);
         behaviorGraph->setIsWritten(false);
         root->setReference(ref++);
-        stringData.data() ? stringData->setReference(ref++) : nullptr;
-        variableValues.data() ? variableValues->setReference(ref++) : nullptr;
-        graphData.data() ? graphData->setReference(ref++) : nullptr;
+        if(stringData.data()) stringData->setReference(ref++);
+        if(variableValues.data()) variableValues->setReference(ref++);
+        if(graphData.data()) graphData->setReference(ref++);
         behaviorGraph->setReference(ref++);
         auto prepforwrite = [&](const QVector <HkxSharedPtr> & list){
             for (auto i = 0; i < list.size(); i++, ref++){
@@ -1718,14 +1723,29 @@ HkxSharedPtr BehaviorFile::getGraphData() const{
     return graphData;
 }
 
+HkxSharedPtr* BehaviorFile::getGraphData() {
+    //std::lock_guard <std::mutex> guard(mutex);
+    return &graphData;
+}
+
 HkxSharedPtr BehaviorFile::getStringData() const{
     //std::lock_guard <std::mutex> guard(mutex);
     return stringData;
 }
 
+HkxSharedPtr* BehaviorFile::getStringData(){
+    //std::lock_guard <std::mutex> guard(mutex);
+    return &stringData;
+}
+
 HkxSharedPtr BehaviorFile::getVariableValues() const{
     //std::lock_guard <std::mutex> guard(mutex);
     return variableValues;
+}
+
+HkxSharedPtr* BehaviorFile::getVariableValues(){
+    //std::lock_guard <std::mutex> guard(mutex);
+    return &variableValues;
 }
 
 HkxSharedPtr * BehaviorFile::findBehaviorGraph(long ref){
