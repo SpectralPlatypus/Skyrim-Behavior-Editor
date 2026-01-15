@@ -303,83 +303,163 @@ void BSDirectAtModifierUI::setName(const QString &newname){
 }
 
 void BSDirectAtModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSDirectAtModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setDirectAtTarget(){
-    (bsData) ? bsData->setDirectAtTarget(directAtTarget->isChecked()) : LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtTarget(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDirectAtTarget(directAtTarget->isChecked());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtTarget(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setSourceBoneIndex(int index){
-    (bsData) ? bsData->setSourceBoneIndex(index - 1) : LogFile::writeToLog("BSDirectAtModifierUI::setSourceBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSourceBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setSourceBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setStartBoneIndex(int index){
-    (bsData) ? bsData->setStartBoneIndex(index - 1) : LogFile::writeToLog("BSDirectAtModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setStartBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setEndBoneIndex(int index){
-    (bsData) ? bsData->setEndBoneIndex(index - 1) : LogFile::writeToLog("BSDirectAtModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEndBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setLimitHeadingDegrees(){
-    (bsData) ? bsData->setLimitHeadingDegrees(limitHeadingDegrees->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setLimitHeadingDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLimitHeadingDegrees(limitHeadingDegrees->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setLimitHeadingDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setLimitPitchDegrees(){
-    (bsData) ? bsData->setLimitPitchDegrees(limitPitchDegrees->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setLimitPitchDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLimitPitchDegrees(limitPitchDegrees->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setLimitPitchDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setOffsetHeadingDegrees(){
-    (bsData) ? bsData->setOffsetHeadingDegrees(offsetHeadingDegrees->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setOffsetHeadingDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOffsetHeadingDegrees(offsetHeadingDegrees->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setOffsetHeadingDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setOffsetPitchDegrees(){
-    (bsData) ? bsData->setOffsetPitchDegrees(offsetPitchDegrees->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setOffsetPitchDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOffsetPitchDegrees(offsetPitchDegrees->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setOffsetPitchDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setOnGain(){
-    (bsData) ? bsData->setOnGain(onGain->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setOnGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOnGain(onGain->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setOnGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setOffGain(){
-    (bsData) ? bsData->setOffGain(offGain->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setOffGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOffGain(offGain->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setOffGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setTargetLocation(){
-    (bsData) ? bsData->setTargetLocation(targetLocation->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setTargetLocation(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setTargetLocation(targetLocation->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setTargetLocation(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setUserInfo(){
-    (bsData) ? bsData->setUserInfo(userInfo->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setUserInfo(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setUserInfo(userInfo->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setUserInfo(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setDirectAtCamera(){
-    (bsData) ? bsData->setDirectAtCamera(directAtCamera->isChecked()) : LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCamera(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDirectAtCamera(directAtCamera->isChecked());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCamera(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setDirectAtCameraX(){
-    (bsData) ? bsData->setDirectAtCameraX(directAtCameraX->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraX(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDirectAtCameraX(directAtCameraX->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraX(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setDirectAtCameraY(){
-    (bsData) ? bsData->setDirectAtCameraY(directAtCameraY->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraY(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDirectAtCameraY(directAtCameraY->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraY(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setDirectAtCameraZ(){
-    (bsData) ? bsData->setDirectAtCameraZ(directAtCameraZ->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraZ(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDirectAtCameraZ(directAtCameraZ->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setDirectAtCameraZ(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setActive(){
-    (bsData) ? bsData->setActive(active->isChecked()) : LogFile::writeToLog("BSDirectAtModifierUI::setActive(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setActive(active->isChecked());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setActive(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setCurrentHeadingOffset(){
-    (bsData) ? bsData->setCurrentHeadingOffset(currentHeadingOffset->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setCurrentHeadingOffset(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setCurrentHeadingOffset(currentHeadingOffset->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setCurrentHeadingOffset(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::setCurrentPitchOffset(){
-    (bsData) ? bsData->setCurrentPitchOffset(currentPitchOffset->value()) : LogFile::writeToLog("BSDirectAtModifierUI::setCurrentPitchOffset(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setCurrentPitchOffset(currentPitchOffset->value());
+    } else {
+        LogFile::writeToLog("BSDirectAtModifierUI::setCurrentPitchOffset(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSDirectAtModifierUI::viewSelected(int row, int column){

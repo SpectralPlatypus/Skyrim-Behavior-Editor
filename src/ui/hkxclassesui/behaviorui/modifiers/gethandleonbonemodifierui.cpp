@@ -157,19 +157,35 @@ void GetHandleOnBoneModifierUI::setName(const QString &newname){
 }
 
 void GetHandleOnBoneModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("GetHandleOnBoneModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("GetHandleOnBoneModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetHandleOnBoneModifierUI::setLocalFrameName(int index){
-    (bsData) ? bsData->setLocalFrameName(index - 1) : LogFile::writeToLog("GetHandleOnBoneModifierUI::setLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLocalFrameName(index - 1);
+    } else {
+        LogFile::writeToLog("GetHandleOnBoneModifierUI::setLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetHandleOnBoneModifierUI::setRagdollBoneIndex(int index){
-    (bsData) ? bsData->setRagdollBoneIndex(index - 1) : LogFile::writeToLog("GetHandleOnBoneModifierUI::setRagdollBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setRagdollBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("GetHandleOnBoneModifierUI::setRagdollBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetHandleOnBoneModifierUI::setAnimationBoneIndex(int index){
-    (bsData) ? bsData->setAnimationBoneIndex(index - 1) : LogFile::writeToLog("GetHandleOnBoneModifierUI::setAnimationBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAnimationBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("GetHandleOnBoneModifierUI::setAnimationBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetHandleOnBoneModifierUI::viewSelected(int row, int column){

@@ -150,23 +150,43 @@ void BSComputeAddBoneAnimModifierUI::setName(const QString &newname){
 }
 
 void BSComputeAddBoneAnimModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSComputeAddBoneAnimModifierUI::setBoneIndex(int index){
-    (bsData) ? bsData->setBoneIndex(index - 1) : LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSComputeAddBoneAnimModifierUI::setTranslationLSOut(){
-    (bsData) ? bsData->setTranslationLSOut(translationLSOut->value()) : LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setTranslationLSOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setTranslationLSOut(translationLSOut->value());
+    } else {
+        LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setTranslationLSOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSComputeAddBoneAnimModifierUI::setRotationLSOut(){
-    (bsData) ? bsData->setRotationLSOut(rotationLSOut->value()) : LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setRotationLSOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setRotationLSOut(rotationLSOut->value());
+    } else {
+        LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setRotationLSOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSComputeAddBoneAnimModifierUI::setScaleLSOut(){
-    (bsData) ? bsData->setScaleLSOut(scaleLSOut->value()) : LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setScaleLSOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setScaleLSOut(scaleLSOut->value());
+    } else {
+        LogFile::writeToLog("BSComputeAddBoneAnimModifierUI::setScaleLSOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSComputeAddBoneAnimModifierUI::viewSelected(int row, int column){

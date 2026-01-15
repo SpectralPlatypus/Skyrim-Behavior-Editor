@@ -147,11 +147,19 @@ void BSTimerModifierUI::setName(const QString &newname){
 }
 
 void BSTimerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSTimerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSTimerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSTimerModifierUI::setAlarmTimeSeconds(){
-    (bsData) ? bsData->setAlarmTimeSeconds(alarmTimeSeconds->value()) : LogFile::writeToLog("BSTimerModifierUI::setAlarmTimeSeconds(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAlarmTimeSeconds(alarmTimeSeconds->value());
+    } else {
+        LogFile::writeToLog("BSTimerModifierUI::setAlarmTimeSeconds(): The data is nullptr!!");
+    }
 }
 
 void BSTimerModifierUI::setAlarmEventId(int index, const QString & name){
@@ -182,7 +190,11 @@ void BSTimerModifierUI::setAlarmEventPayload(){
 }
 
 void BSTimerModifierUI::setResetAlarm(){
-    (bsData) ? bsData->setResetAlarm(resetAlarm->isChecked()) : LogFile::writeToLog("BSTimerModifierUI::setResetAlarm(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setResetAlarm(resetAlarm->isChecked());
+    } else {
+        LogFile::writeToLog("BSTimerModifierUI::setResetAlarm(): The data is nullptr!!");
+    }
 }
 
 void BSTimerModifierUI::viewSelected(int row, int column){

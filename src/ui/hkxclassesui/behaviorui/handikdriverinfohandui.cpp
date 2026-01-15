@@ -140,61 +140,117 @@ void HandIkDriverInfoHandUI::loadData(hkbHandIkDriverInfoHand *data, hkbHandIkDr
 }
 
 void HandIkDriverInfoHandUI::setElbowAxisLS(){
-    (bsData && parent && bsData->elbowAxisLS != elbowAxisLS->value()) ? bsData->elbowAxisLS = elbowAxisLS->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: elbowAxisLS was not set!!");
+    if (bsData && parent && bsData->elbowAxisLS != elbowAxisLS->value()) {
+        bsData->elbowAxisLS = elbowAxisLS->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: elbowAxisLS was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setBackHandNormalLS(){
-    (bsData && parent && bsData->backHandNormalLS != backHandNormalLS->value()) ? bsData->backHandNormalLS = backHandNormalLS->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: backHandNormalLS was not set!!");
+    if (bsData && parent && bsData->backHandNormalLS != backHandNormalLS->value()) {
+        bsData->backHandNormalLS = backHandNormalLS->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: backHandNormalLS was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setHandOffsetLS(){
-    (bsData && parent && bsData->handOffsetLS != handOffsetLS->value()) ? bsData->handOffsetLS = handOffsetLS->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: handOffsetLS was not set!!");
+    if (bsData && parent && bsData->handOffsetLS != handOffsetLS->value()) {
+        bsData->handOffsetLS = handOffsetLS->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: handOffsetLS was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setHandOrienationOffsetLS(){
-    (bsData && parent && bsData->handOrienationOffsetLS != handOrienationOffsetLS->value()) ? bsData->handOrienationOffsetLS = handOrienationOffsetLS->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: handOrienationOffsetLS was not set!!");
+    if (bsData && parent && bsData->handOrienationOffsetLS != handOrienationOffsetLS->value()) {
+        bsData->handOrienationOffsetLS = handOrienationOffsetLS->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: handOrienationOffsetLS was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setMaxElbowAngleDegrees(){
-    (bsData && parent && bsData->maxElbowAngleDegrees != maxElbowAngleDegrees->value()) ? bsData->maxElbowAngleDegrees = maxElbowAngleDegrees->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: maxElbowAngleDegrees was not set!!");
+    if (bsData && parent && bsData->maxElbowAngleDegrees != maxElbowAngleDegrees->value()) {
+        bsData->maxElbowAngleDegrees = maxElbowAngleDegrees->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: maxElbowAngleDegrees was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setMinElbowAngleDegrees(){
-    (bsData && parent && bsData->minElbowAngleDegrees != minElbowAngleDegrees->value()) ? bsData->minElbowAngleDegrees = minElbowAngleDegrees->value(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: minElbowAngleDegrees was not set!!");
+    if (bsData && parent && bsData->minElbowAngleDegrees != minElbowAngleDegrees->value()) {
+        bsData->minElbowAngleDegrees = minElbowAngleDegrees->value(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: minElbowAngleDegrees was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setShoulderIndex(int index){
-    (bsData && parent) ? bsData->shoulderIndex = index - 1, parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: shoulderIndex was not set!!");
+    if (bsData && parent) {
+        bsData->shoulderIndex = index - 1, parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: shoulderIndex was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setShoulderSiblingIndex(int index){
-    (bsData && parent) ? bsData->shoulderSiblingIndex = index - 1, parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: shoulderSiblingIndex was not set!!");
+    if (bsData && parent) {
+        bsData->shoulderSiblingIndex = index - 1, parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: shoulderSiblingIndex was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setElbowIndex(int index){
-    (bsData && parent) ? bsData->elbowIndex = index - 1, parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: elbowIndex was not set!!");
+    if (bsData && parent) {
+        bsData->elbowIndex = index - 1, parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: elbowIndex was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setElbowSiblingIndex(int index){
-    (bsData && parent) ? bsData->elbowSiblingIndex = index - 1, parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: elbowSiblingIndex was not set!!");
+    if (bsData && parent) {
+        bsData->elbowSiblingIndex = index - 1, parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: elbowSiblingIndex was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setWristIndex(int index){
-    (bsData && parent) ? bsData->wristIndex = index - 1, parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: wristIndex was not set!!");
+    if (bsData && parent) {
+        bsData->wristIndex = index - 1, parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: wristIndex was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setEnforceEndPosition(){
-    (bsData && parent && bsData->enforceEndPosition != enforceEndPosition->isChecked()) ? bsData->enforceEndPosition = enforceEndPosition->isChecked(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: enforceEndPosition was not set!!");
+    if (bsData && parent && bsData->enforceEndPosition != enforceEndPosition->isChecked()) {
+        bsData->enforceEndPosition = enforceEndPosition->isChecked(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: enforceEndPosition was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setEnforceEndRotation(){
-    (bsData && parent && bsData->enforceEndRotation != enforceEndRotation->isChecked()) ? bsData->enforceEndRotation = enforceEndRotation->isChecked(), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: enforceEndRotation was not set!!");
+    if (bsData && parent && bsData->enforceEndRotation != enforceEndRotation->isChecked()) {
+        bsData->enforceEndRotation = enforceEndRotation->isChecked(), parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoHandUI: enforceEndRotation was not set!!");
+    }
 }
 
 void HandIkDriverInfoHandUI::setLocalFrameName(int index){
     if (bsData && parent){
         auto localframes = static_cast<BehaviorFile *>(parent->getParentFile())->getLocalFrameNames();
-        (index >= 0 && index < localframes.size() && localframes.at(index) != bsData->localFrameName) ? bsData->localFrameName = localframes.at(index), parent->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoHandUI: 'localFrameName' was not set!");
+        if (index >= 0 && index < localframes.size() && localframes.at(index) != bsData->localFrameName) {
+            bsData->localFrameName = localframes.at(index), parent->setIsFileChanged(true);
+        } else {
+            LogFile::writeToLog("HandIkDriverInfoHandUI: 'localFrameName' was not set!");
+        }
     }else{
         LogFile::writeToLog("HandIkDriverInfoHandUI: 'localFrameName' was not set!");
     }

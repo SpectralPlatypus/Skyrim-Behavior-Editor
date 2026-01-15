@@ -72,7 +72,11 @@ bool hkbBlenderGenerator::removeObjectAt(int index){
 
 void hkbBlenderGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 QString hkbBlenderGenerator::getFlags() const{
@@ -82,7 +86,11 @@ QString hkbBlenderGenerator::getFlags() const{
 
 void hkbBlenderGenerator::setFlags(const QString &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != flags) ? flags = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    if (value != flags) {
+        flags = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    }
 }
 
 void hkbBlenderGenerator::setSubtractLastChild(bool value){
@@ -102,7 +110,11 @@ int hkbBlenderGenerator::getIndexOfSyncMasterChild() const{
 
 void hkbBlenderGenerator::setIndexOfSyncMasterChild(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != indexOfSyncMasterChild) ? indexOfSyncMasterChild = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'indexOfSyncMasterChild' was not set!");
+    if (value != indexOfSyncMasterChild) {
+        indexOfSyncMasterChild = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'indexOfSyncMasterChild' was not set!");
+    }
 }
 
 qreal hkbBlenderGenerator::getMaxCyclicBlendParameter() const{
@@ -112,7 +124,11 @@ qreal hkbBlenderGenerator::getMaxCyclicBlendParameter() const{
 
 void hkbBlenderGenerator::setMaxCyclicBlendParameter(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != maxCyclicBlendParameter) ? maxCyclicBlendParameter = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'maxCyclicBlendParameter' was not set!");
+    if (value != maxCyclicBlendParameter) {
+        maxCyclicBlendParameter = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'maxCyclicBlendParameter' was not set!");
+    }
 }
 
 qreal hkbBlenderGenerator::getMinCyclicBlendParameter() const{
@@ -122,7 +138,11 @@ qreal hkbBlenderGenerator::getMinCyclicBlendParameter() const{
 
 void hkbBlenderGenerator::setMinCyclicBlendParameter(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != minCyclicBlendParameter) ? minCyclicBlendParameter = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'minCyclicBlendParameter' was not set!");
+    if (value != minCyclicBlendParameter) {
+        minCyclicBlendParameter = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'minCyclicBlendParameter' was not set!");
+    }
 }
 
 qreal hkbBlenderGenerator::getBlendParameter() const{
@@ -132,7 +152,11 @@ qreal hkbBlenderGenerator::getBlendParameter() const{
 
 void hkbBlenderGenerator::setBlendParameter(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != blendParameter) ? blendParameter = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'blendParameter' was not set!");
+    if (value != blendParameter) {
+        blendParameter = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'blendParameter' was not set!");
+    }
 }
 
 qreal hkbBlenderGenerator::getReferencePoseWeightThreshold() const{
@@ -142,7 +166,11 @@ qreal hkbBlenderGenerator::getReferencePoseWeightThreshold() const{
 
 void hkbBlenderGenerator::setReferencePoseWeightThreshold(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != referencePoseWeightThreshold) ? referencePoseWeightThreshold = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'referencePoseWeightThreshold' was not set!");
+    if (value != referencePoseWeightThreshold) {
+        referencePoseWeightThreshold = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'referencePoseWeightThreshold' was not set!");
+    }
 }
 
 bool hkbBlenderGenerator::hasChildren() const{

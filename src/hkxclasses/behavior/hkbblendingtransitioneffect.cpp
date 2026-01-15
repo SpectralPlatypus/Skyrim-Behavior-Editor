@@ -105,7 +105,11 @@ QString hkbBlendingTransitionEffect::getBlendCurve() const{
 
 void hkbBlendingTransitionEffect::setBlendCurve(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < BlendCurve.size() && blendCurve != BlendCurve.at(index)) ? blendCurve = BlendCurve.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'blendCurve' was not set!");
+    if (index >= 0 && index < BlendCurve.size() && blendCurve != BlendCurve.at(index)) {
+        blendCurve = BlendCurve.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'blendCurve' was not set!");
+    }
 }
 
 QString hkbBlendingTransitionEffect::getEndMode() const{
@@ -115,7 +119,11 @@ QString hkbBlendingTransitionEffect::getEndMode() const{
 
 void hkbBlendingTransitionEffect::setEndMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < EndMode.size() && endMode != EndMode.at(index)) ? endMode = EndMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'endMode' was not set!");
+    if (index >= 0 && index < EndMode.size() && endMode != EndMode.at(index)) {
+        endMode = EndMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'endMode' was not set!");
+    }
 }
 
 QString hkbBlendingTransitionEffect::getFlags() const{
@@ -125,12 +133,20 @@ QString hkbBlendingTransitionEffect::getFlags() const{
 
 void hkbBlendingTransitionEffect::setFlags(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < Flags.size() && flags != Flags.at(index)) ? flags = Flags.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    if (index >= 0 && index < Flags.size() && flags != Flags.at(index)) {
+        flags = Flags.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    }
 }
 
 void hkbBlendingTransitionEffect::setFlags(const QString &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != flags && value != "") ? flags = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    if (value != flags && value != "") {
+        flags = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'flags' was not set!");
+    }
 }
 
 qreal hkbBlendingTransitionEffect::getToGeneratorStartTimeFraction() const{
@@ -140,7 +156,11 @@ qreal hkbBlendingTransitionEffect::getToGeneratorStartTimeFraction() const{
 
 void hkbBlendingTransitionEffect::setToGeneratorStartTimeFraction(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != toGeneratorStartTimeFraction) ? toGeneratorStartTimeFraction = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'toGeneratorStartTimeFraction' was not set!");
+    if (value != toGeneratorStartTimeFraction) {
+        toGeneratorStartTimeFraction = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'toGeneratorStartTimeFraction' was not set!");
+    }
 }
 
 qreal hkbBlendingTransitionEffect::getDuration() const{
@@ -150,7 +170,11 @@ qreal hkbBlendingTransitionEffect::getDuration() const{
 
 void hkbBlendingTransitionEffect::setDuration(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != duration) ? duration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'duration' was not set!");
+    if (value != duration) {
+        duration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'duration' was not set!");
+    }
 }
 
 QString hkbBlendingTransitionEffect::getEventMode() const{
@@ -160,7 +184,11 @@ QString hkbBlendingTransitionEffect::getEventMode() const{
 
 void hkbBlendingTransitionEffect::setEventMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < EventMode.size() && eventMode != EventMode.at(index)) ? eventMode = EventMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventMode' was not set!");
+    if (index >= 0 && index < EventMode.size() && eventMode != EventMode.at(index)) {
+        eventMode = EventMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventMode' was not set!");
+    }
 }
 
 QString hkbBlendingTransitionEffect::getSelfTransitionMode() const{
@@ -170,12 +198,20 @@ QString hkbBlendingTransitionEffect::getSelfTransitionMode() const{
 
 void hkbBlendingTransitionEffect::setSelfTransitionMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < SelfTransitionMode.size() && selfTransitionMode != SelfTransitionMode.at(index)) ? selfTransitionMode = SelfTransitionMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'selfTransitionMode' was not set!");
+    if (index >= 0 && index < SelfTransitionMode.size() && selfTransitionMode != SelfTransitionMode.at(index)) {
+        selfTransitionMode = SelfTransitionMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'selfTransitionMode' was not set!");
+    }
 }
 
 void hkbBlendingTransitionEffect::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbBlendingTransitionEffect::readData(const HkxXmlReader &reader, long & index){

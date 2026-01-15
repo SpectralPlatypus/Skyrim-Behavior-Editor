@@ -94,7 +94,11 @@ qreal BSGetTimeStepModifier::getTimeStep() const{
 
 void BSGetTimeStepModifier::setTimeStep(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != timeStep) ? timeStep = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'timeStep' was not set!");
+    if (value != timeStep) {
+        timeStep = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'timeStep' was not set!");
+    }
 }
 
 bool BSGetTimeStepModifier::getEnable() const{
@@ -104,12 +108,20 @@ bool BSGetTimeStepModifier::getEnable() const{
 
 void BSGetTimeStepModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSGetTimeStepModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSGetTimeStepModifier::link(){

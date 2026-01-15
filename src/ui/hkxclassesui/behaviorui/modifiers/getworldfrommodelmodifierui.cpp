@@ -126,15 +126,27 @@ void GetWorldFromModelModifierUI::setName(const QString &newname){
 }
 
 void GetWorldFromModelModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("GetWorldFromModelModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("GetWorldFromModelModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetWorldFromModelModifierUI::setTranslationOut(){
-    (bsData) ? bsData->setTranslationOut(translationOut->value()) : LogFile::writeToLog("GetWorldFromModelModifierUI::setTranslationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTranslationOut(translationOut->value());
+    } else {
+        LogFile::writeToLog("GetWorldFromModelModifierUI::setTranslationOut(): The data is nullptr!!");
+    }
 }
 
 void GetWorldFromModelModifierUI::setRotationOut(){
-    (bsData) ? bsData->setRotationOut(rotationOut->value()) : LogFile::writeToLog("GetWorldFromModelModifierUI::setRotationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotationOut(rotationOut->value());
+    } else {
+        LogFile::writeToLog("GetWorldFromModelModifierUI::setRotationOut(): The data is nullptr!!");
+    }
 }
 
 void GetWorldFromModelModifierUI::viewSelected(int row, int column){

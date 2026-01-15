@@ -94,7 +94,11 @@ bool hkbMirrorModifier::getIsAdditive() const{
 
 void hkbMirrorModifier::setIsAdditive(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isAdditive) ? isAdditive = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isAdditive' was not set!");
+    if (value != isAdditive) {
+        isAdditive = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isAdditive' was not set!");
+    }
 }
 
 bool hkbMirrorModifier::getEnable() const{
@@ -104,12 +108,20 @@ bool hkbMirrorModifier::getEnable() const{
 
 void hkbMirrorModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbMirrorModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbMirrorModifier::link(){

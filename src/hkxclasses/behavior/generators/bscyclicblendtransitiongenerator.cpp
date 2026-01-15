@@ -69,29 +69,49 @@ bool BSCyclicBlendTransitionGenerator::removeObjectAt(int index){
 
 void BSCyclicBlendTransitionGenerator::setEBlendCurve(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < BlendCurve.size() && eBlendCurve != BlendCurve.at(index)) ? eBlendCurve = BlendCurve.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eBlendCurve' was not set!");
+    if (index >= 0 && index < BlendCurve.size() && eBlendCurve != BlendCurve.at(index)) {
+        eBlendCurve = BlendCurve.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eBlendCurve' was not set!");
+    }
 }
 
 void BSCyclicBlendTransitionGenerator::setFTransitionDuration(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != fTransitionDuration) ? fTransitionDuration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'fTransitionDuration' was not set!");
+    if (value != fTransitionDuration) {
+        fTransitionDuration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'fTransitionDuration' was not set!");
+    }
 }
 
 void BSCyclicBlendTransitionGenerator::setFBlendParameter(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != fBlendParameter) ? fBlendParameter = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'fBlendParameter' was not set!");
+    if (value != fBlendParameter) {
+        fBlendParameter = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'fBlendParameter' was not set!");
+    }
 }
 
 void BSCyclicBlendTransitionGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 QString BSCyclicBlendTransitionGenerator::getBlenderGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString genname("NONE");
     auto gen = static_cast<hkbGenerator *>(pBlenderGenerator.data());
-    (gen) ? genname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        genname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return genname;
 }
 

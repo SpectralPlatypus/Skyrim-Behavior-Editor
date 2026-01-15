@@ -238,10 +238,18 @@ TreeGraphicsItem * DataIconManager::reconnectToNext(){
 
 void DataIconManager::appendIcon(TreeGraphicsItem *icon){
     if (icon){
-        (icons.isEmpty() || !icons.contains(icon)) ? icons.append(icon) : LogFile::writeToLog("DataIconManager::appendIcon(): icon was not appended!!!");
+        if (icons.isEmpty() || !icons.contains(icon)) {
+            icons.append(icon);
+        } else {
+            LogFile::writeToLog("DataIconManager::appendIcon(): icon was not appended!!!");
+        }
     }
 }
 
 void DataIconManager::removeIcon(TreeGraphicsItem *icon){
-    (!icons.isEmpty()) ? icons.removeAll(icon) : LogFile::writeToLog("DataIconManager::removeIcon(): 'icons' is empty!!!");
+    if (!icons.isEmpty()) {
+        icons.removeAll(icon);
+    } else {
+        LogFile::writeToLog("DataIconManager::removeIcon(): 'icons' is empty!!!");
+    }
 }

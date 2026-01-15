@@ -36,7 +36,11 @@ void hkbFootIkDriverInfo::addLeg(){
 
 void hkbFootIkDriverInfo::removeLegAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < legs.size()) ? legs.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'leg' was not removed!");
+    if (index >= 0 && index < legs.size()) {
+        legs.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'leg' was not removed!");
+    }
 }
 
 hkbFootIkDriverInfo::hkbFootIkDriverInfoLeg * hkbFootIkDriverInfo::getLegAt(int index){
@@ -59,7 +63,11 @@ bool hkbFootIkDriverInfo::getIsQuadrupedNarrow() const{
 
 void hkbFootIkDriverInfo::setIsQuadrupedNarrow(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isQuadrupedNarrow) ? isQuadrupedNarrow = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isQuadrupedNarrow' was not set!");
+    if (value != isQuadrupedNarrow) {
+        isQuadrupedNarrow = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isQuadrupedNarrow' was not set!");
+    }
 }
 
 bool hkbFootIkDriverInfo::getUseCharacterUpVector() const{
@@ -69,7 +77,11 @@ bool hkbFootIkDriverInfo::getUseCharacterUpVector() const{
 
 void hkbFootIkDriverInfo::setUseCharacterUpVector(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != useCharacterUpVector) ? useCharacterUpVector = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'useCharacterUpVector' was not set!");
+    if (value != useCharacterUpVector) {
+        useCharacterUpVector = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'useCharacterUpVector' was not set!");
+    }
 }
 
 bool hkbFootIkDriverInfo::getLockFeetWhenPlanted() const{
@@ -79,7 +91,11 @@ bool hkbFootIkDriverInfo::getLockFeetWhenPlanted() const{
 
 void hkbFootIkDriverInfo::setLockFeetWhenPlanted(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != lockFeetWhenPlanted) ? lockFeetWhenPlanted = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'lockFeetWhenPlanted' was not set!");
+    if (value != lockFeetWhenPlanted) {
+        lockFeetWhenPlanted = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'lockFeetWhenPlanted' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getSidewaysSampleWidth() const{
@@ -89,7 +105,11 @@ qreal hkbFootIkDriverInfo::getSidewaysSampleWidth() const{
 
 void hkbFootIkDriverInfo::setSidewaysSampleWidth(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != sidewaysSampleWidth) ? sidewaysSampleWidth = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sidewaysSampleWidth' was not set!");
+    if (value != sidewaysSampleWidth) {
+        sidewaysSampleWidth = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sidewaysSampleWidth' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getSidewaysAlignFraction() const{
@@ -99,7 +119,11 @@ qreal hkbFootIkDriverInfo::getSidewaysAlignFraction() const{
 
 void hkbFootIkDriverInfo::setSidewaysAlignFraction(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != sidewaysAlignFraction) ? sidewaysAlignFraction = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sidewaysAlignFraction' was not set!");
+    if (value != sidewaysAlignFraction) {
+        sidewaysAlignFraction = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sidewaysAlignFraction' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getForwardAlignFraction() const{
@@ -109,7 +133,11 @@ qreal hkbFootIkDriverInfo::getForwardAlignFraction() const{
 
 void hkbFootIkDriverInfo::setForwardAlignFraction(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != forwardAlignFraction) ? forwardAlignFraction = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'forwardAlignFraction' was not set!");
+    if (value != forwardAlignFraction) {
+        forwardAlignFraction = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'forwardAlignFraction' was not set!");
+    }
 }
 
 int hkbFootIkDriverInfo::getCollisionFilterInfo() const{
@@ -119,7 +147,11 @@ int hkbFootIkDriverInfo::getCollisionFilterInfo() const{
 
 void hkbFootIkDriverInfo::setCollisionFilterInfo(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) ? collisionFilterInfo = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    if (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) {
+        collisionFilterInfo = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getVerticalOffset() const{
@@ -129,7 +161,11 @@ qreal hkbFootIkDriverInfo::getVerticalOffset() const{
 
 void hkbFootIkDriverInfo::setVerticalOffset(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != verticalOffset) ? verticalOffset = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'verticalOffset' was not set!");
+    if (value != verticalOffset) {
+        verticalOffset = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'verticalOffset' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getOriginalGroundHeightMS() const{
@@ -139,7 +175,11 @@ qreal hkbFootIkDriverInfo::getOriginalGroundHeightMS() const{
 
 void hkbFootIkDriverInfo::setOriginalGroundHeightMS(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != originalGroundHeightMS) ? originalGroundHeightMS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'originalGroundHeightMS' was not set!");
+    if (value != originalGroundHeightMS) {
+        originalGroundHeightMS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'originalGroundHeightMS' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getRaycastDistanceDown() const{
@@ -149,7 +189,11 @@ qreal hkbFootIkDriverInfo::getRaycastDistanceDown() const{
 
 void hkbFootIkDriverInfo::setRaycastDistanceDown(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != raycastDistanceDown) ? raycastDistanceDown = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'raycastDistanceDown' was not set!");
+    if (value != raycastDistanceDown) {
+        raycastDistanceDown = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'raycastDistanceDown' was not set!");
+    }
 }
 
 qreal hkbFootIkDriverInfo::getRaycastDistanceUp() const{
@@ -159,7 +203,11 @@ qreal hkbFootIkDriverInfo::getRaycastDistanceUp() const{
 
 void hkbFootIkDriverInfo::setRaycastDistanceUp(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != raycastDistanceUp) ? raycastDistanceUp = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'raycastDistanceUp' was not set!");
+    if (value != raycastDistanceUp) {
+        raycastDistanceUp = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'raycastDistanceUp' was not set!");
+    }
 }
 
 bool hkbFootIkDriverInfo::readData(const HkxXmlReader &reader, long & index){

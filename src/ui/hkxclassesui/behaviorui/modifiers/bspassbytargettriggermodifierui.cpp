@@ -158,19 +158,35 @@ void BSPassByTargetTriggerModifierUI::setName(const QString &newname){
 }
 
 void BSPassByTargetTriggerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSPassByTargetTriggerModifierUI::setTargetPosition(){
-    (bsData) ? bsData->setTargetPosition(targetPosition->value()) : LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setTargetPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTargetPosition(targetPosition->value());
+    } else {
+        LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setTargetPosition(): The data is nullptr!!");
+    }
 }
 
 void BSPassByTargetTriggerModifierUI::setRadius(){
-    (bsData) ? bsData->setRadius(radius->value()) : LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setRadius(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRadius(radius->value());
+    } else {
+        LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setRadius(): The data is nullptr!!");
+    }
 }
 
 void BSPassByTargetTriggerModifierUI::setMovementDirection(){
-    (bsData) ? bsData->setMovementDirection(movementDirection->value()) : LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setMovementDirection(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMovementDirection(movementDirection->value());
+    } else {
+        LogFile::writeToLog("BSPassByTargetTriggerModifierUI::setMovementDirection(): The data is nullptr!!");
+    }
 }
 
 void BSPassByTargetTriggerModifierUI::setTriggerEventId(int index, const QString & name){

@@ -274,7 +274,11 @@ void ModifierListUI::setName(const QString &newname){
 }
 
 void ModifierListUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("ModifierListUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ModifierListUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ModifierListUI::viewSelectedChild(int row, int column){

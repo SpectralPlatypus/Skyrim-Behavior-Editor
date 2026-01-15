@@ -320,7 +320,11 @@ void StateMachineUI::setName(const QString &newname){
 }
 
 void StateMachineUI::setReturnToPreviousStateEventId(int index, const QString & name){
-    (bsData) ? bsData->setReturnToPreviousStateEventId(index), table->item(RETURN_TO_PREVIOUS_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("StateMachineUI::setReturnToPreviousStateEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setReturnToPreviousStateEventId(index), table->item(RETURN_TO_PREVIOUS_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setReturnToPreviousStateEventId(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setStartStateId(int index)
@@ -337,35 +341,67 @@ void StateMachineUI::setStartStateId(int index)
 }
 
 void StateMachineUI::setRandomTransitionEventId(int index, const QString & name){
-    (bsData) ? bsData->setRandomTransitionEventId(index), table->item(RANDOM_TRANSITION_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("StateMachineUI::setRandomTransitionEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRandomTransitionEventId(index), table->item(RANDOM_TRANSITION_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setRandomTransitionEventId(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setTransitionToNextHigherStateEventId(int index, const QString &name){
-    (bsData) ? bsData->setTransitionToNextHigherStateEventId(index), table->item(TRANSITION_TO_NEXT_HIGHER_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("StateMachineUI::setTransitionToNextHigherStateEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTransitionToNextHigherStateEventId(index), table->item(TRANSITION_TO_NEXT_HIGHER_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setTransitionToNextHigherStateEventId(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setTransitionToNextLowerStateEventId(int index, const QString &name){
-    (bsData) ? bsData->setTransitionToNextLowerStateEventId(index), table->item(TRANSITION_TO_NEXT_LOWER_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("StateMachineUI::setTransitionToNextLowerStateEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTransitionToNextLowerStateEventId(index), table->item(TRANSITION_TO_NEXT_LOWER_STATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setTransitionToNextLowerStateEventId(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setSyncVariableIndex(int index, const QString &name){
-    (bsData) ? bsData->setSyncVariableIndex(index), table->item(SYNC_VARIABLE_INDEX_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("StateMachineUI::setSyncVariableIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSyncVariableIndex(index), table->item(SYNC_VARIABLE_INDEX_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setSyncVariableIndex(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setWrapAroundStateId(bool checked){
-    (bsData) ? bsData->setWrapAroundStateId(checked) : LogFile::writeToLog("StateMachineUI::setWrapAroundStateId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setWrapAroundStateId(checked);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setWrapAroundStateId(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setMaxSimultaneousTransitions(){
-    (bsData) ? bsData->setMaxSimultaneousTransitions(maxSimultaneousTransitions->value()) : LogFile::writeToLog("StateMachineUI::setMaxSimultaneousTransitions(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMaxSimultaneousTransitions(maxSimultaneousTransitions->value());
+    } else {
+        LogFile::writeToLog("StateMachineUI::setMaxSimultaneousTransitions(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setStartStateMode(int index){
-    (bsData) ? bsData->setStartStateMode(index) : LogFile::writeToLog("StateMachineUI::setStartStateMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setStartStateMode(index);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setStartStateMode(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::setSelfTransitionMode(int index){
-    (bsData) ? bsData->setSelfTransitionMode(index) : LogFile::writeToLog("StateMachineUI::setSelfTransitionMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSelfTransitionMode(index);
+    } else {
+        LogFile::writeToLog("StateMachineUI::setSelfTransitionMode(): The data is nullptr!!");
+    }
 }
 
 void StateMachineUI::swapGeneratorIndices(int index1, int index2){
@@ -375,7 +411,11 @@ void StateMachineUI::swapGeneratorIndices(int index1, int index2){
         if (!bsData->swapChildren(index1, index2)){
             WARNING_MESSAGE("Cannot swap these rows!!");
         }else{  //TO DO: check if necessary...
-            (behaviorView->getSelectedItem()) ? behaviorView->getSelectedItem()->reorderChildren() : LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            if (behaviorView->getSelectedItem()) {
+                behaviorView->getSelectedItem()->reorderChildren();
+            } else {
+                LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            }
         }
     }else{
         LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): The data is nullptr!!");
@@ -384,7 +424,11 @@ void StateMachineUI::swapGeneratorIndices(int index1, int index2){
 
 void StateMachineUI::setStateIDForRow(int index, int newID, const QString &statename){
     auto row = ADD_STATE_ROW + index;
-    (table->item(row, NAME_COLUMN)) ? table->item(row, NAME_COLUMN)->setText(statename+" ->ID: "+QString::number(newID)) : LogFile::writeToLog("StateMachineUI::setStateIDForRow(): Unwanted state id change event heard!!");
+    if (table->item(row, NAME_COLUMN)) {
+        table->item(row, NAME_COLUMN)->setText(statename+" ->ID: "+QString::number(newID));
+    } else {
+        LogFile::writeToLog("StateMachineUI::setStateIDForRow(): Unwanted state id change event heard!!");
+    }
 }
 
 void StateMachineUI::setBindingVariable(int index, const QString & name){
@@ -434,7 +478,11 @@ void StateMachineUI::toggleEventToSendWhenStateOrTransitionChanges(bool enable){
 void StateMachineUI::stateRenamed(const QString &name, int stateIndex){
     if (bsData){
         auto item = table->item(INITIAL_ADD_TRANSITION_ROW + stateIndex, NAME_COLUMN);
-        (item) ? item->setText(name) : LogFile::writeToLog("StateMachineUI::stateRenamed(): Invalid row selected!!");
+        if (item) {
+            item->setText(name);
+        } else {
+            LogFile::writeToLog("StateMachineUI::stateRenamed(): Invalid row selected!!");
+        }
     }else{
         LogFile::writeToLog("StateMachineUI::stateRenamed(): The data is nullptr!!");
     }
@@ -443,7 +491,11 @@ void StateMachineUI::stateRenamed(const QString &name, int stateIndex){
 void StateMachineUI::transitionRenamed(const QString &name, int index){
     if (bsData){
         auto item = table->item(transitionsButtonRow + index + 1, NAME_COLUMN);
-        (item) ? item->setText(name) : LogFile::writeToLog("StateMachineUI::transitionRenamed(): Invalid row selected!!");
+        if (item) {
+            item->setText(name);
+        } else {
+            LogFile::writeToLog("StateMachineUI::transitionRenamed(): Invalid row selected!!");
+        }
     }else{
         LogFile::writeToLog("StateMachineUI::transitionRenamed(): The data is nullptr!!");
     }
@@ -589,7 +641,11 @@ void StateMachineUI::variableTableElementSelected(int index, const QString &name
     switch (currentIndex()){
     case MAIN_WIDGET:
         if (table->currentRow() == SYNC_VARIABLE_INDEX_ROW){
-            (bsData) ? bsData->setSyncVariableIndex(index - 1) : LogFile::writeToLog("StateMachineUI::variableTableElementSelected(): The data is nullptr!!");
+            if (bsData) {
+                bsData->setSyncVariableIndex(index - 1);
+            } else {
+                LogFile::writeToLog("StateMachineUI::variableTableElementSelected(): The data is nullptr!!");
+            }
         }else{
             setBindingVariable(index, name);
         }

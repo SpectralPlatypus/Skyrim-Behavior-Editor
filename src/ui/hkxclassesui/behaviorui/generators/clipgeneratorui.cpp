@@ -368,42 +368,78 @@ void ClipGeneratorUI::setAnimationName(int index, const QString &name){
     if (bsData){
         bsData->setAnimationName(index, name);
         auto item = table->item(ANIMATION_NAME_ROW, VALUE_COLUMN);
-        (item) ? item->setText(name) : LogFile::writeToLog("ClipGeneratorUI::setAnimationName(): The table item at 'ANIMATION_NAME_ROW' is nullptr!!");
+        if (item) {
+            item->setText(name);
+        } else {
+            LogFile::writeToLog("ClipGeneratorUI::setAnimationName(): The table item at 'ANIMATION_NAME_ROW' is nullptr!!");
+        }
     }else{
         LogFile::writeToLog("ClipGeneratorUI::setAnimationName(): The data is nullptr!!");
     }
 }
 
 void ClipGeneratorUI::setCropStartAmountLocalTime(){
-    (bsData) ? bsData->setCropStartAmountLocalTime(cropStartAmountLocalTime->value()) : LogFile::writeToLog("ClipGeneratorUI::setCropStartAmountLocalTime(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCropStartAmountLocalTime(cropStartAmountLocalTime->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setCropStartAmountLocalTime(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setCropEndAmountLocalTime(){
-    (bsData) ? bsData->setCropEndAmountLocalTime(cropEndAmountLocalTime->value()) : LogFile::writeToLog("ClipGeneratorUI::setCropEndAmountLocalTime(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCropEndAmountLocalTime(cropEndAmountLocalTime->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setCropEndAmountLocalTime(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setStartTime(){
-    (bsData) ? bsData->setStartTime(startTime->value()) : LogFile::writeToLog("ClipGeneratorUI::setStartTime(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setStartTime(startTime->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setStartTime(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setPlaybackSpeed(){
-    (bsData) ? bsData->setPlaybackSpeed(playbackSpeed->value()) : LogFile::writeToLog("ClipGeneratorUI::setPlaybackSpeed(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPlaybackSpeed(playbackSpeed->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setPlaybackSpeed(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setEnforcedDuration(){
-    (bsData) ? bsData->setEnforcedDuration(enforcedDuration->value()) : LogFile::writeToLog("ClipGeneratorUI::setEnforcedDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnforcedDuration(enforcedDuration->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setEnforcedDuration(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setUserControlledTimeFraction(){
-    (bsData) ? bsData->setUserControlledTimeFraction(userControlledTimeFraction->value()) : LogFile::writeToLog("ClipGeneratorUI::setUserControlledTimeFraction(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setUserControlledTimeFraction(userControlledTimeFraction->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setUserControlledTimeFraction(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setAnimationBindingIndex(){
-    (bsData) ? bsData->setAnimationBindingIndex(animationBindingIndex->value()) : LogFile::writeToLog("ClipGeneratorUI::setAnimationBindingIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAnimationBindingIndex(animationBindingIndex->value());
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setAnimationBindingIndex(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setMode(int index){
-    (bsData) ? bsData->setMode(index) : LogFile::writeToLog("ClipGeneratorUI::setMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMode(index);
+    } else {
+        LogFile::writeToLog("ClipGeneratorUI::setMode(): The data is nullptr!!");
+    }
 }
 
 void ClipGeneratorUI::setFlag(CheckBox *flagcheckbox, hkbClipGenerator::ClipFlag flagtoset){

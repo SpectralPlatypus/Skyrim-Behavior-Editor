@@ -93,7 +93,11 @@ hkQuadVariable hkbMoveCharacterModifier::getOffsetPerSecondMS() const{
 
 void hkbMoveCharacterModifier::setOffsetPerSecondMS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != offsetPerSecondMS) ? offsetPerSecondMS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'offsetPerSecondMS' was not set!");
+    if (value != offsetPerSecondMS) {
+        offsetPerSecondMS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'offsetPerSecondMS' was not set!");
+    }
 }
 
 bool hkbMoveCharacterModifier::getEnable() const{
@@ -103,12 +107,20 @@ bool hkbMoveCharacterModifier::getEnable() const{
 
 void hkbMoveCharacterModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbMoveCharacterModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbMoveCharacterModifier::link(){

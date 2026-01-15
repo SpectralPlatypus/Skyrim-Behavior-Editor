@@ -47,17 +47,29 @@ bool BSiStateTaggingGenerator::removeObjectAt(int index){
 
 void BSiStateTaggingGenerator::setIPriority(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != iPriority) ? iPriority = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'iPriority' was not set!");
+    if (value != iPriority) {
+        iPriority = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'iPriority' was not set!");
+    }
 }
 
 void BSiStateTaggingGenerator::setIStateToSetAs(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != iStateToSetAs) ? iStateToSetAs = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'iStateToSetAs' was not set!");
+    if (value != iStateToSetAs) {
+        iStateToSetAs = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'iStateToSetAs' was not set!");
+    }
 }
 
 void BSiStateTaggingGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 int BSiStateTaggingGenerator::getIPriority() const{
@@ -74,7 +86,11 @@ QString BSiStateTaggingGenerator::getDefaultGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString genname("NONE");
     auto gen = static_cast<hkbGenerator *>(pDefaultGenerator.data());
-    (gen) ? genname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        genname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return genname;
 }
 

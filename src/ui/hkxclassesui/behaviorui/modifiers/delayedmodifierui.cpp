@@ -152,19 +152,35 @@ void DelayedModifierUI::setName(const QString &newname){
 }
 
 void DelayedModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("DelayedModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("DelayedModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void DelayedModifierUI::setDelaySeconds(){
-    (bsData) ? bsData->setDelaySeconds(delaySeconds->value()) : LogFile::writeToLog("DelayedModifierUI::setDelaySeconds(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDelaySeconds(delaySeconds->value());
+    } else {
+        LogFile::writeToLog("DelayedModifierUI::setDelaySeconds(): The data is nullptr!!");
+    }
 }
 
 void DelayedModifierUI::setDurationSeconds(){
-    (bsData) ? bsData->setDurationSeconds(durationSeconds->value()) : LogFile::writeToLog("DelayedModifierUI::setDurationSeconds(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDurationSeconds(durationSeconds->value());
+    } else {
+        LogFile::writeToLog("DelayedModifierUI::setDurationSeconds(): The data is nullptr!!");
+    }
 }
 
 void DelayedModifierUI::setSecondsElapsed(){
-    (bsData) ? bsData->setSecondsElapsed(secondsElapsed->value()) : LogFile::writeToLog("DelayedModifierUI::setSecondsElapsed(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSecondsElapsed(secondsElapsed->value());
+    } else {
+        LogFile::writeToLog("DelayedModifierUI::setSecondsElapsed(): The data is nullptr!!");
+    }
 }
 
 void DelayedModifierUI::setModifier(int index, const QString & name){

@@ -154,15 +154,27 @@ void BSOffsetAnimationGeneratorUI::setName(const QString &newname){
 }
 
 void BSOffsetAnimationGeneratorUI::setFOffsetVariable(){
-    (bsData) ? bsData->setFOffsetVariable(fOffsetVariable->value()) : LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetVariable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFOffsetVariable(fOffsetVariable->value());
+    } else {
+        LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetVariable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSOffsetAnimationGeneratorUI::setFOffsetRangeStart(){
-    (bsData) ? bsData->setFOffsetRangeStart(fOffsetRangeStart->value()) : LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetRangeStart(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFOffsetRangeStart(fOffsetRangeStart->value());
+    } else {
+        LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetRangeStart(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSOffsetAnimationGeneratorUI::setFOffsetRangeEnd(){
-    (bsData) ? bsData->setFOffsetRangeEnd(fOffsetRangeEnd->value()) : LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetRangeEnd(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFOffsetRangeEnd(fOffsetRangeEnd->value());
+    } else {
+        LogFile::writeToLog("BSOffsetAnimationGeneratorUI::setFOffsetRangeEnd(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSOffsetAnimationGeneratorUI::setBindingVariable(int index, const QString & name){

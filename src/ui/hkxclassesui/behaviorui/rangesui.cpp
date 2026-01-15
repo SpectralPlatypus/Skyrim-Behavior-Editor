@@ -176,7 +176,11 @@ void RangesUI::setEventPayload(){
 
 void RangesUI::setMinDistance(){
     if (bsData && file){
-        (bsData->minDistance != minDistance->value()) ? bsData->minDistance = minDistance->value(), file->setIsChanged(true) : LogFile::writeToLog("RangesUI::setminDistance(): minDistance not set!!");
+        if (bsData->minDistance != minDistance->value()) {
+            bsData->minDistance = minDistance->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("RangesUI::setminDistance(): minDistance not set!!");
+        }
     }else{
         LogFile::writeToLog("RangesUI::setMinDistance(): Behavior file or data is null!!!");
     }
@@ -184,7 +188,11 @@ void RangesUI::setMinDistance(){
 
 void RangesUI::setMaxDistance(){
     if (bsData && file){
-        (bsData->maxDistance != maxDistance->value()) ? bsData->maxDistance = maxDistance->value(), file->setIsChanged(true) : LogFile::writeToLog("RangesUI::setmaxDistance(): maxDistance not set!!");
+        if (bsData->maxDistance != maxDistance->value()) {
+            bsData->maxDistance = maxDistance->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("RangesUI::setmaxDistance(): maxDistance not set!!");
+        }
     }else{
         LogFile::writeToLog("RangesUI::setMaxDistance(): Behavior file or data is null!!!");
     }
@@ -192,7 +200,11 @@ void RangesUI::setMaxDistance(){
 
 void RangesUI::setIgnoreHandle(){
     if (bsData && file){
-        (bsData->ignoreHandle != ignoreHandle->isChecked()) ? bsData->ignoreHandle = ignoreHandle->isChecked(), file->setIsChanged(true) : LogFile::writeToLog("RangesUI::setignoreHandle(): ignoreHandle not set!!");
+        if (bsData->ignoreHandle != ignoreHandle->isChecked()) {
+            bsData->ignoreHandle = ignoreHandle->isChecked(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("RangesUI::setignoreHandle(): ignoreHandle not set!!");
+        }
     }else{
         LogFile::writeToLog("RangesUI::setIsAnnotation(): Behavior file or data is null!!!");
     }

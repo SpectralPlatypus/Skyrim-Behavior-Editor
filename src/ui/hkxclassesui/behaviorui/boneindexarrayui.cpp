@@ -144,7 +144,11 @@ void BoneIndexArrayUI::setRagdollBone(int index, const QString &name){
                 if (index >= 0){
                     bsData->setBoneIndexAt(row, --index);
                     auto item = table->item(table->currentRow(), NAME_COLUMN);
-                    (item) ? item->setText(name) : LogFile::writeToLog("BoneIndexArrayUI::setRagdollBone(): Table row does not exist!!");
+                    if (item) {
+                        item->setText(name);
+                    } else {
+                        LogFile::writeToLog("BoneIndexArrayUI::setRagdollBone(): Table row does not exist!!");
+                    }
                 }else{
                     removeRagdollBone(row);
                 }

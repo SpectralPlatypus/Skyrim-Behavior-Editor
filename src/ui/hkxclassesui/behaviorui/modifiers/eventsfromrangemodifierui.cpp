@@ -212,15 +212,27 @@ void EventsFromRangeModifierUI::setName(const QString &newname){
 }
 
 void EventsFromRangeModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("EventsFromRangeModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("EventsFromRangeModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void EventsFromRangeModifierUI::setInputValue(){
-    (bsData) ? bsData->setInputValue(inputValue->value()) : LogFile::writeToLog("EventsFromRangeModifierUI::setInputValue(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setInputValue(inputValue->value());
+    } else {
+        LogFile::writeToLog("EventsFromRangeModifierUI::setInputValue(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EventsFromRangeModifierUI::setLowerBound(){
-    (bsData) ? bsData->setLowerBound(inputValue->value()) : LogFile::writeToLog("EventsFromRangeModifierUI::setLowerBound(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLowerBound(inputValue->value());
+    } else {
+        LogFile::writeToLog("EventsFromRangeModifierUI::setLowerBound(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EventsFromRangeModifierUI::viewSelectedChild(int row, int column){

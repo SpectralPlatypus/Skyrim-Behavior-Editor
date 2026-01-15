@@ -140,47 +140,91 @@ void FootIkDriverInfoUI::loadData(HkxObject *data){
 }
 
 void FootIkDriverInfoUI::setRaycastDistanceUp(){
-    (bsData) ? bsData->setRaycastDistanceUp(raycastDistanceUp->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setRaycastDistanceUp(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRaycastDistanceUp(raycastDistanceUp->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setRaycastDistanceUp(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setRaycastDistanceDown(){
-    (bsData) ? bsData->setRaycastDistanceDown(raycastDistanceDown->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setRaycastDistanceDown(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRaycastDistanceDown(raycastDistanceDown->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setRaycastDistanceDown(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setOriginalGroundHeightMS(){
-    (bsData) ? bsData->setOriginalGroundHeightMS(originalGroundHeightMS->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setOriginalGroundHeightMS(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setOriginalGroundHeightMS(originalGroundHeightMS->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setOriginalGroundHeightMS(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setVerticalOffset(){
-    (bsData) ? bsData->setVerticalOffset(verticalOffset->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setVerticalOffset(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVerticalOffset(verticalOffset->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setVerticalOffset(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setCollisionFilterInfo(){
-    (bsData) ? bsData->setCollisionFilterInfo(collisionFilterInfo->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setCollisionFilterInfo(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCollisionFilterInfo(collisionFilterInfo->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setCollisionFilterInfo(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setForwardAlignFraction(){
-    (bsData) ? bsData->setForwardAlignFraction(forwardAlignFraction->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setForwardAlignFraction(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setForwardAlignFraction(forwardAlignFraction->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setForwardAlignFraction(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setSidewaysAlignFraction(){
-    (bsData) ? bsData->setSidewaysAlignFraction(sidewaysAlignFraction->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setSidewaysAlignFraction(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSidewaysAlignFraction(sidewaysAlignFraction->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setSidewaysAlignFraction(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setSidewaysSampleWidth(){
-    (bsData) ? bsData->setSidewaysSampleWidth(sidewaysSampleWidth->value()) : LogFile::writeToLog("FootIkDriverInfoUI::setSidewaysSampleWidth(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSidewaysSampleWidth(sidewaysSampleWidth->value());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setSidewaysSampleWidth(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setLockFeetWhenPlanted(){
-    (bsData) ? bsData->setLockFeetWhenPlanted(lockFeetWhenPlanted->isChecked()) : LogFile::writeToLog("FootIkDriverInfoUI::setLockFeetWhenPlanted(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setLockFeetWhenPlanted(lockFeetWhenPlanted->isChecked());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setLockFeetWhenPlanted(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setUseCharacterUpVector(){
-    (bsData) ? bsData->setUseCharacterUpVector(useCharacterUpVector->isChecked()) : LogFile::writeToLog("FootIkDriverInfoUI::setUseCharacterUpVector(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setUseCharacterUpVector(useCharacterUpVector->isChecked());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setUseCharacterUpVector(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::setIsQuadrupedNarrow(){
-    (bsData) ? bsData->setIsQuadrupedNarrow(isQuadrupedNarrow->isChecked()) : LogFile::writeToLog("FootIkDriverInfoUI::setIsQuadrupedNarrow(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setIsQuadrupedNarrow(isQuadrupedNarrow->isChecked());
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoUI::setIsQuadrupedNarrow(): The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoUI::addLeg(){

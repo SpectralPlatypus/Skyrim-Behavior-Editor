@@ -128,7 +128,11 @@ void BSEventOnDeactivateModifierUI::setName(const QString &newname){
 }
 
 void BSEventOnDeactivateModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSEventOnDeactivateModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnDeactivateModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnDeactivateModifierUI::setEventId(int index, const QString & name){

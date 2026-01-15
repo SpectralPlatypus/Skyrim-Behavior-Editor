@@ -106,7 +106,11 @@ hkQuadVariable BSComputeAddBoneAnimModifier::getScaleLSOut() const{
 
 void BSComputeAddBoneAnimModifier::setScaleLSOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != scaleLSOut) ? scaleLSOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'scaleLSOut' was not set!");
+    if (value != scaleLSOut) {
+        scaleLSOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'scaleLSOut' was not set!");
+    }
 }
 
 hkQuadVariable BSComputeAddBoneAnimModifier::getRotationLSOut() const{
@@ -116,7 +120,11 @@ hkQuadVariable BSComputeAddBoneAnimModifier::getRotationLSOut() const{
 
 void BSComputeAddBoneAnimModifier::setRotationLSOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rotationLSOut) ? rotationLSOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationLSOut' was not set!");
+    if (value != rotationLSOut) {
+        rotationLSOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationLSOut' was not set!");
+    }
 }
 
 hkQuadVariable BSComputeAddBoneAnimModifier::getTranslationLSOut() const{
@@ -126,7 +134,11 @@ hkQuadVariable BSComputeAddBoneAnimModifier::getTranslationLSOut() const{
 
 void BSComputeAddBoneAnimModifier::setTranslationLSOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != translationLSOut) ? translationLSOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'translationLSOut' was not set!");
+    if (value != translationLSOut) {
+        translationLSOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'translationLSOut' was not set!");
+    }
 }
 
 int BSComputeAddBoneAnimModifier::getBoneIndex() const{
@@ -136,7 +148,11 @@ int BSComputeAddBoneAnimModifier::getBoneIndex() const{
 
 void BSComputeAddBoneAnimModifier::setBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != boneIndex && boneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? boneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'boneIndex' was not set!");
+    if (value != boneIndex && boneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        boneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'boneIndex' was not set!");
+    }
 }
 
 bool BSComputeAddBoneAnimModifier::getEnable() const{
@@ -146,12 +162,20 @@ bool BSComputeAddBoneAnimModifier::getEnable() const{
 
 void BSComputeAddBoneAnimModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSComputeAddBoneAnimModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSComputeAddBoneAnimModifier::link(){

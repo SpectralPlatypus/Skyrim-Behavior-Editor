@@ -80,20 +80,32 @@ void hkbStateMachineTransitionInfoArray::addTransition(){
 
 void hkbStateMachineTransitionInfoArray::removeTransition(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (transitions.size() > index && index > -1) ? transitions.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": Transition was not removed!");
+    if (transitions.size() > index && index > -1) {
+        transitions.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": Transition was not removed!");
+    }
 }
 
 void hkbStateMachineTransitionInfoArray::removeTransitionToState(ulong stateId){
     std::lock_guard <std::mutex> guard(mutex);
     for (auto i = transitions.size() - 1; i >= 0; i--){
-        (transitions.at(i).toStateId == stateId) ? transitions.removeAt(i), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": Transition was not removed!");
+        if (transitions.at(i).toStateId == stateId) {
+            transitions.removeAt(i), setIsFileChanged(true);
+        } else {
+            LogFile::writeToLog(getClassname()+": Transition was not removed!");
+        }
     }
 }
 
 void hkbStateMachineTransitionInfoArray::updateTransitionStateId(int oldid, int newid){
     std::lock_guard <std::mutex> guard(mutex);
     for (auto j = 0; j < transitions.size(); j++){
-        (transitions.at(j).toStateId == oldid) ? transitions[j].toStateId = newid, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": Transition state id was not updated!");
+        if (transitions.at(j).toStateId == oldid) {
+            transitions[j].toStateId = newid, setIsFileChanged(true);
+        } else {
+            LogFile::writeToLog(getClassname()+": Transition state id was not updated!");
+        }
     }
 }
 

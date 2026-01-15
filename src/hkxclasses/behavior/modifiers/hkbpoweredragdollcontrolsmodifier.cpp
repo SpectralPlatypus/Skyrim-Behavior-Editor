@@ -210,7 +210,11 @@ QString hkbPoweredRagdollControlsModifier::getMode() const{
 
 void hkbPoweredRagdollControlsModifier::setMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < Mode.size() && mode != Mode.at(index)) ? mode = Mode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'mode' was not set!");
+    if (index >= 0 && index < Mode.size() && mode != Mode.at(index)) {
+        mode = Mode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'mode' was not set!");
+    }
 }
 
 int hkbPoweredRagdollControlsModifier::getPoseMatchingBone2() const{
@@ -220,7 +224,11 @@ int hkbPoweredRagdollControlsModifier::getPoseMatchingBone2() const{
 
 void hkbPoweredRagdollControlsModifier::setPoseMatchingBone2(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone2 && poseMatchingBone2 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? poseMatchingBone2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone2' was not set!");
+    if (value != poseMatchingBone2 && poseMatchingBone2 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        poseMatchingBone2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone2' was not set!");
+    }
 }
 
 int hkbPoweredRagdollControlsModifier::getPoseMatchingBone1() const{
@@ -230,7 +238,11 @@ int hkbPoweredRagdollControlsModifier::getPoseMatchingBone1() const{
 
 void hkbPoweredRagdollControlsModifier::setPoseMatchingBone1(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone1 && poseMatchingBone1 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? poseMatchingBone1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone1' was not set!");
+    if (value != poseMatchingBone1 && poseMatchingBone1 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        poseMatchingBone1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone1' was not set!");
+    }
 }
 
 int hkbPoweredRagdollControlsModifier::getPoseMatchingBone0() const{
@@ -240,7 +252,11 @@ int hkbPoweredRagdollControlsModifier::getPoseMatchingBone0() const{
 
 void hkbPoweredRagdollControlsModifier::setPoseMatchingBone0(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone0 && poseMatchingBone0 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? poseMatchingBone0 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone0' was not set!");
+    if (value != poseMatchingBone0 && poseMatchingBone0 < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        poseMatchingBone0 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone0' was not set!");
+    }
 }
 
 qreal hkbPoweredRagdollControlsModifier::getConstantRecoveryVelocity() const{
@@ -250,7 +266,11 @@ qreal hkbPoweredRagdollControlsModifier::getConstantRecoveryVelocity() const{
 
 void hkbPoweredRagdollControlsModifier::setConstantRecoveryVelocity(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != constantRecoveryVelocity) ? constantRecoveryVelocity = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'constantRecoveryVelocity' was not set!");
+    if (value != constantRecoveryVelocity) {
+        constantRecoveryVelocity = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'constantRecoveryVelocity' was not set!");
+    }
 }
 
 qreal hkbPoweredRagdollControlsModifier::getProportionalRecoveryVelocity() const{
@@ -260,7 +280,11 @@ qreal hkbPoweredRagdollControlsModifier::getProportionalRecoveryVelocity() const
 
 void hkbPoweredRagdollControlsModifier::setProportionalRecoveryVelocity(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != proportionalRecoveryVelocity) ? proportionalRecoveryVelocity = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'proportionalRecoveryVelocity' was not set!");
+    if (value != proportionalRecoveryVelocity) {
+        proportionalRecoveryVelocity = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'proportionalRecoveryVelocity' was not set!");
+    }
 }
 
 qreal hkbPoweredRagdollControlsModifier::getDamping() const{
@@ -270,7 +294,11 @@ qreal hkbPoweredRagdollControlsModifier::getDamping() const{
 
 void hkbPoweredRagdollControlsModifier::setDamping(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != damping) ? damping = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'damping' was not set!");
+    if (value != damping) {
+        damping = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'damping' was not set!");
+    }
 }
 
 qreal hkbPoweredRagdollControlsModifier::getTau() const{
@@ -280,7 +308,11 @@ qreal hkbPoweredRagdollControlsModifier::getTau() const{
 
 void hkbPoweredRagdollControlsModifier::setTau(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != tau) ? tau = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'tau' was not set!");
+    if (value != tau) {
+        tau = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'tau' was not set!");
+    }
 }
 
 qreal hkbPoweredRagdollControlsModifier::getMaxForce() const{
@@ -290,7 +322,11 @@ qreal hkbPoweredRagdollControlsModifier::getMaxForce() const{
 
 void hkbPoweredRagdollControlsModifier::setMaxForce(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != maxForce) ? maxForce = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'maxForce' was not set!");
+    if (value != maxForce) {
+        maxForce = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'maxForce' was not set!");
+    }
 }
 
 bool hkbPoweredRagdollControlsModifier::getEnable() const{
@@ -300,12 +336,20 @@ bool hkbPoweredRagdollControlsModifier::getEnable() const{
 
 void hkbPoweredRagdollControlsModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbPoweredRagdollControlsModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 hkbBoneWeightArray * hkbPoweredRagdollControlsModifier::getBoneWeights() const{

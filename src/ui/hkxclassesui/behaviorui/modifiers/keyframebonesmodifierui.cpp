@@ -102,11 +102,19 @@ void KeyframeBonesModifierUI::toggleSignals(bool toggleconnections){
 }
 
 void KeyframeBonesModifierUI::addKeyframeInfo(){
-    (bsData) ? bsData->addKeyframeInfo(), loadDynamicTableRows() : LogFile::writeToLog("KeyframeBonesModifierUI::addKeyframeInfo(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addKeyframeInfo(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("KeyframeBonesModifierUI::addKeyframeInfo(): The data is nullptr!!");
+    }
 }
 
 void KeyframeBonesModifierUI::removeKeyframeInfo(int index){
-    (bsData) ? bsData->removeKeyframeInfo(index), loadDynamicTableRows() : LogFile::writeToLog("KeyframeBonesModifierUI::removeKeyframeInfo(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeKeyframeInfo(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("KeyframeBonesModifierUI::removeKeyframeInfo(): The data is nullptr!!");
+    }
 }
 
 void KeyframeBonesModifierUI::loadData(HkxObject *data){
@@ -181,7 +189,11 @@ void KeyframeBonesModifierUI::setName(const QString &newname){
 }
 
 void KeyframeBonesModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("KeyframeBonesModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("KeyframeBonesModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void KeyframeBonesModifierUI::toggleKeyframedBonesList(bool enable){

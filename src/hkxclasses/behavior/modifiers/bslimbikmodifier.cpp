@@ -119,7 +119,11 @@ qreal BSLimbIKModifier::getCastOffset() const{
 
 void BSLimbIKModifier::setCastOffset(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != castOffset) ? castOffset = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'castOffset' was not set!");
+    if (value != castOffset) {
+        castOffset = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'castOffset' was not set!");
+    }
 }
 
 qreal BSLimbIKModifier::getBoneRadius() const{
@@ -129,7 +133,11 @@ qreal BSLimbIKModifier::getBoneRadius() const{
 
 void BSLimbIKModifier::setBoneRadius(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != boneRadius) ? boneRadius = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'boneRadius' was not set!");
+    if (value != boneRadius) {
+        boneRadius = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'boneRadius' was not set!");
+    }
 }
 
 qreal BSLimbIKModifier::getGain() const{
@@ -139,7 +147,11 @@ qreal BSLimbIKModifier::getGain() const{
 
 void BSLimbIKModifier::setGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gain) ? gain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gain' was not set!");
+    if (value != gain) {
+        gain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gain' was not set!");
+    }
 }
 
 int BSLimbIKModifier::getEndBoneIndex() const{
@@ -149,7 +161,11 @@ int BSLimbIKModifier::getEndBoneIndex() const{
 
 void BSLimbIKModifier::setEndBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != endBoneIndex && endBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? endBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'endBoneIndex' was not set!");
+    if (value != endBoneIndex && endBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        endBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'endBoneIndex' was not set!");
+    }
 }
 
 int BSLimbIKModifier::getStartBoneIndex() const{
@@ -159,7 +175,11 @@ int BSLimbIKModifier::getStartBoneIndex() const{
 
 void BSLimbIKModifier::setStartBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != startBoneIndex && startBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? startBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'startBoneIndex' was not set!");
+    if (value != startBoneIndex && startBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        startBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'startBoneIndex' was not set!");
+    }
 }
 
 qreal BSLimbIKModifier::getLimitAngleDegrees() const{
@@ -169,7 +189,11 @@ qreal BSLimbIKModifier::getLimitAngleDegrees() const{
 
 void BSLimbIKModifier::setLimitAngleDegrees(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleDegrees) ? limitAngleDegrees = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleDegrees' was not set!");
+    if (value != limitAngleDegrees) {
+        limitAngleDegrees = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleDegrees' was not set!");
+    }
 }
 
 bool BSLimbIKModifier::getEnable() const{
@@ -179,12 +203,20 @@ bool BSLimbIKModifier::getEnable() const{
 
 void BSLimbIKModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSLimbIKModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSLimbIKModifier::link(){

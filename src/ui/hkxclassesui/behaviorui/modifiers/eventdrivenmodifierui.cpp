@@ -152,7 +152,11 @@ void EventDrivenModifierUI::setName(const QString &newname){
 }
 
 void EventDrivenModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("EventDrivenModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("EventDrivenModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EventDrivenModifierUI::setActivateEventId(int index, const QString & name){
@@ -174,7 +178,11 @@ void EventDrivenModifierUI::setDeactivateEventId(int index, const QString & name
 }
 
 void EventDrivenModifierUI::setActiveByDefault(){
-    (bsData) ? bsData->setActiveByDefault(activeByDefault->isChecked()) : LogFile::writeToLog("EventDrivenModifierUI::setActiveByDefault(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setActiveByDefault(activeByDefault->isChecked());
+    } else {
+        LogFile::writeToLog("EventDrivenModifierUI::setActiveByDefault(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EventDrivenModifierUI::eventTableElementSelected(int index, const QString &name){

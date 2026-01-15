@@ -264,11 +264,19 @@ void SenseHandleModifierUI::toggleSignals(bool toggleconnections){
 }
 
 void SenseHandleModifierUI::addRange(){
-    (bsData) ? bsData->addRange(), loadDynamicTableRows() : LogFile::writeToLog("SenseHandleModifierUI::addRange(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addRange(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::addRange(): The data is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::removeRange(int index){
-    (bsData) ? bsData->removeRange(index), loadDynamicTableRows() : LogFile::writeToLog("SenseHandleModifierUI::removeRange(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeRange(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::removeRange(): The data is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::loadData(HkxObject *data){
@@ -418,59 +426,115 @@ void SenseHandleModifierUI::setName(const QString &newname){
 }
 
 void SenseHandleModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("SenseHandleModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setSensorLocalOffset(){
-    (bsData) ? bsData->setSensorLocalOffset(sensorLocalOffset->value()) : LogFile::writeToLog("SenseHandleModifierUI::setSensorLocalOffset(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSensorLocalOffset(sensorLocalOffset->value());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setSensorLocalOffset(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setMinDistance(){
-    (bsData) ? bsData->setMinDistance(minDistance->value()) : LogFile::writeToLog("SenseHandleModifierUI::setMinDistance(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setMinDistance(minDistance->value());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setMinDistance(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setMaxDistance(){
-    (bsData) ? bsData->setMaxDistance(maxDistance->value()) : LogFile::writeToLog("SenseHandleModifierUI::setMaxDistance(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setMaxDistance(maxDistance->value());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setMaxDistance(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setDistanceOut(){
-    (bsData) ? bsData->setDistanceOut(distanceOut->value()) : LogFile::writeToLog("SenseHandleModifierUI::setDistanceOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDistanceOut(distanceOut->value());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setDistanceOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setLocalFrameName(int index){
-    (bsData) ? bsData->setLocalFrameName(index - 1) : LogFile::writeToLog("SenseHandleModifierUI::setLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLocalFrameName(index - 1);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setSensorLocalFrameName(int index){
-    (bsData) ? bsData->setSensorLocalFrameName(index - 1) : LogFile::writeToLog("SenseHandleModifierUI::setSensorLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSensorLocalFrameName(index - 1);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setSensorLocalFrameName(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setCollisionFilterInfo(int index){
-    (bsData) ? bsData->setCollisionFilterInfo(index - 1) : LogFile::writeToLog("SenseHandleModifierUI::setCollisionFilterInfo(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setCollisionFilterInfo(index - 1);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setCollisionFilterInfo(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setSensorRagdollBoneIndex(int index){
-    (bsData) ? bsData->setSensorRagdollBoneIndex(index - 1) : LogFile::writeToLog("SenseHandleModifierUI::setSensorRagdollBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSensorRagdollBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setSensorRagdollBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setSensorAnimationBoneIndex(int index){
-    (bsData) ? bsData->setSensorAnimationBoneIndex(index - 1) : LogFile::writeToLog("SenseHandleModifierUI::setSensorAnimationBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSensorAnimationBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setSensorAnimationBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setSensingMode(int index){
-    (bsData) ? bsData->setSensingMode(index) : LogFile::writeToLog("SenseHandleModifierUI::setSensingMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSensingMode(index);
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setSensingMode(): The data is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setExtrapolateSensorPosition(){
-    (bsData) ? bsData->setExtrapolateSensorPosition(extrapolateSensorPosition->isChecked()) : LogFile::writeToLog("SenseHandleModifierUI::setExtrapolateSensorPosition(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setExtrapolateSensorPosition(extrapolateSensorPosition->isChecked());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setExtrapolateSensorPosition(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setKeepFirstSensedHandle(){
-    (bsData) ? bsData->setKeepFirstSensedHandle(keepFirstSensedHandle->isChecked()) : LogFile::writeToLog("SenseHandleModifierUI::setKeepFirstSensedHandle(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setKeepFirstSensedHandle(keepFirstSensedHandle->isChecked());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setKeepFirstSensedHandle(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::setFoundHandleOut(){
-    (bsData) ? bsData->setFoundHandleOut(foundHandleOut->isChecked()) : LogFile::writeToLog("SenseHandleModifierUI::setFoundHandleOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFoundHandleOut(foundHandleOut->isChecked());
+    } else {
+        LogFile::writeToLog("SenseHandleModifierUI::setFoundHandleOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void SenseHandleModifierUI::viewSelectedChild(int row, int column){

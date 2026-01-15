@@ -236,59 +236,115 @@ void DampingModifierUI::setName(const QString &newname){
 }
 
 void DampingModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("DampingModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("DampingModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setKP(){
-    (bsData) ? bsData->setKP(kP->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setKP(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setKP(kP->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setKP(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setKI(){
-    (bsData) ? bsData->setKI(kI->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setKI(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setKI(kI->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setKI(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setKD(){
-    (bsData) ? bsData->setKD(kD->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setKD(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setKD(kD->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setKD(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setEnableScalarDamping(){
-    (bsData) ? bsData->setEnableScalarDamping(enableScalarDamping->isChecked()) : LogFile::writeToLog("DampingModifierUI::setEnableScalarDamping(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnableScalarDamping(enableScalarDamping->isChecked());
+    } else {
+        LogFile::writeToLog("DampingModifierUI::setEnableScalarDamping(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setEnableVectorDamping(){
-    (bsData) ? bsData->setEnableVectorDamping(enableVectorDamping->isChecked()) : LogFile::writeToLog("DampingModifierUI::setEnableVectorDamping(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnableVectorDamping(enableVectorDamping->isChecked());
+    } else {
+        LogFile::writeToLog("DampingModifierUI::setEnableVectorDamping(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setRawValue(){
-    (bsData) ? bsData->setRawValue(rawValue->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setRawValue(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRawValue(rawValue->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setRawValue(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setDampedValue(){
-    (bsData) ? bsData->setDampedValue(dampedValue->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setDampedValue(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDampedValue(dampedValue->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setDampedValue(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setRawVector(){
-    (bsData) ? bsData->setRawVector(rawVector->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setRawVector(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRawVector(rawVector->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setRawVector(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setDampedVector(){
-    (bsData) ? bsData->setDampedVector(dampedVector->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setDampedVector(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDampedVector(dampedVector->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setDampedVector(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setVecErrorSum(){
-    (bsData) ? bsData->setVecErrorSum(vecErrorSum->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setVecErrorSum(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVecErrorSum(vecErrorSum->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setVecErrorSum(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setVecPreviousError(){
-    (bsData) ? bsData->setVecPreviousError(vecPreviousError->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setVecPreviousError(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVecPreviousError(vecPreviousError->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setVecPreviousError(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setErrorSum(){
-    (bsData) ? bsData->setErrorSum(errorSum->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setErrorSum(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setErrorSum(errorSum->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setErrorSum(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::setPreviousError(){
-    (bsData) ? bsData->setPreviousError(previousError->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setPreviousError(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPreviousError(previousError->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setPreviousError(): The data is nullptr!!");
+    }
 }
 
 void DampingModifierUI::viewSelected(int row, int column){

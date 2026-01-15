@@ -112,7 +112,11 @@ QString hkbCharacterStringData::getRigName() const{
 
 void hkbCharacterStringData::setVariableNameAt(int index, const QString &name){
     std::lock_guard <std::mutex> guard(mutex);
-    (characterPropertyNames.size() > index && index > -1) ? characterPropertyNames.replace(index, name), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setVariableNameAt' failed!");
+    if (characterPropertyNames.size() > index && index > -1) {
+        characterPropertyNames.replace(index, name), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setVariableNameAt' failed!");
+    }
 }
 
 QString hkbCharacterStringData::getBehaviorFilename() const{

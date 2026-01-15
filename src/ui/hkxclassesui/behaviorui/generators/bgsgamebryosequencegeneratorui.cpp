@@ -106,14 +106,26 @@ void BGSGamebryoSequenceGeneratorUI::setName(const QString & newname){
 }
 
 void BGSGamebryoSequenceGeneratorUI::setSequence(const QString & sequence){
-    (bsData) ? bsData->setPSequence(sequence) : LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setSequence(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPSequence(sequence);
+    } else {
+        LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setSequence(): The data is nullptr!!");
+    }
 }
 
 void BGSGamebryoSequenceGeneratorUI::setBlendModeFunction(int index){
-    (bsData) ? bsData->setEBlendModeFunction(index) : LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setBlendModeFunction(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEBlendModeFunction(index);
+    } else {
+        LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setBlendModeFunction(): The data is nullptr!!");
+    }
 }
 
 void BGSGamebryoSequenceGeneratorUI::setPercent(){
-    (bsData) ? bsData->setFPercent(fPercent->value()) : LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setPercent(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setFPercent(fPercent->value());
+    } else {
+        LogFile::writeToLog("BGSGamebryoSequenceGeneratorUI::setPercent(): The data is nullptr!!");
+    }
 }
 

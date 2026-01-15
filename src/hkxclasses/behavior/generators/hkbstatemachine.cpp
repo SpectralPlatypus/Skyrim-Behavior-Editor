@@ -495,7 +495,11 @@ int hkbStateMachine::getEventToSendWhenStateOrTransitionChangesID() const{
 
 void hkbStateMachine::setSelfTransitionMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < SelfTransitionMode.size() && selfTransitionMode != SelfTransitionMode.at(index)) ? selfTransitionMode = SelfTransitionMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'selfTransitionMode' was not set!");
+    if (index >= 0 && index < SelfTransitionMode.size() && selfTransitionMode != SelfTransitionMode.at(index)) {
+        selfTransitionMode = SelfTransitionMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'selfTransitionMode' was not set!");
+    }
 }
 
 QString hkbStateMachine::getSelfTransitionMode() const{
@@ -510,7 +514,11 @@ QString hkbStateMachine::getStartStateMode() const{
 
 void hkbStateMachine::setStartStateMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < StartStateMode.size() && startStateMode != StartStateMode.at(index)) ? startStateMode = StartStateMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'startStateMode' was not set!");
+    if (index >= 0 && index < StartStateMode.size() && startStateMode != StartStateMode.at(index)) {
+        startStateMode = StartStateMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'startStateMode' was not set!");
+    }
 }
 
 ushort hkbStateMachine::getMaxSimultaneousTransitions() const{
@@ -520,7 +528,11 @@ ushort hkbStateMachine::getMaxSimultaneousTransitions() const{
 
 void hkbStateMachine::setMaxSimultaneousTransitions(const ushort &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != maxSimultaneousTransitions) ? maxSimultaneousTransitions = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'maxSimultaneousTransitions' was not set!");
+    if (value != maxSimultaneousTransitions) {
+        maxSimultaneousTransitions = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'maxSimultaneousTransitions' was not set!");
+    }
 }
 
 bool hkbStateMachine::getWrapAroundStateId() const{
@@ -530,7 +542,11 @@ bool hkbStateMachine::getWrapAroundStateId() const{
 
 void hkbStateMachine::setWrapAroundStateId(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != wrapAroundStateId) ? wrapAroundStateId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'wrapAroundStateId' was not set!");
+    if (value != wrapAroundStateId) {
+        wrapAroundStateId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'wrapAroundStateId' was not set!");
+    }
 }
 
 int hkbStateMachine::getSyncVariableIndex() const{
@@ -540,7 +556,11 @@ int hkbStateMachine::getSyncVariableIndex() const{
 
 void hkbStateMachine::setSyncVariableIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != syncVariableIndex) ? syncVariableIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'syncVariableIndex' was not set!");
+    if (value != syncVariableIndex) {
+        syncVariableIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'syncVariableIndex' was not set!");
+    }
 }
 
 int hkbStateMachine::getTransitionToNextLowerStateEventId() const{
@@ -550,7 +570,11 @@ int hkbStateMachine::getTransitionToNextLowerStateEventId() const{
 
 void hkbStateMachine::setTransitionToNextLowerStateEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != transitionToNextLowerStateEventId) ? transitionToNextLowerStateEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'transitionToNextLowerStateEventId' was not set!");
+    if (value != transitionToNextLowerStateEventId) {
+        transitionToNextLowerStateEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'transitionToNextLowerStateEventId' was not set!");
+    }
 }
 
 int hkbStateMachine::getTransitionToNextHigherStateEventId() const{
@@ -560,7 +584,11 @@ int hkbStateMachine::getTransitionToNextHigherStateEventId() const{
 
 void hkbStateMachine::setTransitionToNextHigherStateEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != transitionToNextHigherStateEventId) ? transitionToNextHigherStateEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'transitionToNextHigherStateEventId' was not set!");
+    if (value != transitionToNextHigherStateEventId) {
+        transitionToNextHigherStateEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'transitionToNextHigherStateEventId' was not set!");
+    }
 }
 
 int hkbStateMachine::getRandomTransitionEventId() const{
@@ -570,7 +598,11 @@ int hkbStateMachine::getRandomTransitionEventId() const{
 
 void hkbStateMachine::setRandomTransitionEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != randomTransitionEventId) ? randomTransitionEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'randomTransitionEventId' was not set!");
+    if (value != randomTransitionEventId) {
+        randomTransitionEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'randomTransitionEventId' was not set!");
+    }
 }
 
 int hkbStateMachine::getReturnToPreviousStateEventId() const{
@@ -580,7 +612,11 @@ int hkbStateMachine::getReturnToPreviousStateEventId() const{
 
 void hkbStateMachine::setReturnToPreviousStateEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != returnToPreviousStateEventId) ? returnToPreviousStateEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'returnToPreviousStateEventId' was not set!");
+    if (value != returnToPreviousStateEventId) {
+        returnToPreviousStateEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'returnToPreviousStateEventId' was not set!");
+    }
 }
 
 int hkbStateMachine::getStartStateId() const{
@@ -590,12 +626,20 @@ int hkbStateMachine::getStartStateId() const{
 
 void hkbStateMachine::setStartStateId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != startStateId && value > -1) ? startStateId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'startStateId' was not set!");
+    if (value != startStateId && value > -1) {
+        startStateId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'startStateId' was not set!");
+    }
 }
 
 void hkbStateMachine::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbStateMachine::readData(const HkxXmlReader &reader, long & index){

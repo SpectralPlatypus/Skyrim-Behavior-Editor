@@ -167,7 +167,11 @@ void BSBoneUI::setBindingVariable(int index, const QString & name){
 }
 
 void BSBoneUI::setIndex(int index){
-    (bsData && file) ? bsData->index = index - 1, file->setIsChanged(true) : LogFile::writeToLog("BSBoneUI::setindex(): Behavior file or  data is null!!!");
+    if (bsData && file) {
+        bsData->index = index - 1, file->setIsChanged(true);
+    } else {
+        LogFile::writeToLog("BSBoneUI::setindex(): Behavior file or  data is null!!!");
+    }
 }
 
 void BSBoneUI::setFwdAxisLS(){

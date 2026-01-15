@@ -216,51 +216,99 @@ void ComputeDirectionModifierUI::setName(const QString &newname){
 }
 
 void ComputeDirectionModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setPointIn(){
-    (bsData) ? bsData->setPointIn(pointIn->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setPointIn(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPointIn(pointIn->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setPointIn(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setPointOut(){
-    (bsData) ? bsData->setPointOut(pointOut->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setPointOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPointOut(pointOut->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setPointOut(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setGroundAngleOut(){
-    (bsData) ? bsData->setGroundAngleOut(groundAngleOut->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setGroundAngleOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setGroundAngleOut(groundAngleOut->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setGroundAngleOut(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setUpAngleOut(){
-    (bsData) ? bsData->setUpAngleOut(upAngleOut->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setUpAngleOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setUpAngleOut(upAngleOut->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setUpAngleOut(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setVerticalOffset(){
-    (bsData) ? bsData->setVerticalOffset(verticalOffset->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setVerticalOffset(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVerticalOffset(verticalOffset->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setVerticalOffset(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setReverseGroundAngle(){
-    (bsData) ? bsData->setReverseGroundAngle(reverseGroundAngle->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setReverseGroundAngle(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setReverseGroundAngle(reverseGroundAngle->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setReverseGroundAngle(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setReverseUpAngle(){
-    (bsData) ? bsData->setReverseUpAngle(reverseUpAngle->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setReverseUpAngle(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setReverseUpAngle(reverseUpAngle->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setReverseUpAngle(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setProjectPoint(){
-    (bsData) ? bsData->setProjectPoint(projectPoint->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setProjectPoint(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setProjectPoint(projectPoint->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setProjectPoint(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setNormalizePoint(){
-    (bsData) ? bsData->setNormalizePoint(normalizePoint->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setNormalizePoint(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setNormalizePoint(normalizePoint->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setNormalizePoint(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setComputeOnlyOnce(){
-    (bsData) ? bsData->setComputeOnlyOnce(computeOnlyOnce->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setComputeOnlyOnce(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setComputeOnlyOnce(computeOnlyOnce->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setComputeOnlyOnce(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::setComputedOutput(){
-    (bsData) ? bsData->setComputedOutput(computedOutput->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setComputedOutput(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setComputedOutput(computedOutput->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setComputedOutput(): The data is nullptr!!");
+    }
 }
 
 void ComputeDirectionModifierUI::viewSelected(int row, int column){

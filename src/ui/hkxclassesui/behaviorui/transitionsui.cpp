@@ -331,7 +331,11 @@ void TransitionsUI::setId(int index, const QString &name, int & eventid, int row
         if (item){
             item->setText(name);
             checkInterval();
-            (parentObj) ? parentObj->setIsFileChanged(true) : LogFile::writeToLog("TransitionsUI::setId(): parentObj is nullptr!!");
+            if (parentObj) {
+                parentObj->setIsFileChanged(true);
+            } else {
+                LogFile::writeToLog("TransitionsUI::setId(): parentObj is nullptr!!");
+            }
         }else{
             LogFile::writeToLog("TransitionsUI::setId(): invalid row selected!!");
         }
@@ -487,7 +491,11 @@ void TransitionsUI::setCondition(){
 void TransitionsUI::setEventId(int index, const QString &name){
     if (bsData){
         bsData->eventId = index;
-        (name != "") ? table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("TransitionsUI::setEventId(): The event name is nullptr!!");
+        if (name != "") {
+            table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        } else {
+            LogFile::writeToLog("TransitionsUI::setEventId(): The event name is nullptr!!");
+        }
         parentObj->setIsFileChanged(true);
     }else{
         LogFile::writeToLog("TransitionsUI::setEventId(): The data is nullptr!!");
@@ -519,7 +527,11 @@ void TransitionsUI::setToStateId(const QString &name){
 
 void TransitionsUI::setFromNestedStateId(const QString &name){
     if (bsData && parentObj){
-        (name != "") ? bsData->fromNestedStateId = parentObj->getNestedStateId(name, bsData->toStateId) : LogFile::writeToLog("TransitionsUI::setFromNestedStateId(): The event name is nullptr!!");
+        if (name != "") {
+            bsData->fromNestedStateId = parentObj->getNestedStateId(name, bsData->toStateId);
+        } else {
+            LogFile::writeToLog("TransitionsUI::setFromNestedStateId(): The event name is nullptr!!");
+        }
         parentObj->setIsFileChanged(true);
     }else{
         LogFile::writeToLog("TransitionsUI::setFromNestedStateId(): The data or parent object is nullptr!!");
@@ -566,42 +578,78 @@ void TransitionsUI::toggleFlag(CheckBox *checkbox, const QString & flag, ComboBo
                 combobox->setDisabled(true);
             }
         }
-        (parentObj) ? parentObj->setIsFileChanged(true) : LogFile::writeToLog("TransitionsUI::toggleFlag(): The parentObj is nullptr!!");
+        if (parentObj) {
+            parentObj->setIsFileChanged(true);
+        } else {
+            LogFile::writeToLog("TransitionsUI::toggleFlag(): The parentObj is nullptr!!");
+        }
     }else{
         LogFile::writeToLog("TransitionsUI::toggleFlag(): The data is nullptr!!");
     }
 }
 
 void TransitionsUI::toggleGlobalWildcardFlag(){
-    (bsData) ? toggleFlag(flagGlobalWildcard, "FLAG_IS_GLOBAL_WILDCARD") : LogFile::writeToLog("TransitionsUI::toggleGlobalWildcardFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagGlobalWildcard, "FLAG_IS_GLOBAL_WILDCARD");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleGlobalWildcardFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleLocalWildcardFlag(){
-    (bsData) ? toggleFlag(flagLocalWildcard, "FLAG_IS_LOCAL_WILDCARD") : LogFile::writeToLog("TransitionsUI::toggleLocalWildcardFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagLocalWildcard, "FLAG_IS_LOCAL_WILDCARD");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleLocalWildcardFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleUseNestedStateFlag(){
-    (bsData) ? toggleFlag(flagUseNestedState, "FLAG_TO_NESTED_STATE_ID_IS_VALID", toNestedStateId) : LogFile::writeToLog("TransitionsUI::toggleUseNestedStateFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagUseNestedState, "FLAG_TO_NESTED_STATE_ID_IS_VALID", toNestedStateId);
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleUseNestedStateFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleAllowSelfTransition(){
-    (bsData) ? toggleFlag(flagUseNestedState, "FLAG_ALLOW_SELF_TRANSITION_BY_TRANSITION_FROM_ANY_STATE", toNestedStateId) : LogFile::writeToLog("TransitionsUI::toggleAllowSelfTransition(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagUseNestedState, "FLAG_ALLOW_SELF_TRANSITION_BY_TRANSITION_FROM_ANY_STATE", toNestedStateId);
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleAllowSelfTransition(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleDisallowRandomTransitionFlag(){
-    (bsData) ? toggleFlag(flagDisallowRandomTransition, "FLAG_DISALLOW_RANDOM_TRANSITION") : LogFile::writeToLog("TransitionsUI::toggleDisallowRandomTransitionFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagDisallowRandomTransition, "FLAG_DISALLOW_RANDOM_TRANSITION");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleDisallowRandomTransitionFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleDisallowReturnToStateFlag(){
-    (bsData) ? toggleFlag(flagDisallowReturnToState, "FLAG_DISALLOW_RETURN_TO_PREVIOUS_STATE") : LogFile::writeToLog("TransitionsUI::toggleDisallowReturnToStateFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagDisallowReturnToState, "FLAG_DISALLOW_RETURN_TO_PREVIOUS_STATE");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleDisallowReturnToStateFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleAbutEndStateFlag(){
-    (bsData) ? toggleFlag(flagAbutEndState, "FLAG_ABUT_AT_END_OF_FROM_GENERATOR") : LogFile::writeToLog("TransitionsUI::toggleAbutEndStateFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagAbutEndState, "FLAG_ABUT_AT_END_OF_FROM_GENERATOR");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleAbutEndStateFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::toggleDisableConditionFlag() {
-    (bsData) ? toggleFlag(flagDisableCondition, "FLAG_DISABLE_CONDITION") : LogFile::writeToLog("TransitionsUI::toggleDisableConditionFlag(): The data is nullptr!!");
+    if (bsData) {
+        toggleFlag(flagDisableCondition, "FLAG_DISABLE_CONDITION");
+    } else {
+        LogFile::writeToLog("TransitionsUI::toggleDisableConditionFlag(): The data is nullptr!!");
+    }
 }
 
 void TransitionsUI::eventTableElementSelected(int index, const QString &name){
@@ -694,7 +742,11 @@ void TransitionsUI::viewSelectedChild(int row, int column){
 }
 
 void TransitionsUI::transitionEffectRenamed(const QString &name){
-    (name != "") ? transition->setText(name) : LogFile::writeToLog("TransitionsUI::transitionEffectRenamed(): The name the empty string!!");
+    if (name != "") {
+        transition->setText(name);
+    } else {
+        LogFile::writeToLog("TransitionsUI::transitionEffectRenamed(): The name the empty string!!");
+    }
 }
 
 void TransitionsUI::eventRenamed(const QString &name, int index){

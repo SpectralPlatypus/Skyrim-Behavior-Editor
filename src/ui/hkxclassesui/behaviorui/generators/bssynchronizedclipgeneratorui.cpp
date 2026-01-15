@@ -180,35 +180,67 @@ void BSSynchronizedClipGeneratorUI::setName(const QString &newname){
 }
 
 void BSSynchronizedClipGeneratorUI::setSyncAnimPrefix(const QString &newname){
-    (bsData) ? bsData->setSyncAnimPrefix(newname) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setSyncAnimPrefix(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSyncAnimPrefix(newname);
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setSyncAnimPrefix(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setSyncClipIgnoreMarkPlacement(){
-    (bsData) ? bsData->setBSyncClipIgnoreMarkPlacement(bSyncClipIgnoreMarkPlacement->isChecked()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setSyncClipIgnoreMarkPlacement(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBSyncClipIgnoreMarkPlacement(bSyncClipIgnoreMarkPlacement->isChecked());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setSyncClipIgnoreMarkPlacement(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setGetToMarkTime(){
-    (bsData) ? bsData->setFGetToMarkTime(fGetToMarkTime->value()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setGetToMarkTime(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setFGetToMarkTime(fGetToMarkTime->value());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setGetToMarkTime(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setMarkErrorThreshold(){
-    (bsData) ? bsData->setFMarkErrorThreshold(fMarkErrorThreshold->value()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setMarkErrorThreshold(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setFMarkErrorThreshold(fMarkErrorThreshold->value());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setMarkErrorThreshold(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setLeadCharacter(){
-    (bsData) ? bsData->setBLeadCharacter(bLeadCharacter->isChecked()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setLeadCharacter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBLeadCharacter(bLeadCharacter->isChecked());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setLeadCharacter(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setReorientSupportChar(){
-    (bsData) ? bsData->setBReorientSupportChar(bReorientSupportChar->isChecked()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setReorientSupportChar(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBReorientSupportChar(bReorientSupportChar->isChecked());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setReorientSupportChar(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setApplyMotionFromRoot(){
-    (bsData) ? bsData->setBApplyMotionFromRoot(bApplyMotionFromRoot->isChecked()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setApplyMotionFromRoot(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBApplyMotionFromRoot(bApplyMotionFromRoot->isChecked());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setApplyMotionFromRoot(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::setAnimationBindingIndex(){
-    (bsData) ? bsData->setSAnimationBindingIndex(sAnimationBindingIndex->value()) : LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setAnimationBindingIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSAnimationBindingIndex(sAnimationBindingIndex->value());
+    } else {
+        LogFile::writeToLog("BSSynchronizedClipGeneratorUI::setAnimationBindingIndex(): The data is nullptr!!");
+    }
 }
 
 void BSSynchronizedClipGeneratorUI::selectTableToView(bool viewproperties, const QString & path){

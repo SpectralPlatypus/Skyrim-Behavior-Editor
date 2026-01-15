@@ -128,7 +128,11 @@ bool hkbCombineTransformsModifier::getInvertResult() const{
 
 void hkbCombineTransformsModifier::setInvertResult(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != invertResult) ? invertResult = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'invertResult' was not set!");
+    if (value != invertResult) {
+        invertResult = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'invertResult' was not set!");
+    }
 }
 
 bool hkbCombineTransformsModifier::getInvertRightTransform() const{
@@ -138,7 +142,11 @@ bool hkbCombineTransformsModifier::getInvertRightTransform() const{
 
 void hkbCombineTransformsModifier::setInvertRightTransform(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != invertRightTransform) ? invertRightTransform = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'invertRightTransform' was not set!");
+    if (value != invertRightTransform) {
+        invertRightTransform = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'invertRightTransform' was not set!");
+    }
 }
 
 bool hkbCombineTransformsModifier::getInvertLeftTransform() const{
@@ -148,7 +156,11 @@ bool hkbCombineTransformsModifier::getInvertLeftTransform() const{
 
 void hkbCombineTransformsModifier::setInvertLeftTransform(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != invertLeftTransform) ? invertLeftTransform = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'invertLeftTransform' was not set!");
+    if (value != invertLeftTransform) {
+        invertLeftTransform = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'invertLeftTransform' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getRightRotation() const{
@@ -158,7 +170,11 @@ hkQuadVariable hkbCombineTransformsModifier::getRightRotation() const{
 
 void hkbCombineTransformsModifier::setRightRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rightRotation) ? rightRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rightRotation' was not set!");
+    if (value != rightRotation) {
+        rightRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rightRotation' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getRightTranslation() const{
@@ -168,7 +184,11 @@ hkQuadVariable hkbCombineTransformsModifier::getRightTranslation() const{
 
 void hkbCombineTransformsModifier::setRightTranslation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rightTranslation) ? rightTranslation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rightTranslation' was not set!");
+    if (value != rightTranslation) {
+        rightTranslation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rightTranslation' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getLeftRotation() const{
@@ -178,7 +198,11 @@ hkQuadVariable hkbCombineTransformsModifier::getLeftRotation() const{
 
 void hkbCombineTransformsModifier::setLeftRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != leftRotation) ? leftRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'leftRotation' was not set!");
+    if (value != leftRotation) {
+        leftRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'leftRotation' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getLeftTranslation() const{
@@ -188,7 +212,11 @@ hkQuadVariable hkbCombineTransformsModifier::getLeftTranslation() const{
 
 void hkbCombineTransformsModifier::setLeftTranslation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != leftTranslation) ? leftTranslation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'leftTranslation' was not set!");
+    if (value != leftTranslation) {
+        leftTranslation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'leftTranslation' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getRotationOut() const{
@@ -198,7 +226,11 @@ hkQuadVariable hkbCombineTransformsModifier::getRotationOut() const{
 
 void hkbCombineTransformsModifier::setRotationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rotationOut) ? rotationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    if (value != rotationOut) {
+        rotationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbCombineTransformsModifier::getTranslationOut() const{
@@ -208,7 +240,11 @@ hkQuadVariable hkbCombineTransformsModifier::getTranslationOut() const{
 
 void hkbCombineTransformsModifier::setTranslationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != translationOut) ? translationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'translationOut' was not set!");
+    if (value != translationOut) {
+        translationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'translationOut' was not set!");
+    }
 }
 
 bool hkbCombineTransformsModifier::getEnable() const{
@@ -218,12 +254,20 @@ bool hkbCombineTransformsModifier::getEnable() const{
 
 void hkbCombineTransformsModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbCombineTransformsModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbCombineTransformsModifier::link(){

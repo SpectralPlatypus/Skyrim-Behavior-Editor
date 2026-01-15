@@ -181,7 +181,11 @@ void EvaluateExpressionModifierUI::setName(const QString &newname){
 }
 
 void EvaluateExpressionModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("EvaluateExpressionModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("EvaluateExpressionModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void EvaluateExpressionModifierUI::viewSelectedChild(int row, int column){

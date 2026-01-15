@@ -117,7 +117,11 @@ hkQuadVariable BSTweenerModifier::getTargetRotation() const{
 
 void BSTweenerModifier::setTargetRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetRotation) ? targetRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetRotation' was not set!");
+    if (value != targetRotation) {
+        targetRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetRotation' was not set!");
+    }
 }
 
 hkQuadVariable BSTweenerModifier::getTargetPosition() const{
@@ -127,7 +131,11 @@ hkQuadVariable BSTweenerModifier::getTargetPosition() const{
 
 void BSTweenerModifier::setTargetPosition(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetPosition) ? targetPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    if (value != targetPosition) {
+        targetPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    }
 }
 
 qreal BSTweenerModifier::getTweenDuration() const{
@@ -137,7 +145,11 @@ qreal BSTweenerModifier::getTweenDuration() const{
 
 void BSTweenerModifier::setTweenDuration(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != tweenDuration) ? tweenDuration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'tweenDuration' was not set!");
+    if (value != tweenDuration) {
+        tweenDuration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'tweenDuration' was not set!");
+    }
 }
 
 bool BSTweenerModifier::getUseTweenDuration() const{
@@ -147,7 +159,11 @@ bool BSTweenerModifier::getUseTweenDuration() const{
 
 void BSTweenerModifier::setUseTweenDuration(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != useTweenDuration) ? useTweenDuration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'useTweenDuration' was not set!");
+    if (value != useTweenDuration) {
+        useTweenDuration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'useTweenDuration' was not set!");
+    }
 }
 
 bool BSTweenerModifier::getTweenRotation() const{
@@ -157,7 +173,11 @@ bool BSTweenerModifier::getTweenRotation() const{
 
 void BSTweenerModifier::setTweenRotation(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != tweenRotation) ? tweenRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'tweenRotation' was not set!");
+    if (value != tweenRotation) {
+        tweenRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'tweenRotation' was not set!");
+    }
 }
 
 bool BSTweenerModifier::getTweenPosition() const{
@@ -167,7 +187,11 @@ bool BSTweenerModifier::getTweenPosition() const{
 
 void BSTweenerModifier::setTweenPosition(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != tweenPosition) ? tweenPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'tweenPosition' was not set!");
+    if (value != tweenPosition) {
+        tweenPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'tweenPosition' was not set!");
+    }
 }
 
 bool BSTweenerModifier::getEnable() const{
@@ -177,12 +201,20 @@ bool BSTweenerModifier::getEnable() const{
 
 void BSTweenerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSTweenerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSTweenerModifier::link(){

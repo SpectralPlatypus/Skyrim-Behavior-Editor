@@ -206,47 +206,91 @@ void BSIsActiveModifierUI::setName(const QString &newname){
 }
 
 void BSIsActiveModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setIsActive0(){
-    (bsData) ? bsData->setBIsActive0(bIsActive0->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setIsActive0(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBIsActive0(bIsActive0->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setIsActive0(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setInvertActive0(){
-    (bsData) ? bsData->setBInvertActive0(bInvertActive0->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive0(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBInvertActive0(bInvertActive0->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive0(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setIsActive1(){
-    (bsData) ? bsData->setBIsActive1(bIsActive1->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setIsActive1(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBIsActive1(bIsActive1->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setIsActive1(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setInvertActive1(){
-    (bsData) ? bsData->setBInvertActive1(bInvertActive1->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive1(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBInvertActive1(bInvertActive1->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive1(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setIsActive2(){
-    (bsData) ? bsData->setBIsActive2(bIsActive2->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setIsActive2(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBIsActive2(bIsActive2->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setIsActive2(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setInvertActive2(){
-    (bsData) ? bsData->setBInvertActive2(bInvertActive2->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive2(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBInvertActive2(bInvertActive2->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive2(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setIsActive3(){
-    (bsData) ? bsData->setBIsActive3(bIsActive3->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setIsActive3(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBIsActive3(bIsActive3->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setIsActive3(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setInvertActive3(){
-    (bsData) ? bsData->setBInvertActive3(bInvertActive3->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive3(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBInvertActive3(bInvertActive3->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive3(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setIsActive4(){
-    (bsData) ? bsData->setBIsActive4(bIsActive4->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setIsActive4(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBIsActive4(bIsActive4->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setIsActive4(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::setInvertActive4(){
-    (bsData) ? bsData->setBInvertActive4(bInvertActive4->isChecked()) : LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive4(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBInvertActive4(bInvertActive4->isChecked());
+    } else {
+        LogFile::writeToLog("BSIsActiveModifierUI::setInvertActive4(): The data is nullptr!!");
+    }
 }
 
 void BSIsActiveModifierUI::viewSelected(int row, int column){

@@ -150,7 +150,11 @@ qreal hkbDampingModifier::getPreviousError() const{
 
 void hkbDampingModifier::setPreviousError(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != previousError) ? previousError = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'previousError' was not set!");
+    if (value != previousError) {
+        previousError = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'previousError' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getErrorSum() const{
@@ -160,7 +164,11 @@ qreal hkbDampingModifier::getErrorSum() const{
 
 void hkbDampingModifier::setErrorSum(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != errorSum) ? errorSum = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'errorSum' was not set!");
+    if (value != errorSum) {
+        errorSum = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'errorSum' was not set!");
+    }
 }
 
 hkQuadVariable hkbDampingModifier::getVecPreviousError() const{
@@ -170,7 +178,11 @@ hkQuadVariable hkbDampingModifier::getVecPreviousError() const{
 
 void hkbDampingModifier::setVecPreviousError(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != vecPreviousError) ? vecPreviousError = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'vecPreviousError' was not set!");
+    if (value != vecPreviousError) {
+        vecPreviousError = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'vecPreviousError' was not set!");
+    }
 }
 
 hkQuadVariable hkbDampingModifier::getVecErrorSum() const{
@@ -180,7 +192,11 @@ hkQuadVariable hkbDampingModifier::getVecErrorSum() const{
 
 void hkbDampingModifier::setVecErrorSum(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != vecErrorSum) ? vecErrorSum = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'vecErrorSum' was not set!");
+    if (value != vecErrorSum) {
+        vecErrorSum = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'vecErrorSum' was not set!");
+    }
 }
 
 hkQuadVariable hkbDampingModifier::getDampedVector() const{
@@ -190,7 +206,11 @@ hkQuadVariable hkbDampingModifier::getDampedVector() const{
 
 void hkbDampingModifier::setDampedVector(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != dampedVector) ? dampedVector = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'dampedVector' was not set!");
+    if (value != dampedVector) {
+        dampedVector = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'dampedVector' was not set!");
+    }
 }
 
 hkQuadVariable hkbDampingModifier::getRawVector() const{
@@ -200,7 +220,11 @@ hkQuadVariable hkbDampingModifier::getRawVector() const{
 
 void hkbDampingModifier::setRawVector(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rawVector) ? rawVector = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rawVector' was not set!");
+    if (value != rawVector) {
+        rawVector = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rawVector' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getDampedValue() const{
@@ -210,7 +234,11 @@ qreal hkbDampingModifier::getDampedValue() const{
 
 void hkbDampingModifier::setDampedValue(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != dampedValue) ? dampedValue = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'dampedValue' was not set!");
+    if (value != dampedValue) {
+        dampedValue = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'dampedValue' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getRawValue() const{
@@ -220,7 +248,11 @@ qreal hkbDampingModifier::getRawValue() const{
 
 void hkbDampingModifier::setRawValue(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rawValue) ? rawValue = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rawValue' was not set!");
+    if (value != rawValue) {
+        rawValue = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rawValue' was not set!");
+    }
 }
 
 bool hkbDampingModifier::getEnableVectorDamping() const{
@@ -230,7 +262,11 @@ bool hkbDampingModifier::getEnableVectorDamping() const{
 
 void hkbDampingModifier::setEnableVectorDamping(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enableVectorDamping) ? enableVectorDamping = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enableVectorDamping' was not set!");
+    if (value != enableVectorDamping) {
+        enableVectorDamping = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enableVectorDamping' was not set!");
+    }
 }
 
 bool hkbDampingModifier::getEnableScalarDamping() const{
@@ -240,7 +276,11 @@ bool hkbDampingModifier::getEnableScalarDamping() const{
 
 void hkbDampingModifier::setEnableScalarDamping(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enableScalarDamping) ? enableScalarDamping = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enableScalarDamping' was not set!");
+    if (value != enableScalarDamping) {
+        enableScalarDamping = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enableScalarDamping' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getKD() const{
@@ -250,7 +290,11 @@ qreal hkbDampingModifier::getKD() const{
 
 void hkbDampingModifier::setKD(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != kD) ? kD = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'kD' was not set!");
+    if (value != kD) {
+        kD = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'kD' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getKI() const{
@@ -260,7 +304,11 @@ qreal hkbDampingModifier::getKI() const{
 
 void hkbDampingModifier::setKI(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != kI) ? kI = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'kI' was not set!");
+    if (value != kI) {
+        kI = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'kI' was not set!");
+    }
 }
 
 qreal hkbDampingModifier::getKP() const{
@@ -270,7 +318,11 @@ qreal hkbDampingModifier::getKP() const{
 
 void hkbDampingModifier::setKP(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != kP) ? kP = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'kP' was not set!");
+    if (value != kP) {
+        kP = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'kP' was not set!");
+    }
 }
 
 bool hkbDampingModifier::getEnable() const{
@@ -280,12 +332,20 @@ bool hkbDampingModifier::getEnable() const{
 
 void hkbDampingModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbDampingModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbDampingModifier::link(){

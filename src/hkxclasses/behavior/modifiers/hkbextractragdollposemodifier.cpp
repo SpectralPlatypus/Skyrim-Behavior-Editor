@@ -109,7 +109,11 @@ bool hkbExtractRagdollPoseModifier::getEnableComputeWorldFromModel() const{
 
 void hkbExtractRagdollPoseModifier::setEnableComputeWorldFromModel(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enableComputeWorldFromModel) ? enableComputeWorldFromModel = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enableComputeWorldFromModel' was not set!");
+    if (value != enableComputeWorldFromModel) {
+        enableComputeWorldFromModel = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enableComputeWorldFromModel' was not set!");
+    }
 }
 
 int hkbExtractRagdollPoseModifier::getPoseMatchingBone2() const{
@@ -119,7 +123,11 @@ int hkbExtractRagdollPoseModifier::getPoseMatchingBone2() const{
 
 void hkbExtractRagdollPoseModifier::setPoseMatchingBone2(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone2) ? poseMatchingBone2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone2' was not set!");
+    if (value != poseMatchingBone2) {
+        poseMatchingBone2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone2' was not set!");
+    }
 }
 
 int hkbExtractRagdollPoseModifier::getPoseMatchingBone1() const{
@@ -129,7 +137,11 @@ int hkbExtractRagdollPoseModifier::getPoseMatchingBone1() const{
 
 void hkbExtractRagdollPoseModifier::setPoseMatchingBone1(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone1) ? poseMatchingBone1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone1' was not set!");
+    if (value != poseMatchingBone1) {
+        poseMatchingBone1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone1' was not set!");
+    }
 }
 
 int hkbExtractRagdollPoseModifier::getPoseMatchingBone0() const{
@@ -139,7 +151,11 @@ int hkbExtractRagdollPoseModifier::getPoseMatchingBone0() const{
 
 void hkbExtractRagdollPoseModifier::setPoseMatchingBone0(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != poseMatchingBone0) ? poseMatchingBone0 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'poseMatchingBone0' was not set!");
+    if (value != poseMatchingBone0) {
+        poseMatchingBone0 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'poseMatchingBone0' was not set!");
+    }
 }
 
 bool hkbExtractRagdollPoseModifier::getEnable() const{
@@ -149,12 +165,20 @@ bool hkbExtractRagdollPoseModifier::getEnable() const{
 
 void hkbExtractRagdollPoseModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbExtractRagdollPoseModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbExtractRagdollPoseModifier::link(){

@@ -203,12 +203,20 @@ QString hkbBehaviorGraphStringData::getCharacterPropertyNameAt(int index) const{
 
 void hkbBehaviorGraphStringData::setVariableNameAt(int index, const QString &name){
     std::lock_guard <std::mutex> guard(mutex);
-    (variableNames.size() > index && index > -1) ? variableNames.replace(index, name), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setVariableNameAt' failed!");
+    if (variableNames.size() > index && index > -1) {
+        variableNames.replace(index, name), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setVariableNameAt' failed!");
+    }
 }
 
 void hkbBehaviorGraphStringData::setEventNameAt(int index, const QString &name){
     std::lock_guard <std::mutex> guard(mutex);
-    (eventNames.size() > index && index > -1) ? eventNames.replace(index, name), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setEventNameAt' failed!");
+    if (eventNames.size() > index && index > -1) {
+        eventNames.replace(index, name), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setEventNameAt' failed!");
+    }
 }
 
 bool hkbBehaviorGraphStringData::removeEventNameAt(int index){
@@ -224,7 +232,11 @@ bool hkbBehaviorGraphStringData::removeEventNameAt(int index){
 
 void hkbBehaviorGraphStringData::removeVariableNameAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < variableNames.size()) ? variableNames.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'removeVariableNameAt' failed!");
+    if (index >= 0 && index < variableNames.size()) {
+        variableNames.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'removeVariableNameAt' failed!");
+    }
 }
 
 int hkbBehaviorGraphStringData::getCharacterPropertyIndex(const QString &name) const{

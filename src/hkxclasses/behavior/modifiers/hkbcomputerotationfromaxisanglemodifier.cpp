@@ -102,7 +102,11 @@ qreal hkbComputeRotationFromAxisAngleModifier::getAngleDegrees() const{
 
 void hkbComputeRotationFromAxisAngleModifier::setAngleDegrees(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != angleDegrees) ? angleDegrees = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'angleDegrees' was not set!");
+    if (value != angleDegrees) {
+        angleDegrees = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'angleDegrees' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationFromAxisAngleModifier::getAxis() const{
@@ -112,7 +116,11 @@ hkQuadVariable hkbComputeRotationFromAxisAngleModifier::getAxis() const{
 
 void hkbComputeRotationFromAxisAngleModifier::setAxis(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != axis) ? axis = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'axis' was not set!");
+    if (value != axis) {
+        axis = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'axis' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationFromAxisAngleModifier::getRotationOut() const{
@@ -122,7 +130,11 @@ hkQuadVariable hkbComputeRotationFromAxisAngleModifier::getRotationOut() const{
 
 void hkbComputeRotationFromAxisAngleModifier::setRotationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rotationOut) ? rotationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    if (value != rotationOut) {
+        rotationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    }
 }
 
 bool hkbComputeRotationFromAxisAngleModifier::getEnable() const{
@@ -132,12 +144,20 @@ bool hkbComputeRotationFromAxisAngleModifier::getEnable() const{
 
 void hkbComputeRotationFromAxisAngleModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbComputeRotationFromAxisAngleModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbComputeRotationFromAxisAngleModifier::link(){

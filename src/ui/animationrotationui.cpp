@@ -109,21 +109,41 @@ void AnimationRotationUI::loadData(SkyrimAnimationRotation *quaternion, qreal ma
 }
 
 void AnimationRotationUI::setLocalTime(){
-    (bsData) ? bsData->localTime = localTime->value() : LogFile::writeToLog("AnimationRotationUI::setlocalTime(): Data is null!!!");
+    if (bsData) {
+        bsData->localTime = localTime->value();
+    } else {
+        LogFile::writeToLog("AnimationRotationUI::setlocalTime(): Data is null!!!");
+    }
 }
 
 void AnimationRotationUI::setX(qreal xval){
-    (bsData) ? bsData->x = xval*sin(angle->value()/2) : LogFile::writeToLog("AnimationRotationUI::setx(): Data is null!!!");
+    if (bsData) {
+        bsData->x = xval*sin(angle->value()/2);
+    } else {
+        LogFile::writeToLog("AnimationRotationUI::setx(): Data is null!!!");
+    }
 }
 
 void AnimationRotationUI::setY(qreal yval){
-    (bsData) ? bsData->y = yval*sin(angle->value()/2) : LogFile::writeToLog("AnimationRotationUI::sety(): Data is null!!!");
+    if (bsData) {
+        bsData->y = yval*sin(angle->value()/2);
+    } else {
+        LogFile::writeToLog("AnimationRotationUI::sety(): Data is null!!!");
+    }
 }
 
 void AnimationRotationUI::setZ(qreal zval){
-    (bsData) ? bsData->z = zval*sin(angle->value()/2) : LogFile::writeToLog("AnimationRotationUI::setz(): Data is null!!!");
+    if (bsData) {
+        bsData->z = zval*sin(angle->value()/2);
+    } else {
+        LogFile::writeToLog("AnimationRotationUI::setz(): Data is null!!!");
+    }
 }
 
 void AnimationRotationUI::setAngle(qreal wval){
-    (bsData) ? bsData->w = cos(wval/2) : LogFile::writeToLog("AnimationRotationUI::setz(): Data is null!!!");
+    if (bsData) {
+        bsData->w = cos(wval/2);
+    } else {
+        LogFile::writeToLog("AnimationRotationUI::setz(): Data is null!!!");
+    }
 }

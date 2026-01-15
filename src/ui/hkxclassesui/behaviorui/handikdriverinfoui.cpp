@@ -85,7 +85,11 @@ void HandIkDriverInfoUI::loadData(HkxObject *data){
 }
 
 void HandIkDriverInfoUI::setFadeInOutCurve(int index){
-    (bsData) ? bsData->fadeInOutCurve = fadeInOutCurve->itemText(index), bsData->setIsFileChanged(true) : LogFile::writeToLog("HandIkDriverInfoUI: fadeInOutCurve was not set!!");
+    if (bsData) {
+        bsData->fadeInOutCurve = fadeInOutCurve->itemText(index), bsData->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("HandIkDriverInfoUI: fadeInOutCurve was not set!!");
+    }
 }
 
 void HandIkDriverInfoUI::addHand(){

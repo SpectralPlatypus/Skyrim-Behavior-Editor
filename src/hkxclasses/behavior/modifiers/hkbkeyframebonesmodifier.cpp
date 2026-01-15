@@ -195,7 +195,11 @@ void hkbKeyframeBonesModifier::addKeyframeInfo(hkbKeyframeBonesModifier::hkKeyfr
 
 void hkbKeyframeBonesModifier::removeKeyframeInfo(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < keyframeInfo.size()) ? keyframeInfo.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'keyframeInfo' was not removed!");
+    if (index >= 0 && index < keyframeInfo.size()) {
+        keyframeInfo.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'keyframeInfo' was not removed!");
+    }
 }
 
 bool hkbKeyframeBonesModifier::getEnable() const{
@@ -205,12 +209,20 @@ bool hkbKeyframeBonesModifier::getEnable() const{
 
 void hkbKeyframeBonesModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbKeyframeBonesModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbKeyframeBonesModifier::link(){

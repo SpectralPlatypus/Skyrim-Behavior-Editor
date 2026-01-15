@@ -109,7 +109,11 @@ qreal BSInterpValueModifier::getGain() const{
 
 void BSInterpValueModifier::setGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gain) ? gain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gain' was not set!");
+    if (value != gain) {
+        gain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gain' was not set!");
+    }
 }
 
 qreal BSInterpValueModifier::getResult() const{
@@ -119,7 +123,11 @@ qreal BSInterpValueModifier::getResult() const{
 
 void BSInterpValueModifier::setResult(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != result) ? result = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'result' was not set!");
+    if (value != result) {
+        result = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'result' was not set!");
+    }
 }
 
 qreal BSInterpValueModifier::getTarget() const{
@@ -129,7 +137,11 @@ qreal BSInterpValueModifier::getTarget() const{
 
 void BSInterpValueModifier::setTarget(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != target) ? target = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'target' was not set!");
+    if (value != target) {
+        target = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'target' was not set!");
+    }
 }
 
 qreal BSInterpValueModifier::getSource() const{
@@ -139,7 +151,11 @@ qreal BSInterpValueModifier::getSource() const{
 
 void BSInterpValueModifier::setSource(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != source) ? source = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'source' was not set!");
+    if (value != source) {
+        source = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'source' was not set!");
+    }
 }
 
 bool BSInterpValueModifier::getEnable() const{
@@ -149,12 +165,20 @@ bool BSInterpValueModifier::getEnable() const{
 
 void BSInterpValueModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSInterpValueModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSInterpValueModifier::link(){

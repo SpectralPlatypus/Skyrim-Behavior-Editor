@@ -103,7 +103,11 @@ hkQuadVariable hkbRotateCharacterModifier::getAxisOfRotation() const{
 
 void hkbRotateCharacterModifier::setAxisOfRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != axisOfRotation) ? axisOfRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'axisOfRotation' was not set!");
+    if (value != axisOfRotation) {
+        axisOfRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'axisOfRotation' was not set!");
+    }
 }
 
 qreal hkbRotateCharacterModifier::getSpeedMultiplier() const{
@@ -113,7 +117,11 @@ qreal hkbRotateCharacterModifier::getSpeedMultiplier() const{
 
 void hkbRotateCharacterModifier::setSpeedMultiplier(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != speedMultiplier) ? speedMultiplier = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'speedMultiplier' was not set!");
+    if (value != speedMultiplier) {
+        speedMultiplier = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'speedMultiplier' was not set!");
+    }
 }
 
 qreal hkbRotateCharacterModifier::getDegreesPerSecond() const{
@@ -123,7 +131,11 @@ qreal hkbRotateCharacterModifier::getDegreesPerSecond() const{
 
 void hkbRotateCharacterModifier::setDegreesPerSecond(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != degreesPerSecond) ? degreesPerSecond = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'degreesPerSecond' was not set!");
+    if (value != degreesPerSecond) {
+        degreesPerSecond = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'degreesPerSecond' was not set!");
+    }
 }
 
 bool hkbRotateCharacterModifier::getEnable() const{
@@ -133,12 +145,20 @@ bool hkbRotateCharacterModifier::getEnable() const{
 
 void hkbRotateCharacterModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbRotateCharacterModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbRotateCharacterModifier::link(){

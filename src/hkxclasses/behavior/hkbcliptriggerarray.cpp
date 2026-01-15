@@ -27,32 +27,56 @@ void hkbClipTriggerArray::addTrigger(const HkTrigger & trigger){
 
 void hkbClipTriggerArray::setTriggerIdAt(int index, int id){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0 && triggers.at(index).event.id != id && id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? triggers[index].event.id = id, setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set id!");
+    if (triggers.size() > index && index >= 0 && triggers.at(index).event.id != id && id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        triggers[index].event.id = id, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set id!");
+    }
 }
 
 void hkbClipTriggerArray::setPayloadAt(int index, hkbStringEventPayload *load){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0) ? triggers[index].event.payload = HkxSharedPtr(load), setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set payload!");
+    if (triggers.size() > index && index >= 0) {
+        triggers[index].event.payload = HkxSharedPtr(load), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set payload!");
+    }
 }
 
 void hkbClipTriggerArray::setLocalTimeAt(int index, qreal time){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0 && triggers.at(index).localTime != time) ? triggers[index].localTime = time, setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set localTime!");
+    if (triggers.size() > index && index >= 0 && triggers.at(index).localTime != time) {
+        triggers[index].localTime = time, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set localTime!");
+    }
 }
 
 void hkbClipTriggerArray::setRelativeToEndOfClipAt(int index, bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0 && triggers.at(index).relativeToEndOfClip != value) ? triggers[index].relativeToEndOfClip = value, setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set relativeToEndOfClip!");
+    if (triggers.size() > index && index >= 0 && triggers.at(index).relativeToEndOfClip != value) {
+        triggers[index].relativeToEndOfClip = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set relativeToEndOfClip!");
+    }
 }
 
 void hkbClipTriggerArray::setAcyclicAt(int index, bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0 && triggers.at(index).acyclic != value) ? triggers[index].acyclic = value, setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set relativeToEndOfClip!");
+    if (triggers.size() > index && index >= 0 && triggers.at(index).acyclic != value) {
+        triggers[index].acyclic = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set relativeToEndOfClip!");
+    }
 }
 
 void hkbClipTriggerArray::setIsAnnotationAt(int index, bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index && index >= 0 && triggers.at(index).isAnnotation != value) ? triggers[index].isAnnotation = value, setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set isAnnotation!");
+    if (triggers.size() > index && index >= 0 && triggers.at(index).isAnnotation != value) {
+        triggers[index].isAnnotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set isAnnotation!");
+    }
 }
 
 int hkbClipTriggerArray::getTriggerIdAt(int index) const{
@@ -105,7 +129,11 @@ bool hkbClipTriggerArray::getIsAnnotationAt(int index) const{
 
 void hkbClipTriggerArray::removeTrigger(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggers.size() > index) ? triggers.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to remove trigger!");
+    if (triggers.size() > index) {
+        triggers.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to remove trigger!");
+    }
 }
 
 int hkbClipTriggerArray::getLastTriggerIndex() const{

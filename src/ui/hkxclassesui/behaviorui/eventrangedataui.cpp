@@ -154,7 +154,11 @@ void EventRangeDataUI::setUpperBound(){
 }
 
 void EventRangeDataUI::setEventMode(int index){
-    (bsData) ? bsData->eventMode = bsData->EventRangeMode.at(index), file->setIsChanged(true) : LogFile::writeToLog("EventRangeDataUI::setEventMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->eventMode = bsData->EventRangeMode.at(index), file->setIsChanged(true);
+    } else {
+        LogFile::writeToLog("EventRangeDataUI::setEventMode(): The data is nullptr!!");
+    }
 }
 
 void EventRangeDataUI::viewSelectedChild(int row, int column){

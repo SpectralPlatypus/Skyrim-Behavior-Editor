@@ -198,7 +198,11 @@ qreal hkbEventsFromRangeModifier::getLowerBound() const{
 
 void hkbEventsFromRangeModifier::setLowerBound(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != lowerBound) ? lowerBound = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'lowerBound' was not set!");
+    if (value != lowerBound) {
+        lowerBound = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'lowerBound' was not set!");
+    }
 }
 
 qreal hkbEventsFromRangeModifier::getInputValue() const{
@@ -208,7 +212,11 @@ qreal hkbEventsFromRangeModifier::getInputValue() const{
 
 void hkbEventsFromRangeModifier::setInputValue(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != inputValue) ? inputValue = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'inputValue' was not set!");
+    if (value != inputValue) {
+        inputValue = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'inputValue' was not set!");
+    }
 }
 
 bool hkbEventsFromRangeModifier::getEnable() const{
@@ -218,12 +226,20 @@ bool hkbEventsFromRangeModifier::getEnable() const{
 
 void hkbEventsFromRangeModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbEventsFromRangeModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbEventsFromRangeModifier::link(){

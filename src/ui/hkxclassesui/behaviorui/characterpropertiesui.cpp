@@ -187,7 +187,11 @@ void CharacterPropertiesUI::setVariableName(QTableWidgetItem *item){
 }
 
 void CharacterPropertiesUI::removeVariableFromTable(int row){
-    (row < table->rowCount() && row >= 0) ? table->removeRow(row) : LogFile::writeToLog("CharacterPropertiesUI::removeVariableFromTable(): Invalid row selected!!");
+    if (row < table->rowCount() && row >= 0) {
+        table->removeRow(row);
+    } else {
+        LogFile::writeToLog("CharacterPropertiesUI::removeVariableFromTable(): Invalid row selected!!");
+    }
 }
 
 void CharacterPropertiesUI::loadVariable(CheckBox *variableWid){

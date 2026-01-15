@@ -402,7 +402,11 @@ void BehaviorGraphView::removeModifierData(){
 }
 
 void BehaviorGraphView::removeOtherData(){
-    (behavior) ? behavior->removeOtherData() : LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    if (behavior) {
+        behavior->removeOtherData();
+    } else {
+        LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    }
 }
 
 bool BehaviorGraphView::refocus(){
@@ -430,12 +434,20 @@ QString BehaviorGraphView::getBehaviorFilename() const{
 }
 
 void BehaviorGraphView::focusOnGeneratorIcon(int index, const QString &){
-    (behavior) ? behavior->setFocusGeneratorIcon(index) : LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    if (behavior) {
+        behavior->setFocusGeneratorIcon(index);
+    } else {
+        LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    }
     emit disconnectTablesFromHkDataUI();
 }
 
 void BehaviorGraphView::focusOnModifierIcon(int index, const QString &){
-    (behavior) ? behavior->setFocusModifierIcon(index) : LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    if (behavior) {
+        behavior->setFocusModifierIcon(index);
+    } else {
+        LogFile::writeToLog("BehaviorGraphView: behavior file is nullptr!");
+    }
     emit disconnectTablesFromHkDataUI();
 }
 

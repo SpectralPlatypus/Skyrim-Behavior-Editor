@@ -116,11 +116,19 @@ void MirrorModifierUI::setName(const QString &newname){
 }
 
 void MirrorModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("MirrorModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("MirrorModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void MirrorModifierUI::setIsAdditive(){
-    (bsData) ? bsData->setIsAdditive(isAdditive->isChecked()) : LogFile::writeToLog("MirrorModifierUI::setIsAdditive(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setIsAdditive(isAdditive->isChecked());
+    } else {
+        LogFile::writeToLog("MirrorModifierUI::setIsAdditive(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void MirrorModifierUI::viewSelected(int row, int column){

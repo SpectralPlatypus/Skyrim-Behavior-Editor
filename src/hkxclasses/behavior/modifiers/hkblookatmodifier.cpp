@@ -174,7 +174,11 @@ bool hkbLookAtModifier::getIsTargetInsideLimitCone() const{
 
 void hkbLookAtModifier::setIsTargetInsideLimitCone(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isTargetInsideLimitCone) ? isTargetInsideLimitCone = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isTargetInsideLimitCone' was not set!");
+    if (value != isTargetInsideLimitCone) {
+        isTargetInsideLimitCone = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isTargetInsideLimitCone' was not set!");
+    }
 }
 
 bool hkbLookAtModifier::getIndividualLimitsOn() const{
@@ -184,7 +188,11 @@ bool hkbLookAtModifier::getIndividualLimitsOn() const{
 
 void hkbLookAtModifier::setIndividualLimitsOn(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != individualLimitsOn) ? individualLimitsOn = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'individualLimitsOn' was not set!");
+    if (value != individualLimitsOn) {
+        individualLimitsOn = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'individualLimitsOn' was not set!");
+    }
 }
 
 bool hkbLookAtModifier::getIsOn() const{
@@ -194,7 +202,11 @@ bool hkbLookAtModifier::getIsOn() const{
 
 void hkbLookAtModifier::setIsOn(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isOn) ? isOn = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isOn' was not set!");
+    if (value != isOn) {
+        isOn = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isOn' was not set!");
+    }
 }
 
 int hkbLookAtModifier::getNeckIndex() const{
@@ -204,7 +216,11 @@ int hkbLookAtModifier::getNeckIndex() const{
 
 void hkbLookAtModifier::setNeckIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != neckIndex && neckIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? neckIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'neckIndex' was not set!");
+    if (value != neckIndex && neckIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        neckIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'neckIndex' was not set!");
+    }
 }
 
 int hkbLookAtModifier::getHeadIndex() const{
@@ -214,7 +230,11 @@ int hkbLookAtModifier::getHeadIndex() const{
 
 void hkbLookAtModifier::setHeadIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != headIndex && headIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? headIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'headIndex' was not set!");
+    if (value != headIndex && headIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        headIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'headIndex' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getLimitAngleDown() const{
@@ -224,7 +244,11 @@ qreal hkbLookAtModifier::getLimitAngleDown() const{
 
 void hkbLookAtModifier::setLimitAngleDown(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleDown) ? limitAngleDown = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleDown' was not set!");
+    if (value != limitAngleDown) {
+        limitAngleDown = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleDown' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getLimitAngleUp() const{
@@ -234,7 +258,11 @@ qreal hkbLookAtModifier::getLimitAngleUp() const{
 
 void hkbLookAtModifier::setLimitAngleUp(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleUp) ? limitAngleUp = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleUp' was not set!");
+    if (value != limitAngleUp) {
+        limitAngleUp = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleUp' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getLimitAngleRight() const{
@@ -244,7 +272,11 @@ qreal hkbLookAtModifier::getLimitAngleRight() const{
 
 void hkbLookAtModifier::setLimitAngleRight(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleRight) ? limitAngleRight = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleRight' was not set!");
+    if (value != limitAngleRight) {
+        limitAngleRight = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleRight' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getLimitAngleLeft() const{
@@ -254,7 +286,11 @@ qreal hkbLookAtModifier::getLimitAngleLeft() const{
 
 void hkbLookAtModifier::setLimitAngleLeft(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleLeft) ? limitAngleLeft = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleLeft' was not set!");
+    if (value != limitAngleLeft) {
+        limitAngleLeft = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleLeft' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getLimitAngleDegrees() const{
@@ -264,7 +300,11 @@ qreal hkbLookAtModifier::getLimitAngleDegrees() const{
 
 void hkbLookAtModifier::setLimitAngleDegrees(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != limitAngleDegrees) ? limitAngleDegrees = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'limitAngleDegrees' was not set!");
+    if (value != limitAngleDegrees) {
+        limitAngleDegrees = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'limitAngleDegrees' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getOffGain() const{
@@ -274,7 +314,11 @@ qreal hkbLookAtModifier::getOffGain() const{
 
 void hkbLookAtModifier::setOffGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != offGain) ? offGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'offGain' was not set!");
+    if (value != offGain) {
+        offGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'offGain' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getOnGain() const{
@@ -284,7 +328,11 @@ qreal hkbLookAtModifier::getOnGain() const{
 
 void hkbLookAtModifier::setOnGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != onGain) ? onGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'onGain' was not set!");
+    if (value != onGain) {
+        onGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'onGain' was not set!");
+    }
 }
 
 qreal hkbLookAtModifier::getNewTargetGain() const{
@@ -294,7 +342,11 @@ qreal hkbLookAtModifier::getNewTargetGain() const{
 
 void hkbLookAtModifier::setNewTargetGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != newTargetGain) ? newTargetGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'newTargetGain' was not set!");
+    if (value != newTargetGain) {
+        newTargetGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'newTargetGain' was not set!");
+    }
 }
 
 hkQuadVariable hkbLookAtModifier::getEyePositionHS() const{
@@ -304,7 +356,11 @@ hkQuadVariable hkbLookAtModifier::getEyePositionHS() const{
 
 void hkbLookAtModifier::setEyePositionHS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eyePositionHS) ? eyePositionHS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eyePositionHS' was not set!");
+    if (value != eyePositionHS) {
+        eyePositionHS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eyePositionHS' was not set!");
+    }
 }
 
 hkQuadVariable hkbLookAtModifier::getNeckRightLS() const{
@@ -314,7 +370,11 @@ hkQuadVariable hkbLookAtModifier::getNeckRightLS() const{
 
 void hkbLookAtModifier::setNeckRightLS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != neckRightLS) ? neckRightLS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'neckRightLS' was not set!");
+    if (value != neckRightLS) {
+        neckRightLS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'neckRightLS' was not set!");
+    }
 }
 
 hkQuadVariable hkbLookAtModifier::getNeckForwardLS() const{
@@ -324,7 +384,11 @@ hkQuadVariable hkbLookAtModifier::getNeckForwardLS() const{
 
 void hkbLookAtModifier::setNeckForwardLS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != neckForwardLS) ? neckForwardLS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'neckForwardLS' was not set!");
+    if (value != neckForwardLS) {
+        neckForwardLS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'neckForwardLS' was not set!");
+    }
 }
 
 hkQuadVariable hkbLookAtModifier::getHeadForwardLS() const{
@@ -334,7 +398,11 @@ hkQuadVariable hkbLookAtModifier::getHeadForwardLS() const{
 
 void hkbLookAtModifier::setHeadForwardLS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != headForwardLS) ? headForwardLS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'headForwardLS' was not set!");
+    if (value != headForwardLS) {
+        headForwardLS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'headForwardLS' was not set!");
+    }
 }
 
 hkQuadVariable hkbLookAtModifier::getTargetWS() const{
@@ -344,7 +412,11 @@ hkQuadVariable hkbLookAtModifier::getTargetWS() const{
 
 void hkbLookAtModifier::setTargetWS(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetWS) ? targetWS = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetWS' was not set!");
+    if (value != targetWS) {
+        targetWS = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetWS' was not set!");
+    }
 }
 
 bool hkbLookAtModifier::getEnable() const{
@@ -354,12 +426,20 @@ bool hkbLookAtModifier::getEnable() const{
 
 void hkbLookAtModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbLookAtModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbLookAtModifier::link(){

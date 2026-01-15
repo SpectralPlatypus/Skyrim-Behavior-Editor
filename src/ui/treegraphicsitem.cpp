@@ -76,12 +76,20 @@ QRectF TreeGraphicsItem::branchExpandCollapseBox() const{
 
 void TreeGraphicsItem::setBrushColor(Qt::GlobalColor color){
     brushColor = color;
-    (scene()) ? scene()->update(boundingRect()) : LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    if (scene()) {
+        scene()->update(boundingRect());
+    } else {
+        LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    }
 }
 
 void TreeGraphicsItem::setPenColor(Qt::GlobalColor color){
     penColor = color;
-    (scene()) ? scene()->update(boundingRect()) : LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    if (scene()) {
+        scene()->update(boundingRect());
+    } else {
+        LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    }
 }
 
 void TreeGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *){
@@ -101,13 +109,21 @@ void TreeGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *
 
 void TreeGraphicsItem::setIconSelected(){
     brushColor = Qt::green;
-    (scene()) ? scene()->update(QRectF(scenePos(), scenePos() + QPointF(boundingRect().width(), boundingRect().height()))) : LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    if (scene()) {
+        scene()->update(QRectF(scenePos(), scenePos() + QPointF(boundingRect().width(), boundingRect().height())));
+    } else {
+        LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    }
 }
 
 void TreeGraphicsItem::unselect(){
     (itemData->evaluateDataValidity() != "") ? penColor = Qt::red : penColor = Qt::black;
     brushColor = Qt::gray;
-    (scene()) ? scene()->update(QRectF(scenePos(), scenePos() + QPointF(boundingRect().width(), boundingRect().height()))) : LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    if (scene()) {
+        scene()->update(QRectF(scenePos(), scenePos() + QPointF(boundingRect().width(), boundingRect().height())));
+    } else {
+        LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    }
 }
 
 void TreeGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
@@ -208,7 +224,11 @@ void TreeGraphicsItem::reposition(){
         child = parent;
         parent = static_cast<TreeGraphicsItem *>(parent->parentItem());
     }
-    (scene()) ? scene()->update() : LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    if (scene()) {
+        scene()->update();
+    } else {
+        LogFile::writeToLog("TreeGraphicsItem: scene is null!!!");
+    }
 }
 
 bool TreeGraphicsItem::isDataDescendant(TreeGraphicsItem *icon) const{

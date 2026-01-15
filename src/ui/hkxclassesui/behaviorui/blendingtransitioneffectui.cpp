@@ -217,27 +217,51 @@ void BlendingTransitionEffectUI::setBindingVariable(int index, const QString &na
 }
 
 void BlendingTransitionEffectUI::setSelfTransitionMode(int index){
-    (bsData) ? bsData->setSelfTransitionMode(index) : LogFile::writeToLog("BlendingTransitionEffectUI::setSelfTransitionMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSelfTransitionMode(index);
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setSelfTransitionMode(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setEventMode(int index){
-    (bsData) ? bsData->setEventMode(index) : LogFile::writeToLog("BlendingTransitionEffectUI::setEventMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEventMode(index);
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setEventMode(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setDuration(){
-    (bsData) ? bsData->setDuration(duration->value()) : LogFile::writeToLog("BlendingTransitionEffectUI::setDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDuration(duration->value());
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setDuration(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setToGeneratorStartTimeFraction(){
-    (bsData) ? bsData->setToGeneratorStartTimeFraction(toGeneratorStartTimeFraction->value()) : LogFile::writeToLog("BlendingTransitionEffectUI::setToGeneratorStartTimeFraction(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setToGeneratorStartTimeFraction(toGeneratorStartTimeFraction->value());
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setToGeneratorStartTimeFraction(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setEndMode(int index){
-    (bsData) ? bsData->setEndMode(index) : LogFile::writeToLog("BlendingTransitionEffectUI::setEndMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEndMode(index);
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setEndMode(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setBlendCurve(int index){
-    (bsData) ? bsData->setBlendCurve(index) : LogFile::writeToLog("BlendingTransitionEffectUI::setBlendCurve(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBlendCurve(index);
+    } else {
+        LogFile::writeToLog("BlendingTransitionEffectUI::setBlendCurve(): The data is nullptr!!");
+    }
 }
 
 void BlendingTransitionEffectUI::setFlag(CheckBox *flagcheckbox, QString flags, const QString & flagtocheck){

@@ -109,7 +109,11 @@ qreal BSSpeedSamplerModifier::getSpeedOut() const{
 
 void BSSpeedSamplerModifier::setSpeedOut(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != speedOut) ? speedOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'speedOut' was not set!");
+    if (value != speedOut) {
+        speedOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'speedOut' was not set!");
+    }
 }
 
 qreal BSSpeedSamplerModifier::getGoalSpeed() const{
@@ -119,7 +123,11 @@ qreal BSSpeedSamplerModifier::getGoalSpeed() const{
 
 void BSSpeedSamplerModifier::setGoalSpeed(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != goalSpeed) ? goalSpeed = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'goalSpeed' was not set!");
+    if (value != goalSpeed) {
+        goalSpeed = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'goalSpeed' was not set!");
+    }
 }
 
 qreal BSSpeedSamplerModifier::getDirection() const{
@@ -129,7 +137,11 @@ qreal BSSpeedSamplerModifier::getDirection() const{
 
 void BSSpeedSamplerModifier::setDirection(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != direction) ? direction = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'direction' was not set!");
+    if (value != direction) {
+        direction = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'direction' was not set!");
+    }
 }
 
 int BSSpeedSamplerModifier::getState() const{
@@ -139,7 +151,11 @@ int BSSpeedSamplerModifier::getState() const{
 
 void BSSpeedSamplerModifier::setState(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != state) ? state = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'state' was not set!");
+    if (value != state) {
+        state = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'state' was not set!");
+    }
 }
 
 bool BSSpeedSamplerModifier::getEnable() const{
@@ -149,12 +165,20 @@ bool BSSpeedSamplerModifier::getEnable() const{
 
 void BSSpeedSamplerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSSpeedSamplerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSSpeedSamplerModifier::link(){

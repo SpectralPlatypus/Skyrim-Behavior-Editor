@@ -174,31 +174,59 @@ void EvaluateHandleModifierUI::setName(const QString &newname){
 }
 
 void EvaluateHandleModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("EvaluateHandleModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setHandlePositionOut(){
-    (bsData) ? bsData->setHandlePositionOut(handlePositionOut->value()) : LogFile::writeToLog("EvaluateHandleModifierUI::setHandlePositionOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHandlePositionOut(handlePositionOut->value());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setHandlePositionOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setHandleRotationOut(){
-    (bsData) ? bsData->setHandleRotationOut(handleRotationOut->value()) : LogFile::writeToLog("EvaluateHandleModifierUI::setHandleRotationOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHandleRotationOut(handleRotationOut->value());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setHandleRotationOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setIsValidOut(){
-    (bsData) ? bsData->setIsValidOut(isValidOut->isChecked()) : LogFile::writeToLog("EvaluateHandleModifierUI::setIsValidOut(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setIsValidOut(isValidOut->isChecked());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setIsValidOut(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setExtrapolationTimeStep(){
-    (bsData) ? bsData->setExtrapolationTimeStep(extrapolationTimeStep->value()) : LogFile::writeToLog("EvaluateHandleModifierUI::setExtrapolationTimeStep(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setExtrapolationTimeStep(extrapolationTimeStep->value());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setExtrapolationTimeStep(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setHandleChangeSpeed(){
-    (bsData) ? bsData->setHandleChangeSpeed(handleChangeSpeed->value()) : LogFile::writeToLog("EvaluateHandleModifierUI::setHandleChangeSpeed(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHandleChangeSpeed(handleChangeSpeed->value());
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setHandleChangeSpeed(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::setHandleChangeMode(int index){
-    (bsData) ? bsData->setHandleChangeMode(index - 1) : LogFile::writeToLog("EvaluateHandleModifierUI::setHandleChangeMode(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHandleChangeMode(index - 1);
+    } else {
+        LogFile::writeToLog("EvaluateHandleModifierUI::setHandleChangeMode(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void EvaluateHandleModifierUI::viewSelected(int row, int column){

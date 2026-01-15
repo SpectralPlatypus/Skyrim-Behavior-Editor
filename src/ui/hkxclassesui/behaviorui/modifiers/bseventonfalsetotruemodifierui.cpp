@@ -227,15 +227,27 @@ void BSEventOnFalseToTrueModifierUI::setName(const QString &newname){
 }
 
 void BSEventOnFalseToTrueModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setEnableEvent1(){
-    (bsData) ? bsData->setBEnableEvent1(bEnableEvent1->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent1(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBEnableEvent1(bEnableEvent1->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent1(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setVariableToTest1(){
-    (bsData) ? bsData->setBVariableToTest1(bVariableToTest1->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest1(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBVariableToTest1(bVariableToTest1->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest1(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setEventToSend1Id(int index, const QString & name){
@@ -266,11 +278,19 @@ void BSEventOnFalseToTrueModifierUI::setEventToSend1Payload(){
 }
 
 void BSEventOnFalseToTrueModifierUI::setEnableEvent2(){
-    (bsData) ? bsData->setBEnableEvent2(bEnableEvent2->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent2(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBEnableEvent2(bEnableEvent2->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent2(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setVariableToTest2(){
-    (bsData) ? bsData->setBVariableToTest2(bVariableToTest2->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest2(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBVariableToTest2(bVariableToTest2->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest2(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setEventToSend2Id(int index, const QString & name){
@@ -301,11 +321,19 @@ void BSEventOnFalseToTrueModifierUI::setEventToSend2Payload(){
 }
 
 void BSEventOnFalseToTrueModifierUI::setEnableEvent3(){
-    (bsData) ? bsData->setBEnableEvent3(bEnableEvent3->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent3(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBEnableEvent3(bEnableEvent3->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setEnableEvent3(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setVariableToTest3(){
-    (bsData) ? bsData->setBVariableToTest3(bVariableToTest3->isChecked()) : LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest3(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBVariableToTest3(bVariableToTest3->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventOnFalseToTrueModifierUI::setBVariableToTest3(): The data is nullptr!!");
+    }
 }
 
 void BSEventOnFalseToTrueModifierUI::setEventToSend3Id(int index, const QString & name){

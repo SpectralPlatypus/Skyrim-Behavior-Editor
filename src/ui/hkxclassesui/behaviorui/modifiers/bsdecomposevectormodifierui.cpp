@@ -156,27 +156,51 @@ void BSDecomposeVectorModifierUI::setName(const QString &newname){
 }
 
 void BSDecomposeVectorModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::setVector(){
-    (bsData) ? bsData->setVector(vector->value()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setVector(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVector(vector->value());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setVector(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::setX(){
-    (bsData) ? bsData->setX(x->value()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setX(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setX(x->value());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setX(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::setY(){
-    (bsData) ? bsData->setY(y->value()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setY(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setY(y->value());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setY(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::setZ(){
-    (bsData) ? bsData->setZ(z->value()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setZ(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setZ(z->value());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setZ(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::setW(){
-    (bsData) ? bsData->setW(w->value()) : LogFile::writeToLog("BSDecomposeVectorModifierUI::setW(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setW(w->value());
+    } else {
+        LogFile::writeToLog("BSDecomposeVectorModifierUI::setW(): The data is nullptr!!");
+    }
 }
 
 void BSDecomposeVectorModifierUI::viewSelected(int row, int column){

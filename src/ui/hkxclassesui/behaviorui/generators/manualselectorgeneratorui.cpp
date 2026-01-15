@@ -262,11 +262,19 @@ void ManualSelectorGeneratorUI::setName(const QString &newname){
 }
 
 void ManualSelectorGeneratorUI::setSelectedGeneratorIndex(){
-    (bsData) ? bsData->setSelectedGeneratorIndex(selectedGeneratorIndex->value()) : LogFile::writeToLog("ManualSelectorGeneratorUI::setSelectedGeneratorIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSelectedGeneratorIndex(selectedGeneratorIndex->value());
+    } else {
+        LogFile::writeToLog("ManualSelectorGeneratorUI::setSelectedGeneratorIndex(): The data is nullptr!!");
+    }
 }
 
 void ManualSelectorGeneratorUI::setCurrentGeneratorIndex(){
-    (bsData) ? bsData->setCurrentGeneratorIndex(currentGeneratorIndex->value()) : LogFile::writeToLog("ManualSelectorGeneratorUI::setCurrentGeneratorIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCurrentGeneratorIndex(currentGeneratorIndex->value());
+    } else {
+        LogFile::writeToLog("ManualSelectorGeneratorUI::setCurrentGeneratorIndex(): The data is nullptr!!");
+    }
 }
 
 void ManualSelectorGeneratorUI::viewSelectedChild(int row, int column){
@@ -315,7 +323,11 @@ void ManualSelectorGeneratorUI::swapGeneratorIndices(int index1, int index2){
         if (!bsData->swapChildren(index1, index2)){
             WARNING_MESSAGE("Cannot swap these rows!!");
         }else{  //TO DO: check if necessary...
-            (behaviorView->getSelectedItem()) ? behaviorView->getSelectedItem()->reorderChildren() : LogFile::writeToLog("ManualSelectorGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            if (behaviorView->getSelectedItem()) {
+                behaviorView->getSelectedItem()->reorderChildren();
+            } else {
+                LogFile::writeToLog("ManualSelectorGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            }
         }
     }else{
         LogFile::writeToLog("ManualSelectorGeneratorUI::swapGeneratorIndices(): The data is nullptr!!");

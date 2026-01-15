@@ -189,7 +189,11 @@ hkbStringEventPayload *BSEventOnDeactivateModifier::getEventPayload() const{
 
 void BSEventOnDeactivateModifier::setEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(event.payload.data())) ? event.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'event.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(event.payload.data())) {
+        event.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'event.payload' was not set!");
+    }
 }
 
 int BSEventOnDeactivateModifier::getEventID() const{
@@ -199,7 +203,11 @@ int BSEventOnDeactivateModifier::getEventID() const{
 
 void BSEventOnDeactivateModifier::setEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != event.id && event.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? event.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'event.id' was not set!");
+    if (value != event.id && event.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        event.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'event.id' was not set!");
+    }
 }
 
 bool BSEventOnDeactivateModifier::getEnable() const{
@@ -209,12 +217,20 @@ bool BSEventOnDeactivateModifier::getEnable() const{
 
 void BSEventOnDeactivateModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSEventOnDeactivateModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSEventOnDeactivateModifier::link(){

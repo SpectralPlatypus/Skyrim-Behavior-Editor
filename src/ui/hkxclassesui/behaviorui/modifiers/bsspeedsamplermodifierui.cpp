@@ -147,23 +147,43 @@ void BSSpeedSamplerModifierUI::setName(const QString &newname){
 }
 
 void BSSpeedSamplerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSSpeedSamplerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSSpeedSamplerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSSpeedSamplerModifierUI::setState(){
-    (bsData) ? bsData->setState(state->value()) : LogFile::writeToLog("BSSpeedSamplerModifierUI::setState(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setState(state->value());
+    } else {
+        LogFile::writeToLog("BSSpeedSamplerModifierUI::setState(): The data is nullptr!!");
+    }
 }
 
 void BSSpeedSamplerModifierUI::setDirection(){
-    (bsData) ? bsData->setDirection(direction->value()) : LogFile::writeToLog("BSSpeedSamplerModifierUI::setDirection(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDirection(direction->value());
+    } else {
+        LogFile::writeToLog("BSSpeedSamplerModifierUI::setDirection(): The data is nullptr!!");
+    }
 }
 
 void BSSpeedSamplerModifierUI::setGoalSpeed(){
-    (bsData) ? bsData->setGoalSpeed(goalSpeed->value()) : LogFile::writeToLog("BSSpeedSamplerModifierUI::setGoalSpeed(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setGoalSpeed(goalSpeed->value());
+    } else {
+        LogFile::writeToLog("BSSpeedSamplerModifierUI::setGoalSpeed(): The data is nullptr!!");
+    }
 }
 
 void BSSpeedSamplerModifierUI::setSpeedOut(){
-    (bsData) ? bsData->setSpeedOut(speedOut->value()) : LogFile::writeToLog("BSSpeedSamplerModifierUI::setSpeedOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSpeedOut(speedOut->value());
+    } else {
+        LogFile::writeToLog("BSSpeedSamplerModifierUI::setSpeedOut(): The data is nullptr!!");
+    }
 }
 
 void BSSpeedSamplerModifierUI::viewSelected(int row, int column){

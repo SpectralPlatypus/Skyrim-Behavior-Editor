@@ -221,7 +221,11 @@ qreal hkbFootIkControlsModifier::getOnOffGain() const{
 
 void hkbFootIkControlsModifier::setOnOffGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.onOffGain) ? gains.onOffGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.onOffGain' was not set!");
+    if (value != gains.onOffGain) {
+        gains.onOffGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.onOffGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getGroundAscendingGain() const{
@@ -231,7 +235,11 @@ qreal hkbFootIkControlsModifier::getGroundAscendingGain() const{
 
 void hkbFootIkControlsModifier::setGroundAscendingGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.groundAscendingGain) ? gains.groundAscendingGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.groundAscendingGain' was not set!");
+    if (value != gains.groundAscendingGain) {
+        gains.groundAscendingGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.groundAscendingGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getGroundDescendingGain() const{
@@ -241,7 +249,11 @@ qreal hkbFootIkControlsModifier::getGroundDescendingGain() const{
 
 void hkbFootIkControlsModifier::setGroundDescendingGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.groundDescendingGain) ? gains.groundDescendingGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.groundDescendingGain' was not set!");
+    if (value != gains.groundDescendingGain) {
+        gains.groundDescendingGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.groundDescendingGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getFootPlantedGain() const{
@@ -251,7 +263,11 @@ qreal hkbFootIkControlsModifier::getFootPlantedGain() const{
 
 void hkbFootIkControlsModifier::setFootPlantedGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.footPlantedGain) ? gains.footPlantedGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.footPlantedGain' was not set!");
+    if (value != gains.footPlantedGain) {
+        gains.footPlantedGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.footPlantedGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getFootRaisedGain() const{
@@ -261,7 +277,11 @@ qreal hkbFootIkControlsModifier::getFootRaisedGain() const{
 
 void hkbFootIkControlsModifier::setFootRaisedGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.footRaisedGain) ? gains.footRaisedGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.footRaisedGain' was not set!");
+    if (value != gains.footRaisedGain) {
+        gains.footRaisedGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.footRaisedGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getFootUnlockGain() const{
@@ -271,7 +291,11 @@ qreal hkbFootIkControlsModifier::getFootUnlockGain() const{
 
 void hkbFootIkControlsModifier::setFootUnlockGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.footUnlockGain) ? gains.footUnlockGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.footUnlockGain' was not set!");
+    if (value != gains.footUnlockGain) {
+        gains.footUnlockGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.footUnlockGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getWorldFromModelFeedbackGain() const{
@@ -281,7 +305,11 @@ qreal hkbFootIkControlsModifier::getWorldFromModelFeedbackGain() const{
 
 void hkbFootIkControlsModifier::setWorldFromModelFeedbackGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.worldFromModelFeedbackGain) ? gains.worldFromModelFeedbackGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.worldFromModelFeedbackGain' was not set!");
+    if (value != gains.worldFromModelFeedbackGain) {
+        gains.worldFromModelFeedbackGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.worldFromModelFeedbackGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getErrorUpDownBias() const{
@@ -291,7 +319,11 @@ qreal hkbFootIkControlsModifier::getErrorUpDownBias() const{
 
 void hkbFootIkControlsModifier::setErrorUpDownBias(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.errorUpDownBias) ? gains.errorUpDownBias = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.errorUpDownBias' was not set!");
+    if (value != gains.errorUpDownBias) {
+        gains.errorUpDownBias = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.errorUpDownBias' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getAlignWorldFromModelGain() const{
@@ -301,7 +333,11 @@ qreal hkbFootIkControlsModifier::getAlignWorldFromModelGain() const{
 
 void hkbFootIkControlsModifier::setAlignWorldFromModelGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.alignWorldFromModelGain) ? gains.alignWorldFromModelGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.alignWorldFromModelGain' was not set!");
+    if (value != gains.alignWorldFromModelGain) {
+        gains.alignWorldFromModelGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.alignWorldFromModelGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getHipOrientationGain() const{
@@ -311,7 +347,11 @@ qreal hkbFootIkControlsModifier::getHipOrientationGain() const{
 
 void hkbFootIkControlsModifier::setHipOrientationGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.hipOrientationGain) ? gains.hipOrientationGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.hipOrientationGain' was not set!");
+    if (value != gains.hipOrientationGain) {
+        gains.hipOrientationGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.hipOrientationGain' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getMaxKneeAngleDifference() const{
@@ -321,7 +361,11 @@ qreal hkbFootIkControlsModifier::getMaxKneeAngleDifference() const{
 
 void hkbFootIkControlsModifier::setMaxKneeAngleDifference(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.maxKneeAngleDifference) ? gains.maxKneeAngleDifference = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.maxKneeAngleDifference' was not set!");
+    if (value != gains.maxKneeAngleDifference) {
+        gains.maxKneeAngleDifference = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.maxKneeAngleDifference' was not set!");
+    }
 }
 
 qreal hkbFootIkControlsModifier::getAnkleOrientationGain() const{
@@ -331,7 +375,11 @@ qreal hkbFootIkControlsModifier::getAnkleOrientationGain() const{
 
 void hkbFootIkControlsModifier::setAnkleOrientationGain(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != gains.ankleOrientationGain) ? gains.ankleOrientationGain = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'gains.ankleOrientationGain' was not set!");
+    if (value != gains.ankleOrientationGain) {
+        gains.ankleOrientationGain = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'gains.ankleOrientationGain' was not set!");
+    }
 }
 
 hkQuadVariable hkbFootIkControlsModifier::getAlignWithGroundRotation() const{
@@ -341,7 +389,11 @@ hkQuadVariable hkbFootIkControlsModifier::getAlignWithGroundRotation() const{
 
 void hkbFootIkControlsModifier::setAlignWithGroundRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alignWithGroundRotation) ? alignWithGroundRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alignWithGroundRotation' was not set!");
+    if (value != alignWithGroundRotation) {
+        alignWithGroundRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alignWithGroundRotation' was not set!");
+    }
 }
 
 void hkbFootIkControlsModifier::addLeg(hkbFootIkControlsModifier::hkLeg leg){
@@ -363,7 +415,11 @@ hkQuadVariable hkbFootIkControlsModifier::getErrorOutTranslation() const{
 
 void hkbFootIkControlsModifier::setErrorOutTranslation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != errorOutTranslation) ? errorOutTranslation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'errorOutTranslation' was not set!");
+    if (value != errorOutTranslation) {
+        errorOutTranslation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'errorOutTranslation' was not set!");
+    }
 }
 
 bool hkbFootIkControlsModifier::getEnable() const{
@@ -373,12 +429,20 @@ bool hkbFootIkControlsModifier::getEnable() const{
 
 void hkbFootIkControlsModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbFootIkControlsModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 int hkbFootIkControlsModifier::getNumberOfLegs() const{

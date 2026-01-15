@@ -38,7 +38,11 @@ void hkbHandIkDriverInfo::addHand(){
 
 void hkbHandIkDriverInfo::removeHandAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < hands.size()) ? hands.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'hand' was not removed!");
+    if (index >= 0 && index < hands.size()) {
+        hands.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'hand' was not removed!");
+    }
 }
 
 hkbHandIkDriverInfo::hkbHandIkDriverInfoHand * hkbHandIkDriverInfo::getHandAt(int index){
@@ -56,7 +60,11 @@ QString hkbHandIkDriverInfo::getFadeInOutCurve() const{
 
 void hkbHandIkDriverInfo::setFadeInOutCurve(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < BlendCurve.size() && fadeInOutCurve != BlendCurve.at(index)) ? fadeInOutCurve = BlendCurve.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'fadeInOutCurve' was not set!");
+    if (index >= 0 && index < BlendCurve.size() && fadeInOutCurve != BlendCurve.at(index)) {
+        fadeInOutCurve = BlendCurve.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'fadeInOutCurve' was not set!");
+    }
 }
 
 bool hkbHandIkDriverInfo::readData(const HkxXmlReader &reader, long & index){

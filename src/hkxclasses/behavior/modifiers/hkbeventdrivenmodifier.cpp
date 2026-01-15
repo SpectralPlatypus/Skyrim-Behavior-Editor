@@ -54,7 +54,11 @@ bool hkbEventDrivenModifier::getActiveByDefault() const{
 
 void hkbEventDrivenModifier::setActiveByDefault(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != activeByDefault) ? activeByDefault = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'activeByDefault' was not set!");
+    if (value != activeByDefault) {
+        activeByDefault = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'activeByDefault' was not set!");
+    }
 }
 
 int hkbEventDrivenModifier::getDeactivateEventId() const{
@@ -64,7 +68,11 @@ int hkbEventDrivenModifier::getDeactivateEventId() const{
 
 void hkbEventDrivenModifier::setDeactivateEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != deactivateEventId && deactivateEventId < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? deactivateEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'deactivateEventId' was not set!");
+    if (value != deactivateEventId && deactivateEventId < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        deactivateEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'deactivateEventId' was not set!");
+    }
 }
 
 int hkbEventDrivenModifier::getActivateEventId() const{
@@ -74,7 +82,11 @@ int hkbEventDrivenModifier::getActivateEventId() const{
 
 void hkbEventDrivenModifier::setActivateEventId(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != activateEventId && activateEventId < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? activateEventId = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'activateEventId' was not set!");
+    if (value != activateEventId && activateEventId < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        activateEventId = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'activateEventId' was not set!");
+    }
 }
 
 hkbModifier *hkbEventDrivenModifier::getModifier() const{
@@ -89,12 +101,20 @@ bool hkbEventDrivenModifier::getEnable() const{
 
 void hkbEventDrivenModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbEventDrivenModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbEventDrivenModifier::hasChildren() const{

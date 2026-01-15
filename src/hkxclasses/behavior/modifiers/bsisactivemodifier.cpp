@@ -141,7 +141,11 @@ bool BSIsActiveModifier::getBInvertActive4() const{
 
 void BSIsActiveModifier::setBInvertActive4(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bInvertActive4) ? bInvertActive4 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bInvertActive4' was not set!");
+    if (value != bInvertActive4) {
+        bInvertActive4 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bInvertActive4' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBIsActive4() const{
@@ -151,7 +155,11 @@ bool BSIsActiveModifier::getBIsActive4() const{
 
 void BSIsActiveModifier::setBIsActive4(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bIsActive4) ? bIsActive4 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bIsActive4' was not set!");
+    if (value != bIsActive4) {
+        bIsActive4 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bIsActive4' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBInvertActive3() const{
@@ -161,7 +169,11 @@ bool BSIsActiveModifier::getBInvertActive3() const{
 
 void BSIsActiveModifier::setBInvertActive3(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bInvertActive3) ? bInvertActive3 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bInvertActive3' was not set!");
+    if (value != bInvertActive3) {
+        bInvertActive3 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bInvertActive3' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBIsActive3() const{
@@ -171,7 +183,11 @@ bool BSIsActiveModifier::getBIsActive3() const{
 
 void BSIsActiveModifier::setBIsActive3(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bIsActive3) ? bIsActive3 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bIsActive3' was not set!");
+    if (value != bIsActive3) {
+        bIsActive3 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bIsActive3' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBInvertActive2() const{
@@ -181,7 +197,11 @@ bool BSIsActiveModifier::getBInvertActive2() const{
 
 void BSIsActiveModifier::setBInvertActive2(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bInvertActive2) ? bInvertActive2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bInvertActive2' was not set!");
+    if (value != bInvertActive2) {
+        bInvertActive2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bInvertActive2' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBIsActive2() const{
@@ -191,7 +211,11 @@ bool BSIsActiveModifier::getBIsActive2() const{
 
 void BSIsActiveModifier::setBIsActive2(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bIsActive2) ? bIsActive2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bIsActive2' was not set!");
+    if (value != bIsActive2) {
+        bIsActive2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bIsActive2' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBInvertActive1() const{
@@ -201,7 +225,11 @@ bool BSIsActiveModifier::getBInvertActive1() const{
 
 void BSIsActiveModifier::setBInvertActive1(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bInvertActive1) ? bInvertActive1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bInvertActive1' was not set!");
+    if (value != bInvertActive1) {
+        bInvertActive1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bInvertActive1' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBIsActive1() const{
@@ -211,7 +239,11 @@ bool BSIsActiveModifier::getBIsActive1() const{
 
 void BSIsActiveModifier::setBIsActive1(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bIsActive1) ? bIsActive1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bIsActive1' was not set!");
+    if (value != bIsActive1) {
+        bIsActive1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bIsActive1' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBInvertActive0() const{
@@ -221,7 +253,11 @@ bool BSIsActiveModifier::getBInvertActive0() const{
 
 void BSIsActiveModifier::setBInvertActive0(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bInvertActive0) ? bInvertActive0 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bInvertActive0' was not set!");
+    if (value != bInvertActive0) {
+        bInvertActive0 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bInvertActive0' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getBIsActive0() const{
@@ -231,7 +267,11 @@ bool BSIsActiveModifier::getBIsActive0() const{
 
 void BSIsActiveModifier::setBIsActive0(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bIsActive0) ? bIsActive0 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bIsActive0' was not set!");
+    if (value != bIsActive0) {
+        bIsActive0 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bIsActive0' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::getEnable() const{
@@ -241,12 +281,20 @@ bool BSIsActiveModifier::getEnable() const{
 
 void BSIsActiveModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSIsActiveModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSIsActiveModifier::link(){

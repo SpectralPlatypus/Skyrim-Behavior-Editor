@@ -176,7 +176,11 @@ void BehaviorVariablesUI::renameSelectedVariable(int type){
 }
 
 void BehaviorVariablesUI::removeVariableFromTable(int row){
-    (row < table->rowCount() && row >= 0) ? table->removeRow(row) : LogFile::writeToLog("BehaviorVariablesUI::removeVariableFromTable(): Invalid row to remove!!");
+    if (row < table->rowCount() && row >= 0) {
+        table->removeRow(row);
+    } else {
+        LogFile::writeToLog("BehaviorVariablesUI::removeVariableFromTable(): Invalid row to remove!!");
+    }
 }
 
 void BehaviorVariablesUI::loadVariable(CheckBox *variableWid){

@@ -45,7 +45,11 @@ void TreeGraphicsScene::selectIcon(TreeGraphicsItem *icon, BranchBehaviorEnum ex
                     }
                 }
                 auto behaviorviews = views();
-                (!behaviorviews.isEmpty()) ? static_cast<BehaviorGraphView *>(views().first())->refocus() : LogFile::writeToLog("TreeGraphicsScene: No views!!!");//May need to expand the branch???
+                if (!behaviorviews.isEmpty()) {
+                    static_cast<BehaviorGraphView *>(views().first())->refocus();
+                } else {
+                    LogFile::writeToLog("TreeGraphicsScene: No views!!!");
+                }
             }
             selectedIcon->reposition();
         }

@@ -66,15 +66,27 @@ void CacheVariableWidget::loadData(AnimCacheVariable *data){
 }
 
 void CacheVariableWidget::setName(const QString & newname){
-    (bsData) ? bsData->name = newname : LogFile::writeToLog("CacheVariableWidget::setName(): The data is nullptr!!");
+    if (bsData) {
+        bsData->name = newname;
+    } else {
+        LogFile::writeToLog("CacheVariableWidget::setName(): The data is nullptr!!");
+    }
 }
 
 void CacheVariableWidget::setMinimumValue(int newvalue){
-    (bsData) ? bsData->minValue = newvalue : LogFile::writeToLog("CacheVariableWidget::setMinimumValue(): The data is nullptr!!");
+    if (bsData) {
+        bsData->minValue = newvalue;
+    } else {
+        LogFile::writeToLog("CacheVariableWidget::setMinimumValue(): The data is nullptr!!");
+    }
 }
 
 void CacheVariableWidget::setMaximumValue(int newvalue){
-    (bsData) ? bsData->maxValue = newvalue : LogFile::writeToLog("CacheVariableWidget::setMaximumValue(): The data is nullptr!!");
+    if (bsData) {
+        bsData->maxValue = newvalue;
+    } else {
+        LogFile::writeToLog("CacheVariableWidget::setMaximumValue(): The data is nullptr!!");
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,11 +162,19 @@ void CacheClipWidget::loadData(AnimCacheClipInfo *data){
 }
 
 void CacheClipWidget::setEventName(const QString & name){
-    (bsData) ? bsData->eventName = name : LogFile::writeToLog("CacheClipWidget::setEventName(): The data is nullptr!!");
+    if (bsData) {
+        bsData->eventName = name;
+    } else {
+        LogFile::writeToLog("CacheClipWidget::setEventName(): The data is nullptr!!");
+    }
 }
 
 void CacheClipWidget::setUnknown(int newvalue){
-    (bsData) ? bsData->unknown = newvalue : LogFile::writeToLog("CacheClipWidget::setUnknown(): The data is nullptr!!");
+    if (bsData) {
+        bsData->unknown = newvalue;
+    } else {
+        LogFile::writeToLog("CacheClipWidget::setUnknown(): The data is nullptr!!");
+    }
 }
 
 void CacheClipWidget::addClipGenerator(){
@@ -336,7 +356,11 @@ void CacheWidget::loadData(AnimCacheAnimSetData *data, ProjectFile *project){
 
 void CacheWidget::setCacheEventNameAt(int row, int column){
     if (bsData){
-        (row > -1 && row < bsData->cacheEvents.size()) ? bsData->cacheEvents[row] = cacheEvents->item(row, column)->text() : LogFile::writeToLog("CacheWidget::setEventNameAt(): Mismatch between data and UI!!");
+        if (row > -1 && row < bsData->cacheEvents.size()) {
+            bsData->cacheEvents[row] = cacheEvents->item(row, column)->text();
+        } else {
+            LogFile::writeToLog("CacheWidget::setEventNameAt(): Mismatch between data and UI!!");
+        }
     }else{
         LogFile::writeToLog("CacheWidget::setEventNameAt(): The data is nullptr!!");
     }

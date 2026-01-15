@@ -85,11 +85,19 @@ void BehaviorGraphUI::loadData(HkxObject *data){
 }
 
 void BehaviorGraphUI::setName(const QString & newname){
-    (bsData) ? bsData->setName(newname), bsData->updateIconNames() : LogFile::writeToLog("BehaviorGraphUI::setName(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setName(newname), bsData->updateIconNames();
+    } else {
+        LogFile::writeToLog("BehaviorGraphUI::setName(): The data is nullptr!!");
+    }
 }
 
 void BehaviorGraphUI::setVariableMode(int index){
-    (bsData) ? bsData->setVariableMode(bsData->VariableMode.at(index)) : LogFile::writeToLog("BehaviorGraphUI::setVariableMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVariableMode(bsData->VariableMode.at(index));
+    } else {
+        LogFile::writeToLog("BehaviorGraphUI::setVariableMode(): The data is nullptr!!");
+    }
 }
 
 void BehaviorGraphUI::viewSelectedChild(int row, int column){

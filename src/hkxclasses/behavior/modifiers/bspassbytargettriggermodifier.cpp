@@ -196,12 +196,20 @@ bool BSPassByTargetTriggerModifier::merge(HkxObject *recessiveObject){ //TO DO: 
 
 void BSPassByTargetTriggerModifier::setTriggerEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != triggerEvent.id && triggerEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? triggerEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'triggerEvent.id' was not set!");
+    if (value != triggerEvent.id && triggerEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        triggerEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'triggerEvent.id' was not set!");
+    }
 }
 
 void BSPassByTargetTriggerModifier::setTriggerEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(triggerEvent.payload.data())) ? triggerEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'triggerEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(triggerEvent.payload.data())) {
+        triggerEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'triggerEvent.payload' was not set!");
+    }
 }
 
 int BSPassByTargetTriggerModifier::getTriggerEventID() const{
@@ -221,7 +229,11 @@ hkQuadVariable BSPassByTargetTriggerModifier::getMovementDirection() const{
 
 void BSPassByTargetTriggerModifier::setMovementDirection(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != movementDirection) ? movementDirection = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'movementDirection' was not set!");
+    if (value != movementDirection) {
+        movementDirection = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'movementDirection' was not set!");
+    }
 }
 
 qreal BSPassByTargetTriggerModifier::getRadius() const{
@@ -231,7 +243,11 @@ qreal BSPassByTargetTriggerModifier::getRadius() const{
 
 void BSPassByTargetTriggerModifier::setRadius(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != radius) ? radius = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'radius' was not set!");
+    if (value != radius) {
+        radius = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'radius' was not set!");
+    }
 }
 
 hkQuadVariable BSPassByTargetTriggerModifier::getTargetPosition() const{
@@ -241,7 +257,11 @@ hkQuadVariable BSPassByTargetTriggerModifier::getTargetPosition() const{
 
 void BSPassByTargetTriggerModifier::setTargetPosition(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetPosition) ? targetPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    if (value != targetPosition) {
+        targetPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    }
 }
 
 bool BSPassByTargetTriggerModifier::getEnable() const{
@@ -251,12 +271,20 @@ bool BSPassByTargetTriggerModifier::getEnable() const{
 
 void BSPassByTargetTriggerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSPassByTargetTriggerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSPassByTargetTriggerModifier::link(){

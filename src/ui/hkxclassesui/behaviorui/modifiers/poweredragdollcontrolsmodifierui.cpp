@@ -246,43 +246,83 @@ void PoweredRagdollControlsModifierUI::setName(const QString &newname){
 }
 
 void PoweredRagdollControlsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setMaxForce(){
-    (bsData) ? bsData->setMaxForce(maxForce->value()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setMaxForce(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setMaxForce(maxForce->value());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setMaxForce(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setTau(){
-    (bsData) ? bsData->setTau(tau->value()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setTau(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setTau(tau->value());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setTau(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setDamping(){
-    (bsData) ? bsData->setDamping(damping->value()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setDamping(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDamping(damping->value());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setDamping(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setProportionalRecoveryVelocity(){
-    (bsData) ? bsData->setProportionalRecoveryVelocity(proportionalRecoveryVelocity->value()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setProportionalRecoveryVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setProportionalRecoveryVelocity(proportionalRecoveryVelocity->value());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setProportionalRecoveryVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setConstantRecoveryVelocity(){
-    (bsData) ? bsData->setConstantRecoveryVelocity(constantRecoveryVelocity->value()) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setConstantRecoveryVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setConstantRecoveryVelocity(constantRecoveryVelocity->value());
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setConstantRecoveryVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setPoseMatchingBone0(int index){
-    (bsData) ? bsData->setPoseMatchingBone0(index - 1) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone0(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone0(index - 1);
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone0(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setPoseMatchingBone1(int index){
-    (bsData) ? bsData->setPoseMatchingBone1(index - 1) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone1(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone1(index - 1);
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone1(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setPoseMatchingBone2(int index){
-    (bsData) ? bsData->setPoseMatchingBone2(index - 1) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone2(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone2(index - 1);
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setPoseMatchingBone2(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::setMode(int index){
-    (bsData) ? bsData->setMode(index) : LogFile::writeToLog("PoweredRagdollControlsModifierUI::setMode(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setMode(index);
+    } else {
+        LogFile::writeToLog("PoweredRagdollControlsModifierUI::setMode(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void PoweredRagdollControlsModifierUI::toggleBones(bool enable){

@@ -151,7 +151,11 @@ void BSRagdollContactListenerModifierUI::setName(const QString &newname){
 }
 
 void BSRagdollContactListenerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSRagdollContactListenerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSRagdollContactListenerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSRagdollContactListenerModifierUI::setContactEventId(int index, const QString & name){

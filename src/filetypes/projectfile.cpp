@@ -132,7 +132,11 @@ bool ProjectFile::removeAnimationFromAnimData(const QString &name){
 QString ProjectFile::getCharacterFilePathAt(int index) const{
     //std::lock_guard <std::mutex> guard(mutex);
     QString path;
-    (stringData.data()) ? path = static_cast<hkbProjectStringData *>(stringData.data())->getCharacterFilePathAt(index) : LogFile::writeToLog(":'stringData' is nullptr!");
+    if (stringData.data()) {
+        path = static_cast<hkbProjectStringData *>(stringData.data())->getCharacterFilePathAt(index);
+    } else {
+        LogFile::writeToLog(":'stringData' is nullptr!");
+    }
     return path;
 }
 
@@ -213,7 +217,11 @@ bool ProjectFile::parse(){
         }
         closeFile();
         getReader().clear();
-        (link()) ? ok = true : LogFile::writeToLog(fileName()+": failed to link!!!");
+        if (link()) {
+            ok = true;
+        } else {
+            LogFile::writeToLog(fileName()+": failed to link!!!");
+        }
     }else{
         LogFile::writeToLog(fileName()+": failed to parse!!!");
     }
@@ -241,63 +249,103 @@ bool ProjectFile::link(){
 
 void ProjectFile::addFootIK(){
     //std::lock_guard <std::mutex> guard(mutex);
-    (character) ? character->addFootIK() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        character->addFootIK();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
 }
 
 void ProjectFile::disableHandIK(){
     //std::lock_guard <std::mutex> guard(mutex);
-    (character) ? character->disableHandIK() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        character->disableHandIK();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
 }
 
 void ProjectFile::disableFootIK(){
     //std::lock_guard <std::mutex> guard(mutex);
-    (character) ? character->disableFootIK() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        character->disableFootIK();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
 }
 
 void ProjectFile::addHandIK(){
     //std::lock_guard <std::mutex> guard(mutex);
-    (character) ? character->addHandIK() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        character->addHandIK();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
 }
 
 hkbHandIkDriverInfo *ProjectFile::getHandIkDriverInfo() const{
     //std::lock_guard <std::mutex> guard(mutex);
     hkbHandIkDriverInfo *handdriver = nullptr;
-    (character) ? handdriver = static_cast<hkbHandIkDriverInfo *>(character->getHandIkDriverInfo().data()) : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        handdriver = static_cast<hkbHandIkDriverInfo *>(character->getHandIkDriverInfo().data());
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return handdriver;
 }
 
 hkbFootIkDriverInfo *ProjectFile::getFootIkDriverInfo() const{
     //std::lock_guard <std::mutex> guard(mutex);
     hkbFootIkDriverInfo *footdriver = nullptr;
-    (character) ? footdriver = static_cast<hkbFootIkDriverInfo *>(character->getFootIkDriverInfo().data()) : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        footdriver = static_cast<hkbFootIkDriverInfo *>(character->getFootIkDriverInfo().data());
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return footdriver;
 }
 
 hkaSkeleton *ProjectFile::getSkeleton(bool isragdoll) const{
     //std::lock_guard <std::mutex> guard(mutex);
     hkaSkeleton *skel = nullptr;
-    (character) ? skel = character->getSkeleton(isragdoll) : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        skel = character->getSkeleton(isragdoll);
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return skel;
 }
 
 ProjectAnimData *ProjectFile::getAnimDataAt(const QString & projectname) const{
     //std::lock_guard <std::mutex> guard(mutex);
     ProjectAnimData *animdata = nullptr;
-    (skyrimAnimData) ? animdata = skyrimAnimData->getProjectAnimData(projectname) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        animdata = skyrimAnimData->getProjectAnimData(projectname);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
     return animdata;
 }
 
 HkxObject *ProjectFile::getCharacterStringData() const{
     //std::lock_guard <std::mutex> guard(mutex);
     HkxObject *obj = nullptr;
-    (character) ? obj = character->getCharacterStringData() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        obj = character->getCharacterStringData();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return obj;
 }
 
 HkxObject *ProjectFile::getCharacterData() const{
     //std::lock_guard <std::mutex> guard(mutex);
     HkxObject *obj = nullptr;
-    (character) ? obj = character->getCharacterData() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        obj = character->getCharacterData();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return obj;
 }
 
@@ -517,7 +565,11 @@ void ProjectFile::addProjectToAnimData(){
 AnimCacheProjectData *ProjectFile::getProjectCacheData() const{
     //std::lock_guard <std::mutex> guard(mutex);
     AnimCacheProjectData *projdata = nullptr;
-    (skyrimAnimSetData) ? projdata = skyrimAnimSetData->getProjectCacheData(projectName) : LogFile::writeToLog(":'skyrimAnimSetData' is nullptr!!!");
+    if (skyrimAnimSetData) {
+        projdata = skyrimAnimSetData->getProjectCacheData(projectName);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimSetData' is nullptr!!!");
+    }
     return projdata;
 }
 
@@ -565,12 +617,20 @@ void ProjectFile::addEncryptedAnimationName(const QString &unencryptedname){
     QString animationhash = HkCRC().compute(unencryptedname.section("/", -1, -1).toLower().replace(".hkx", "").toLocal8Bit());
     bool ok;
     animationhash = QString::number(animationhash.toULong(&ok, 16));
-    (ok) ? encryptedAnimationNames.append(animationhash) : LogFile::writeToLog(":Animation hash is invalid!!!");
+    if (ok) {
+        encryptedAnimationNames.append(animationhash);
+    } else {
+        LogFile::writeToLog(":Animation hash is invalid!!!");
+    }
 }
 
 void ProjectFile::removeEncryptedAnimationName(int index){
     //std::lock_guard <std::mutex> guard(mutex);
-    (index > -1 && index < encryptedAnimationNames.size()) ? encryptedAnimationNames.removeAt(index) : LogFile::writeToLog(":Invalid 'encryptedAnimationNames' index!");
+    if (index > -1 && index < encryptedAnimationNames.size()) {
+        encryptedAnimationNames.removeAt(index);
+    } else {
+        LogFile::writeToLog(":Invalid 'encryptedAnimationNames' index!");
+    }
 }
 
 void ProjectFile::deleteBehaviorFile(const QString &filename){
@@ -590,7 +650,11 @@ void ProjectFile::deleteBehaviorFile(const QString &filename){
 int ProjectFile::getAnimationIndex(const QString & name) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto index = -1;
-    (character) ? index = character->getAnimationIndex(name) : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        index = character->getAnimationIndex(name);
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return index;
 }
 
@@ -613,7 +677,11 @@ bool ProjectFile::isAnimationUsed(const QString &animationname) const{
 QStringList ProjectFile::getAnimationNames() const{
     //std::lock_guard <std::mutex> guard(mutex);
     QStringList names;
-    (character) ? names = character->getAnimationNames() : LogFile::writeToLog(":'character' is nullptr!");
+    if (character) {
+        names = character->getAnimationNames();
+    } else {
+        LogFile::writeToLog(":'character' is nullptr!");
+    }
     return names;
 }
 
@@ -646,7 +714,11 @@ QString ProjectFile::findAnimationNameFromEncryptedData(const QString &encrypted
 bool ProjectFile::isProjectNameTaken() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto value = false;
-    (skyrimAnimData) ? value = skyrimAnimData->isProjectNameTaken(projectName) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        value = skyrimAnimData->isProjectNameTaken(projectName);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
     return value;
 }
 
@@ -658,21 +730,33 @@ QString ProjectFile::getProjectName() const{
 qreal ProjectFile::getAnimationDurationFromAnimData(const QString &animationname) const{
     //std::lock_guard <std::mutex> guard(mutex);
     qreal value = 0;
-    (skyrimAnimData && character) ? value = skyrimAnimData->getAnimationDurationFromAnimData(projectName, character->getAnimationIndex(animationname)) : LogFile::writeToLog(":'skyrimAnimData' or 'character' are nullptr!");
+    if (skyrimAnimData && character) {
+        value = skyrimAnimData->getAnimationDurationFromAnimData(projectName, character->getAnimationIndex(animationname));
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' or 'character' are nullptr!");
+    }
     return value;
 }
 
 bool ProjectFile::appendAnimation(SkyrimAnimationMotionData *motiondata){
     //std::lock_guard <std::mutex> guard(mutex);
     auto value = false;
-    (skyrimAnimData) ? value = skyrimAnimData->appendAnimation(projectName, motiondata) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        value = skyrimAnimData->appendAnimation(projectName, motiondata);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
     return value;
 }
 
 SkyrimAnimationMotionData ProjectFile::getAnimationMotionData(int animationindex) const{
     //std::lock_guard <std::mutex> guard(mutex);
     SkyrimAnimationMotionData value(nullptr);
-    (skyrimAnimData) ? value = skyrimAnimData->getAnimationMotionData(projectName, animationindex) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        value = skyrimAnimData->getAnimationMotionData(projectName, animationindex);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
     return value;
 }
 
@@ -742,7 +826,11 @@ hkbStateMachine *ProjectFile::findRootStateMachineFromBehavior(const QString beh
 QString ProjectFile::getBehaviorDirectoryName() const{
     //std::lock_guard <std::mutex> guard(mutex);
     QString name;
-    (character) ? name = character->getBehaviorDirectoryName() : LogFile::writeToLog(": 'character' is nullptr!");
+    if (character) {
+        name = character->getBehaviorDirectoryName();
+    } else {
+        LogFile::writeToLog(": 'character' is nullptr!");
+    }
     return name;
 }
 
@@ -754,53 +842,93 @@ QString ProjectFile::getProjectAnimationsPath() const{
 bool ProjectFile::appendClipGeneratorAnimData(const QString &name){
     //std::lock_guard <std::mutex> guard(mutex);
     auto value = false;
-    (skyrimAnimData) ? value = skyrimAnimData->appendClipGenerator(projectName, new SkyrimClipGeneratoData(skyrimAnimData->getProjectAnimData(projectName), name)) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        value = skyrimAnimData->appendClipGenerator(projectName, new SkyrimClipGeneratoData(skyrimAnimData->getProjectAnimData(projectName), name));
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
     return value;
 }
 
 void ProjectFile::setLocalTimeForClipGenAnimData(const QString &clipname, int triggerindex, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setLocalTimeForClipGenAnimData(projectName, clipname, triggerindex, time) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setLocalTimeForClipGenAnimData(projectName, clipname, triggerindex, time);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setEventNameForClipGenAnimData(const QString &clipname, int triggerindex, const QString &eventname){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setEventNameForClipGenAnimData(projectName, clipname, triggerindex, eventname) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setEventNameForClipGenAnimData(projectName, clipname, triggerindex, eventname);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setClipNameAnimData(const QString &oldclipname, const QString &newclipname){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setClipNameAnimData(projectName, oldclipname, newclipname) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setClipNameAnimData(projectName, oldclipname, newclipname);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setAnimationIndexForClipGen(int index, const QString &clipGenName){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setAnimationIndexForClipGen(projectName, clipGenName, index) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setAnimationIndexForClipGen(projectName, clipGenName, index);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setPlaybackSpeedAnimData(const QString &clipGenName, qreal speed){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setPlaybackSpeedAnimData(projectName, clipGenName, speed) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setPlaybackSpeedAnimData(projectName, clipGenName, speed);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setCropStartAmountLocalTimeAnimData(const QString &clipGenName, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setCropStartAmountLocalTimeAnimData(projectName, clipGenName, time) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setCropStartAmountLocalTimeAnimData(projectName, clipGenName, time);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::setCropEndAmountLocalTimeAnimData(const QString &clipGenName, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->setCropEndAmountLocalTimeAnimData(projectName, clipGenName, time) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->setCropEndAmountLocalTimeAnimData(projectName, clipGenName, time);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::appendClipTriggerToAnimData(const QString &clipGenName, const QString &eventname){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->appendClipTriggerToAnimData(projectName, clipGenName, eventname) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->appendClipTriggerToAnimData(projectName, clipGenName, eventname);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::removeClipTriggerToAnimDataAt(const QString &clipGenName, int index){
     //std::lock_guard <std::mutex> guard(mutex);
-    (skyrimAnimData) ? skyrimAnimData->removeClipTriggerToAnimDataAt(projectName, clipGenName, index) : LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    if (skyrimAnimData) {
+        skyrimAnimData->removeClipTriggerToAnimDataAt(projectName, clipGenName, index);
+    } else {
+        LogFile::writeToLog(":'skyrimAnimData' is nullptr!");
+    }
 }
 
 void ProjectFile::write(){

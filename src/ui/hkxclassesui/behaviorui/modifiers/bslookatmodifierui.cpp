@@ -306,43 +306,83 @@ void BSLookAtModifierUI::setName(const QString &newname){
 }
 
 void BSLookAtModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLookAtTarget(){
-    (bsData) ? bsData->setLookAtTarget(lookAtTarget->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setLookAtTarget(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLookAtTarget(lookAtTarget->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLookAtTarget(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLimitAngleDegrees(){
-    (bsData) ? bsData->setLimitAngleDegrees(limitAngleDegrees->value()) : LogFile::writeToLog("BSLookAtModifierUI::setLimitAngleDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLimitAngleDegrees(limitAngleDegrees->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLimitAngleDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLimitAngleThresholdDegrees(){
-    (bsData) ? bsData->setLimitAngleThresholdDegrees(limitAngleThresholdDegrees->value()) : LogFile::writeToLog("BSLookAtModifierUI::setLimitAngleThresholdDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLimitAngleThresholdDegrees(limitAngleThresholdDegrees->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLimitAngleThresholdDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setContinueLookOutsideOfLimit(){
-    (bsData) ? bsData->setContinueLookOutsideOfLimit(continueLookOutsideOfLimit->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setContinueLookOutsideOfLimit(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setContinueLookOutsideOfLimit(continueLookOutsideOfLimit->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setContinueLookOutsideOfLimit(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setOnGain(){
-    (bsData) ? bsData->setOnGain(onGain->value()) : LogFile::writeToLog("BSLookAtModifierUI::setOnGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOnGain(onGain->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setOnGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setOffGain(){
-    (bsData) ? bsData->setOffGain(offGain->value()) : LogFile::writeToLog("BSLookAtModifierUI::setOffGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOffGain(offGain->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setOffGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setUseBoneGains(){
-    (bsData) ? bsData->setUseBoneGains(useBoneGains->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setUseBoneGains(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setUseBoneGains(useBoneGains->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setUseBoneGains(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setTargetLocation(){
-    (bsData) ? bsData->setTargetLocation(targetLocation->value()) : LogFile::writeToLog("BSLookAtModifierUI::setTargetLocation(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setTargetLocation(targetLocation->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setTargetLocation(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setTargetOutsideLimits(){
-    (bsData) ? bsData->setTargetOutsideLimits(targetOutsideLimits->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setTargetOutsideLimits(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setTargetOutsideLimits(targetOutsideLimits->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setTargetOutsideLimits(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setTargetOutOfLimitEventId(int index, const QString &name){
@@ -373,19 +413,35 @@ void BSLookAtModifierUI::setTargetOutOfLimitEventPayload(){
 }
 
 void BSLookAtModifierUI::setLookAtCamera(){
-    (bsData) ? bsData->setLookAtCamera(lookAtCamera->isChecked()) : LogFile::writeToLog("BSLookAtModifierUI::setLookAtCamera(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLookAtCamera(lookAtCamera->isChecked());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLookAtCamera(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLookAtCameraX(){
-    (bsData) ? bsData->setLookAtCameraX(lookAtCameraX->value()) : LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraX(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLookAtCameraX(lookAtCameraX->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraX(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLookAtCameraY(){
-    (bsData) ? bsData->setLookAtCameraY(lookAtCameraY->value()) : LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraY(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLookAtCameraY(lookAtCameraY->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraY(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setLookAtCameraZ(){
-    (bsData) ? bsData->setLookAtCameraZ(lookAtCameraZ->value()) : LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraZ(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLookAtCameraZ(lookAtCameraZ->value());
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::setLookAtCameraZ(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::setBindingVariable(int index, const QString & name){
@@ -536,19 +592,35 @@ void BSLookAtModifierUI::variableTableElementSelected(int index, const QString &
 }
 
 void BSLookAtModifierUI::addBone(){
-    (bsData) ? bsData->addBone(), loadDynamicTableRows() : LogFile::writeToLog("BSLookAtModifierUI::addBone(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addBone(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::addBone(): The data is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::removeBone(int index){
-    (bsData) ? bsData->removeBone(index), loadDynamicTableRows() : LogFile::writeToLog("BSLookAtModifierUI::removeBone(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeBone(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::removeBone(): The data is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::removeEyeBone(int index){
-    (bsData) ? bsData->removeEyeBone(index), loadDynamicTableRows() : LogFile::writeToLog("BSLookAtModifierUI::removeEyeBone(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeEyeBone(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::removeEyeBone(): The data is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::addEyeBone(){
-    (bsData) ? bsData->addEyeBone(), loadDynamicTableRows() : LogFile::writeToLog("BSLookAtModifierUI::addEyeBone(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addEyeBone(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("BSLookAtModifierUI::addEyeBone(): The data is nullptr!!");
+    }
 }
 
 void BSLookAtModifierUI::returnToWidget(){

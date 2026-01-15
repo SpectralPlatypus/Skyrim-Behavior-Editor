@@ -126,7 +126,11 @@ bool hkbTwistModifier::getIsAdditive() const{
 
 void hkbTwistModifier::setIsAdditive(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isAdditive) ? isAdditive = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isAdditive' was not set!");
+    if (value != isAdditive) {
+        isAdditive = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isAdditive' was not set!");
+    }
 }
 
 QString hkbTwistModifier::getRotationAxisCoordinates() const{
@@ -136,7 +140,11 @@ QString hkbTwistModifier::getRotationAxisCoordinates() const{
 
 void hkbTwistModifier::setRotationAxisCoordinates(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < RotationAxisCoordinates.size() && rotationAxisCoordinates != RotationAxisCoordinates.at(index)) ? rotationAxisCoordinates = RotationAxisCoordinates.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationAxisCoordinates' was not set!");
+    if (index >= 0 && index < RotationAxisCoordinates.size() && rotationAxisCoordinates != RotationAxisCoordinates.at(index)) {
+        rotationAxisCoordinates = RotationAxisCoordinates.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationAxisCoordinates' was not set!");
+    }
 }
 
 QString hkbTwistModifier::getSetAngleMethod() const{
@@ -146,7 +154,11 @@ QString hkbTwistModifier::getSetAngleMethod() const{
 
 void hkbTwistModifier::setSetAngleMethod(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < SetAngleMethod.size() && setAngleMethod != SetAngleMethod.at(index)) ? setAngleMethod = SetAngleMethod.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setAngleMethod' was not set!");
+    if (index >= 0 && index < SetAngleMethod.size() && setAngleMethod != SetAngleMethod.at(index)) {
+        setAngleMethod = SetAngleMethod.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setAngleMethod' was not set!");
+    }
 }
 
 int hkbTwistModifier::getEndBoneIndex() const{
@@ -156,7 +168,11 @@ int hkbTwistModifier::getEndBoneIndex() const{
 
 void hkbTwistModifier::setEndBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != endBoneIndex && endBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? endBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'endBoneIndex' was not set!");
+    if (value != endBoneIndex && endBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        endBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'endBoneIndex' was not set!");
+    }
 }
 
 int hkbTwistModifier::getStartBoneIndex() const{
@@ -166,7 +182,11 @@ int hkbTwistModifier::getStartBoneIndex() const{
 
 void hkbTwistModifier::setStartBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != startBoneIndex && startBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? startBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'startBoneIndex' was not set!");
+    if (value != startBoneIndex && startBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        startBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'startBoneIndex' was not set!");
+    }
 }
 
 qreal hkbTwistModifier::getTwistAngle() const{
@@ -176,7 +196,11 @@ qreal hkbTwistModifier::getTwistAngle() const{
 
 void hkbTwistModifier::setTwistAngle(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != twistAngle) ? twistAngle = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'twistAngle' was not set!");
+    if (value != twistAngle) {
+        twistAngle = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'twistAngle' was not set!");
+    }
 }
 
 hkQuadVariable hkbTwistModifier::getAxisOfRotation() const{
@@ -186,7 +210,11 @@ hkQuadVariable hkbTwistModifier::getAxisOfRotation() const{
 
 void hkbTwistModifier::setAxisOfRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != axisOfRotation) ? axisOfRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'axisOfRotation' was not set!");
+    if (value != axisOfRotation) {
+        axisOfRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'axisOfRotation' was not set!");
+    }
 }
 
 bool hkbTwistModifier::getEnable() const{
@@ -196,12 +224,20 @@ bool hkbTwistModifier::getEnable() const{
 
 void hkbTwistModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbTwistModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbTwistModifier::link(){

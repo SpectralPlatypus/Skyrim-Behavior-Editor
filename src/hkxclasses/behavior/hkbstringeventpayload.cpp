@@ -55,7 +55,11 @@ bool hkbStringEventPayload::write(HkxXMLWriter *writer){
 
 void hkbStringEventPayload::setData(const QString &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (data != value) ? data = value, getParentFile()->setIsChanged(true) : LogFile::writeToLog(getClassname()+": 'data' was not set!");
+    if (data != value) {
+        data = value, getParentFile()->setIsChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'data' was not set!");
+    }
 }
 
 QString hkbStringEventPayload::getData() const{

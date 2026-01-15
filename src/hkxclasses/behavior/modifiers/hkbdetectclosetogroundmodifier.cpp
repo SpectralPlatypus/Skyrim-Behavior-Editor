@@ -213,7 +213,11 @@ hkbStringEventPayload *hkbDetectCloseToGroundModifier::getCloseToGroundEventPayl
 
 void hkbDetectCloseToGroundModifier::setCloseToGroundEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(closeToGroundEvent.payload.data())) ? closeToGroundEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'closeToGroundEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(closeToGroundEvent.payload.data())) {
+        closeToGroundEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'closeToGroundEvent.payload' was not set!");
+    }
 }
 
 int hkbDetectCloseToGroundModifier::getCloseToGroundEventID() const{
@@ -223,7 +227,11 @@ int hkbDetectCloseToGroundModifier::getCloseToGroundEventID() const{
 
 void hkbDetectCloseToGroundModifier::setCloseToGroundEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != closeToGroundEvent.id && closeToGroundEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? closeToGroundEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'closeToGroundEvent.id' was not set!");
+    if (value != closeToGroundEvent.id && closeToGroundEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        closeToGroundEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'closeToGroundEvent.id' was not set!");
+    }
 }
 
 int hkbDetectCloseToGroundModifier::getAnimBoneIndex() const{
@@ -233,7 +241,11 @@ int hkbDetectCloseToGroundModifier::getAnimBoneIndex() const{
 
 void hkbDetectCloseToGroundModifier::setAnimBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (boneIndex < 0 && value != animBoneIndex && animBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? animBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'animBoneIndex' was not set!");
+    if (boneIndex < 0 && value != animBoneIndex && animBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        animBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'animBoneIndex' was not set!");
+    }
 }
 
 int hkbDetectCloseToGroundModifier::getBoneIndex() const{
@@ -243,7 +255,11 @@ int hkbDetectCloseToGroundModifier::getBoneIndex() const{
 
 void hkbDetectCloseToGroundModifier::setBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (animBoneIndex < 0 && value != boneIndex && boneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? boneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'boneIndex' was not set!");
+    if (animBoneIndex < 0 && value != boneIndex && boneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        boneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'boneIndex' was not set!");
+    }
 }
 
 int hkbDetectCloseToGroundModifier::getCollisionFilterInfo() const{
@@ -253,7 +269,11 @@ int hkbDetectCloseToGroundModifier::getCollisionFilterInfo() const{
 
 void hkbDetectCloseToGroundModifier::setCollisionFilterInfo(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) ? collisionFilterInfo = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    if (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) {
+        collisionFilterInfo = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    }
 }
 
 qreal hkbDetectCloseToGroundModifier::getRaycastDistanceDown() const{
@@ -263,7 +283,11 @@ qreal hkbDetectCloseToGroundModifier::getRaycastDistanceDown() const{
 
 void hkbDetectCloseToGroundModifier::setRaycastDistanceDown(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != raycastDistanceDown) ? raycastDistanceDown = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'raycastDistanceDown' was not set!");
+    if (value != raycastDistanceDown) {
+        raycastDistanceDown = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'raycastDistanceDown' was not set!");
+    }
 }
 
 qreal hkbDetectCloseToGroundModifier::getCloseToGroundHeight() const{
@@ -273,7 +297,11 @@ qreal hkbDetectCloseToGroundModifier::getCloseToGroundHeight() const{
 
 void hkbDetectCloseToGroundModifier::setCloseToGroundHeight(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != closeToGroundHeight) ? closeToGroundHeight = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'closeToGroundHeight' was not set!");
+    if (value != closeToGroundHeight) {
+        closeToGroundHeight = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'closeToGroundHeight' was not set!");
+    }
 }
 
 bool hkbDetectCloseToGroundModifier::getEnable() const{
@@ -283,12 +311,20 @@ bool hkbDetectCloseToGroundModifier::getEnable() const{
 
 void hkbDetectCloseToGroundModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbDetectCloseToGroundModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbDetectCloseToGroundModifier::link(){

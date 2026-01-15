@@ -157,19 +157,35 @@ void BSDistTriggerModifierUI::setName(const QString &newname){
 }
 
 void BSDistTriggerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSDistTriggerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSDistTriggerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSDistTriggerModifierUI::setTargetPosition(){
-    (bsData) ? bsData->setTargetPosition(targetPosition->value()) : LogFile::writeToLog("BSDistTriggerModifierUI::setTargetPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTargetPosition(targetPosition->value());
+    } else {
+        LogFile::writeToLog("BSDistTriggerModifierUI::setTargetPosition(): The data is nullptr!!");
+    }
 }
 
 void BSDistTriggerModifierUI::setDistance(){
-    (bsData) ? bsData->setDistance(distance->value()) : LogFile::writeToLog("BSDistTriggerModifierUI::setDistance(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDistance(distance->value());
+    } else {
+        LogFile::writeToLog("BSDistTriggerModifierUI::setDistance(): The data is nullptr!!");
+    }
 }
 
 void BSDistTriggerModifierUI::setDistanceTrigger(){
-    (bsData) ? bsData->setDistanceTrigger(distanceTrigger->value()) : LogFile::writeToLog("BSDistTriggerModifierUI::setDistanceTrigger(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDistanceTrigger(distanceTrigger->value());
+    } else {
+        LogFile::writeToLog("BSDistTriggerModifierUI::setDistanceTrigger(): The data is nullptr!!");
+    }
 }
 
 void BSDistTriggerModifierUI::setTriggerEventId(int index, const QString & name){

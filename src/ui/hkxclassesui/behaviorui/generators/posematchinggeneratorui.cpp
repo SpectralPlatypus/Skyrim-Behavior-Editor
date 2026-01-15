@@ -460,23 +460,43 @@ void PoseMatchingGeneratorUI::setName(const QString &newname){
 }
 
 void PoseMatchingGeneratorUI::setReferencePoseWeightThreshold(){
-    (bsData) ? bsData->setReferencePoseWeightThreshold(referencePoseWeightThreshold->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setReferencePoseWeightThreshold(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setReferencePoseWeightThreshold(referencePoseWeightThreshold->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setReferencePoseWeightThreshold(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setBlendParameter(){
-    (bsData) ? bsData->setBlendParameter(blendParameter->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBlendParameter(blendParameter->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMinCyclicBlendParameter(){
-    (bsData) ? bsData->setMinCyclicBlendParameter(minCyclicBlendParameter->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMinCyclicBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinCyclicBlendParameter(minCyclicBlendParameter->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMinCyclicBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMaxCyclicBlendParameter(){
-    (bsData) ? bsData->setMaxCyclicBlendParameter(maxCyclicBlendParameter->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMaxCyclicBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMaxCyclicBlendParameter(maxCyclicBlendParameter->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMaxCyclicBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setIndexOfSyncMasterChild(){
-    (bsData) ? bsData->setIndexOfSyncMasterChild(indexOfSyncMasterChild->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setIndexOfSyncMasterChild(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setIndexOfSyncMasterChild(indexOfSyncMasterChild->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setIndexOfSyncMasterChild(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setFlag(CheckBox *flagcheckbox, hkbPoseMatchingGenerator::BlenderFlag flagtoset){
@@ -519,55 +539,107 @@ void PoseMatchingGeneratorUI::setFlagForceDensePose(){
 }
 
 void PoseMatchingGeneratorUI::setSubtractLastChild(){
-    (bsData) ? bsData->setSubtractLastChild(subtractLastChild->isChecked()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setSubtractLastChild(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSubtractLastChild(subtractLastChild->isChecked());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setSubtractLastChild(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setWorldFromModelRotation(){
-    (bsData) ? bsData->setWorldFromModelRotation(worldFromModelRotation->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setWorldFromModelRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setWorldFromModelRotation(worldFromModelRotation->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setWorldFromModelRotation(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setBlendSpeed(){
-    (bsData) ? bsData->setBlendSpeed(blendSpeed->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setBlendSpeed(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBlendSpeed(blendSpeed->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setBlendSpeed(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMinSpeedToSwitch(){
-    (bsData) ? bsData->setMinSpeedToSwitch(minSpeedToSwitch->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSpeedToSwitch(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinSpeedToSwitch(minSpeedToSwitch->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSpeedToSwitch(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMinSwitchTimeNoError(){
-    (bsData) ? bsData->setMinSwitchTimeNoError(minSwitchTimeNoError->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSwitchTimeNoError(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinSwitchTimeNoError(minSwitchTimeNoError->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSwitchTimeNoError(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMinSwitchTimeFullError(){
-    (bsData) ? bsData->setMinSwitchTimeFullError(minSwitchTimeFullError->value()) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSwitchTimeFullError(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinSwitchTimeFullError(minSwitchTimeFullError->value());
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMinSwitchTimeFullError(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setStartPlayingEventId(int index, const QString &name){
-    (bsData) ? bsData->setStartPlayingEventId(index), table->item(START_PLAYING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("PoseMatchingGeneratorUI::setStartPlayingEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setStartPlayingEventId(index), table->item(START_PLAYING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setStartPlayingEventId(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setStartMatchingEventId(int index, const QString &name){
-    (bsData) ? bsData->setStartMatchingEventId(index), table->item(START_MATCHING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : LogFile::writeToLog("PoseMatchingGeneratorUI::setStartMatchingEventId(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setStartMatchingEventId(index), table->item(START_MATCHING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setStartMatchingEventId(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setRootBoneIndex(int index){
-    (bsData) ? bsData->setRootBoneIndex(index - 1) : LogFile::writeToLog("PoseMatchingGeneratorUI::setRootBoneIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRootBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setRootBoneIndex(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setOtherBoneIndex(int index){
-    (bsData) ? bsData->setOtherBoneIndex(index - 1) : LogFile::writeToLog("PoseMatchingGeneratorUI::setOtherBoneIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setOtherBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setOtherBoneIndex(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setAnotherBoneIndex(int index){
-    (bsData) ? bsData->setAnotherBoneIndex(index - 1) : LogFile::writeToLog("PoseMatchingGeneratorUI::setAnotherBoneIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAnotherBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setAnotherBoneIndex(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setPelvisIndex(int index){
-    (bsData) ? bsData->setPelvisIndex(index - 1) : LogFile::writeToLog("PoseMatchingGeneratorUI::setPelvisIndex(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setPelvisIndex(index - 1);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setPelvisIndex(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::setMode(int index){
-    (bsData) ? bsData->setMode(index) : LogFile::writeToLog("PoseMatchingGeneratorUI::setMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMode(index);
+    } else {
+        LogFile::writeToLog("PoseMatchingGeneratorUI::setMode(): The data is nullptr!!");
+    }
 }
 
 void PoseMatchingGeneratorUI::swapGeneratorIndices(int index1, int index2){
@@ -577,7 +649,11 @@ void PoseMatchingGeneratorUI::swapGeneratorIndices(int index1, int index2){
         if (!bsData->swapChildren(index1, index2)){
             WARNING_MESSAGE("Cannot swap these rows!!");
         }else{  //TO DO: check if necessary...
-            (behaviorView->getSelectedItem()) ? behaviorView->getSelectedItem()->reorderChildren() : LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            if (behaviorView->getSelectedItem()) {
+                behaviorView->getSelectedItem()->reorderChildren();
+            } else {
+                LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            }
         }
     }else{
         LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): The data is nullptr!!");

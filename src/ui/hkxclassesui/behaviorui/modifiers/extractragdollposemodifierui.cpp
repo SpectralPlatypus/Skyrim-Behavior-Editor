@@ -152,23 +152,43 @@ void ExtractRagdollPoseModifierUI::setName(const QString &newname){
 }
 
 void ExtractRagdollPoseModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("ExtractRagdollPoseModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ExtractRagdollPoseModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ExtractRagdollPoseModifierUI::setPoseMatchingBone0(int index){
-    (bsData) ? bsData->setPoseMatchingBone0(index - 1) : LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone0(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone0(index - 1);
+    } else {
+        LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone0(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ExtractRagdollPoseModifierUI::setPoseMatchingBone1(int index){
-    (bsData) ? bsData->setPoseMatchingBone1(index - 1) : LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone1(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone1(index - 1);
+    } else {
+        LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone1(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ExtractRagdollPoseModifierUI::setPoseMatchingBone2(int index){
-    (bsData) ? bsData->setPoseMatchingBone2(index - 1) : LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone2(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPoseMatchingBone2(index - 1);
+    } else {
+        LogFile::writeToLog("ExtractRagdollPoseModifierUI::setPoseMatchingBone2(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ExtractRagdollPoseModifierUI::setEnableComputeWorldFromModel(){
-    (bsData) ? bsData->setEnableComputeWorldFromModel(enable->isChecked()) : LogFile::writeToLog("ExtractRagdollPoseModifierUI::setEnableComputeWorldFromModel(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnableComputeWorldFromModel(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ExtractRagdollPoseModifierUI::setEnableComputeWorldFromModel(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void ExtractRagdollPoseModifierUI::viewSelected(int row, int column){

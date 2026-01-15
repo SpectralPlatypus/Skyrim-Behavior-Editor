@@ -97,7 +97,11 @@ hkQuadVariable hkbGetWorldFromModelModifier::getRotationOut() const{
 
 void hkbGetWorldFromModelModifier::setRotationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rotationOut) ? rotationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    if (value != rotationOut) {
+        rotationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbGetWorldFromModelModifier::getTranslationOut() const{
@@ -107,7 +111,11 @@ hkQuadVariable hkbGetWorldFromModelModifier::getTranslationOut() const{
 
 void hkbGetWorldFromModelModifier::setTranslationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != translationOut) ? translationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'translationOut' was not set!");
+    if (value != translationOut) {
+        translationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'translationOut' was not set!");
+    }
 }
 
 bool hkbGetWorldFromModelModifier::getEnable() const{
@@ -117,12 +125,20 @@ bool hkbGetWorldFromModelModifier::getEnable() const{
 
 void hkbGetWorldFromModelModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbGetWorldFromModelModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbGetWorldFromModelModifier::link(){

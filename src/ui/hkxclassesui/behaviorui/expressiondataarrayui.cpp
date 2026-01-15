@@ -112,7 +112,11 @@ void ExpressionDataArrayUI::setExpression(){
 }
 
 void ExpressionDataArrayUI::setEventMode(int index){
-    (bsData) ? bsData->eventMode = EventModeUI.at(index), file->setIsChanged(true) : LogFile::writeToLog("ExpressionDataArrayUI::setEventMode(): The data is nullptr!!");
+    if (bsData) {
+        bsData->eventMode = EventModeUI.at(index), file->setIsChanged(true);
+    } else {
+        LogFile::writeToLog("ExpressionDataArrayUI::setEventMode(): The data is nullptr!!");
+    }
 }
 
 void ExpressionDataArrayUI::setAssignmentVariableIndex(int index, const QString & name){

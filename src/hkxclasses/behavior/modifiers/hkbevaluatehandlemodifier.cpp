@@ -128,7 +128,11 @@ QString hkbEvaluateHandleModifier::getHandleChangeMode() const{
 
 void hkbEvaluateHandleModifier::setHandleChangeMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < HandleChangeMode.size() && handleChangeMode != HandleChangeMode.at(index)) ? handleChangeMode = HandleChangeMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'handleChangeMode' was not set!");
+    if (index >= 0 && index < HandleChangeMode.size() && handleChangeMode != HandleChangeMode.at(index)) {
+        handleChangeMode = HandleChangeMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'handleChangeMode' was not set!");
+    }
 }
 
 qreal hkbEvaluateHandleModifier::getHandleChangeSpeed() const{
@@ -138,7 +142,11 @@ qreal hkbEvaluateHandleModifier::getHandleChangeSpeed() const{
 
 void hkbEvaluateHandleModifier::setHandleChangeSpeed(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != handleChangeSpeed) ? handleChangeSpeed = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'handleChangeSpeed' was not set!");
+    if (value != handleChangeSpeed) {
+        handleChangeSpeed = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'handleChangeSpeed' was not set!");
+    }
 }
 
 qreal hkbEvaluateHandleModifier::getExtrapolationTimeStep() const{
@@ -148,7 +156,11 @@ qreal hkbEvaluateHandleModifier::getExtrapolationTimeStep() const{
 
 void hkbEvaluateHandleModifier::setExtrapolationTimeStep(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != extrapolationTimeStep) ? extrapolationTimeStep = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'extrapolationTimeStep' was not set!");
+    if (value != extrapolationTimeStep) {
+        extrapolationTimeStep = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'extrapolationTimeStep' was not set!");
+    }
 }
 
 bool hkbEvaluateHandleModifier::getIsValidOut() const{
@@ -158,7 +170,11 @@ bool hkbEvaluateHandleModifier::getIsValidOut() const{
 
 void hkbEvaluateHandleModifier::setIsValidOut(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != isValidOut) ? isValidOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'isValidOut' was not set!");
+    if (value != isValidOut) {
+        isValidOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'isValidOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbEvaluateHandleModifier::getHandleRotationOut() const{
@@ -168,7 +184,11 @@ hkQuadVariable hkbEvaluateHandleModifier::getHandleRotationOut() const{
 
 void hkbEvaluateHandleModifier::setHandleRotationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != handleRotationOut) ? handleRotationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'handleRotationOut' was not set!");
+    if (value != handleRotationOut) {
+        handleRotationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'handleRotationOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbEvaluateHandleModifier::getHandlePositionOut() const{
@@ -178,7 +198,11 @@ hkQuadVariable hkbEvaluateHandleModifier::getHandlePositionOut() const{
 
 void hkbEvaluateHandleModifier::setHandlePositionOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != handlePositionOut) ? handlePositionOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'handlePositionOut' was not set!");
+    if (value != handlePositionOut) {
+        handlePositionOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'handlePositionOut' was not set!");
+    }
 }
 
 bool hkbEvaluateHandleModifier::getEnable() const{
@@ -188,12 +212,20 @@ bool hkbEvaluateHandleModifier::getEnable() const{
 
 void hkbEvaluateHandleModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbEvaluateHandleModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbEvaluateHandleModifier::link(){

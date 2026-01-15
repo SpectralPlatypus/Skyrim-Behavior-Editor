@@ -197,7 +197,11 @@ hkbStringEventPayload *BSTimerModifier::getAlarmEventPayload() const{
 
 void BSTimerModifier::setAlarmEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(alarmEvent.payload.data())) ? alarmEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(alarmEvent.payload.data())) {
+        alarmEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmEvent.payload' was not set!");
+    }
 }
 
 int BSTimerModifier::getAlarmEventID() const{
@@ -207,7 +211,11 @@ int BSTimerModifier::getAlarmEventID() const{
 
 void BSTimerModifier::setAlarmEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alarmEvent.id && alarmEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? alarmEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmEvent.id' was not set!");
+    if (value != alarmEvent.id && alarmEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        alarmEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmEvent.id' was not set!");
+    }
 }
 
 bool BSTimerModifier::getResetAlarm() const{
@@ -217,7 +225,11 @@ bool BSTimerModifier::getResetAlarm() const{
 
 void BSTimerModifier::setResetAlarm(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != resetAlarm) ? resetAlarm = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'resetAlarm' was not set!");
+    if (value != resetAlarm) {
+        resetAlarm = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'resetAlarm' was not set!");
+    }
 }
 
 qreal BSTimerModifier::getAlarmTimeSeconds() const{
@@ -227,7 +239,11 @@ qreal BSTimerModifier::getAlarmTimeSeconds() const{
 
 void BSTimerModifier::setAlarmTimeSeconds(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alarmTimeSeconds) ? alarmTimeSeconds = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmTimeSeconds' was not set!");
+    if (value != alarmTimeSeconds) {
+        alarmTimeSeconds = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmTimeSeconds' was not set!");
+    }
 }
 
 bool BSTimerModifier::getEnable() const{
@@ -237,12 +253,20 @@ bool BSTimerModifier::getEnable() const{
 
 void BSTimerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSTimerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSTimerModifier::link(){

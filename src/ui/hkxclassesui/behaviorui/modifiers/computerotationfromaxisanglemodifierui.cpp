@@ -136,19 +136,35 @@ void ComputeRotationFromAxisAngleModifierUI::setName(const QString &newname){
 }
 
 void ComputeRotationFromAxisAngleModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("ComputeDirectionModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationFromAxisAngleModifierUI::setRotationOut(){
-    (bsData) ? bsData->setRotationOut(rotationOut->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setRotationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotationOut(rotationOut->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setRotationOut(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationFromAxisAngleModifierUI::setAxis(){
-    (bsData) ? bsData->setAxis(axis->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setAxis(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAxis(axis->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setAxis(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationFromAxisAngleModifierUI::setAngleDegrees(){
-    (bsData) ? bsData->setAngleDegrees(angleDegrees->value()) : LogFile::writeToLog("ComputeDirectionModifierUI::setAngleDegrees(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAngleDegrees(angleDegrees->value());
+    } else {
+        LogFile::writeToLog("ComputeDirectionModifierUI::setAngleDegrees(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationFromAxisAngleModifierUI::viewSelected(int row, int column){

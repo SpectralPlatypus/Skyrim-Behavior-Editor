@@ -162,15 +162,27 @@ void BSCyclicBlendTransitionGeneratorUI::setName(const QString & newname){
 }
 
 void BSCyclicBlendTransitionGeneratorUI::setBlendParameter(){
-    (bsData) ? bsData->setFBlendParameter(fBlendParameter->value()) : LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setFBlendParameter(fBlendParameter->value());
+    } else {
+        LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void BSCyclicBlendTransitionGeneratorUI::setTransitionDuration(){
-    (bsData) ? bsData->setFTransitionDuration(fTransitionDuration->value()) : LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setTransitionDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setFTransitionDuration(fTransitionDuration->value());
+    } else {
+        LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setTransitionDuration(): The data is nullptr!!");
+    }
 }
 
 void BSCyclicBlendTransitionGeneratorUI::setBlendCurve(int index){
-    (bsData) ? bsData->setEBlendCurve(index) : LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setBlendCurve(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEBlendCurve(index);
+    } else {
+        LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::setBlendCurve(): The data is nullptr!!");
+    }
 }
 
 void BSCyclicBlendTransitionGeneratorUI::viewEventToFreezeBlendValue(){

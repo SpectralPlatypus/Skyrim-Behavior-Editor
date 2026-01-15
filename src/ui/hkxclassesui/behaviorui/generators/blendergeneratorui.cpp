@@ -315,23 +315,43 @@ void BlenderGeneratorUI::setName(const QString &newname){
 }
 
 void BlenderGeneratorUI::setReferencePoseWeightThreshold(){
-    (bsData) ? bsData->setReferencePoseWeightThreshold(referencePoseWeightThreshold->value()) : LogFile::writeToLog("BlenderGeneratorUI::setReferencePoseWeightThreshold(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setReferencePoseWeightThreshold(referencePoseWeightThreshold->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setReferencePoseWeightThreshold(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::setBlendParameter(){
-    (bsData) ? bsData->setBlendParameter(blendParameter->value()) : LogFile::writeToLog("BlenderGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setBlendParameter(blendParameter->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::setMinCyclicBlendParameter(){
-    (bsData) ? bsData->setMinCyclicBlendParameter(minCyclicBlendParameter->value()) : LogFile::writeToLog("BlenderGeneratorUI::setMinCyclicBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinCyclicBlendParameter(minCyclicBlendParameter->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setMinCyclicBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::setMaxCyclicBlendParameter(){
-    (bsData) ? bsData->setMaxCyclicBlendParameter(maxCyclicBlendParameter->value()) : LogFile::writeToLog("BlenderGeneratorUI::setMaxCyclicBlendParameter(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMaxCyclicBlendParameter(maxCyclicBlendParameter->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setMaxCyclicBlendParameter(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::setIndexOfSyncMasterChild(){
-    (bsData) ? bsData->setIndexOfSyncMasterChild(indexOfSyncMasterChild->value()) : LogFile::writeToLog("BlenderGeneratorUI::setIndexOfSyncMasterChild(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setIndexOfSyncMasterChild(indexOfSyncMasterChild->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setIndexOfSyncMasterChild(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::setFlag(CheckBox *flagcheckbox, hkbBlenderGenerator::BlenderFlag flagtoset){
@@ -374,7 +394,11 @@ void BlenderGeneratorUI::setFlagForceDensePose(){
 }
 
 void BlenderGeneratorUI::setSubtractLastChild(){
-    (bsData) ? bsData->setSubtractLastChild(subtractLastChild->isChecked()) : LogFile::writeToLog("BlenderGeneratorUI::setSubtractLastChild(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSubtractLastChild(subtractLastChild->isChecked());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorUI::setSubtractLastChild(): The data is nullptr!!");
+    }
 }
 
 void BlenderGeneratorUI::swapGeneratorIndices(int index1, int index2){
@@ -384,7 +408,11 @@ void BlenderGeneratorUI::swapGeneratorIndices(int index1, int index2){
         if (!bsData->swapChildren(index1, index2)){
             WARNING_MESSAGE("Cannot swap these rows!!");
         }else{  //TO DO: check if necessary...
-            (behaviorView->getSelectedItem()) ? behaviorView->getSelectedItem()->reorderChildren() : LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            if (behaviorView->getSelectedItem()) {
+                behaviorView->getSelectedItem()->reorderChildren();
+            } else {
+                LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): No item selected!!");
+            }
         }
     }else{
         LogFile::writeToLog("BlenderGeneratorUI::swapGeneratorIndices(): The data is nullptr!!");

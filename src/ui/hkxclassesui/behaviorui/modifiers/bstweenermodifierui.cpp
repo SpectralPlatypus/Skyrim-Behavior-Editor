@@ -166,31 +166,59 @@ void BSTweenerModifierUI::setName(const QString &newname){
 }
 
 void BSTweenerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSTweenerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setTweenPosition(){
-    (bsData) ? bsData->setTweenPosition(tweenPosition->isChecked()) : LogFile::writeToLog("BSTweenerModifierUI::setTweenPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTweenPosition(tweenPosition->isChecked());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setTweenPosition(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setTweenRotation(){
-    (bsData) ? bsData->setTweenRotation(tweenRotation->isChecked()) : LogFile::writeToLog("BSTweenerModifierUI::setTweenRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTweenRotation(tweenRotation->isChecked());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setTweenRotation(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setUseTweenDuration(){
-    (bsData) ? bsData->setUseTweenDuration(useTweenDuration->isChecked()) : LogFile::writeToLog("BSTweenerModifierUI::setUseTweenDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setUseTweenDuration(useTweenDuration->isChecked());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setUseTweenDuration(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setTweenDuration(){
-    (bsData) ? bsData->setTweenDuration(tweenDuration->value()) : LogFile::writeToLog("BSTweenerModifierUI::setTweenDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTweenDuration(tweenDuration->value());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setTweenDuration(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setTargetPosition(){
-    (bsData) ? bsData->setTargetPosition(targetPosition->value()) : LogFile::writeToLog("BSTweenerModifierUI::setTargetPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTargetPosition(targetPosition->value());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setTargetPosition(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::setTargetRotation(){
-    (bsData) ? bsData->setTargetRotation(targetRotation->value()) : LogFile::writeToLog("BSTweenerModifierUI::setTargetRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTargetRotation(targetRotation->value());
+    } else {
+        LogFile::writeToLog("BSTweenerModifierUI::setTargetRotation(): The data is nullptr!!");
+    }
 }
 
 void BSTweenerModifierUI::viewSelected(int row, int column){

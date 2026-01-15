@@ -36,7 +36,11 @@ hkbStringEventPayload *hkbTimerModifier::getAlarmEventPayload() const{
 
 void hkbTimerModifier::setAlarmEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(alarmEvent.payload.data())) ? alarmEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(alarmEvent.payload.data())) {
+        alarmEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmEvent.payload' was not set!");
+    }
 }
 
 int hkbTimerModifier::getAlarmEventID() const{
@@ -46,7 +50,11 @@ int hkbTimerModifier::getAlarmEventID() const{
 
 void hkbTimerModifier::setAlarmEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alarmEvent.id && alarmEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? alarmEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmEvent.id' was not set!");
+    if (value != alarmEvent.id && alarmEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        alarmEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmEvent.id' was not set!");
+    }
 }
 
 qreal hkbTimerModifier::getAlarmTimeSeconds() const{
@@ -56,7 +64,11 @@ qreal hkbTimerModifier::getAlarmTimeSeconds() const{
 
 void hkbTimerModifier::setAlarmTimeSeconds(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alarmTimeSeconds) ? alarmTimeSeconds = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alarmTimeSeconds' was not set!");
+    if (value != alarmTimeSeconds) {
+        alarmTimeSeconds = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alarmTimeSeconds' was not set!");
+    }
 }
 
 bool hkbTimerModifier::getEnable() const{
@@ -66,12 +78,20 @@ bool hkbTimerModifier::getEnable() const{
 
 void hkbTimerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbTimerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbTimerModifier::readData(const HkxXmlReader &reader, long & index){

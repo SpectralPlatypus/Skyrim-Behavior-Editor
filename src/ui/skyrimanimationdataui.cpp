@@ -127,23 +127,43 @@ void SkyrimAnimationDataUI::loadDynamicTableRows(){
 }
 
 void SkyrimAnimationDataUI::setDuration(){
-    (bsData) ? bsData->duration = duration->value() : LogFile::writeToLog("SkyrimAnimationDataUI::setduration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->duration = duration->value();
+    } else {
+        LogFile::writeToLog("SkyrimAnimationDataUI::setduration(): The data is nullptr!!");
+    }
 }
 
 void SkyrimAnimationDataUI::addTranslation(){
-    (bsData) ? bsData->addTranslation(), loadDynamicTableRows() : LogFile::writeToLog("SkyrimAnimationDataUI::addEnterEvent(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addTranslation(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SkyrimAnimationDataUI::addEnterEvent(): The data is nullptr!!");
+    }
 }
 
 void SkyrimAnimationDataUI::removeTranslation(int index){
-    (bsData) ? bsData->removeTranslation(index), loadDynamicTableRows() : LogFile::writeToLog("SkyrimAnimationDataUI::removeEnterEvent(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeTranslation(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SkyrimAnimationDataUI::removeEnterEvent(): The data is nullptr!!");
+    }
 }
 
 void SkyrimAnimationDataUI::addRotation(){
-    (bsData) ? bsData->addRotation(), loadDynamicTableRows() : LogFile::writeToLog("SkyrimAnimationDataUI::addExitEvent(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addRotation(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SkyrimAnimationDataUI::addExitEvent(): The data is nullptr!!");
+    }
 }
 
 void SkyrimAnimationDataUI::removeRotation(int index){
-    (bsData) ? bsData->removeRotation(index), loadDynamicTableRows() : LogFile::writeToLog("SkyrimAnimationDataUI::removeExitEvent(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeRotation(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("SkyrimAnimationDataUI::removeExitEvent(): The data is nullptr!!");
+    }
 }
 
 void SkyrimAnimationDataUI::viewSelectedChild(int row, int column){

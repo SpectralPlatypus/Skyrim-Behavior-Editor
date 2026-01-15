@@ -176,35 +176,67 @@ void ComputeRotationToTargetModifierUI::setName(const QString &newname){
 }
 
 void ComputeRotationToTargetModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setRotationOut(){
-    (bsData) ? bsData->setRotationOut(rotationOut->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setRotationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotationOut(rotationOut->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setRotationOut(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setTargetPosition(){
-    (bsData) ? bsData->setTargetPosition(targetPosition->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setTargetPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTargetPosition(targetPosition->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setTargetPosition(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setCurrentPosition(){
-    (bsData) ? bsData->setCurrentPosition(targetPosition->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setCurrentPosition(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCurrentPosition(targetPosition->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setCurrentPosition(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setCurrentRotation(){
-    (bsData) ? bsData->setCurrentRotation(currentRotation->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setCurrentRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCurrentRotation(currentRotation->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setCurrentRotation(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setLocalAxisOfRotation(){
-    (bsData) ? bsData->setLocalAxisOfRotation(localAxisOfRotation->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setLocalAxisOfRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setLocalAxisOfRotation(localAxisOfRotation->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setLocalAxisOfRotation(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setLocalFacingDirection(){
-    (bsData) ? bsData->setLocalFacingDirection(localFacingDirection->value()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setLocalFacingDirection(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setLocalFacingDirection(localFacingDirection->value());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setLocalFacingDirection(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::setResultIsDelta(){
-    (bsData) ? bsData->setResultIsDelta(resultIsDelta->isChecked()) : LogFile::writeToLog("ComputeRotationToTargetModifierUI::setResultIsDelta(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setResultIsDelta(resultIsDelta->isChecked());
+    } else {
+        LogFile::writeToLog("ComputeRotationToTargetModifierUI::setResultIsDelta(): The data is nullptr!!");
+    }
 }
 
 void ComputeRotationToTargetModifierUI::viewSelected(int row, int column){

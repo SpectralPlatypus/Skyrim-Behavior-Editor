@@ -180,7 +180,11 @@ bool SkeletonFile::parse(){
         }
         closeFile();
         getReader().clear();
-        (link()) ? ok = true : LogFile::writeToLog(fileName()+": failed to link!!!");
+        if (link()) {
+            ok = true;
+        } else {
+            LogFile::writeToLog(fileName()+": failed to link!!!");
+        }
     }else{
         LogFile::writeToLog(fileName()+": failed to parse!!!");
     }

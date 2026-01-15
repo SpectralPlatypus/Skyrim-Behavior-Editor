@@ -92,22 +92,38 @@ bool BGSGamebryoSequenceGenerator::link(){
 
 void BGSGamebryoSequenceGenerator::setFPercent(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != fPercent) ? fPercent = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'fPercent' was not set!");
+    if (value != fPercent) {
+        fPercent = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'fPercent' was not set!");
+    }
 }
 
 void BGSGamebryoSequenceGenerator::setEBlendModeFunction(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < BlendModeFunction.size() && eBlendModeFunction != BlendModeFunction.at(index)) ? eBlendModeFunction = BlendModeFunction.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eBlendModeFunction' was not set!");
+    if (index >= 0 && index < BlendModeFunction.size() && eBlendModeFunction != BlendModeFunction.at(index)) {
+        eBlendModeFunction = BlendModeFunction.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eBlendModeFunction' was not set!");
+    }
 }
 
 void BGSGamebryoSequenceGenerator::setPSequence(const QString &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != pSequence && value != "") ? pSequence = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'pSequence' was not set!");
+    if (value != pSequence && value != "") {
+        pSequence = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'pSequence' was not set!");
+    }
 }
 
 void BGSGamebryoSequenceGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 qreal BGSGamebryoSequenceGenerator::getFPercent() const{

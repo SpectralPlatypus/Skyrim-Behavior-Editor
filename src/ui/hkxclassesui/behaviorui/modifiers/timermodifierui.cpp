@@ -137,11 +137,19 @@ void TimerModifierUI::setName(const QString &newname){
 }
 
 void TimerModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("TimerModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("TimerModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void TimerModifierUI::setAlarmTimeSeconds(){
-    (bsData) ? bsData->setAlarmTimeSeconds(alarmTimeSeconds->value()) : LogFile::writeToLog("TimerModifierUI::setAlarmTimeSeconds(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAlarmTimeSeconds(alarmTimeSeconds->value());
+    } else {
+        LogFile::writeToLog("TimerModifierUI::setAlarmTimeSeconds(): The data is nullptr!!");
+    }
 }
 
 void TimerModifierUI::setAlarmEventId(int index, const QString & name){

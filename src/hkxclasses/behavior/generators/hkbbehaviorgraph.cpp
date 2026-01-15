@@ -42,14 +42,22 @@ hkbStateMachine *hkbBehaviorGraph::getRootGenerator() const{
 
 void hkbBehaviorGraph::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 QString hkbBehaviorGraph::getRootGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString rootname("NONE");
     hkbStateMachine *rootgen = static_cast<hkbStateMachine *>(rootGenerator.data());
-    (rootgen) ? rootname = rootgen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (rootgen) {
+        rootname = rootgen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return rootname;
 }
 
@@ -78,7 +86,11 @@ bool hkbBehaviorGraph::removeObjectAt(int index){
 
 void hkbBehaviorGraph::setVariableMode(const QString &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != variableMode && VariableMode.contains(value)) ? variableMode = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'variableMode' was not set!");
+    if (value != variableMode && VariableMode.contains(value)) {
+        variableMode = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'variableMode' was not set!");
+    }
 }
 
 QString hkbBehaviorGraph::getVariableMode() const{

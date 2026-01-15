@@ -142,7 +142,11 @@ bool hkbComputeDirectionModifier::getComputedOutput() const{
 
 void hkbComputeDirectionModifier::setComputedOutput(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != computedOutput) ? computedOutput = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'computedOutput' was not set!");
+    if (value != computedOutput) {
+        computedOutput = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'computedOutput' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getComputeOnlyOnce() const{
@@ -152,7 +156,11 @@ bool hkbComputeDirectionModifier::getComputeOnlyOnce() const{
 
 void hkbComputeDirectionModifier::setComputeOnlyOnce(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != computeOnlyOnce) ? computeOnlyOnce = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'computeOnlyOnce' was not set!");
+    if (value != computeOnlyOnce) {
+        computeOnlyOnce = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'computeOnlyOnce' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getNormalizePoint() const{
@@ -162,7 +170,11 @@ bool hkbComputeDirectionModifier::getNormalizePoint() const{
 
 void hkbComputeDirectionModifier::setNormalizePoint(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != normalizePoint) ? normalizePoint = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'normalizePoint' was not set!");
+    if (value != normalizePoint) {
+        normalizePoint = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'normalizePoint' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getProjectPoint() const{
@@ -172,7 +184,11 @@ bool hkbComputeDirectionModifier::getProjectPoint() const{
 
 void hkbComputeDirectionModifier::setProjectPoint(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != projectPoint) ? projectPoint = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'projectPoint' was not set!");
+    if (value != projectPoint) {
+        projectPoint = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'projectPoint' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getReverseUpAngle() const{
@@ -182,7 +198,11 @@ bool hkbComputeDirectionModifier::getReverseUpAngle() const{
 
 void hkbComputeDirectionModifier::setReverseUpAngle(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != reverseUpAngle) ? reverseUpAngle = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'reverseUpAngle' was not set!");
+    if (value != reverseUpAngle) {
+        reverseUpAngle = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'reverseUpAngle' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getReverseGroundAngle() const{
@@ -192,7 +212,11 @@ bool hkbComputeDirectionModifier::getReverseGroundAngle() const{
 
 void hkbComputeDirectionModifier::setReverseGroundAngle(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != reverseGroundAngle) ? reverseGroundAngle = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'reverseGroundAngle' was not set!");
+    if (value != reverseGroundAngle) {
+        reverseGroundAngle = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'reverseGroundAngle' was not set!");
+    }
 }
 
 qreal hkbComputeDirectionModifier::getVerticalOffset() const{
@@ -202,7 +226,11 @@ qreal hkbComputeDirectionModifier::getVerticalOffset() const{
 
 void hkbComputeDirectionModifier::setVerticalOffset(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != verticalOffset) ? verticalOffset = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'verticalOffset' was not set!");
+    if (value != verticalOffset) {
+        verticalOffset = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'verticalOffset' was not set!");
+    }
 }
 
 qreal hkbComputeDirectionModifier::getUpAngleOut() const{
@@ -212,7 +240,11 @@ qreal hkbComputeDirectionModifier::getUpAngleOut() const{
 
 void hkbComputeDirectionModifier::setUpAngleOut(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != upAngleOut) ? upAngleOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'upAngleOut' was not set!");
+    if (value != upAngleOut) {
+        upAngleOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'upAngleOut' was not set!");
+    }
 }
 
 qreal hkbComputeDirectionModifier::getGroundAngleOut() const{
@@ -222,7 +254,11 @@ qreal hkbComputeDirectionModifier::getGroundAngleOut() const{
 
 void hkbComputeDirectionModifier::setGroundAngleOut(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != groundAngleOut) ? groundAngleOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'groundAngleOut' was not set!");
+    if (value != groundAngleOut) {
+        groundAngleOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'groundAngleOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeDirectionModifier::getPointOut() const{
@@ -232,7 +268,11 @@ hkQuadVariable hkbComputeDirectionModifier::getPointOut() const{
 
 void hkbComputeDirectionModifier::setPointOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != pointOut) ? pointOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'pointOut' was not set!");
+    if (value != pointOut) {
+        pointOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'pointOut' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeDirectionModifier::getPointIn() const{
@@ -242,7 +282,11 @@ hkQuadVariable hkbComputeDirectionModifier::getPointIn() const{
 
 void hkbComputeDirectionModifier::setPointIn(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != pointIn) ? pointIn = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'pointIn' was not set!");
+    if (value != pointIn) {
+        pointIn = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'pointIn' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::getEnable() const{
@@ -252,12 +296,20 @@ bool hkbComputeDirectionModifier::getEnable() const{
 
 void hkbComputeDirectionModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbComputeDirectionModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbComputeDirectionModifier::link(){

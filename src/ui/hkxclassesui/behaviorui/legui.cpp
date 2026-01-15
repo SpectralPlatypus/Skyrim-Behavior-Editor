@@ -188,7 +188,11 @@ void LegUI::setEventPayload(){
 
 void LegUI::setGroundPosition(){
     if (bsData && file){
-        (bsData->groundPosition != groundPosition->value()) ? bsData->groundPosition = groundPosition->value(), file->setIsChanged(true) : LogFile::writeToLog("LegUI::setgroundPosition(): groundPosition not set!!");
+        if (bsData->groundPosition != groundPosition->value()) {
+            bsData->groundPosition = groundPosition->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("LegUI::setgroundPosition(): groundPosition not set!!");
+        }
     }else{
         LogFile::writeToLog("LegUI::setGroundPosition(): Behavior file or data is null!!!");
     }
@@ -196,7 +200,11 @@ void LegUI::setGroundPosition(){
 
 void LegUI::setVerticalError(){
     if (bsData && file){
-        (bsData->verticalError != verticalError->value()) ? bsData->verticalError = verticalError->value(), file->setIsChanged(true) : LogFile::writeToLog("LegUI::setverticalError(): verticalError not set!!");
+        if (bsData->verticalError != verticalError->value()) {
+            bsData->verticalError = verticalError->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("LegUI::setverticalError(): verticalError not set!!");
+        }
     }else{
         LogFile::writeToLog("LegUI::setverticalError(): Behavior file or data is null!!!");
     }
@@ -204,7 +212,11 @@ void LegUI::setVerticalError(){
 
 void LegUI::setHitSomething(){
     if (bsData && file){
-        (bsData->hitSomething != hitSomething->isChecked()) ? bsData->hitSomething = hitSomething->isChecked(), file->setIsChanged(true) : LogFile::writeToLog("LegUI::sethitSomething(): hitSomething not set!!");
+        if (bsData->hitSomething != hitSomething->isChecked()) {
+            bsData->hitSomething = hitSomething->isChecked(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("LegUI::sethitSomething(): hitSomething not set!!");
+        }
     }else{
         LogFile::writeToLog("LegUI::sethitSomething(): Behavior file or data is null!!!");
     }
@@ -212,7 +224,11 @@ void LegUI::setHitSomething(){
 
 void LegUI::setIsPlantedMS(){
     if (bsData && file){
-        (bsData->isPlantedMS != isPlantedMS->isChecked()) ? bsData->isPlantedMS = isPlantedMS->isChecked(), file->setIsChanged(true) : LogFile::writeToLog("LegUI::setisPlantedMS(): isPlantedMS not set!!");
+        if (bsData->isPlantedMS != isPlantedMS->isChecked()) {
+            bsData->isPlantedMS = isPlantedMS->isChecked(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("LegUI::setisPlantedMS(): isPlantedMS not set!!");
+        }
     }else{
         LogFile::writeToLog("LegUI::setIsPlantedMS(): Behavior file or data is null!!!");
     }

@@ -58,7 +58,11 @@ QString CharacterFile::getBehaviorDirectoryName() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterStringData *>(stringData.data());
     QString name;
-    (ptr) ? name = QString(ptr->getBehaviorFilename()).replace("\\", "/").section("/", -2, -2) : LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    if (ptr) {
+        name = QString(ptr->getBehaviorFilename()).replace("\\", "/").section("/", -2, -2);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    }
     return name;
 }
 
@@ -66,7 +70,11 @@ QString CharacterFile::getRigName() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterStringData *>(stringData.data());
     QString name;
-    (ptr) ? name = QString(ptr->getRigName()).replace("\\", "/").section("/", -2, -1) : LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    if (ptr) {
+        name = QString(ptr->getRigName()).replace("\\", "/").section("/", -2, -1);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    }
     return name;
 }
 
@@ -96,7 +104,11 @@ QStringList CharacterFile::getRigBoneNames() const
 int CharacterFile::getNumberOfBones(bool ragdoll) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto count = -1;
-    (skeleton) ? count = skeleton->getNumberOfBones(ragdoll) : LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    if (skeleton) {
+        count = skeleton->getNumberOfBones(ragdoll);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    }
     return count;
 }
 
@@ -104,7 +116,11 @@ QString CharacterFile::getRagdollName() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterStringData *>(stringData.data());
     QString name;
-    (ptr) ? name = ptr->getRagdollName() : LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    if (ptr) {
+        name = ptr->getRagdollName();
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    }
     return name;
 }
 
@@ -143,7 +159,11 @@ QString CharacterFile::getCharacterPropertyNameAt(int index) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterStringData *>(stringData.data());
     QString name;
-    (ptr) ? name = ptr->getCharacterPropertyNameAt(index) : LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    if (ptr) {
+        name = ptr->getCharacterPropertyNameAt(index);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    }
     return name;
 }
 
@@ -151,7 +171,11 @@ int CharacterFile::getCharacterPropertyIndex(const QString &name) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterStringData *>(stringData.data());
     auto index = -1;
-    (ptr) ? index = ptr->getCharacterPropertyIndex(name) : LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    if (ptr) {
+        index = ptr->getCharacterPropertyIndex(name);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'stringData' is nullptr!");
+    }
     return index;
 }
 
@@ -159,7 +183,11 @@ QStringList CharacterFile::getCharacterPropertyNames() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterData *>(characterData.data());
     QStringList names;
-    (ptr) ? names = ptr->getCharacterPropertyNames() : LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    if (ptr) {
+        names = ptr->getCharacterPropertyNames();
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    }
     return names;
 }
 
@@ -167,7 +195,11 @@ QStringList CharacterFile::getCharacterPropertyTypenames() const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterData *>(characterData.data());
     QStringList names;
-    (ptr) ? names = ptr->getCharacterPropertyTypenames() : LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    if (ptr) {
+        names = ptr->getCharacterPropertyTypenames();
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    }
     return names;
 }
 
@@ -175,7 +207,11 @@ hkVariableType CharacterFile::getCharacterPropertyTypeAt(int index) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto ptr = static_cast<hkbCharacterData *>(characterData.data());
     hkVariableType type = VARIABLE_TYPE_INT8;
-    (ptr) ? type = ptr->getCharacterPropertyTypeAt(index) : LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    if (ptr) {
+        type = ptr->getCharacterPropertyTypeAt(index);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'characterData' is nullptr!");
+    }
     return type;
 }
 
@@ -198,7 +234,11 @@ int CharacterFile::getNumberOfAnimations() const{
 bool CharacterFile::isAnimationUsed(const QString &animationname) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto used = false;
-    (project) ? used = project->isAnimationUsed(animationname) : LogFile::writeToLog(": CharacterFile: 'project' is nullptr!");
+    if (project) {
+        used = project->isAnimationUsed(animationname);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'project' is nullptr!");
+    }
     return used;
 }
 
@@ -282,7 +322,11 @@ bool CharacterFile::addObjectToFile(HkxObject *obj, long ref){
 QString CharacterFile::getSkeletonFileName() const{
     //std::lock_guard <std::mutex> guard(mutex);
     QString name;
-    (skeleton) ? name = skeleton->getFileName() : LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    if (skeleton) {
+        name = skeleton->getFileName();
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    }
     return name;
 }
 
@@ -392,7 +436,11 @@ void CharacterFile::write(){
         stringData->setIsWritten(false);
         characterData->setIsWritten(false);
         characterPropertyValues->setIsWritten(false);
-        (mirroredSkeletonInfo.data()) ? mirroredSkeletonInfo->setIsWritten(false) : LogFile::writeToLog("CharacterFile::write(): 'mirroredSkeletonInfo' is nullptr!!");
+        if (mirroredSkeletonInfo.data()) {
+            mirroredSkeletonInfo->setIsWritten(false);
+        } else {
+            LogFile::writeToLog("CharacterFile::write(): 'mirroredSkeletonInfo' is nullptr!!");
+        }
         if (handIkDriverInfo.data()) {
             handIkDriverInfo->setIsWritten(false);
         }
@@ -426,7 +474,11 @@ void CharacterFile::write(){
 QStringList CharacterFile::getLocalFrameNames() const{
     //std::lock_guard <std::mutex> guard(mutex);
     QStringList names;
-    (skeleton) ? names = skeleton->getLocalFrameNames() : LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    if (skeleton) {
+        names = skeleton->getLocalFrameNames();
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    }
     return names;
 }
 
@@ -438,7 +490,11 @@ HkxObject *CharacterFile::getCharacterStringData() const{
 hkaSkeleton *CharacterFile::getSkeleton(bool isragdoll) const{
     //std::lock_guard <std::mutex> guard(mutex);
     hkaSkeleton *skel = nullptr;
-    (skeleton) ? skel = skeleton->getSkeleton(isragdoll) : LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    if (skeleton) {
+        skel = skeleton->getSkeleton(isragdoll);
+    } else {
+        LogFile::writeToLog(": CharacterFile: 'skeleton' is nullptr!");
+    }
     return skel;
 }
 

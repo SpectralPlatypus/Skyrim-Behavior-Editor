@@ -318,7 +318,11 @@ QString hkbStateMachineStateInfo::getGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString genname("NONE");
     auto gen = static_cast<hkbGenerator *>(generator.data());
-    (gen) ? genname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        genname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return genname;
 }
 
@@ -329,7 +333,11 @@ bool hkbStateMachineStateInfo::getEnable() const{
 
 void hkbStateMachineStateInfo::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 qreal hkbStateMachineStateInfo::getProbability() const{
@@ -339,12 +347,20 @@ qreal hkbStateMachineStateInfo::getProbability() const{
 
 void hkbStateMachineStateInfo::setProbability(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != probability && value <= 1 && value >= 0) ? probability = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'probability' was not set!");
+    if (value != probability && value <= 1 && value >= 0) {
+        probability = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'probability' was not set!");
+    }
 }
 
 void hkbStateMachineStateInfo::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 HkxObject *hkbStateMachineStateInfo::getEnterNotifyEventsData() const{

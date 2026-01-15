@@ -92,17 +92,33 @@ void AnimationTranslationUI::loadData(SkyrimAnimationTranslation *trans, qreal m
 }
 
 void AnimationTranslationUI::setLocalTime(){
-    (bsData) ? bsData->localTime = localTime->value() : LogFile::writeToLog("AnimationTranslationUI::setlocalTime(): Data is null!!!");
+    if (bsData) {
+        bsData->localTime = localTime->value();
+    } else {
+        LogFile::writeToLog("AnimationTranslationUI::setlocalTime(): Data is null!!!");
+    }
 }
 
 void AnimationTranslationUI::setX(){
-    (bsData) ? bsData->x = x->value() : LogFile::writeToLog("AnimationTranslationUI::setx(): Data is null!!!");
+    if (bsData) {
+        bsData->x = x->value();
+    } else {
+        LogFile::writeToLog("AnimationTranslationUI::setx(): Data is null!!!");
+    }
 }
 
 void AnimationTranslationUI::setY(){
-    (bsData) ? bsData->y = y->value() : LogFile::writeToLog("AnimationTranslationUI::sety(): Data is null!!!");
+    if (bsData) {
+        bsData->y = y->value();
+    } else {
+        LogFile::writeToLog("AnimationTranslationUI::sety(): Data is null!!!");
+    }
 }
 
 void AnimationTranslationUI::setZ(){
-    (bsData) ? bsData->z = z->value() : LogFile::writeToLog("AnimationTranslationUI::setz(): Data is null!!!");
+    if (bsData) {
+        bsData->z = z->value();
+    } else {
+        LogFile::writeToLog("AnimationTranslationUI::setz(): Data is null!!!");
+    }
 }

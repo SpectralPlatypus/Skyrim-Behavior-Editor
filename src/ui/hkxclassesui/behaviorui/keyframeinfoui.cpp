@@ -140,7 +140,11 @@ void KeyframeInfoUI::setBindingVariable(int index, const QString & name){
 
 void KeyframeInfoUI::setKeyframedPosition(){
     if (bsData && file){
-        (bsData->keyframedPosition != keyframedPosition->value()) ? bsData->keyframedPosition = keyframedPosition->value(), file->setIsChanged(true) : LogFile::writeToLog("KeyframeInfoUI::setKeyframedPosition(): keyframedPosition not set!!");
+        if (bsData->keyframedPosition != keyframedPosition->value()) {
+            bsData->keyframedPosition = keyframedPosition->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("KeyframeInfoUI::setKeyframedPosition(): keyframedPosition not set!!");
+        }
     }else{
         LogFile::writeToLog("KeyframeInfoUI::setkeyframedPosition(): Behavior file or data is null!!!");
     }
@@ -148,7 +152,11 @@ void KeyframeInfoUI::setKeyframedPosition(){
 
 void KeyframeInfoUI::setKeyframedRotation(){
     if (bsData && file){
-        (bsData->keyframedRotation != keyframedRotation->value()) ? bsData->keyframedRotation = keyframedRotation->value(), file->setIsChanged(true) : LogFile::writeToLog("KeyframeInfoUI::setKeyframedRotation(): keyframedRotation not set!!");
+        if (bsData->keyframedRotation != keyframedRotation->value()) {
+            bsData->keyframedRotation = keyframedRotation->value(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("KeyframeInfoUI::setKeyframedRotation(): keyframedRotation not set!!");
+        }
     }else{
         LogFile::writeToLog("KeyframeInfoUI::setkeyframedRotation(): Behavior file or data is null!!!");
     }
@@ -156,12 +164,20 @@ void KeyframeInfoUI::setKeyframedRotation(){
 
 void KeyframeInfoUI::setBoneIndex(int index){
     auto boneindex = --index;
-    (bsData && file && boneindex != bsData->boneIndex) ? bsData->boneIndex = boneindex, file->setIsChanged(true) : LogFile::writeToLog("KeyframeInfoUI::setBoneIndex(): boneIndex was not set!!!");
+    if (bsData && file && boneindex != bsData->boneIndex) {
+        bsData->boneIndex = boneindex, file->setIsChanged(true);
+    } else {
+        LogFile::writeToLog("KeyframeInfoUI::setBoneIndex(): boneIndex was not set!!!");
+    }
 }
 
 void KeyframeInfoUI::setIsValid(){
     if (bsData && file){
-        (bsData->isValid != isValid->isChecked()) ? bsData->isValid = isValid->isChecked(), file->setIsChanged(true) : LogFile::writeToLog("KeyframeInfoUI::setIsValid(): isValid not set!!");
+        if (bsData->isValid != isValid->isChecked()) {
+            bsData->isValid = isValid->isChecked(), file->setIsChanged(true);
+        } else {
+            LogFile::writeToLog("KeyframeInfoUI::setIsValid(): isValid not set!!");
+        }
     }else{
         LogFile::writeToLog("KeyframeInfoUI::setIsAnnotation(): Behavior file or data is null!!!");
     }

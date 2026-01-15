@@ -118,7 +118,11 @@ bool hkbComputeRotationToTargetModifier::getResultIsDelta() const{
 
 void hkbComputeRotationToTargetModifier::setResultIsDelta(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != resultIsDelta) ? resultIsDelta = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'resultIsDelta' was not set!");
+    if (value != resultIsDelta) {
+        resultIsDelta = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'resultIsDelta' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getLocalFacingDirection() const{
@@ -128,7 +132,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getLocalFacingDirection() con
 
 void hkbComputeRotationToTargetModifier::setLocalFacingDirection(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != localFacingDirection) ? localFacingDirection = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'localFacingDirection' was not set!");
+    if (value != localFacingDirection) {
+        localFacingDirection = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'localFacingDirection' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getLocalAxisOfRotation() const{
@@ -138,7 +146,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getLocalAxisOfRotation() cons
 
 void hkbComputeRotationToTargetModifier::setLocalAxisOfRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != localAxisOfRotation) ? localAxisOfRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'localAxisOfRotation' was not set!");
+    if (value != localAxisOfRotation) {
+        localAxisOfRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'localAxisOfRotation' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getCurrentRotation() const{
@@ -148,7 +160,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getCurrentRotation() const{
 
 void hkbComputeRotationToTargetModifier::setCurrentRotation(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != currentRotation) ? currentRotation = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'currentRotation' was not set!");
+    if (value != currentRotation) {
+        currentRotation = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'currentRotation' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getCurrentPosition() const{
@@ -158,7 +174,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getCurrentPosition() const{
 
 void hkbComputeRotationToTargetModifier::setCurrentPosition(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != currentPosition) ? currentPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'currentPosition' was not set!");
+    if (value != currentPosition) {
+        currentPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'currentPosition' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getTargetPosition() const{
@@ -168,7 +188,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getTargetPosition() const{
 
 void hkbComputeRotationToTargetModifier::setTargetPosition(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetPosition) ? targetPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    if (value != targetPosition) {
+        targetPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    }
 }
 
 hkQuadVariable hkbComputeRotationToTargetModifier::getRotationOut() const{
@@ -178,7 +202,11 @@ hkQuadVariable hkbComputeRotationToTargetModifier::getRotationOut() const{
 
 void hkbComputeRotationToTargetModifier::setRotationOut(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rotationOut) ? rotationOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    if (value != rotationOut) {
+        rotationOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rotationOut' was not set!");
+    }
 }
 
 bool hkbComputeRotationToTargetModifier::getEnable() const{
@@ -188,12 +216,20 @@ bool hkbComputeRotationToTargetModifier::getEnable() const{
 
 void hkbComputeRotationToTargetModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbComputeRotationToTargetModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbComputeRotationToTargetModifier::link(){

@@ -146,23 +146,43 @@ void BSInterpValueModifierUI::setName(const QString &newname){
 }
 
 void BSInterpValueModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSInterpValueModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSInterpValueModifierUI::setSource(){
-    (bsData) ? bsData->setSource(source->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setSource(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSource(source->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setSource(): The data is nullptr!!");
+    }
 }
 
 void BSInterpValueModifierUI::setTarget(){
-    (bsData) ? bsData->setTarget(target->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setTarget(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTarget(target->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setTarget(): The data is nullptr!!");
+    }
 }
 
 void BSInterpValueModifierUI::setResult(){
-    (bsData) ? bsData->setResult(result->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setResult(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setResult(result->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setResult(): The data is nullptr!!");
+    }
 }
 
 void BSInterpValueModifierUI::setGain(){
-    (bsData) ? bsData->setGain(gain->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setGain(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setGain(gain->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setGain(): The data is nullptr!!");
+    }
 }
 
 void BSInterpValueModifierUI::viewSelected(int row, int column){

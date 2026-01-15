@@ -52,7 +52,11 @@ qreal hkbBlenderGeneratorChild::getWorldFromModelWeight() const{
 
 void hkbBlenderGeneratorChild::setWorldFromModelWeight(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != worldFromModelWeight) ? worldFromModelWeight = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'worldFromModelWeight' was not set!");
+    if (value != worldFromModelWeight) {
+        worldFromModelWeight = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'worldFromModelWeight' was not set!");
+    }
 }
 
 qreal hkbBlenderGeneratorChild::getWeight() const{
@@ -62,7 +66,11 @@ qreal hkbBlenderGeneratorChild::getWeight() const{
 
 void hkbBlenderGeneratorChild::setWeight(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != weight) ? weight = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'weight' was not set!");
+    if (value != weight) {
+        weight = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'weight' was not set!");
+    }
 }
 
 bool hkbBlenderGeneratorChild::readData(const HkxXmlReader &reader, long & index){
@@ -248,7 +256,11 @@ QString hkbBlenderGeneratorChild::getGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString genname("NONE");
     auto gen = static_cast<hkbGenerator *>(generator.data());
-    (gen) ? genname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        genname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return genname;
 }
 

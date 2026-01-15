@@ -116,11 +116,19 @@ void BSGetTimeStepModifierUI::setName(const QString &newname){
 }
 
 void BSGetTimeStepModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSGetTimeStepModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSGetTimeStepModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSGetTimeStepModifierUI::setTimeStep(){
-    (bsData) ? bsData->setTimeStep(timeStep->value()) : LogFile::writeToLog("BSGetTimeStepModifierUI::setTimeStep(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTimeStep(timeStep->value());
+    } else {
+        LogFile::writeToLog("BSGetTimeStepModifierUI::setTimeStep(): The data is nullptr!!");
+    }
 }
 
 void BSGetTimeStepModifierUI::viewSelected(int row, int column){

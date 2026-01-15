@@ -168,11 +168,19 @@ void BlenderGeneratorChildUI::setBindingVariable(int index, const QString & name
 }
 
 void BlenderGeneratorChildUI::setWeight(){
-    (bsData) ? bsData->setWeight(weight->value()) : LogFile::writeToLog("BlenderGeneratorChildUI::setWeight(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setWeight(weight->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorChildUI::setWeight(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BlenderGeneratorChildUI::setWorldFromModelWeight(){
-    (bsData) ? bsData->setWorldFromModelWeight(worldFromModelWeight->value()) : LogFile::writeToLog("BlenderGeneratorChildUI::setWorldFromModelWeight(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setWorldFromModelWeight(worldFromModelWeight->value());
+    } else {
+        LogFile::writeToLog("BlenderGeneratorChildUI::setWorldFromModelWeight(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BlenderGeneratorChildUI::viewBoneWeights(){

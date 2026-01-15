@@ -117,51 +117,99 @@ void FootIkDriverInfoLegUI::loadData(hkbFootIkDriverInfoLeg *data){
 }
 
 void FootIkDriverInfoLegUI::setKneeAxisLS(){
-    (bsData && bsData->parent && bsData->kneeAxisLS != kneeAxisLS->value()) ? bsData->kneeAxisLS = kneeAxisLS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: kneeAxisLS was not set!!");
+    if (bsData && bsData->parent && bsData->kneeAxisLS != kneeAxisLS->value()) {
+        bsData->kneeAxisLS = kneeAxisLS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: kneeAxisLS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setFootEndLS(){
-    (bsData && bsData->parent && bsData->footEndLS != footEndLS->value()) ? bsData->footEndLS = footEndLS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: footEndLS was not set!!");
+    if (bsData && bsData->parent && bsData->footEndLS != footEndLS->value()) {
+        bsData->footEndLS = footEndLS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: footEndLS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setFootPlantedAnkleHeightMS(){
-    (bsData && bsData->parent && bsData->footPlantedAnkleHeightMS != footPlantedAnkleHeightMS->value()) ? bsData->footPlantedAnkleHeightMS = footPlantedAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: footPlantedAnkleHeightMS was not set!!");
+    if (bsData && bsData->parent && bsData->footPlantedAnkleHeightMS != footPlantedAnkleHeightMS->value()) {
+        bsData->footPlantedAnkleHeightMS = footPlantedAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: footPlantedAnkleHeightMS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setFootRaisedAnkleHeightMS(){
-    (bsData && bsData->parent && bsData->footRaisedAnkleHeightMS != footRaisedAnkleHeightMS->value()) ? bsData->footRaisedAnkleHeightMS = footRaisedAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: footRaisedAnkleHeightMS was not set!!");
+    if (bsData && bsData->parent && bsData->footRaisedAnkleHeightMS != footRaisedAnkleHeightMS->value()) {
+        bsData->footRaisedAnkleHeightMS = footRaisedAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: footRaisedAnkleHeightMS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setMaxAnkleHeightMS(){
-    (bsData && bsData->parent && bsData->maxAnkleHeightMS != maxAnkleHeightMS->value()) ? bsData->maxAnkleHeightMS = maxAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: maxAnkleHeightMS was not set!!");
+    if (bsData && bsData->parent && bsData->maxAnkleHeightMS != maxAnkleHeightMS->value()) {
+        bsData->maxAnkleHeightMS = maxAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: maxAnkleHeightMS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setMinAnkleHeightMS(){
-    (bsData && bsData->parent && bsData->minAnkleHeightMS != minAnkleHeightMS->value()) ? bsData->minAnkleHeightMS = minAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: minAnkleHeightMS was not set!!");
+    if (bsData && bsData->parent && bsData->minAnkleHeightMS != minAnkleHeightMS->value()) {
+        bsData->minAnkleHeightMS = minAnkleHeightMS->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: minAnkleHeightMS was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setMaxKneeAngleDegrees(){
-    (bsData && bsData->parent && bsData->maxKneeAngleDegrees != maxKneeAngleDegrees->value()) ? bsData->maxKneeAngleDegrees = maxKneeAngleDegrees->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: maxKneeAngleDegrees was not set!!");
+    if (bsData && bsData->parent && bsData->maxKneeAngleDegrees != maxKneeAngleDegrees->value()) {
+        bsData->maxKneeAngleDegrees = maxKneeAngleDegrees->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: maxKneeAngleDegrees was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setMinKneeAngleDegrees(){
-    (bsData && bsData->parent && bsData->minKneeAngleDegrees != minKneeAngleDegrees->value()) ? bsData->minKneeAngleDegrees = minKneeAngleDegrees->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: minKneeAngleDegrees was not set!!");
+    if (bsData && bsData->parent && bsData->minKneeAngleDegrees != minKneeAngleDegrees->value()) {
+        bsData->minKneeAngleDegrees = minKneeAngleDegrees->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: minKneeAngleDegrees was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setMaxAnkleAngleDegrees(){
-    (bsData && bsData->parent && bsData->maxAnkleAngleDegrees != maxAnkleAngleDegrees->value()) ? bsData->maxAnkleAngleDegrees = maxAnkleAngleDegrees->value(), bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: maxAnkleAngleDegrees was not set!!");
+    if (bsData && bsData->parent && bsData->maxAnkleAngleDegrees != maxAnkleAngleDegrees->value()) {
+        bsData->maxAnkleAngleDegrees = maxAnkleAngleDegrees->value(), bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: maxAnkleAngleDegrees was not set!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setHipIndex(int index){
-    (bsData && bsData->parent) ? bsData->hipIndex = index - 1, bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    if (bsData && bsData->parent) {
+        bsData->hipIndex = index - 1, bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setKneeIndex(int index){
-    (bsData && bsData->parent) ? bsData->kneeIndex = index - 1, bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    if (bsData && bsData->parent) {
+        bsData->kneeIndex = index - 1, bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::setAnkleIndex(int index){
-    (bsData && bsData->parent) ? bsData->ankleIndex = index - 1, bsData->parent->setIsFileChanged(true) : LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    if (bsData && bsData->parent) {
+        bsData->ankleIndex = index - 1, bsData->parent->setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog("FootIkDriverInfoLegUI: The data is nullptr!!");
+    }
 }
 
 void FootIkDriverInfoLegUI::loadBoneList(QStringList & bones){

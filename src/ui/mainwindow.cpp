@@ -434,7 +434,11 @@ void MainWindow::saveProject(bool usenormalsave){
             threads.push_back(std::thread(&SkyrimAnimSetData::write, projectFile->skyrimAnimSetData, QString(lastFileSelectedPath+"/animationsetdatasinglefile.txt")));
         }
         for (auto i = 0; i < threads.size(); i++){
-            (threads.at(i).joinable()) ? threads.at(i).join() : LogFile::writeToLog("MainWindow::saveProject(): Thread "+QString::number(i)+" failed to join!!!");
+            if (threads.at(i).joinable()) {
+                threads.at(i).join();
+            } else {
+                LogFile::writeToLog("MainWindow::saveProject(): Thread "+QString::number(i)+" failed to join!!!");
+            }
         }
         threads.clear();
         progress.setProgress("Saving behavior files...", 20);
@@ -759,7 +763,11 @@ void MainWindow::closeTab(int index){
         if (!index && projectFile->behaviorFiles.isEmpty()){
             closeAll();
         }else{
-            (--index >= 0 && index < behaviorGraphs.size()) ? tabs->removeTab(index + 1) : LogFile::writeToLog("MainWindow::closeTab(): The tab index is out of sync with the behavior files or behavior graphs!");
+            if (--index >= 0 && index < behaviorGraphs.size()) {
+                tabs->removeTab(index + 1);
+            } else {
+                LogFile::writeToLog("MainWindow::closeTab(): The tab index is out of sync with the behavior files or behavior graphs!");
+            }
         }
     }else{
         LogFile::writeToLog("No project open!");
@@ -1095,12 +1103,20 @@ void MainWindow::removeBehaviorGraphs(const QStringList & filenames){
 
 void MainWindow::openPackedProject(){
     auto filename = QFileDialog::getOpenFileName(this, tr("Open hkx project file..."), lastFileSelected, tr("hkx Files (*.hkx)"));
-    (filename != "") ? convertProject(filename), openProject(filename) : LogFile::writeToLog("MainWindow::openPackedProject(): Null string filename!!!");
+    if (filename != "") {
+        convertProject(filename), openProject(filename);
+    } else {
+        LogFile::writeToLog("MainWindow::openPackedProject(): Null string filename!!!");
+    }
 }
 
 void MainWindow::openUnpackedProject(){
     auto filename = QFileDialog::getOpenFileName(this, tr("Open hkx xml project file..."), lastFileSelected, tr("hkx Files (*.hkx)"));
-    (filename != "") ? openProject(filename) : LogFile::writeToLog("MainWindow::openUnpackedProject(): Null string filename!!!");
+    if (filename != "") {
+        openProject(filename);
+    } else {
+        LogFile::writeToLog("MainWindow::openUnpackedProject(): Null string filename!!!");
+    }
 }
 
 void MainWindow::openBehaviorFile(const QModelIndex & index){
@@ -1149,7 +1165,11 @@ void MainWindow::openAnimationFile(const QString &animationname){
 }
 
 void MainWindow::removeAnimation(int index){
-    (projectFile) ? projectFile->removeEncryptedAnimationName(index) : LogFile::writeToLog("MainWindow::removeAnimation: projectFile is null!");
+    if (projectFile) {
+        projectFile->removeEncryptedAnimationName(index);
+    } else {
+        LogFile::writeToLog("MainWindow::removeAnimation: projectFile is null!");
+    }
 }
 
 void MainWindow::zoomIn(){

@@ -115,7 +115,11 @@ void GenericTableWidget::addItem(const QString & name, const QString & type){
 
 void GenericTableWidget::renameItem(int index, const QString & newname){
     table->blockSignals(true);
-    (index < table->rowCount() && index >= 0) ? table->item(index, 0)->setText(newname) : LogFile::writeToLog("GenericTableWidget::renameItem(): Invalid index!!!");
+    if (index < table->rowCount() && index >= 0) {
+        table->item(index, 0)->setText(newname);
+    } else {
+        LogFile::writeToLog("GenericTableWidget::renameItem(): Invalid index!!!");
+    }
     table->blockSignals(false);
 }
 
@@ -302,7 +306,11 @@ void setRowItems(int row, const QString & name, const QString & classname, const
 void setBinding(int index, int row, int column, const QString & variableName, const QString & path, hkVariableType type, bool isProperty, TableWidget *table, HkDynamicObject *bsData){
     auto checkitem = [&](const QString & text){
         auto tableitem = table->item(row, column);
-        (tableitem) ? tableitem->setText(text) : LogFile::writeToLog("setBinding(): 'tableitem' is nullptr!!");
+        if (tableitem) {
+            tableitem->setText(text);
+        } else {
+            LogFile::writeToLog("setBinding(): 'tableitem' is nullptr!!");
+        }
     };
     if (bsData){
         auto varBind = bsData->getVariableBindingSetData();
@@ -342,7 +350,11 @@ void loadBinding(int row, int column, hkbVariableBindingSet *varBind, const QStr
     auto varName = QString("NONE");
     auto settextitem = [&](){
         auto tableitem = table->item(row, column);
-        (tableitem) ? tableitem->setText(BINDING_ITEM_LABEL+varName) : LogFile::writeToLog("loadBinding(): 'tableitem' is nullptr!!");
+        if (tableitem) {
+            tableitem->setText(BINDING_ITEM_LABEL+varName);
+        } else {
+            LogFile::writeToLog("loadBinding(): 'tableitem' is nullptr!!");
+        }
     };
     if (bsData){
         if (varBind){
@@ -351,7 +363,11 @@ void loadBinding(int row, int column, hkbVariableBindingSet *varBind, const QStr
                 if (varBind->getBindingType(path) == hkbVariableBindingSet::hkBinding::BINDING_TYPE_CHARACTER_PROPERTY){
                     varName = static_cast<BehaviorFile *>(bsData->getParentFile())->getCharacterPropertyNameAt(index, true);
                     auto tableitem = table->item(row, column);
-                    (tableitem) ? tableitem->setCheckState(Qt::Checked) : LogFile::writeToLog("loadBinding(): 'tableitem' is nullptr!!");
+                    if (tableitem) {
+                        tableitem->setCheckState(Qt::Checked);
+                    } else {
+                        LogFile::writeToLog("loadBinding(): 'tableitem' is nullptr!!");
+                    }
                 }else{
                     varName = static_cast<BehaviorFile *>(bsData->getParentFile())->getVariableNameAt(index);
                 }
@@ -394,7 +410,11 @@ void setGenerator(int index, const QString &name, DataIconManager *dynobj, hkbGe
                 }
                 behaviorView->removeGeneratorData();
                 auto tableitem = table->item(row, column);
-                (tableitem) ? tableitem->setText(name) : LogFile::writeToLog("setGenerator(): The 'tableitem' pointer is nullptr!!");
+                if (tableitem) {
+                    tableitem->setText(name);
+                } else {
+                    LogFile::writeToLog("setGenerator(): The 'tableitem' pointer is nullptr!!");
+                }
                 dynobj->setIsFileChanged(true);
             }else{
                 LogFile::writeToLog("setGenerator(): The 'behaviorView' pointer is nullptr!!");
@@ -433,7 +453,11 @@ void setModifier(int index, const QString &name, DataIconManager *dynobj, hkbMod
                 }
                 behaviorView->removeModifierData();
                 auto tableitem = table->item(row, column);
-                (tableitem) ? tableitem->setText(name) : LogFile::writeToLog("setModifier(): The 'tableitem' pointer is nullptr!!");
+                if (tableitem) {
+                    tableitem->setText(name);
+                } else {
+                    LogFile::writeToLog("setModifier(): The 'tableitem' pointer is nullptr!!");
+                }
                 dynobj->setIsFileChanged(true);
             }else{
                 LogFile::writeToLog("setModifier(): The 'behaviorView' pointer is nullptr!!");

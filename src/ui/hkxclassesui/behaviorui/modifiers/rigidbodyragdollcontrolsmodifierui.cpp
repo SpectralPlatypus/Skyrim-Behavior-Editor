@@ -265,59 +265,115 @@ void RigidBodyRagdollControlsModifierUI::setName(const QString &newname){
 }
 
 void RigidBodyRagdollControlsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setHierarchyGain(){
-    (bsData) ? bsData->setHierarchyGain(hierarchyGain->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setHierarchyGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHierarchyGain(hierarchyGain->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setHierarchyGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setVelocityDamping(){
-    (bsData) ? bsData->setVelocityDamping(velocityDamping->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setVelocityDamping(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setVelocityDamping(velocityDamping->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setVelocityDamping(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setAccelerationGain(){
-    (bsData) ? bsData->setAccelerationGain(accelerationGain->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setAccelerationGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAccelerationGain(accelerationGain->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setAccelerationGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setVelocityGain(){
-    (bsData) ? bsData->setVelocityGain(velocityGain->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setVelocityGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setVelocityGain(velocityGain->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setVelocityGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setPositionGain(){
-    (bsData) ? bsData->setPositionGain(positionGain->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPositionGain(positionGain->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setPositionMaxLinearVelocity(){
-    (bsData) ? bsData->setPositionMaxLinearVelocity(positionMaxLinearVelocity->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionMaxLinearVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPositionMaxLinearVelocity(positionMaxLinearVelocity->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionMaxLinearVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setPositionMaxAngularVelocity(){
-    (bsData) ? bsData->setPositionMaxAngularVelocity(positionMaxAngularVelocity->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionMaxAngularVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setPositionMaxAngularVelocity(positionMaxAngularVelocity->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setPositionMaxAngularVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setSnapGain(){
-    (bsData) ? bsData->setSnapGain(snapGain->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSnapGain(snapGain->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setSnapMaxLinearVelocity(){
-    (bsData) ? bsData->setSnapMaxLinearVelocity(snapMaxLinearVelocity->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxLinearVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSnapMaxLinearVelocity(snapMaxLinearVelocity->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxLinearVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setSnapMaxAngularVelocity(){
-    (bsData) ? bsData->setSnapMaxAngularVelocity(snapMaxAngularVelocity->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxAngularVelocity(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSnapMaxAngularVelocity(snapMaxAngularVelocity->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxAngularVelocity(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setSnapMaxLinearDistance(){
-    (bsData) ? bsData->setSnapMaxLinearDistance(snapMaxLinearDistance->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxLinearDistance(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSnapMaxLinearDistance(snapMaxLinearDistance->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxLinearDistance(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setSnapMaxAngularDistance(){
-    (bsData) ? bsData->setSnapMaxAngularDistance(snapMaxAngularDistance->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxAngularDistance(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setSnapMaxAngularDistance(snapMaxAngularDistance->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setSnapMaxAngularDistance(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::setDurationToBlend(){
-    (bsData) ? bsData->setDurationToBlend(durationToBlend->value()) : LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setDurationToBlend(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setDurationToBlend(durationToBlend->value());
+    } else {
+        LogFile::writeToLog("RigidBodyRagdollControlsModifierUI::setDurationToBlend(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void RigidBodyRagdollControlsModifierUI::toggleBones(bool enable){

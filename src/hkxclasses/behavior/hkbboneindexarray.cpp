@@ -107,7 +107,11 @@ int hkbBoneIndexArray::getBoneIndexAt(int index) const{
 
 void hkbBoneIndexArray::setBoneIndexAt(int index, int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < boneIndices.size() && value < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? boneIndices[index] = value, getParentFile()->setIsChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set boneIndices!");
+    if (index >= 0 && index < boneIndices.size() && value < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        boneIndices[index] = value, getParentFile()->setIsChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to set boneIndices!");
+    }
 }
 
 void hkbBoneIndexArray::addBoneIndex(int indexvalue){
@@ -117,7 +121,11 @@ void hkbBoneIndexArray::addBoneIndex(int indexvalue){
 
 void hkbBoneIndexArray::removeBoneIndexAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < boneIndices.size()) ? boneIndices.removeAt(index), getParentFile()->setIsChanged(true) : LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to remove boneIndices!");
+    if (index >= 0 && index < boneIndices.size()) {
+        boneIndices.removeAt(index), getParentFile()->setIsChanged(true);
+    } else {
+        LogFile::writeToLog(getParentFilename()+": "+getClassname()+": failed to remove boneIndices!");
+    }
 }
 
 bool hkbBoneIndexArray::link(){

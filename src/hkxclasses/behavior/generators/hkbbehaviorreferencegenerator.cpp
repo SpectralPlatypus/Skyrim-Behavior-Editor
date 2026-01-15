@@ -78,12 +78,20 @@ bool hkbBehaviorReferenceGenerator::write(HkxXMLWriter *writer){
 
 void hkbBehaviorReferenceGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 void hkbBehaviorReferenceGenerator::setBehaviorName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != behaviorName && newname != "") ? behaviorName = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'behaviorName' was not set!");
+    if (newname != behaviorName && newname != "") {
+        behaviorName = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'behaviorName' was not set!");
+    }
 }
 
 QString hkbBehaviorReferenceGenerator::getBehaviorName() const{

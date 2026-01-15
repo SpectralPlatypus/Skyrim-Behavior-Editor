@@ -249,7 +249,11 @@ bool BSEventEveryNEventsModifier::getRandomizeNumberOfEvents() const{
 
 void BSEventEveryNEventsModifier::setRandomizeNumberOfEvents(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != randomizeNumberOfEvents) ? randomizeNumberOfEvents = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'randomizeNumberOfEvents' was not set!");
+    if (value != randomizeNumberOfEvents) {
+        randomizeNumberOfEvents = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'randomizeNumberOfEvents' was not set!");
+    }
 }
 
 int BSEventEveryNEventsModifier::getMinimumNumberOfEventsBeforeSend() const{
@@ -259,7 +263,11 @@ int BSEventEveryNEventsModifier::getMinimumNumberOfEventsBeforeSend() const{
 
 void BSEventEveryNEventsModifier::setMinimumNumberOfEventsBeforeSend(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != minimumNumberOfEventsBeforeSend) ? minimumNumberOfEventsBeforeSend = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'minimumNumberOfEventsBeforeSend' was not set!");
+    if (value != minimumNumberOfEventsBeforeSend) {
+        minimumNumberOfEventsBeforeSend = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'minimumNumberOfEventsBeforeSend' was not set!");
+    }
 }
 
 int BSEventEveryNEventsModifier::getNumberOfEventsBeforeSend() const{
@@ -269,7 +277,11 @@ int BSEventEveryNEventsModifier::getNumberOfEventsBeforeSend() const{
 
 void BSEventEveryNEventsModifier::setNumberOfEventsBeforeSend(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != numberOfEventsBeforeSend) ? numberOfEventsBeforeSend = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'numberOfEventsBeforeSend' was not set!");
+    if (value != numberOfEventsBeforeSend) {
+        numberOfEventsBeforeSend = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'numberOfEventsBeforeSend' was not set!");
+    }
 }
 
 int BSEventEveryNEventsModifier::getEventToSendID() const{
@@ -279,12 +291,20 @@ int BSEventEveryNEventsModifier::getEventToSendID() const{
 
 void BSEventEveryNEventsModifier::setEventToSendID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eventToSend.id && eventToSend.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? eventToSend.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend.id' was not set!");
+    if (value != eventToSend.id && eventToSend.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        eventToSend.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend.id' was not set!");
+    }
 }
 
 void BSEventEveryNEventsModifier::setEventToSendPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(eventToSend.payload.data())) ? eventToSend.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(eventToSend.payload.data())) {
+        eventToSend.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend.payload' was not set!");
+    }
 }
 
 hkbStringEventPayload *BSEventEveryNEventsModifier::getEventToSendPayload() const{
@@ -294,7 +314,11 @@ hkbStringEventPayload *BSEventEveryNEventsModifier::getEventToSendPayload() cons
 
 void BSEventEveryNEventsModifier::setEventToCheckForPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(eventToCheckFor.payload.data())) ? eventToCheckFor.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToCheckFor.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(eventToCheckFor.payload.data())) {
+        eventToCheckFor.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToCheckFor.payload' was not set!");
+    }
 }
 
 int BSEventEveryNEventsModifier::getEventToCheckForID() const{
@@ -304,7 +328,11 @@ int BSEventEveryNEventsModifier::getEventToCheckForID() const{
 
 void BSEventEveryNEventsModifier::setEventToCheckForID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eventToCheckFor.id && eventToCheckFor.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? eventToCheckFor.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToCheckFor.id' was not set!");
+    if (value != eventToCheckFor.id && eventToCheckFor.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        eventToCheckFor.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToCheckFor.id' was not set!");
+    }
 }
 
 hkbStringEventPayload *BSEventEveryNEventsModifier::getEventToCheckForPayload() const{
@@ -319,12 +347,20 @@ bool BSEventEveryNEventsModifier::getEnable() const{
 
 void BSEventEveryNEventsModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSEventEveryNEventsModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 

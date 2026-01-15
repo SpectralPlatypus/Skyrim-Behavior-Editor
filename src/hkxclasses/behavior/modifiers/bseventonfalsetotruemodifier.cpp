@@ -287,7 +287,11 @@ int BSEventOnFalseToTrueModifier::getEventToSend1ID() const{
 
 void BSEventOnFalseToTrueModifier::setEventToSend1ID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eventToSend1.id && eventToSend1.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? eventToSend1.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend1.id' was not set!");
+    if (value != eventToSend1.id && eventToSend1.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        eventToSend1.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend1.id' was not set!");
+    }
 }
 
 hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend1Payload() const{
@@ -297,7 +301,11 @@ hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend1Payload() co
 
 void BSEventOnFalseToTrueModifier::setEventToSend1Payload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(eventToSend1.payload.data())) ? eventToSend1.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend1.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(eventToSend1.payload.data())) {
+        eventToSend1.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend1.payload' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBVariableToTest1() const{
@@ -307,7 +315,11 @@ bool BSEventOnFalseToTrueModifier::getBVariableToTest1() const{
 
 void BSEventOnFalseToTrueModifier::setBVariableToTest1(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bVariableToTest1) ? bVariableToTest1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bVariableToTest1' was not set!");
+    if (value != bVariableToTest1) {
+        bVariableToTest1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bVariableToTest1' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBEnableEvent1() const{
@@ -317,7 +329,11 @@ bool BSEventOnFalseToTrueModifier::getBEnableEvent1() const{
 
 void BSEventOnFalseToTrueModifier::setBEnableEvent1(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bEnableEvent1) ? bEnableEvent1 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bEnableEvent1' was not set!");
+    if (value != bEnableEvent1) {
+        bEnableEvent1 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bEnableEvent1' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getEnable() const{
@@ -327,12 +343,20 @@ bool BSEventOnFalseToTrueModifier::getEnable() const{
 
 void BSEventOnFalseToTrueModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSEventOnFalseToTrueModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 int BSEventOnFalseToTrueModifier::getEventToSend2ID() const{
@@ -342,7 +366,11 @@ int BSEventOnFalseToTrueModifier::getEventToSend2ID() const{
 
 void BSEventOnFalseToTrueModifier::setEventToSend2ID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eventToSend2.id && eventToSend2.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? eventToSend2.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend2.id' was not set!");
+    if (value != eventToSend2.id && eventToSend2.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        eventToSend2.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend2.id' was not set!");
+    }
 }
 
 hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend2Payload() const{
@@ -352,7 +380,11 @@ hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend2Payload() co
 
 void BSEventOnFalseToTrueModifier::setEventToSend2Payload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(eventToSend2.payload.data())) ? eventToSend2.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend2.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(eventToSend2.payload.data())) {
+        eventToSend2.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend2.payload' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBVariableToTest2() const{
@@ -362,7 +394,11 @@ bool BSEventOnFalseToTrueModifier::getBVariableToTest2() const{
 
 void BSEventOnFalseToTrueModifier::setBVariableToTest2(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bVariableToTest2) ? bVariableToTest2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bVariableToTest2' was not set!");
+    if (value != bVariableToTest2) {
+        bVariableToTest2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bVariableToTest2' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBEnableEvent2() const{
@@ -372,7 +408,11 @@ bool BSEventOnFalseToTrueModifier::getBEnableEvent2() const{
 
 void BSEventOnFalseToTrueModifier::setBEnableEvent2(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bEnableEvent2) ? bEnableEvent2 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bEnableEvent2' was not set!");
+    if (value != bEnableEvent2) {
+        bEnableEvent2 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bEnableEvent2' was not set!");
+    }
 }
 
 int BSEventOnFalseToTrueModifier::getEventToSend3ID() const{
@@ -382,7 +422,11 @@ int BSEventOnFalseToTrueModifier::getEventToSend3ID() const{
 
 void BSEventOnFalseToTrueModifier::setEventToSend3ID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != eventToSend3.id && eventToSend3.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? eventToSend3.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend3.id' was not set!");
+    if (value != eventToSend3.id && eventToSend3.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        eventToSend3.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend3.id' was not set!");
+    }
 }
 
 hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend3Payload() const{
@@ -392,7 +436,11 @@ hkbStringEventPayload *BSEventOnFalseToTrueModifier::getEventToSend3Payload() co
 
 void BSEventOnFalseToTrueModifier::setEventToSend3Payload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(eventToSend3.payload.data())) ? eventToSend3.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'eventToSend3.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(eventToSend3.payload.data())) {
+        eventToSend3.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'eventToSend3.payload' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBVariableToTest3() const{
@@ -402,7 +450,11 @@ bool BSEventOnFalseToTrueModifier::getBVariableToTest3() const{
 
 void BSEventOnFalseToTrueModifier::setBVariableToTest3(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bVariableToTest3) ? bVariableToTest3 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bVariableToTest3' was not set!");
+    if (value != bVariableToTest3) {
+        bVariableToTest3 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bVariableToTest3' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::getBEnableEvent3() const{
@@ -412,7 +464,11 @@ bool BSEventOnFalseToTrueModifier::getBEnableEvent3() const{
 
 void BSEventOnFalseToTrueModifier::setBEnableEvent3(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != bEnableEvent3) ? bEnableEvent3 = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'bEnableEvent3' was not set!");
+    if (value != bEnableEvent3) {
+        bEnableEvent3 = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'bEnableEvent3' was not set!");
+    }
 }
 
 bool BSEventOnFalseToTrueModifier::link(){

@@ -186,35 +186,67 @@ void TwistModifierUI::setName(const QString &newname){
 }
 
 void TwistModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("TwistModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setAxisOfRotation(){
-    (bsData) ? bsData->setAxisOfRotation(axisOfRotation->value()) : LogFile::writeToLog("TwistModifierUI::setAxisOfRotation(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAxisOfRotation(axisOfRotation->value());
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setAxisOfRotation(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setStartBoneIndex(int index){
-    (bsData) ? bsData->setStartBoneIndex(index - 1) : LogFile::writeToLog("TwistModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setStartBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setEndBoneIndex(int index){
-    (bsData) ? bsData->setEndBoneIndex(index - 1) : LogFile::writeToLog("TwistModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEndBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setTwistAngle(){
-    (bsData) ? bsData->setTwistAngle(twistAngle->value()) : LogFile::writeToLog("TwistModifierUI::setTwistAngle(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTwistAngle(twistAngle->value());
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setTwistAngle(): The data is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setSetAngleMethod(int index){
-    (bsData) ? bsData->setSetAngleMethod(index) : LogFile::writeToLog("TwistModifierUI::setSetAngleMethod(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSetAngleMethod(index);
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setSetAngleMethod(): The data is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setRotationAxisCoordinates(int index){
-    (bsData) ? bsData->setRotationAxisCoordinates(index) : LogFile::writeToLog("TwistModifierUI::setRotationAxisCoordinates(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotationAxisCoordinates(index);
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setRotationAxisCoordinates(): The data is nullptr!!");
+    }
 }
 
 void TwistModifierUI::setIsAdditive(){
-    (bsData) ? bsData->setIsAdditive(isAdditive->isChecked()) : LogFile::writeToLog("TwistModifierUI::setIsAdditive(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setIsAdditive(isAdditive->isChecked());
+    } else {
+        LogFile::writeToLog("TwistModifierUI::setIsAdditive(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void TwistModifierUI::viewSelected(int row, int column){

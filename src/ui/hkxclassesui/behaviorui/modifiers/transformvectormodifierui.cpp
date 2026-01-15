@@ -186,39 +186,75 @@ void TransformVectorModifierUI::setName(const QString &newname){
 }
 
 void TransformVectorModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("TransformVectorModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setRotation(){
-    (bsData) ? bsData->setRotation(rotation->value()) : LogFile::writeToLog("TransformVectorModifierUI::setRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotation(rotation->value());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setRotation(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setTranslation(){
-    (bsData) ? bsData->setTranslation(translation->value()) : LogFile::writeToLog("TransformVectorModifierUI::setTranslation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTranslation(translation->value());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setTranslation(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setVectorIn(){
-    (bsData) ? bsData->setVectorIn(vectorIn->value()) : LogFile::writeToLog("TransformVectorModifierUI::setVectorIn(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVectorIn(vectorIn->value());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setVectorIn(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setVectorOut(){
-    (bsData) ? bsData->setVectorOut(vectorOut->value()) : LogFile::writeToLog("TransformVectorModifierUI::setVectorOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setVectorOut(vectorOut->value());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setVectorOut(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setRotateOnly(){
-    (bsData) ? bsData->setRotateOnly(rotateOnly->isChecked()) : LogFile::writeToLog("TransformVectorModifierUI::setRotateOnly(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotateOnly(rotateOnly->isChecked());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setRotateOnly(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setInverse(){
-    (bsData) ? bsData->setInverse(inverse->isChecked()) : LogFile::writeToLog("TransformVectorModifierUI::setInverse(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setInverse(inverse->isChecked());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setInverse(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setComputeOnActivate(){
-    (bsData) ? bsData->setComputeOnActivate(computeOnActivate->isChecked()) : LogFile::writeToLog("TransformVectorModifierUI::setComputeOnActivate(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setComputeOnActivate(computeOnActivate->isChecked());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setComputeOnActivate(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::setComputeOnModify(){
-    (bsData) ? bsData->setComputeOnModify(computeOnModify->isChecked()) : LogFile::writeToLog("TransformVectorModifierUI::setComputeOnModify(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setComputeOnModify(computeOnModify->isChecked());
+    } else {
+        LogFile::writeToLog("TransformVectorModifierUI::setComputeOnModify(): The data is nullptr!!");
+    }
 }
 
 void TransformVectorModifierUI::viewSelected(int row, int column){

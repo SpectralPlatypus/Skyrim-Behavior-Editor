@@ -200,11 +200,19 @@ void FootIkControlsModifierUI::toggleSignals(bool toggleconnections){
 }
 
 void FootIkControlsModifierUI::addLeg(){
-    (bsData) ? bsData->addLeg(), loadDynamicTableRows() : LogFile::writeToLog("FootIkControlsModifierUI::addFoot(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addLeg(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::addFoot(): The data is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::removeLeg(int index){
-    (bsData) ? bsData->removeLeg(index), loadDynamicTableRows() : LogFile::writeToLog("FootIkControlsModifierUI::removeFoot(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeLeg(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::removeFoot(): The data is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::loadData(HkxObject *data){
@@ -330,63 +338,123 @@ void FootIkControlsModifierUI::setName(const QString &newname){
 }
 
 void FootIkControlsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("FootIkControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setOnOffGain(){
-    (bsData) ? bsData->setOnOffGain(onOffGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setOnOffGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOnOffGain(onOffGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setOnOffGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setFootPlantedGain(){
-    (bsData) ? bsData->setFootPlantedGain(footPlantedGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setFootPlantedGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFootPlantedGain(footPlantedGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setFootPlantedGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setFootRaisedGain(){
-    (bsData) ? bsData->setFootRaisedGain(footRaisedGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setFootRaisedGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFootRaisedGain(footRaisedGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setFootRaisedGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setFootUnlockGain(){
-    (bsData) ? bsData->setFootUnlockGain(footUnlockGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setFootUnlockGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setFootUnlockGain(footUnlockGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setFootUnlockGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setGroundAscendingGain(){
-    (bsData) ? bsData->setGroundAscendingGain(groundAscendingGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setGroundAscendingGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setGroundAscendingGain(groundAscendingGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setGroundAscendingGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setGroundDescendingGain(){
-    (bsData) ? bsData->setGroundDescendingGain(groundDescendingGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setGroundDescendingGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setGroundDescendingGain(groundDescendingGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setGroundDescendingGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setWorldFromModelFeedbackGain(){
-    (bsData) ? bsData->setWorldFromModelFeedbackGain(worldFromModelFeedbackGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setWorldFromModelFeedbackGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setWorldFromModelFeedbackGain(worldFromModelFeedbackGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setWorldFromModelFeedbackGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setErrorUpDownBias(){
-    (bsData) ? bsData->setErrorUpDownBias(errorUpDownBias->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setErrorUpDownBias(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setErrorUpDownBias(errorUpDownBias->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setErrorUpDownBias(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setAlignWorldFromModelGain(){
-    (bsData) ? bsData->setAlignWorldFromModelGain(alignWorldFromModelGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setAlignWorldFromModelGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAlignWorldFromModelGain(alignWorldFromModelGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setAlignWorldFromModelGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setHipOrientationGain(){
-    (bsData) ? bsData->setHipOrientationGain(hipOrientationGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setHipOrientationGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setHipOrientationGain(hipOrientationGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setHipOrientationGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setMaxKneeAngleDifference(){
-    (bsData) ? bsData->setMaxKneeAngleDifference(maxKneeAngleDifference->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setMaxKneeAngleDifference(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setMaxKneeAngleDifference(maxKneeAngleDifference->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setMaxKneeAngleDifference(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setAnkleOrientationGain(){
-    (bsData) ? bsData->setAnkleOrientationGain(ankleOrientationGain->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setAnkleOrientationGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAnkleOrientationGain(ankleOrientationGain->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setAnkleOrientationGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setErrorOutTranslation(){
-    (bsData) ? bsData->setErrorOutTranslation(errorOutTranslation->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setErrorOutTranslation(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setErrorOutTranslation(errorOutTranslation->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setErrorOutTranslation(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::setAlignWithGroundRotation(){
-    (bsData) ? bsData->setAlignWithGroundRotation(alignWithGroundRotation->value()) : LogFile::writeToLog("FootIkControlsModifierUI::setAlignWithGroundRotation(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAlignWithGroundRotation(alignWithGroundRotation->value());
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::setAlignWithGroundRotation(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void FootIkControlsModifierUI::viewSelectedChild(int row, int column){

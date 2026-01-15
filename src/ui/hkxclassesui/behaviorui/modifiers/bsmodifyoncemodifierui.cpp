@@ -126,7 +126,11 @@ void BSModifyOnceModifierUI::setName(const QString &newname){
 }
 
 void BSModifyOnceModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSModifyOnceModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSModifyOnceModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSModifyOnceModifierUI::setModifier(int index, const QString &name){

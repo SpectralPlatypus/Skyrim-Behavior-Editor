@@ -172,31 +172,59 @@ void BSLimbIKModifierUI::setName(const QString &newname){
 }
 
 void BSLimbIKModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSLimbIKModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setLimitAngleDegrees(){
-    (bsData) ? bsData->setLimitAngleDegrees(limitAngleDegrees->value()) : LogFile::writeToLog("BSLimbIKModifierUI::setLimitAngleDegrees(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setLimitAngleDegrees(limitAngleDegrees->value());
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setLimitAngleDegrees(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setStartBoneIndex(int index){
-    (bsData) ? bsData->setStartBoneIndex(index - 1) : LogFile::writeToLog("BSLimbIKModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setStartBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setStartBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setEndBoneIndex(int index){
-    (bsData) ? bsData->setEndBoneIndex(index - 1) : LogFile::writeToLog("BSLimbIKModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEndBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setEndBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setGain(){
-    (bsData) ? bsData->setGain(gain->value()) : LogFile::writeToLog("BSLimbIKModifierUI::setGain(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setGain(gain->value());
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setGain(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setBoneRadius(){
-    (bsData) ? bsData->setBoneRadius(boneRadius->value()) : LogFile::writeToLog("BSLimbIKModifierUI::setBoneRadius(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setBoneRadius(boneRadius->value());
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setBoneRadius(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::setCastOffset(){
-    (bsData) ? bsData->setCastOffset(castOffset->value()) : LogFile::writeToLog("BSLimbIKModifierUI::setCastOffset(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setCastOffset(castOffset->value());
+    } else {
+        LogFile::writeToLog("BSLimbIKModifierUI::setCastOffset(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSLimbIKModifierUI::viewSelected(int row, int column){

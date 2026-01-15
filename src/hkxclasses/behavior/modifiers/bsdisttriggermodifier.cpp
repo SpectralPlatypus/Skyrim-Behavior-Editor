@@ -197,12 +197,20 @@ bool BSDistTriggerModifier::merge(HkxObject *recessiveObject){ //TO DO: Make thr
 
 void BSDistTriggerModifier::setTriggerEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != triggerEvent.id && triggerEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? triggerEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'triggerEvent.id' was not set!");
+    if (value != triggerEvent.id && triggerEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        triggerEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'triggerEvent.id' was not set!");
+    }
 }
 
 void BSDistTriggerModifier::setTriggerEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(triggerEvent.payload.data())) ? triggerEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'triggerEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(triggerEvent.payload.data())) {
+        triggerEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'triggerEvent.payload' was not set!");
+    }
 }
 
 int BSDistTriggerModifier::getTriggerEventID() const{
@@ -222,7 +230,11 @@ qreal BSDistTriggerModifier::getDistanceTrigger() const{
 
 void BSDistTriggerModifier::setDistanceTrigger(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != distanceTrigger) ? distanceTrigger = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'distanceTrigger' was not set!");
+    if (value != distanceTrigger) {
+        distanceTrigger = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'distanceTrigger' was not set!");
+    }
 }
 
 qreal BSDistTriggerModifier::getDistance() const{
@@ -232,7 +244,11 @@ qreal BSDistTriggerModifier::getDistance() const{
 
 void BSDistTriggerModifier::setDistance(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != distance) ? distance = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'distance' was not set!");
+    if (value != distance) {
+        distance = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'distance' was not set!");
+    }
 }
 
 hkQuadVariable BSDistTriggerModifier::getTargetPosition() const{
@@ -242,7 +258,11 @@ hkQuadVariable BSDistTriggerModifier::getTargetPosition() const{
 
 void BSDistTriggerModifier::setTargetPosition(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != targetPosition) ? targetPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    if (value != targetPosition) {
+        targetPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'targetPosition' was not set!");
+    }
 }
 
 bool BSDistTriggerModifier::getEnable() const{
@@ -252,12 +272,20 @@ bool BSDistTriggerModifier::getEnable() const{
 
 void BSDistTriggerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSDistTriggerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSDistTriggerModifier::link(){

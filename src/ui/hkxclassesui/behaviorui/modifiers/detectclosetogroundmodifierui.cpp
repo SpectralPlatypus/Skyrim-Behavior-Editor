@@ -249,7 +249,11 @@ void DetectCloseToGroundModifierUI::setName(const QString &newname){
 }
 
 void DetectCloseToGroundModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::setCloseToGroundEventId(int index, const QString & name){
@@ -280,23 +284,43 @@ void DetectCloseToGroundModifierUI::setCloseToGroundEventPayload(){
 }
 
 void DetectCloseToGroundModifierUI::setCloseToGroundHeight(){
-    (bsData) ? bsData->setCloseToGroundHeight(closeToGroundHeight->value()) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setCloseToGroundHeight(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setCloseToGroundHeight(closeToGroundHeight->value());
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setCloseToGroundHeight(): The data is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::setRaycastDistanceDown(){
-    (bsData) ? bsData->setRaycastDistanceDown(raycastDistanceDown->value()) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setRaycastDistanceDown(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRaycastDistanceDown(raycastDistanceDown->value());
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setRaycastDistanceDown(): The data is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::setCollisionFilterInfo(int index){
-    (bsData) ? bsData->setCollisionFilterInfo(index - 1) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setCollisionFilterInfo(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setCollisionFilterInfo(index - 1);
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setCollisionFilterInfo(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::setBoneIndex(int index){
-    (bsData) ? bsData->setBoneIndex(index - 1) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::setAnimBoneIndex(int index){
-    (bsData) ? bsData->setAnimBoneIndex(index - 1) : LogFile::writeToLog("DetectCloseToGroundModifierUI::setAnimBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAnimBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("DetectCloseToGroundModifierUI::setAnimBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void DetectCloseToGroundModifierUI::viewSelected(int row, int column){

@@ -26,12 +26,20 @@ void hkbStateMachineEventPropertyArray::addEvent(const hkEventPayload &event){
 
 void hkbStateMachineEventPropertyArray::setEventId(int index, int id){
     std::lock_guard <std::mutex> guard(mutex);
-    (events.size() > index) ? events[index].id = id, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": Unable to add event!");
+    if (events.size() > index) {
+        events[index].id = id, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": Unable to add event!");
+    }
 }
 
 void hkbStateMachineEventPropertyArray::removeEvent(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (events.size() > index) ? events.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": Unable to remove event!");
+    if (events.size() > index) {
+        events.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": Unable to remove event!");
+    }
 }
 
 int hkbStateMachineEventPropertyArray::getLastEventIndex() const{

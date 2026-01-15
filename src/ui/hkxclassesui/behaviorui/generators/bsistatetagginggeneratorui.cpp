@@ -134,11 +134,19 @@ void BSiStateTaggingGeneratorUI::setName(const QString &newname){
 }
 
 void BSiStateTaggingGeneratorUI::setIStateToSetAs(){
-    (bsData) ? bsData->setIStateToSetAs(iStateToSetAs->value()) : LogFile::writeToLog("BSiStateTaggingGeneratorUI::iStateToSetAs(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setIStateToSetAs(iStateToSetAs->value());
+    } else {
+        LogFile::writeToLog("BSiStateTaggingGeneratorUI::iStateToSetAs(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSiStateTaggingGeneratorUI::setIPriority(){
-    (bsData) ? bsData->setIPriority(iPriority->value()) : LogFile::writeToLog("BSiStateTaggingGeneratorUI::setIPriority(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setIPriority(iPriority->value());
+    } else {
+        LogFile::writeToLog("BSiStateTaggingGeneratorUI::setIPriority(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BSiStateTaggingGeneratorUI::setDefaultGenerator(int index, const QString & name){

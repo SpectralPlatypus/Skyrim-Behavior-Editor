@@ -54,7 +54,11 @@ qreal hkbDelayedModifier::getSecondsElapsed() const{
 
 void hkbDelayedModifier::setSecondsElapsed(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != secondsElapsed) ? secondsElapsed = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'secondsElapsed' was not set!");
+    if (value != secondsElapsed) {
+        secondsElapsed = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'secondsElapsed' was not set!");
+    }
 }
 
 qreal hkbDelayedModifier::getDurationSeconds() const{
@@ -64,7 +68,11 @@ qreal hkbDelayedModifier::getDurationSeconds() const{
 
 void hkbDelayedModifier::setDurationSeconds(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != durationSeconds) ? durationSeconds = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'durationSeconds' was not set!");
+    if (value != durationSeconds) {
+        durationSeconds = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'durationSeconds' was not set!");
+    }
 }
 
 qreal hkbDelayedModifier::getDelaySeconds() const{
@@ -74,7 +82,11 @@ qreal hkbDelayedModifier::getDelaySeconds() const{
 
 void hkbDelayedModifier::setDelaySeconds(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != delaySeconds) ? delaySeconds = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'delaySeconds' was not set!");
+    if (value != delaySeconds) {
+        delaySeconds = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'delaySeconds' was not set!");
+    }
 }
 
 hkbModifier * hkbDelayedModifier::getModifier() const{
@@ -89,12 +101,20 @@ bool hkbDelayedModifier::getEnable() const{
 
 void hkbDelayedModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbDelayedModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbDelayedModifier::hasChildren() const{

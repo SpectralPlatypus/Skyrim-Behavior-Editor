@@ -320,10 +320,18 @@ void StateUI::setStateId(int id){
 }
 
 void StateUI::setProbability(){
-    (bsData) ? bsData->setProbability(probability->value()) : LogFile::writeToLog("StateUI::setProbability(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setProbability(probability->value());
+    } else {
+        LogFile::writeToLog("StateUI::setProbability(): The data is nullptr!!");
+    }
 }
 void StateUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("StateUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("StateUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void StateUI::addEvent(HkxSharedPtr & eventarray){  //Make sure bsData is not nullptr before using this function!!
@@ -356,19 +364,35 @@ void StateUI::removeEvent(HkxSharedPtr & eventarray, int index){  //Make sure bs
 }
 
 void StateUI::addEnterEvent(){
-    (bsData) ? addEvent(bsData->enterNotifyEvents) : LogFile::writeToLog("StateUI::addEnterEvent(): The data is nullptr!!");
+    if (bsData) {
+        addEvent(bsData->enterNotifyEvents);
+    } else {
+        LogFile::writeToLog("StateUI::addEnterEvent(): The data is nullptr!!");
+    }
 }
 
 void StateUI::removeEnterEvent(int index){
-    (bsData) ? removeEvent(bsData->enterNotifyEvents, index) : LogFile::writeToLog("StateUI::removeEnterEvent(): The data is nullptr!!");
+    if (bsData) {
+        removeEvent(bsData->enterNotifyEvents, index);
+    } else {
+        LogFile::writeToLog("StateUI::removeEnterEvent(): The data is nullptr!!");
+    }
 }
 
 void StateUI::addExitEvent(){
-    (bsData) ? addEvent(bsData->exitNotifyEvents) : LogFile::writeToLog("StateUI::addExitEvent(): The data is nullptr!!");
+    if (bsData) {
+        addEvent(bsData->exitNotifyEvents);
+    } else {
+        LogFile::writeToLog("StateUI::addExitEvent(): The data is nullptr!!");
+    }
 }
 
 void StateUI::removeExitEvent(int index){
-    (bsData) ? removeEvent(bsData->exitNotifyEvents, index) : LogFile::writeToLog("StateUI::removeExitEvent(): The data is nullptr!!");
+    if (bsData) {
+        removeEvent(bsData->exitNotifyEvents, index);
+    } else {
+        LogFile::writeToLog("StateUI::removeExitEvent(): The data is nullptr!!");
+    }
 }
 
 void StateUI::addTransition(){
@@ -480,7 +504,11 @@ void StateUI::setBehaviorView(BehaviorGraphView *view){
 void StateUI::transitionRenamed(const QString &name, int index){
     if (bsData){
         auto item = table->item(transitionsButtonRow + index + 1, NAME_COLUMN);
-        (item) ? item->setText(name) : LogFile::writeToLog("StateUI::transitionRenamed(): Invalid row selected!!");
+        if (item) {
+            item->setText(name);
+        } else {
+            LogFile::writeToLog("StateUI::transitionRenamed(): Invalid row selected!!");
+        }
     }else{
         LogFile::writeToLog("StateUI::transitionRenamed(): The data is nullptr!!");
     }

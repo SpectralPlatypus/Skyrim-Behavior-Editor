@@ -56,7 +56,11 @@ bool hkbManualSelectorGenerator::removeObjectAt(int index){
 
 void hkbManualSelectorGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 qint8 hkbManualSelectorGenerator::getCurrentGeneratorIndex() const{
@@ -66,7 +70,11 @@ qint8 hkbManualSelectorGenerator::getCurrentGeneratorIndex() const{
 
 void hkbManualSelectorGenerator::setCurrentGeneratorIndex(const qint8 &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != currentGeneratorIndex) ? currentGeneratorIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'currentGeneratorIndex' was not set!");
+    if (value != currentGeneratorIndex) {
+        currentGeneratorIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'currentGeneratorIndex' was not set!");
+    }
 }
 
 bool hkbManualSelectorGenerator::swapChildren(int index1, int index2){
@@ -99,7 +107,11 @@ qint8 hkbManualSelectorGenerator::getSelectedGeneratorIndex() const{
 
 void hkbManualSelectorGenerator::setSelectedGeneratorIndex(const qint8 &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != selectedGeneratorIndex) ? selectedGeneratorIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'selectedGeneratorIndex' was not set!");
+    if (value != selectedGeneratorIndex) {
+        selectedGeneratorIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'selectedGeneratorIndex' was not set!");
+    }
 }
 
 bool hkbManualSelectorGenerator::hasChildren() const{

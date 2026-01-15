@@ -210,12 +210,20 @@ hkbBoneIndexArray *BSRagdollContactListenerModifier::getBones() const{
 
 void BSRagdollContactListenerModifier::setContactEventID(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != contactEvent.id && contactEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) ? contactEvent.id = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'contactEvent.id' was not set!");
+    if (value != contactEvent.id && contactEvent.id < static_cast<BehaviorFile *>(getParentFile())->getNumberOfEvents()) {
+        contactEvent.id = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'contactEvent.id' was not set!");
+    }
 }
 
 void BSRagdollContactListenerModifier::setContactEventPayload(hkbStringEventPayload *value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != static_cast<hkbStringEventPayload *>(contactEvent.payload.data())) ? contactEvent.payload = HkxSharedPtr(value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'contactEvent.payload' was not set!");
+    if (value != static_cast<hkbStringEventPayload *>(contactEvent.payload.data())) {
+        contactEvent.payload = HkxSharedPtr(value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'contactEvent.payload' was not set!");
+    }
 }
 
 int BSRagdollContactListenerModifier::getContactEventID() const{
@@ -235,12 +243,20 @@ bool BSRagdollContactListenerModifier::getEnable() const{
 
 void BSRagdollContactListenerModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void BSRagdollContactListenerModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool BSRagdollContactListenerModifier::link(){

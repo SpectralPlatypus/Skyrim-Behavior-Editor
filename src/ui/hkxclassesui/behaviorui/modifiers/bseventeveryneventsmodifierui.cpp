@@ -174,7 +174,11 @@ void BSEventEveryNEventsModifierUI::setName(const QString &newname){
 }
 
 void BSEventEveryNEventsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("BSEventEveryNEventsModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventEveryNEventsModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void BSEventEveryNEventsModifierUI::setEventToCheckForId(int index, const QString & name){
@@ -232,15 +236,27 @@ void BSEventEveryNEventsModifierUI::setEventToSendPayload(){
 }
 
 void BSEventEveryNEventsModifierUI::setNumberOfEventsBeforeSend(){
-    (bsData) ? bsData->setNumberOfEventsBeforeSend(numberOfEventsBeforeSend->value()) : LogFile::writeToLog("BSEventEveryNEventsModifierUI::setNumberOfEventsBeforeSend(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setNumberOfEventsBeforeSend(numberOfEventsBeforeSend->value());
+    } else {
+        LogFile::writeToLog("BSEventEveryNEventsModifierUI::setNumberOfEventsBeforeSend(): The data is nullptr!!");
+    }
 }
 
 void BSEventEveryNEventsModifierUI::setMinimumNumberOfEventsBeforeSend(){
-    (bsData) ? bsData->setMinimumNumberOfEventsBeforeSend(minimumNumberOfEventsBeforeSend->value()) : LogFile::writeToLog("BSEventEveryNEventsModifierUI::setMinimumNumberOfEventsBeforeSend(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setMinimumNumberOfEventsBeforeSend(minimumNumberOfEventsBeforeSend->value());
+    } else {
+        LogFile::writeToLog("BSEventEveryNEventsModifierUI::setMinimumNumberOfEventsBeforeSend(): The data is nullptr!!");
+    }
 }
 
 void BSEventEveryNEventsModifierUI::setRandomizeNumberOfEvents(){
-    (bsData) ? bsData->setRandomizeNumberOfEvents(randomizeNumberOfEvents->isChecked()) : LogFile::writeToLog("BSEventEveryNEventsModifierUI::setRandomizeNumberOfEvents(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRandomizeNumberOfEvents(randomizeNumberOfEvents->isChecked());
+    } else {
+        LogFile::writeToLog("BSEventEveryNEventsModifierUI::setRandomizeNumberOfEvents(): The data is nullptr!!");
+    }
 }
 
 void BSEventEveryNEventsModifierUI::eventTableElementSelected(int index, const QString &name){

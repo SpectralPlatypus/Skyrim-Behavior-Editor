@@ -111,7 +111,11 @@ int hkbGetHandleOnBoneModifier::getAnimationBoneIndex() const{
 
 void hkbGetHandleOnBoneModifier::setAnimationBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != animationBoneIndex && animationBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? animationBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'animationBoneIndex' was not set!");
+    if (value != animationBoneIndex && animationBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        animationBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'animationBoneIndex' was not set!");
+    }
 }
 
 int hkbGetHandleOnBoneModifier::getRagdollBoneIndex() const{
@@ -121,7 +125,11 @@ int hkbGetHandleOnBoneModifier::getRagdollBoneIndex() const{
 
 void hkbGetHandleOnBoneModifier::setRagdollBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != ragdollBoneIndex && ragdollBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? ragdollBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'ragdollBoneIndex' was not set!");
+    if (value != ragdollBoneIndex && ragdollBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        ragdollBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'ragdollBoneIndex' was not set!");
+    }
 }
 
 QString hkbGetHandleOnBoneModifier::getLocalFrameName() const{
@@ -132,7 +140,11 @@ QString hkbGetHandleOnBoneModifier::getLocalFrameName() const{
 void hkbGetHandleOnBoneModifier::setLocalFrameName(int index){
     std::lock_guard <std::mutex> guard(mutex);
     auto localframes = static_cast<BehaviorFile *>(getParentFile())->getLocalFrameNames();
-    (index >= 0 && index < localframes.size() && localframes.at(index) != localFrameName) ? localFrameName = localframes.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'localFrameName' was not set!");
+    if (index >= 0 && index < localframes.size() && localframes.at(index) != localFrameName) {
+        localFrameName = localframes.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'localFrameName' was not set!");
+    }
 }
 
 bool hkbGetHandleOnBoneModifier::getEnable() const{
@@ -142,12 +154,20 @@ bool hkbGetHandleOnBoneModifier::getEnable() const{
 
 void hkbGetHandleOnBoneModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbGetHandleOnBoneModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbGetHandleOnBoneModifier::link(){

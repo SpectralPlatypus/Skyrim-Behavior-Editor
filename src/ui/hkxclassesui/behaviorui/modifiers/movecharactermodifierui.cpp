@@ -116,11 +116,19 @@ void MoveCharacterModifierUI::setName(const QString &newname){
 }
 
 void MoveCharacterModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("MoveCharacterModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("MoveCharacterModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void MoveCharacterModifierUI::setOffsetPerSecondMS(){
-    (bsData) ? bsData->setOffsetPerSecondMS(offsetPerSecondMS->value()) : LogFile::writeToLog("BSGetTimeStepModifierUI::setOffsetPerSecondMS(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setOffsetPerSecondMS(offsetPerSecondMS->value());
+    } else {
+        LogFile::writeToLog("BSGetTimeStepModifierUI::setOffsetPerSecondMS(): The data is nullptr!!");
+    }
 }
 
 void MoveCharacterModifierUI::viewSelected(int row, int column){

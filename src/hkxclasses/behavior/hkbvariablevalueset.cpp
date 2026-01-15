@@ -51,27 +51,47 @@ hkQuadVariable hkbVariableValueSet::getQuadVariableValueAt(int index, bool *ok){
 
 void hkbVariableValueSet::setQuadVariableValueAt(int index, const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (quadVariableValues.size() > index && index > -1) ? quadVariableValues.replace(index, value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setQuadVariableValueAt' failed!");
+    if (quadVariableValues.size() > index && index > -1) {
+        quadVariableValues.replace(index, value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setQuadVariableValueAt' failed!");
+    }
 }
 
 void hkbVariableValueSet::setWordVariableAt(int index, int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (wordVariableValues.size() > index && index > -1) ? wordVariableValues.replace(index, value), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'setWordVariableAt' failed!");
+    if (wordVariableValues.size() > index && index > -1) {
+        wordVariableValues.replace(index, value), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'setWordVariableAt' failed!");
+    }
 }
 
 void hkbVariableValueSet::removeWordVariableValueAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index > -1 && index < wordVariableValues.size()) ? wordVariableValues.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'removeWordVariableValueAt' failed!");
+    if (index > -1 && index < wordVariableValues.size()) {
+        wordVariableValues.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'removeWordVariableValueAt' failed!");
+    }
 }
 
 void hkbVariableValueSet::removeQuadVariableValueAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index > -1 && index < quadVariableValues.size()) ? quadVariableValues.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'removeQuadVariableValueAt' failed!");
+    if (index > -1 && index < quadVariableValues.size()) {
+        quadVariableValues.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'removeQuadVariableValueAt' failed!");
+    }
 }
 
 void hkbVariableValueSet::removeVariantVariableValueAt(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index > -1 && index < variantVariableValues.size()) ? variantVariableValues.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'removeVariantVariableValueAt' failed!");
+    if (index > -1 && index < variantVariableValues.size()) {
+        variantVariableValues.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'removeVariantVariableValueAt' failed!");
+    }
 }
 
 void hkbVariableValueSet::addQuadVariableValue(const hkQuadVariable &value){

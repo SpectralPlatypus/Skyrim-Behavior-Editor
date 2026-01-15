@@ -545,12 +545,20 @@ QStringList BehaviorFile::getAllBehaviorFileNames() const{
 
 void BehaviorFile::setLocalTimeForClipGenAnimData(const QString &clipname, int triggerindex, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setLocalTimeForClipGenAnimData(clipname, triggerindex, time) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setLocalTimeForClipGenAnimData(clipname, triggerindex, time);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::setEventNameForClipGenAnimData(const QString &clipname, int triggerindex, int eventid){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setEventNameForClipGenAnimData(clipname, triggerindex, getEventNameAt(eventid)) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setEventNameForClipGenAnimData(clipname, triggerindex, getEventNameAt(eventid));
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 bool BehaviorFile::isClipGenNameTaken(const QString & name) const{
@@ -589,37 +597,65 @@ bool BehaviorFile::removeClipGenFromAnimData(const QString & animationname, cons
 
 void BehaviorFile::setClipNameAnimData(const QString &oldclipname, const QString &newclipname){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setClipNameAnimData(oldclipname, newclipname) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setClipNameAnimData(oldclipname, newclipname);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::setAnimationIndexAnimData(int index, const QString &clipGenName){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setAnimationIndexForClipGen(index, clipGenName) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setAnimationIndexForClipGen(index, clipGenName);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::setPlaybackSpeedAnimData(const QString &clipGenName, qreal speed){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setPlaybackSpeedAnimData(clipGenName, speed) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setPlaybackSpeedAnimData(clipGenName, speed);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::setCropStartAmountLocalTimeAnimData(const QString &clipGenName, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setCropStartAmountLocalTimeAnimData(clipGenName, time) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setCropStartAmountLocalTimeAnimData(clipGenName, time);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::setCropEndAmountLocalTimeAnimData(const QString &clipGenName, qreal time){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->setCropEndAmountLocalTimeAnimData(clipGenName, time) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->setCropEndAmountLocalTimeAnimData(clipGenName, time);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::appendClipTriggerToAnimData(const QString &clipGenName){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->appendClipTriggerToAnimData(clipGenName, getEventNameAt(0)) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->appendClipTriggerToAnimData(clipGenName, getEventNameAt(0));
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 void BehaviorFile::removeClipTriggerToAnimDataAt(const QString &clipGenName, int index){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->removeClipTriggerToAnimDataAt(clipGenName, index) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->removeClipTriggerToAnimDataAt(clipGenName, index);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 QString BehaviorFile::isEventReferenced(int eventindex) const{
@@ -722,7 +758,11 @@ void BehaviorFile::updateVariableIndices(int index, bool isProperty){
 
 void BehaviorFile::removeUnreferencedFiles(const hkbBehaviorReferenceGenerator *gentoignore){
     //std::lock_guard <std::mutex> guard(mutex);
-    (project) ? project->removeUnreferencedFiles(gentoignore) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        project->removeUnreferencedFiles(gentoignore);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
 }
 
 QStringList BehaviorFile::getReferencedBehaviors(const hkbBehaviorReferenceGenerator *gentoignore) const{
@@ -748,7 +788,11 @@ void BehaviorFile::removeAllData(){
 
 void BehaviorFile::getCharacterPropertyBoneWeightArray(const QString &name, hkbBoneWeightArray *ptrtosetdata) const{
     //std::lock_guard <std::mutex> guard(mutex);
-    (character) ? static_cast<CharacterFile *>(character)->getCharacterPropertyBoneWeightArray(name, ptrtosetdata) : LogFile::writeToLog(fileName()+" has no associated character file!");
+    if (character) {
+        static_cast<CharacterFile *>(character)->getCharacterPropertyBoneWeightArray(name, ptrtosetdata);
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated character file!");
+    }
 }
 
 hkbStateMachine *BehaviorFile::findRootStateMachineFromBehavior(const QString behaviorname) const{
@@ -789,7 +833,11 @@ void BehaviorFile::mergeVariableIndices(int oldindex, int newindex){
 bool BehaviorFile::isNameUniqueInProject(HkxObject *object) const{
     //std::lock_guard <std::mutex> guard(mutex);
     auto value = false;
-    (project) ? value = project->isNameUniqueInProject(object, fileName()) : LogFile::writeToLog(fileName()+" has no associated project!");
+    if (project) {
+        value = project->isNameUniqueInProject(object, fileName());
+    } else {
+        LogFile::writeToLog(fileName()+" has no associated project!");
+    }
     return value;
 }
 
@@ -1136,7 +1184,11 @@ bool BehaviorFile::parse(){
         closeFile();
         getReader().clear();
         //if (checkForDuplicateReferencesNumbersNoLock()){
-            (link()) ? ok = true : LogFile::writeToLog(fileName()+": failed to link!!!");
+            if (link()) {
+                ok = true;
+            } else {
+                LogFile::writeToLog(fileName()+": failed to link!!!");
+            }
         /*}else{
             LogFile::writeToLog(fileName()+": Duplicate References Found!!!");
         }*/

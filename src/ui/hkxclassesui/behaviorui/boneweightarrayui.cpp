@@ -110,7 +110,11 @@ void BoneWeightArrayUI::setBoneWeight(){
 }
 
 void BoneWeightArrayUI::loadBoneWeight(int row, int){
-    (bsData) ? selectedBone->setValue(bsData->getBoneWeightAt(row)) : LogFile::writeToLog("BoneWeightArrayUI::setBoneWeight(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        selectedBone->setValue(bsData->getBoneWeightAt(row));
+    } else {
+        LogFile::writeToLog("BoneWeightArrayUI::setBoneWeight(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void BoneWeightArrayUI::invert(){

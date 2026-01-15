@@ -313,7 +313,11 @@ void hkbSenseHandleModifier::addRange(hkbSenseHandleModifier::hkRanges range){
 
 void hkbSenseHandleModifier::removeRange(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < ranges.size()) ? ranges.removeAt(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'ranges' was not removed!");
+    if (index >= 0 && index < ranges.size()) {
+        ranges.removeAt(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'ranges' was not removed!");
+    }
 }
 
 bool hkbSenseHandleModifier::getFoundHandleOut() const{
@@ -323,7 +327,11 @@ bool hkbSenseHandleModifier::getFoundHandleOut() const{
 
 void hkbSenseHandleModifier::setFoundHandleOut(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != foundHandleOut) ? foundHandleOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'foundHandleOut' was not set!");
+    if (value != foundHandleOut) {
+        foundHandleOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'foundHandleOut' was not set!");
+    }
 }
 
 bool hkbSenseHandleModifier::getKeepFirstSensedHandle() const{
@@ -333,7 +341,11 @@ bool hkbSenseHandleModifier::getKeepFirstSensedHandle() const{
 
 void hkbSenseHandleModifier::setKeepFirstSensedHandle(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != keepFirstSensedHandle) ? keepFirstSensedHandle = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'keepFirstSensedHandle' was not set!");
+    if (value != keepFirstSensedHandle) {
+        keepFirstSensedHandle = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'keepFirstSensedHandle' was not set!");
+    }
 }
 
 bool hkbSenseHandleModifier::getExtrapolateSensorPosition() const{
@@ -343,7 +355,11 @@ bool hkbSenseHandleModifier::getExtrapolateSensorPosition() const{
 
 void hkbSenseHandleModifier::setExtrapolateSensorPosition(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != extrapolateSensorPosition) ? extrapolateSensorPosition = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'extrapolateSensorPosition' was not set!");
+    if (value != extrapolateSensorPosition) {
+        extrapolateSensorPosition = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'extrapolateSensorPosition' was not set!");
+    }
 }
 
 QString hkbSenseHandleModifier::getSensingMode() const{
@@ -353,7 +369,11 @@ QString hkbSenseHandleModifier::getSensingMode() const{
 
 void hkbSenseHandleModifier::setSensingMode(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < SensingMode.size() && sensingMode != SensingMode.at(index)) ? sensingMode = SensingMode.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sensingMode' was not set!");
+    if (index >= 0 && index < SensingMode.size() && sensingMode != SensingMode.at(index)) {
+        sensingMode = SensingMode.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sensingMode' was not set!");
+    }
 }
 
 int hkbSenseHandleModifier::getSensorAnimationBoneIndex() const{
@@ -363,12 +383,20 @@ int hkbSenseHandleModifier::getSensorAnimationBoneIndex() const{
 
 void hkbSenseHandleModifier::setSensorAnimationBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != sensorAnimationBoneIndex && sensorAnimationBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? sensorAnimationBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sensorAnimationBoneIndex' was not set!");
+    if (value != sensorAnimationBoneIndex && sensorAnimationBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        sensorAnimationBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sensorAnimationBoneIndex' was not set!");
+    }
 }
 
 void hkbSenseHandleModifier::setSensorRagdollBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != sensorRagdollBoneIndex && sensorRagdollBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) ? sensorRagdollBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sensorRagdollBoneIndex' was not set!");
+    if (value != sensorRagdollBoneIndex && sensorRagdollBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones(true)) {
+        sensorRagdollBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sensorRagdollBoneIndex' was not set!");
+    }
 }
 
 int hkbSenseHandleModifier::getSensorRagdollBoneIndex() const{
@@ -383,7 +411,11 @@ int hkbSenseHandleModifier::getCollisionFilterInfo() const{
 
 void hkbSenseHandleModifier::setCollisionFilterInfo(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) ? collisionFilterInfo = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    if (value != collisionFilterInfo && collisionFilterInfo >= 0 && collisionFilterInfo < 50/*TO DO*/) {
+        collisionFilterInfo = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'collisionFilterInfo' was not set!");
+    }
 }
 
 qreal hkbSenseHandleModifier::getDistanceOut() const{
@@ -393,7 +425,11 @@ qreal hkbSenseHandleModifier::getDistanceOut() const{
 
 void hkbSenseHandleModifier::setDistanceOut(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != distanceOut) ? distanceOut = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'distanceOut' was not set!");
+    if (value != distanceOut) {
+        distanceOut = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'distanceOut' was not set!");
+    }
 }
 
 qreal hkbSenseHandleModifier::getMaxDistance() const{
@@ -403,7 +439,11 @@ qreal hkbSenseHandleModifier::getMaxDistance() const{
 
 void hkbSenseHandleModifier::setMaxDistance(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != maxDistance) ? maxDistance = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'maxDistance' was not set!");
+    if (value != maxDistance) {
+        maxDistance = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'maxDistance' was not set!");
+    }
 }
 
 qreal hkbSenseHandleModifier::getMinDistance() const{
@@ -413,7 +453,11 @@ qreal hkbSenseHandleModifier::getMinDistance() const{
 
 void hkbSenseHandleModifier::setMinDistance(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != minDistance) ? minDistance = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'minDistance' was not set!");
+    if (value != minDistance) {
+        minDistance = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'minDistance' was not set!");
+    }
 }
 
 QString hkbSenseHandleModifier::getSensorLocalFrameName() const{
@@ -424,7 +468,11 @@ QString hkbSenseHandleModifier::getSensorLocalFrameName() const{
 void hkbSenseHandleModifier::setSensorLocalFrameName(int index){
     std::lock_guard <std::mutex> guard(mutex);
     auto localframes = static_cast<BehaviorFile *>(getParentFile())->getLocalFrameNames();
-    (index >= 0 && index < localframes.size() && localframes.at(index) != sensorLocalFrameName) ? sensorLocalFrameName = localframes.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sensorLocalFrameName' was not set!");
+    if (index >= 0 && index < localframes.size() && localframes.at(index) != sensorLocalFrameName) {
+        sensorLocalFrameName = localframes.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sensorLocalFrameName' was not set!");
+    }
 }
 
 QString hkbSenseHandleModifier::getLocalFrameName() const{
@@ -435,7 +483,11 @@ QString hkbSenseHandleModifier::getLocalFrameName() const{
 void hkbSenseHandleModifier::setLocalFrameName(int index){
     std::lock_guard <std::mutex> guard(mutex);
     auto localframes = static_cast<BehaviorFile *>(getParentFile())->getLocalFrameNames();
-    (index >= 0 && index < localframes.size() && localframes.at(index) != localFrameName) ? localFrameName = localframes.at(index), setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'localFrameName' was not set!");
+    if (index >= 0 && index < localframes.size() && localframes.at(index) != localFrameName) {
+        localFrameName = localframes.at(index), setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'localFrameName' was not set!");
+    }
 }
 
 hkQuadVariable hkbSenseHandleModifier::getSensorLocalOffset() const{
@@ -445,7 +497,11 @@ hkQuadVariable hkbSenseHandleModifier::getSensorLocalOffset() const{
 
 void hkbSenseHandleModifier::setSensorLocalOffset(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != sensorLocalOffset) ? sensorLocalOffset = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'sensorLocalOffset' was not set!");
+    if (value != sensorLocalOffset) {
+        sensorLocalOffset = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'sensorLocalOffset' was not set!");
+    }
 }
 
 bool hkbSenseHandleModifier::getEnable() const{
@@ -455,12 +511,20 @@ bool hkbSenseHandleModifier::getEnable() const{
 
 void hkbSenseHandleModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbSenseHandleModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbSenseHandleModifier::link(){

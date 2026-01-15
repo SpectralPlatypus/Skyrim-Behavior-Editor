@@ -86,11 +86,19 @@ void HandIkControlsModifierUI::toggleSignals(bool toggleconnections){
 }
 
 void HandIkControlsModifierUI::addHand(){
-    (bsData) ? bsData->addHand(), loadDynamicTableRows() : LogFile::writeToLog("HandIkControlsModifierUI::addHand(): The data is nullptr!!");
+    if (bsData) {
+        bsData->addHand(), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("HandIkControlsModifierUI::addHand(): The data is nullptr!!");
+    }
 }
 
 void HandIkControlsModifierUI::removeHand(int index){
-    (bsData) ? bsData->removeHand(index), loadDynamicTableRows() : LogFile::writeToLog("FootIkControlsModifierUI::removeHand(): The data is nullptr!!");
+    if (bsData) {
+        bsData->removeHand(index), loadDynamicTableRows();
+    } else {
+        LogFile::writeToLog("FootIkControlsModifierUI::removeHand(): The data is nullptr!!");
+    }
 }
 
 void HandIkControlsModifierUI::loadData(HkxObject *data){
@@ -158,7 +166,11 @@ void HandIkControlsModifierUI::setName(const QString &newname){
 }
 
 void HandIkControlsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("HandIkControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("HandIkControlsModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void HandIkControlsModifierUI::viewSelectedChild(int row, int column){

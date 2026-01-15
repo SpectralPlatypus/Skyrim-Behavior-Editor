@@ -57,7 +57,11 @@ bool hkbModifierGenerator::removeObjectAt(int index){
 
 void hkbModifierGenerator::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbModifierGenerator::hasChildren() const{
@@ -83,7 +87,11 @@ QString hkbModifierGenerator::getGeneratorName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString genname("NONE");
     auto gen = static_cast<hkbGenerator *>(generator.data());
-    (gen) ? genname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        genname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return genname;
 }
 
@@ -91,7 +99,11 @@ QString hkbModifierGenerator::getModifierName() const{
     std::lock_guard <std::mutex> guard(mutex);
     QString modname("NONE");
     auto gen = static_cast<hkbGenerator *>(modifier.data());
-    (gen) ? modname = gen->getName() : LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    if (gen) {
+        modname = gen->getName();
+    } else {
+        LogFile::writeToLog(getClassname()+" Cannot get child name!");
+    }
     return modname;
 }
 

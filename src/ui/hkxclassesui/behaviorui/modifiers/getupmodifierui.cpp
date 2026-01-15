@@ -173,31 +173,59 @@ void GetUpModifierUI::setName(const QString &newname){
 }
 
 void GetUpModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("GetUpModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setEnable(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setGroundNormal(){
-    (bsData) ? bsData->setGroundNormal(groundNormal->value()) : LogFile::writeToLog("GetUpModifierUI::setGroundNormal(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setGroundNormal(groundNormal->value());
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setGroundNormal(): The data is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setDuration(){
-    (bsData) ? bsData->setDuration(duration->value()) : LogFile::writeToLog("GetUpModifierUI::setDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDuration(duration->value());
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setDuration(): The data is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setAlignWithGroundDuration(){
-    (bsData) ? bsData->setAlignWithGroundDuration(alignWithGroundDuration->value()) : LogFile::writeToLog("GetUpModifierUI::setAlignWithGroundDuration(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAlignWithGroundDuration(alignWithGroundDuration->value());
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setAlignWithGroundDuration(): The data is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setRootBoneIndex(int index){
-    (bsData) ? bsData->setRootBoneIndex(index - 1) : LogFile::writeToLog("GetUpModifierUI::setRootBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setRootBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setRootBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setOtherBoneIndex(int index){
-    (bsData) ? bsData->setOtherBoneIndex(index - 1) : LogFile::writeToLog("GetUpModifierUI::setOtherBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setOtherBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setOtherBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::setAnotherBoneIndex(int index){
-    (bsData) ? bsData->setAnotherBoneIndex(index - 1) : LogFile::writeToLog("GetUpModifierUI::setAnotherBoneIndex(): The 'bsData' pointer is nullptr!!");
+    if (bsData) {
+        bsData->setAnotherBoneIndex(index - 1);
+    } else {
+        LogFile::writeToLog("GetUpModifierUI::setAnotherBoneIndex(): The 'bsData' pointer is nullptr!!");
+    }
 }
 
 void GetUpModifierUI::viewSelected(int row, int column){

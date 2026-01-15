@@ -196,43 +196,83 @@ void CombineTransformsModifierUI::setName(const QString &newname){
 }
 
 void CombineTransformsModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("CombineTransformsModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("CombineTransformsModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setTranslationOut(){
-    (bsData) ? bsData->setTranslationOut(translationOut->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setTranslationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setTranslationOut(translationOut->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setTranslationOut(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setRotationOut(){
-    (bsData) ? bsData->setRotationOut(rotationOut->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setRotationOut(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRotationOut(rotationOut->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setRotationOut(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setLeftTranslation(){
-    (bsData) ? bsData->setLeftTranslation(leftTranslation->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setLeftTranslation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setLeftTranslation(leftTranslation->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setLeftTranslation(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setLeftRotation(){
-    (bsData) ? bsData->setLeftRotation(leftRotation->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setLeftRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setLeftRotation(leftRotation->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setLeftRotation(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setRightTranslation(){
-    (bsData) ? bsData->setRightTranslation(rightTranslation->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setRightTranslation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRightTranslation(rightTranslation->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setRightTranslation(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setRightRotation(){
-    (bsData) ? bsData->setRightRotation(rightRotation->value()) : LogFile::writeToLog("BSInterpValueModifierUI::setRightRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setRightRotation(rightRotation->value());
+    } else {
+        LogFile::writeToLog("BSInterpValueModifierUI::setRightRotation(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setInvertLeftTransform(){
-    (bsData) ? bsData->setInvertLeftTransform(invertLeftTransform->isChecked()) : LogFile::writeToLog("CombineTransformsModifierUI::setInvertLeftTransform(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setInvertLeftTransform(invertLeftTransform->isChecked());
+    } else {
+        LogFile::writeToLog("CombineTransformsModifierUI::setInvertLeftTransform(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setInvertRightTransform(){
-    (bsData) ? bsData->setInvertRightTransform(invertRightTransform->isChecked()) : LogFile::writeToLog("CombineTransformsModifierUI::setInvertRightTransform(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setInvertRightTransform(invertRightTransform->isChecked());
+    } else {
+        LogFile::writeToLog("CombineTransformsModifierUI::setInvertRightTransform(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::setInvertResult(){
-    (bsData) ? bsData->setInvertResult(invertResult->isChecked()) : LogFile::writeToLog("CombineTransformsModifierUI::setInvertResult(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setInvertResult(invertResult->isChecked());
+    } else {
+        LogFile::writeToLog("CombineTransformsModifierUI::setInvertResult(): The data is nullptr!!");
+    }
 }
 
 void CombineTransformsModifierUI::viewSelected(int row, int column){

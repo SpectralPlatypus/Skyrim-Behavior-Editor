@@ -136,19 +136,35 @@ void RotateCharacterModifierUI::setName(const QString &newname){
 }
 
 void RotateCharacterModifierUI::setEnable(){
-    (bsData) ? bsData->setEnable(enable->isChecked()) : LogFile::writeToLog("RotateCharacterModifierUI::setEnable(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setEnable(enable->isChecked());
+    } else {
+        LogFile::writeToLog("RotateCharacterModifierUI::setEnable(): The data is nullptr!!");
+    }
 }
 
 void RotateCharacterModifierUI::setDegreesPerSecond(){
-    (bsData) ? bsData->setDegreesPerSecond(degreesPerSecond->value()) : LogFile::writeToLog("RotateCharacterModifierUI::setDegreesPerSecond(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setDegreesPerSecond(degreesPerSecond->value());
+    } else {
+        LogFile::writeToLog("RotateCharacterModifierUI::setDegreesPerSecond(): The data is nullptr!!");
+    }
 }
 
 void RotateCharacterModifierUI::setSpeedMultiplier(){
-    (bsData) ? bsData->setSpeedMultiplier(speedMultiplier->value()) : LogFile::writeToLog("RotateCharacterModifierUI::setSpeedMultiplier(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setSpeedMultiplier(speedMultiplier->value());
+    } else {
+        LogFile::writeToLog("RotateCharacterModifierUI::setSpeedMultiplier(): The data is nullptr!!");
+    }
 }
 
 void RotateCharacterModifierUI::setAxisOfRotation(){
-    (bsData) ? bsData->setAxisOfRotation(axisOfRotation->value()) : LogFile::writeToLog("RotateCharacterModifierUI::setAxisOfRotation(): The data is nullptr!!");
+    if (bsData) {
+        bsData->setAxisOfRotation(axisOfRotation->value());
+    } else {
+        LogFile::writeToLog("RotateCharacterModifierUI::setAxisOfRotation(): The data is nullptr!!");
+    }
 }
 
 void RotateCharacterModifierUI::viewSelected(int row, int column){

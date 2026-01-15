@@ -118,7 +118,11 @@ int hkbGetUpModifier::getAnotherBoneIndex() const{
 
 void hkbGetUpModifier::setAnotherBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != anotherBoneIndex && anotherBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? anotherBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'anotherBoneIndex' was not set!");
+    if (value != anotherBoneIndex && anotherBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        anotherBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'anotherBoneIndex' was not set!");
+    }
 }
 
 int hkbGetUpModifier::getOtherBoneIndex() const{
@@ -128,7 +132,11 @@ int hkbGetUpModifier::getOtherBoneIndex() const{
 
 void hkbGetUpModifier::setOtherBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != otherBoneIndex && otherBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? otherBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'otherBoneIndex' was not set!");
+    if (value != otherBoneIndex && otherBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        otherBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'otherBoneIndex' was not set!");
+    }
 }
 
 int hkbGetUpModifier::getRootBoneIndex() const{
@@ -138,7 +146,11 @@ int hkbGetUpModifier::getRootBoneIndex() const{
 
 void hkbGetUpModifier::setRootBoneIndex(int value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != rootBoneIndex && rootBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) ? rootBoneIndex = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'rootBoneIndex' was not set!");
+    if (value != rootBoneIndex && rootBoneIndex < static_cast<BehaviorFile *>(getParentFile())->getNumberOfBones()) {
+        rootBoneIndex = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'rootBoneIndex' was not set!");
+    }
 }
 
 qreal hkbGetUpModifier::getAlignWithGroundDuration() const{
@@ -148,7 +160,11 @@ qreal hkbGetUpModifier::getAlignWithGroundDuration() const{
 
 void hkbGetUpModifier::setAlignWithGroundDuration(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != alignWithGroundDuration) ? alignWithGroundDuration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'alignWithGroundDuration' was not set!");
+    if (value != alignWithGroundDuration) {
+        alignWithGroundDuration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'alignWithGroundDuration' was not set!");
+    }
 }
 
 qreal hkbGetUpModifier::getDuration() const{
@@ -158,7 +174,11 @@ qreal hkbGetUpModifier::getDuration() const{
 
 void hkbGetUpModifier::setDuration(const qreal &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != duration) ? duration = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'duration' was not set!");
+    if (value != duration) {
+        duration = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'duration' was not set!");
+    }
 }
 
 hkQuadVariable hkbGetUpModifier::getGroundNormal() const{
@@ -168,7 +188,11 @@ hkQuadVariable hkbGetUpModifier::getGroundNormal() const{
 
 void hkbGetUpModifier::setGroundNormal(const hkQuadVariable &value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != groundNormal) ? groundNormal = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'groundNormal' was not set!");
+    if (value != groundNormal) {
+        groundNormal = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'groundNormal' was not set!");
+    }
 }
 
 bool hkbGetUpModifier::getEnable() const{
@@ -178,12 +202,20 @@ bool hkbGetUpModifier::getEnable() const{
 
 void hkbGetUpModifier::setEnable(bool value){
     std::lock_guard <std::mutex> guard(mutex);
-    (value != enable) ? enable = value, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    if (value != enable) {
+        enable = value, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'enable' was not set!");
+    }
 }
 
 void hkbGetUpModifier::setName(const QString &newname){
     std::lock_guard <std::mutex> guard(mutex);
-    (newname != name && newname != "") ? name = newname, setIsFileChanged(true) : LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    if (newname != name && newname != "") {
+        name = newname, setIsFileChanged(true);
+    } else {
+        LogFile::writeToLog(getClassname()+": 'name' was not set!");
+    }
 }
 
 bool hkbGetUpModifier::link(){
