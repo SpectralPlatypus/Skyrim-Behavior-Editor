@@ -448,7 +448,9 @@ void CacheWidget::addAnimation(){
                 auto index = animations->rowCount();
                 auto path = filename.section("/animations/", -1, -1).section("/", 0, -2);
                 auto name = filename.section("/", -1, -1).remove(".hkx");
-                (path != "") ? path = "/"+path : NULL;
+                if (path != "") {
+                    path = "/"+path;
+                }
                 bsData->animations.append(new AnimCacheAnimationInfo(projectData->getProjectAnimationsPath()+path, name, true));
                 animations->setRowCount(index + 1);
                 if (animations->item(index, 0)){

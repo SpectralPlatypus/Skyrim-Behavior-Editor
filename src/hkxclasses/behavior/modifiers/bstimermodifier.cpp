@@ -35,7 +35,9 @@ bool BSTimerModifier::readData(const HkxXmlReader &reader, long & index){
     QByteArray text;
     auto ref = reader.getNthAttributeValueAt(index - 1, 0);
     auto checkvalue = [&](bool value, const QString & fieldname){
-        (!value) ? LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref) : NULL;
+        if (!value) {
+            LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref);
+        }
     };
     for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
         text = reader.getNthAttributeValueAt(index, 0);
@@ -74,7 +76,9 @@ bool BSTimerModifier::write(HkxXMLWriter *writer){
     };
     auto writeref = [&](const HkxSharedPtr & shdptr, const QString & name){
         QString refString = "null";
-        (shdptr.data()) ? refString = shdptr->getReferenceString() : NULL;
+        if (shdptr.data()) {
+            refString = shdptr->getReferenceString();
+        }
         writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), refString);
     };
     auto writechild = [&](const HkxSharedPtr & shdptr, const QString & datafield){
@@ -116,12 +120,16 @@ bool BSTimerModifier::isEventReferenced(int eventindex) const{
 
 void BSTimerModifier::updateEventIndices(int eventindex){
     std::lock_guard <std::mutex> guard(mutex);
-    (alarmEvent.id > eventindex) ? alarmEvent.id--: NULL;
+    if (alarmEvent.id > eventindex) {
+        alarmEvent.id--;
+    }
 }
 
 void BSTimerModifier::mergeEventIndex(int oldindex, int newindex){
     std::lock_guard <std::mutex> guard(mutex);
-    (alarmEvent.id == oldindex) ? alarmEvent.id = newindex: NULL;
+    if (alarmEvent.id == oldindex) {
+        alarmEvent.id = newindex;
+    }
 }
 
 void BSTimerModifier::fixMergedEventIndices(BehaviorFile *dominantfile){
@@ -154,13 +162,17 @@ void BSTimerModifier::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     setReference(ref);
     setBindingReference(++ref);
-    (alarmEvent.payload.data()) ? alarmEvent.payload->updateReferences(++ref): NULL;
+    if (alarmEvent.payload.data()) {
+        alarmEvent.payload->updateReferences(++ref);
+    }
 }
 
 QVector<HkxObject *> BSTimerModifier::getChildrenOtherTypes() const{
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
-    (alarmEvent.payload.data()) ? list.append(alarmEvent.payload.data()): NULL;
+    if (alarmEvent.payload.data()) {
+        list.append(alarmEvent.payload.data());
+    }
     return list;
 }
 

@@ -269,7 +269,9 @@ void EventDrivenModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("activeByDefault", ACTIVE_BY_DEFAULT_ROW);
@@ -281,8 +283,12 @@ void EventDrivenModifierUI::variableRenamed(const QString & name, int index){
 
 void EventDrivenModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (index == bsData->getActivateEventId()) ? table->item(ACTIVATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
-        (index == bsData->getDeactivateEventId()) ? table->item(DEACTIVATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->getActivateEventId()) {
+            table->item(ACTIVATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
+        if (index == bsData->getDeactivateEventId()) {
+            table->item(DEACTIVATE_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("EventDrivenModifierUI::eventRenamed(): The data is nullptr!!");
     }

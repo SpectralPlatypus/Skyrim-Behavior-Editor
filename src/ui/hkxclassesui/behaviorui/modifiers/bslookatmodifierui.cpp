@@ -579,7 +579,9 @@ void BSLookAtModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("lookAtTarget", LOOK_AT_TARGET_ROW);
@@ -605,7 +607,9 @@ void BSLookAtModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
         index--;
         if (currentIndex() == MAIN_WIDGET){
-            (index == bsData->getId()) ? table->item(TARGET_OUT_OF_LIMIT_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+            if (index == bsData->getId()) {
+                table->item(TARGET_OUT_OF_LIMIT_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+            }
         }
     }else{
         LogFile::writeToLog("BSLookAtModifierUI::eventRenamed(): The data is nullptr!!");

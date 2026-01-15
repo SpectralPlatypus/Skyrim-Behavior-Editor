@@ -266,7 +266,9 @@ void LegUI::selectTableToView(bool viewproperties, const QString & path){
 
 void LegUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (index == bsData->id) ? table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->id) {
+            table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("LegUI::eventRenamed(): The data is nullptr!!");
     }
@@ -279,7 +281,9 @@ void LegUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("legs:"+QString::number(legIndex)+"/groundPosition", GROUND_POSITION_ROW);
             setname("legs:"+QString::number(legIndex)+"/verticalError", VERTICAL_ERROR_ROW);

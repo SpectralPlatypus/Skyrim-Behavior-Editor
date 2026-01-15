@@ -197,7 +197,9 @@ private:
     template<typename UIWidget, typename... TableTypes>
     void changeWidget(HkDataUI::DATA_TYPE_LOADED type, HkxObject *olddata, UIWidget *uiwidget, TableTypes*... tables)
     {
-        (loadedData != olddata) ? uiwidget->loadData(loadedData) : NULL;
+        if (loadedData != olddata) {
+            uiwidget->loadData(loadedData);
+        }
         stack->setCurrentIndex(type);
         uiwidget->connectToTables(tables...);
     }

@@ -232,7 +232,9 @@ void BSTimerModifierUI::selectTableToView(bool viewisProperty, const QString & p
 void BSTimerModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
         index--;
-        (index == bsData->getAlarmEventID()) ? table->item(ALARM_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->getAlarmEventID()) {
+            table->item(ALARM_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("BSTimerModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -245,7 +247,9 @@ void BSTimerModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("alarmTimeSeconds", ALARM_TIME_SECONDS_ROW);

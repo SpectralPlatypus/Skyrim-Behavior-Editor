@@ -300,7 +300,9 @@ void SenseHandleModifierUI::loadData(HkxObject *data){
             auto collinfo = bsData->getCollisionFilterInfo();
             if (collinfo < collisionLayers.size() && collinfo > -1){
                 auto index = collisionFilterInfo->findText(collisionLayers.at(collinfo));
-                (index < 0) ? LogFile::writeToLog("SenseHandleModifierUI::loadData(): Invalid collisionFilterInfo!!!") : NULL;
+                if (index < 0) {
+                    LogFile::writeToLog("SenseHandleModifierUI::loadData(): Invalid collisionFilterInfo!!!");
+                }
                 collisionFilterInfo->setCurrentIndex(index);
             }else{
                 LogFile::writeToLog("SenseHandleModifierUI::loadData(): Invalid collisionFilterInfo!!!");
@@ -314,7 +316,9 @@ void SenseHandleModifierUI::loadData(HkxObject *data){
             };
             loadbones(sensorRagdollBoneIndex, bsData->getSensorRagdollBoneIndex() + 1, static_cast<BehaviorFile *>(bsData->getParentFile())->getRagdollBoneNames());
             loadbones(sensorAnimationBoneIndex, bsData->getSensorAnimationBoneIndex() + 1, static_cast<BehaviorFile *>(bsData->getParentFile())->getRigBoneNames());
-            (!sensingMode->count()) ? sensingMode->insertItems(0, bsData->SensingMode) : NULL;
+            if (!sensingMode->count()) {
+                sensingMode->insertItems(0, bsData->SensingMode);
+            }
             sensingMode->setCurrentIndex(bsData->SensingMode.indexOf(bsData->getSensingMode()));
             extrapolateSensorPosition->setChecked(bsData->getExtrapolateSensorPosition());
             keepFirstSensedHandle->setChecked(bsData->getKeepFirstSensedHandle());
@@ -346,7 +350,9 @@ void SenseHandleModifierUI::loadData(HkxObject *data){
 void SenseHandleModifierUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_RANGE_ROW + bsData->getNumberOfRanges() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_RANGE_ROW + 1, j = 0; j < bsData->getNumberOfRanges(); i++, j++){
             UIHelper::setRowItems(i, "Range "+QString::number(j), "hkRange", "Remove", "Edit", "Double click to remove this range", "Double click to edit this range", table);
         }
@@ -576,7 +582,9 @@ void SenseHandleModifierUI::selectTableToView(bool viewproperties, const QString
 
 void SenseHandleModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (currentIndex() == CHILD_WIDGET) ? rangeUI->eventRenamed(name, index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            rangeUI->eventRenamed(name, index);
+        }
     }else{
         LogFile::writeToLog("SenseHandleModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -589,7 +597,9 @@ void SenseHandleModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("sensorLocalOffset", SENSOR_LOCAL_OFFSET_ROW);

@@ -195,7 +195,9 @@ void BSBoneSwitchGeneratorBoneDataUI::variableRenamed(const QString & name, int 
         auto bind = bsData->getVariableBindingSetData();
         if (bind){
             auto bindIndex = bind->getVariableIndexOfBinding("spBoneWeight");
-            (bindIndex == index) ? table->item(BONE_WEIGHTS_ROW, BINDING_COLUMN)->setText(name) : NULL;
+            if (bindIndex == index) {
+                table->item(BONE_WEIGHTS_ROW, BINDING_COLUMN)->setText(name);
+            }
         }
     }else{
         LogFile::writeToLog("BSBoneSwitchGeneratorBoneDataUI::variableRenamed(): The 'bsData' pointer is nullptr!!");

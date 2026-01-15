@@ -64,7 +64,9 @@ void BehaviorReferenceGeneratorUI::loadData(HkxObject *data){
             bsData = static_cast<hkbBehaviorReferenceGenerator *>(data);
             name->setText(bsData->getName());
             behaviors = static_cast<BehaviorFile *>(bsData->getParentFile())->getAllBehaviorFileNames();
-            (behaviorName->count() != behaviors.size()) ? behaviorName->clear(), behaviorName->insertItems(0, behaviors) : NULL;
+            if (behaviorName->count() != behaviors.size()) {
+                behaviorName->clear(), behaviorName->insertItems(0, behaviors);
+            }
             auto index = behaviorName->findText(bsData->getBehaviorName(), Qt::MatchFixedString);
             if (index >= 0){
                 behaviorName->setCurrentIndex(index);
@@ -108,7 +110,9 @@ void BehaviorReferenceGeneratorUI::setBehaviorName(const QString & text){
 
 void BehaviorReferenceGeneratorUI::behaviorRenamed(const QString &name, int index){
     if (name != ""){
-        (index == behaviorName->currentIndex()) ? bsData->setBehaviorName(name) : NULL;
+        if (index == behaviorName->currentIndex()) {
+            bsData->setBehaviorName(name);
+        }
         toggleSignals(false);
         behaviorName->removeItem(index);
         behaviorName->insertItem(--index, name);

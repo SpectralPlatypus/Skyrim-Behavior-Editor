@@ -274,7 +274,9 @@ void BehaviorVariablesUI::addVariableToTable(const QString & name, const QString
     table->setItem(row, 0, new QTableWidgetItem(name));
     table->setItem(row, 1, new QTableWidgetItem(type));
     table->setItem(row, 2, new QTableWidgetItem("Edit"));
-    (stackLyt->currentIndex() == VARIABLE_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+    if (stackLyt->currentIndex() == VARIABLE_WIDGET) {
+        stackLyt->setCurrentIndex(TABLE_WIDGET);
+    }
     table->setCurrentCell(row, 0);
     //emit variableAdded(name);
 }
@@ -349,8 +351,12 @@ void BehaviorVariablesUI::removeVariable(){
         auto message = static_cast<BehaviorFile *>(loadedData->getParentFile())->isVariableReferenced(index, false);
         if (message == ""){
             loadedData->removeVariable(index);
-            (index < table->rowCount()) ? table->removeRow(index) : NULL;
-            (stackLyt->currentIndex() == VARIABLE_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+            if (index < table->rowCount()) {
+                table->removeRow(index);
+            }
+            if (stackLyt->currentIndex() == VARIABLE_WIDGET) {
+                stackLyt->setCurrentIndex(TABLE_WIDGET);
+            }
             static_cast<BehaviorFile *>(loadedData->getParentFile())->updateVariableIndices(index, false);
             emit variableRemoved(index);
             table->setFocus();

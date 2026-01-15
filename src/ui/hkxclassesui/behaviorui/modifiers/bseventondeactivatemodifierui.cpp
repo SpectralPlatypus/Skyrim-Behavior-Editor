@@ -201,7 +201,9 @@ void BSEventOnDeactivateModifierUI::selectTableToView(bool viewisProperty, const
 void BSEventOnDeactivateModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
         index--;
-        (index == bsData->getEventID()) ? table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->getEventID()) {
+            table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("BSEventOnDeactivateModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -213,7 +215,9 @@ void BSEventOnDeactivateModifierUI::variableRenamed(const QString & name, int in
         auto bind = bsData->getVariableBindingSetData();
         if (bind){
             auto bindIndex = bind->getVariableIndexOfBinding("enable");
-            (bindIndex == index) ? table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name) : NULL;
+            if (bindIndex == index) {
+                table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name);
+            }
         }
     }else{
         LogFile::writeToLog("BSEventOnDeactivateModifierUI::variableRenamed(): The 'bsData' pointer is nullptr!!");
@@ -226,7 +230,9 @@ void BSEventOnDeactivateModifierUI::setBindingVariable(int index, const QString 
         auto row = table->currentRow();
         switch (row){
         case ENABLE_ROW:
-            (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? isProperty = true : NULL;
+            if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                isProperty = true;
+            }
             UIHelper::setBinding(index, row, BINDING_COLUMN, name, "enable", VARIABLE_TYPE_BOOL, isProperty, table, bsData);
         }
     }else{

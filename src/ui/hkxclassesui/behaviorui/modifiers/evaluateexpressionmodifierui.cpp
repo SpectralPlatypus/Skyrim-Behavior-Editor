@@ -138,7 +138,9 @@ void EvaluateExpressionModifierUI::loadData(HkxObject *data){
 void EvaluateExpressionModifierUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_EXPRESSION_ROW + bsData->getNumberOfExpressions() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         auto exps = bsData->getExpressions();
         if (exps){
             for (auto i = ADD_EXPRESSION_ROW + 1, j = 0; j < bsData->getNumberOfExpressions(); i++, j++){
@@ -188,7 +190,9 @@ void EvaluateExpressionModifierUI::viewSelectedChild(int row, int column){
             auto properties = false;
             if (column == BINDING_COLUMN){
                 if (row == ENABLE_ROW){
-                    (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? properties = true : NULL;
+                    if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                        properties = true;
+                    }
                     selectTableToView(properties, "enable");
                 }
             }
@@ -263,7 +267,9 @@ void EvaluateExpressionModifierUI::selectTableToView(bool viewproperties, const 
 
 void EvaluateExpressionModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (currentIndex() == CHILD_WIDGET) ? expressionUI->eventRenamed(name, index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            expressionUI->eventRenamed(name, index);
+        }
     }else{
         LogFile::writeToLog("EvaluateExpressionModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -276,7 +282,9 @@ void EvaluateExpressionModifierUI::variableRenamed(const QString & name, int ind
             auto bind = bsData->getVariableBindingSetData();
             if (bind){
                 auto bindIndex = bind->getVariableIndexOfBinding("enable");
-                (bindIndex == index) ? table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name);
+                }
             }
         }else{
             expressionUI->variableRenamed(name, index);

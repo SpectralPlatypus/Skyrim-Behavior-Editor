@@ -366,7 +366,9 @@ void TransitionsUI::checkInterval(){
             }else{
                 bsData->flags.remove(flag);
                 auto lastindex = bsData->flags.lastIndexOf("|");
-                (lastindex > bsData->flags.size() - 1) ? bsData->flags.remove(lastindex, lastindex + 1) : NULL;
+                if (lastindex > bsData->flags.size() - 1) {
+                    bsData->flags.remove(lastindex, lastindex + 1);
+                }
             }
         };
         check(bsData->usingTriggerInterval(), "FLAG_USE_TRIGGER_INTERVAL");
@@ -555,10 +557,14 @@ void TransitionsUI::toggleFlag(CheckBox *checkbox, const QString & flag, ComboBo
             }else if (!bsData->flags.contains(flag)){
                 bsData->flags.append("|"+flag);
             }
-            (combobox) ? combobox->setDisabled(false) : NULL;
+            if (combobox) {
+                combobox->setDisabled(false);
+            }
         }else{
             (bsData->flags == flag) ? bsData->flags = "0" : bsData->flags.remove(flag), bsData->flags.replace("||", "|");
-            (combobox) ? combobox->setDisabled(true) : NULL;
+            if (combobox) {
+                combobox->setDisabled(true);
+            }
         }
         (parentObj) ? parentObj->setIsFileChanged(true) : LogFile::writeToLog("TransitionsUI::toggleFlag(): The parentObj is nullptr!!");
     }else{
@@ -694,7 +700,9 @@ void TransitionsUI::transitionEffectRenamed(const QString &name){
 void TransitionsUI::eventRenamed(const QString &name, int index){
     if (bsData){
         auto set = [&](int eventid, int row){
-            (index == eventid) ? table->item(row, VALUE_COLUMN)->setText(name) : NULL;
+            if (index == eventid) {
+                table->item(row, VALUE_COLUMN)->setText(name);
+            }
         };
         set(bsData->triggerInterval.enterEventId, TRIGGER_INTERVAL_ENTER_EVENT_ID_ROW);
         set(bsData->triggerInterval.exitEventId, TRIGGER_INTERVAL_EXIT_EVENT_ID_ROW);

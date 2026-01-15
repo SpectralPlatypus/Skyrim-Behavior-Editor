@@ -409,7 +409,9 @@ void BSEventOnFalseToTrueModifierUI::eventRenamed(const QString & name, int inde
     if (bsData){
         index--;
         auto rename = [&](int row, int id){
-            (index == id) ? table->item(row, VALUE_COLUMN)->setText(name) : NULL;
+            if (index == id) {
+                table->item(row, VALUE_COLUMN)->setText(name);
+            }
         };
         rename(bsData->getEventToSend1ID(), EVENT_TO_SEND_1_ID_ROW);
         rename(bsData->getEventToSend2ID(), EVENT_TO_SEND_2_ID_ROW);
@@ -426,7 +428,9 @@ void BSEventOnFalseToTrueModifierUI::variableRenamed(const QString & name, int i
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("bEnableEvent1", ENABLE_EVENT_1_ROW);

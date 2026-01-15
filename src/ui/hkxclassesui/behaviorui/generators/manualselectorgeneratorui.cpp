@@ -136,7 +136,9 @@ void ManualSelectorGeneratorUI::loadData(HkxObject *data){
 void ManualSelectorGeneratorUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_GENERATOR_ROW + bsData->generators.size() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_GENERATOR_ROW + 1, j = 0; j < bsData->generators.size(); i++, j++){
             auto child = static_cast<hkbGenerator *>(bsData->generators.at(j).data());  //TO DO..
             if (child){
@@ -193,7 +195,9 @@ void ManualSelectorGeneratorUI::variableRenamed(const QString &name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("selectedGeneratorIndex", SELECTED_GENERATOR_INDEX_ROW);
                 setname("currentGeneratorIndex", CURRENT_GENERATOR_INDEX_ROW);

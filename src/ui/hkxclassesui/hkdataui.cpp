@@ -927,14 +927,18 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
         auto icondata = icon->getItemData();
         if (icondata){
             auto oldData = loadedData;
-            (oldData) ? oldData->evaluateDataValidity() : NULL;
+            if (oldData) {
+                oldData->evaluateDataValidity();
+            }
             loadedData = icondata;
             switch (icondata->getSignature()){
             case HkxSignature::HKB_CLIP_GENERATOR:
                 changeWidget(DATA_TYPE_LOADED::CLIP_GENERATOR, oldData, clipGenUI, variablesTable, characterPropertiesTable, eventsTable, animationsTable); break;
             case HkxSignature::HKB_STATE_MACHINE_STATE_INFO:
             {
-                (loadedData != oldData) ? stateUI->loadData(loadedData, static_cast<hkbStateMachineStateInfo *>(loadedData)->getStateId()) : NULL;
+                if (loadedData != oldData) {
+                    stateUI->loadData(loadedData, static_cast<hkbStateMachineStateInfo *>(loadedData)->getStateId());
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::STATE);
                 stateUI->connectToTables(generatorsTable, variablesTable, characterPropertiesTable, eventsTable, transitionEffectsTable);
                 break;
@@ -947,7 +951,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
                 changeWidget(DATA_TYPE_LOADED::MODIFIER_GENERATOR, oldData, modGenUI, modifiersTable, generatorsTable); break;
             case HkxSignature::HKB_BLENDER_GENERATOR_CHILD:
             {
-                (loadedData != oldData) ? blenderGeneratorChildUI->loadData(loadedData, static_cast<hkbBlenderGeneratorChild *>(loadedData)->getThisIndex()) : NULL;
+                if (loadedData != oldData) {
+                    blenderGeneratorChildUI->loadData(loadedData, static_cast<hkbBlenderGeneratorChild *>(loadedData)->getThisIndex());
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::BLENDER_GENERATOR_CHILD);
                 blenderGeneratorChildUI->connectToTables(generatorsTable, variablesTable, characterPropertiesTable);
                 break;
@@ -956,7 +962,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
                 changeWidget(DATA_TYPE_LOADED::BLENDER_GENERATOR, oldData, blenderGeneratorUI, generatorsTable, variablesTable, characterPropertiesTable); break;
             case HkxSignature::BS_BONE_SWITCH_GENERATOR_BONE_DATA:
             {
-                (loadedData != oldData) ? boneSwitchChildUI->loadData(loadedData, static_cast<BSBoneSwitchGeneratorBoneData *>(loadedData)->getThisIndex()) : NULL;
+                if (loadedData != oldData) {
+                    boneSwitchChildUI->loadData(loadedData, static_cast<BSBoneSwitchGeneratorBoneData *>(loadedData)->getThisIndex());
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::BS_BONE_SWITCH_GENERATOR_CHILD);
                 boneSwitchChildUI->connectToTables(generatorsTable, variablesTable, characterPropertiesTable);
                 break;
@@ -965,7 +973,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
                 changeWidget(DATA_TYPE_LOADED::BS_BONE_SWITCH_GENERATOR, oldData, boneSwitchUI, generatorsTable, variablesTable, characterPropertiesTable); break;
             case HkxSignature::HKB_BEHAVIOR_REFERENCE_GENERATOR:
             {
-                (loadedData != oldData) ? behaviorRefGenUI->loadData(loadedData) : NULL;
+                if (loadedData != oldData) {
+                    behaviorRefGenUI->loadData(loadedData);
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::BEHAVIOR_REFERENCE_GENERATOR);
                 break;
             }
@@ -1065,7 +1075,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
                 changeWidget(DATA_TYPE_LOADED::POWERED_RAGDOLL_CONTROLS_MODIFIER, oldData, poweredRagdollControlsModUI, variablesTable, characterPropertiesTable, ragdollBonesTable); break;
             case HkxSignature::BGS_GAMEBYRO_SEQUENCE_GENERATOR:
             {
-                (loadedData != oldData) ? gamebryoSequenceGenUI->loadData(loadedData) : NULL;
+                if (loadedData != oldData) {
+                    gamebryoSequenceGenUI->loadData(loadedData);
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::BGS_GAMEBYRO_SEQUENCE_GENERATOR);
                 //gamebryoSequenceGenUI->connectToTables(variablesTable, characterPropertiesTable);
                 break;
@@ -1082,7 +1094,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
                 changeWidget(DATA_TYPE_LOADED::HAND_IK_CONTROLS_MODIFIER, oldData, handIKControlsModUI, variablesTable, characterPropertiesTable); break;
             case HkxSignature::HKB_BEHAVIOR_GRAPH:
             {
-                (loadedData != oldData) ? behaviorGraphUI->loadData(loadedData) : NULL;
+                if (loadedData != oldData) {
+                    behaviorGraphUI->loadData(loadedData);
+                }
                 stack->setCurrentIndex(DATA_TYPE_LOADED::BEHAVIOR_GRAPH);
                 behaviorGraphUI->connectToTables(generatorsTable);
                 break;
@@ -1098,7 +1112,9 @@ void HkDataUI::changeCurrentDataWidget(TreeGraphicsItem * icon){
 
 BehaviorGraphView *HkDataUI::loadBehaviorView(BehaviorGraphView *view){
     auto oldView = behaviorView;
-    (parentWidget()) ? setMinimumSize(parentWidget()->size()*0.99) : NULL;
+    if (parentWidget()) {
+        setMinimumSize(parentWidget()->size()*0.99);
+    }
     behaviorView = view;
     iStateTagGenUI->setBehaviorView(view);
     modGenUI->setBehaviorView(view);

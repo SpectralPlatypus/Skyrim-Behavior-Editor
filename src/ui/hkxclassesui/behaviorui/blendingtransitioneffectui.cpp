@@ -144,7 +144,9 @@ void BlendingTransitionEffectUI::loadData(HkxObject *data){
         bsData = static_cast<hkbBlendingTransitionEffect *>(data);
         name->setText(bsData->getName());
         auto loadmethods = [&](ComboBox *combobox, const QString & method, const QStringList & methodlist){
-            (!combobox->count()) ? combobox->insertItems(0, methodlist) : NULL;
+            if (!combobox->count()) {
+                combobox->insertItems(0, methodlist);
+            }
             combobox->setCurrentIndex(methodlist.indexOf(method));
         };
         loadmethods(selfTransitionMode, bsData->getSelfTransitionMode(), bsData->SelfTransitionMode);
@@ -327,7 +329,9 @@ void BlendingTransitionEffectUI::variableRenamed(const QString &name, int index)
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("duration", DURATION_ROW);
             setname("toGeneratorStartTimeFraction", TO_GENERATOR_START_TIME_FRACTION_ROW);

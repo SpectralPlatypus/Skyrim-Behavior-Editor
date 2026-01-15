@@ -56,7 +56,9 @@ void HandIkDriverInfoUI::loadData(HkxObject *data){
     if (data){
         if (data->getSignature() == HKB_HAND_IK_DRIVER_INFO){
             bsData = static_cast<hkbHandIkDriverInfo *>(data);
-            (fadeInOutCurve->count() <= 0) ? fadeInOutCurve->addItems(bsData->BlendCurve) : NULL;
+            if (fadeInOutCurve->count() <= 0) {
+                fadeInOutCurve->addItems(bsData->BlendCurve);
+            }
             fadeInOutCurve->setCurrentIndex(bsData->BlendCurve.indexOf(bsData->getFadeInOutCurve()));
             for (auto i = 0, k = 0; i < bsData->hands.size(); i++){
                 k = i + BASE_NUMBER_OF_ROWS;

@@ -271,7 +271,9 @@ void ClipGeneratorUI::loadData(HkxObject *data){
             }else{
                 LogFile::writeToLog(QString("ClipGeneratorUI::loadData(): The flags string is invalid!!!\nString: "+bsData->flags).toLocal8Bit().data());
             }
-            (!mode->count()) ? mode->insertItems(0, bsData->PlaybackMode) : NULL;
+            if (!mode->count()) {
+                mode->insertItems(0, bsData->PlaybackMode);
+            }
             mode->setCurrentIndex(bsData->PlaybackMode.indexOf(bsData->mode));
             auto varBind = bsData->getVariableBindingSetData();
             UIHelper::loadBinding(CROP_START_AMOUNT_LOCAL_TIME_ROW, BINDING_COLUMN, varBind, "cropStartAmountLocalTime", table, bsData);
@@ -294,7 +296,9 @@ void ClipGeneratorUI::loadData(HkxObject *data){
 void ClipGeneratorUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_TRIGGER_ROW + bsData->getNumberOfTriggers() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         auto triggers = static_cast<hkbClipTriggerArray *>(bsData->triggers.data());
         if (triggers){
             for (auto i = ADD_TRIGGER_ROW + 1, j = 0; j < bsData->getNumberOfTriggers(); i++, j++){
@@ -532,7 +536,9 @@ void ClipGeneratorUI::selectTableToView(bool viewproperties, const QString & pat
 
 void ClipGeneratorUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (currentIndex() == CHILD_WIDGET) ? triggerUI->eventRenamed(name, index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            triggerUI->eventRenamed(name, index);
+        }
     }else{
         LogFile::writeToLog("ClipGeneratorUI::eventRenamed(): The data is nullptr!!");
     }
@@ -546,7 +552,9 @@ void ClipGeneratorUI::variableRenamed(const QString & name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("cropStartAmountLocalTime", CROP_START_AMOUNT_LOCAL_TIME_ROW);
                 setname("cropEndAmountLocalTime", CROP_END_AMOUNT_LOCAL_TIME_ROW);

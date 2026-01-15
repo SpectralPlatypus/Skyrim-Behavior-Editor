@@ -147,7 +147,9 @@ void EventsUI::addEvent(){
         table->setRowCount(row + 1);
         table->setItem(row, 0, new QTableWidgetItem(event));
         table->setItem(row, 1, new QTableWidgetItem("Edit"));
-        (stackLyt->currentIndex() == EVENT_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+        if (stackLyt->currentIndex() == EVENT_WIDGET) {
+            stackLyt->setCurrentIndex(TABLE_WIDGET);
+        }
         table->setCurrentCell(row, 0);
         emit eventAdded(event);
     }else{
@@ -162,8 +164,12 @@ void EventsUI::removeEvent(){
         auto message = static_cast<BehaviorFile *>(loadedData->getParentFile())->isEventReferenced(index);
         if (message == ""){
             loadedData->removeEvent(index);
-            (index < table->rowCount()) ? table->removeRow(index) : NULL;
-            (stackLyt->currentIndex() == EVENT_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+            if (index < table->rowCount()) {
+                table->removeRow(index);
+            }
+            if (stackLyt->currentIndex() == EVENT_WIDGET) {
+                stackLyt->setCurrentIndex(TABLE_WIDGET);
+            }
             loadedData->setIsFileChanged(true);
             static_cast<BehaviorFile *>(loadedData->getParentFile())->updateEventIndices(index);
             emit eventRemoved(index);

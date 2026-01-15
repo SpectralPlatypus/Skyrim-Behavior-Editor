@@ -189,7 +189,9 @@ void ClipTriggerUI::setRelativeToEndOfClip(){
 
 void ClipTriggerUI::setAcyclic(){
     if (bsData && file){
-        (bsData->acyclic != acyclic->isChecked()) ? bsData->acyclic = acyclic->isChecked(), file->setIsChanged(true) : NULL;
+        if (bsData->acyclic != acyclic->isChecked()) {
+            bsData->acyclic = acyclic->isChecked(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("ClipTriggerUI::setAcyclic(): Behavior file or data is null!!!");
     }
@@ -197,7 +199,9 @@ void ClipTriggerUI::setAcyclic(){
 
 void ClipTriggerUI::setIsAnnotation(){
     if (bsData && file){
-        (bsData->isAnnotation != isAnnotation->isChecked()) ? bsData->isAnnotation = isAnnotation->isChecked(), file->setIsChanged(true) : NULL;
+        if (bsData->isAnnotation != isAnnotation->isChecked()) {
+            bsData->isAnnotation = isAnnotation->isChecked(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("ClipTriggerUI::setIsAnnotation(): Behavior file or data is null!!!");
     }

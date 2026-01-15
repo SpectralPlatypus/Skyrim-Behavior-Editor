@@ -91,7 +91,9 @@ void ExpressionDataArrayUI::loadData(BehaviorFile *parentFile, hkbExpressionData
         varName = file->getEventNameAt(bsData->assignmentEventIndex);
         item = table->item(ASSIGNMENT_EVENT_INDEX_ROW, VALUE_COLUMN);
         (varName != "") ? item->setText(varName) : item->setText("NONE");
-        (!eventMode->count()) ? eventMode->insertItems(0, EventModeUI) : NULL;
+        if (!eventMode->count()) {
+            eventMode->insertItems(0, EventModeUI);
+        }
         eventMode->setCurrentIndex(EventModeUI.indexOf(bsData->eventMode));
     }else{
         LogFile::writeToLog("ExpressionDataArrayUI::loadData(): Behavior file or data is null!!!");
@@ -101,7 +103,9 @@ void ExpressionDataArrayUI::loadData(BehaviorFile *parentFile, hkbExpressionData
 
 void ExpressionDataArrayUI::setExpression(){
     if (bsData && file){
-        (bsData->expression != expression->text()) ? bsData->expression = expression->text(), file->setIsChanged(true) : NULL;
+        if (bsData->expression != expression->text()) {
+            bsData->expression = expression->text(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("ExpressionDataArrayUI::setExpression(): Behavior file or data is null!!!");
     }

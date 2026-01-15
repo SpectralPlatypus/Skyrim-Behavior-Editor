@@ -172,7 +172,9 @@ void BSBoneUI::setIndex(int index){
 
 void BSBoneUI::setFwdAxisLS(){
     if (bsData && file){
-        (bsData->fwdAxisLS != fwdAxisLS->value()) ? bsData->fwdAxisLS = fwdAxisLS->value(), file->setIsChanged(true) :  NULL;
+        if (bsData->fwdAxisLS != fwdAxisLS->value()) {
+            bsData->fwdAxisLS = fwdAxisLS->value(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("BSBoneUI::setfwdAxisLS(): Behavior file or  data is null!!!");
     }
@@ -180,7 +182,9 @@ void BSBoneUI::setFwdAxisLS(){
 
 void BSBoneUI::setLimitAngleDegrees(){
     if (bsData && file){
-        (bsData->limitAngleDegrees != limitAngleDegrees->value()) ? bsData->limitAngleDegrees = limitAngleDegrees->value(), file->setIsChanged(true) : NULL;
+        if (bsData->limitAngleDegrees != limitAngleDegrees->value()) {
+            bsData->limitAngleDegrees = limitAngleDegrees->value(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("BSBoneUI::setLimitAngleDegrees(): Behavior file or  data is null!!!");
     }
@@ -188,7 +192,9 @@ void BSBoneUI::setLimitAngleDegrees(){
 
 void BSBoneUI::setOnGain(){
     if (bsData && file){
-        (bsData->onGain != onGain->value()) ? bsData->onGain = onGain->value(), file->setIsChanged(true) : NULL;
+        if (bsData->onGain != onGain->value()) {
+            bsData->onGain = onGain->value(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("BSBoneUI::setOnGain(): Behavior file or  data is null!!!");
     }
@@ -196,7 +202,9 @@ void BSBoneUI::setOnGain(){
 
 void BSBoneUI::setOffGain(){
     if (bsData && file){
-        (bsData->offGain != offGain->value()) ? bsData->offGain = offGain->value(), file->setIsChanged(true) : NULL;
+        if (bsData->offGain != offGain->value()) {
+            bsData->offGain = offGain->value(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("BSBoneUI::setOffGain(): Behavior file or  data is null!!!");
     }
@@ -204,7 +212,9 @@ void BSBoneUI::setOffGain(){
 
 void BSBoneUI::setEnabled(){
     if (bsData && file){
-        (bsData->enabled != enabled->isChecked()) ? bsData->enabled = enabled->isChecked(), file->setIsChanged(true) : NULL;
+        if (bsData->enabled != enabled->isChecked()) {
+            bsData->enabled = enabled->isChecked(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("BSBoneUI::setEnabled(): Behavior file or  data is null!!!");
     }
@@ -265,7 +275,9 @@ void BSBoneUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname(parameterName+QString::number(bsBoneIndex)+"/index", INDEX_ROW);
             setname(parameterName+QString::number(bsBoneIndex)+"/fwdAxisLS", FWD_AXIS_LS_ROW);

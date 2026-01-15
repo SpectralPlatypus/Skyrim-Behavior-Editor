@@ -248,7 +248,9 @@ void BSDistTriggerModifierUI::selectTableToView(bool viewisProperty, const QStri
 void BSDistTriggerModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
         index--;
-        (index == bsData->getTriggerEventID()) ? table->item(TRIGGER_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->getTriggerEventID()) {
+            table->item(TRIGGER_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("BSDistTriggerModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -261,7 +263,9 @@ void BSDistTriggerModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("targetPosition", TARGET_POSITION_ROW);

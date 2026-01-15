@@ -38,7 +38,9 @@ void hkbHandIkControlsModifier::addHand(hkbHandIkControlsModifier::hkHand hand){
 
 void hkbHandIkControlsModifier::removeHand(int index){
     std::lock_guard <std::mutex> guard(mutex);
-    (index >= 0 && index < hands.size()) ? hands.removeAt(index), setIsFileChanged(true) : NULL;
+    if (index >= 0 && index < hands.size()) {
+        hands.removeAt(index), setIsFileChanged(true);
+    }
 }
 
 bool hkbHandIkControlsModifier::readData(const HkxXmlReader &reader, long & index){
@@ -48,7 +50,9 @@ bool hkbHandIkControlsModifier::readData(const HkxXmlReader &reader, long & inde
     QByteArray text;
     auto ref = reader.getNthAttributeValueAt(index - 1, 0);
     auto checkvalue = [&](bool value, const QString & fieldname){
-        (!value) ? LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref) : NULL;
+        if (!value) {
+            LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref);
+        }
     };
     for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
         text = reader.getNthAttributeValueAt(index, 0);
@@ -66,7 +70,9 @@ bool hkbHandIkControlsModifier::readData(const HkxXmlReader &reader, long & inde
         }else if (text == "hands"){
             numhands = reader.getNthAttributeValueAt(index, 1).toInt(&ok);
             checkvalue(ok, "hands");
-            (numhands > 0) ? index++ : NULL;
+            if (numhands > 0) {
+                index++;
+            }
             for (auto j = 0; j < numhands; j++, index++){
                 hands.append(hkHand());
                 for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
@@ -116,7 +122,9 @@ bool hkbHandIkControlsModifier::readData(const HkxXmlReader &reader, long & inde
                     }
                 }
             }
-            (numhands > 0) ? index-- : NULL;
+            if (numhands > 0) {
+                index--;
+            }
         }
     }
     index--;
@@ -130,7 +138,9 @@ bool hkbHandIkControlsModifier::write(HkxXMLWriter *writer){
     };
     auto writeref = [&](const HkxSharedPtr & shdptr, const QString & name){
         QString refString = "null";
-        (shdptr.data()) ? refString = shdptr->getReferenceString() : NULL;
+        if (shdptr.data()) {
+            refString = shdptr->getReferenceString();
+        }
         writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), refString);
     };
     auto writechild = [&](const HkxSharedPtr & shdptr, const QString & datafield){

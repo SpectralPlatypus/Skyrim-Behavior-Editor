@@ -151,7 +151,9 @@ void TwistModifierUI::loadData(HkxObject *data){
             loadbones(startBoneIndex, bsData->getStartBoneIndex() + 1);
             loadbones(endBoneIndex, bsData->getEndBoneIndex() + 1);
             auto loadmethods = [&](ComboBox *combobox, const QString & method, const QStringList & methodlist){
-                (!combobox->count()) ? combobox->insertItems(0, methodlist) : NULL;
+                if (!combobox->count()) {
+                    combobox->insertItems(0, methodlist);
+                }
                 combobox->setCurrentIndex(methodlist.indexOf(method));
             };
             loadmethods(setAngleMethod, bsData->getSetAngleMethod(), bsData->SetAngleMethod);
@@ -270,7 +272,9 @@ void TwistModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("axisOfRotation", AXIS_OF_ROTATION_ROW);

@@ -160,7 +160,9 @@ void ModifierListUI::loadData(HkxObject *data){
 void ModifierListUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_MODIFIER_ROW + bsData->modifiers.size() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_MODIFIER_ROW + 1, j = 0; j < bsData->modifiers.size(); i++, j++){
             auto child = bsData->getModifierAt(j);
             if (child){
@@ -195,7 +197,9 @@ void ModifierListUI::setBindingVariable(int index, const QString & name){
         auto isProperty = false;
         auto row = table->currentRow();
         if (row == ENABLE_ROW){
-            (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? isProperty = true : NULL;
+            if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                isProperty = true;
+            }
             UIHelper::setBinding(index, row, BINDING_COLUMN, name, "enable", VARIABLE_TYPE_BOOL, isProperty, table, bsData);
         }
     }else{
@@ -209,7 +213,9 @@ void ModifierListUI::variableRenamed(const QString &name, int index){
         auto bind = bsData->getVariableBindingSetData();
         if (bind){
             auto bindIndex = bind->getVariableIndexOfBinding("enable");
-            (bindIndex == index) ? table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name) : NULL;
+            if (bindIndex == index) {
+                table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name);
+            }
         }
     }else{
         LogFile::writeToLog("ModifierListUI::variableRenamed(): The data is nullptr!!");
@@ -276,7 +282,9 @@ void ModifierListUI::viewSelectedChild(int row, int column){
         if (row < ADD_MODIFIER_ROW && row >= 0){
             auto properties = false;
             if (column == BINDING_COLUMN && row == ENABLE_ROW){
-                (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? properties = true : NULL;
+                if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                    properties = true;
+                }
                 selectTableToView(properties, "enable");
             }
         }else if (row == ADD_MODIFIER_ROW && column == NAME_COLUMN){

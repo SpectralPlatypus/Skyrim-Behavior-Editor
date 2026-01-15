@@ -35,7 +35,9 @@ bool BSPassByTargetTriggerModifier::readData(const HkxXmlReader &reader, long & 
     QByteArray text;
     auto ref = reader.getNthAttributeValueAt(index - 1, 0);
     auto checkvalue = [&](bool value, const QString & fieldname){
-        (!value) ? LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref) : NULL;
+        if (!value) {
+            LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref);
+        }
     };
     for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
         text = reader.getNthAttributeValueAt(index, 0);
@@ -77,7 +79,9 @@ bool BSPassByTargetTriggerModifier::write(HkxXMLWriter *writer){
     };
     auto writeref = [&](const HkxSharedPtr & shdptr, const QString & name){
         QString refString = "null";
-        (shdptr.data()) ? refString = shdptr->getReferenceString() : NULL;
+        if (shdptr.data()) {
+            refString = shdptr->getReferenceString();
+        }
         writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), refString);
     };
     auto writechild = [&](const HkxSharedPtr & shdptr, const QString & datafield){
@@ -120,12 +124,16 @@ bool BSPassByTargetTriggerModifier::isEventReferenced(int eventindex) const{
 
 void BSPassByTargetTriggerModifier::updateEventIndices(int eventindex){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggerEvent.id > eventindex) ? triggerEvent.id--: NULL;
+    if (triggerEvent.id > eventindex) {
+        triggerEvent.id--;
+    }
 }
 
 void BSPassByTargetTriggerModifier::mergeEventIndex(int oldindex, int newindex){
     std::lock_guard <std::mutex> guard(mutex);
-    (triggerEvent.id == oldindex) ? triggerEvent.id = newindex: NULL;
+    if (triggerEvent.id == oldindex) {
+        triggerEvent.id = newindex;
+    }
 }
 
 void BSPassByTargetTriggerModifier::fixMergedEventIndices(BehaviorFile *dominantfile){
@@ -158,13 +166,17 @@ void BSPassByTargetTriggerModifier::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     setReference(ref);
     setBindingReference(++ref);
-    (triggerEvent.payload.data()) ? triggerEvent.payload->updateReferences(++ref): NULL;
+    if (triggerEvent.payload.data()) {
+        triggerEvent.payload->updateReferences(++ref);
+    }
 }
 
 QVector<HkxObject *> BSPassByTargetTriggerModifier::getChildrenOtherTypes() const{
     std::lock_guard <std::mutex> guard(mutex);
     QVector<HkxObject *> list;
-    (triggerEvent.payload.data()) ? list.append(triggerEvent.payload.data()): NULL;
+    if (triggerEvent.payload.data()) {
+        list.append(triggerEvent.payload.data());
+    }
     return list;
 }
 

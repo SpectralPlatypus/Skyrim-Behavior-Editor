@@ -178,7 +178,9 @@ void CharacterPropertiesUI::renameSelectedVariable(int type){
 void CharacterPropertiesUI::setVariableName(QTableWidgetItem *item){
     if (item && item->text() != "" && loadedData){
         auto column = table->column(item);
-        (!column) ? loadedData->setCharacterPropertyNameAt(table->row(item), item->text()) : NULL;
+        if (!column) {
+            loadedData->setCharacterPropertyNameAt(table->row(item), item->text());
+        }
     }else{
         LogFile::writeToLog("CharacterPropertiesUI::setVariableName(): error!!");
     }
@@ -284,7 +286,9 @@ void CharacterPropertiesUI::addVariableToTable(const QString & name, const QStri
     table->setItem(row, 0, new QTableWidgetItem(name));
     table->setItem(row, 1, new QTableWidgetItem(type));
     table->setItem(row, 2, new QTableWidgetItem("Edit"));
-    (stackLyt->currentIndex() == VARIABLE_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+    if (stackLyt->currentIndex() == VARIABLE_WIDGET) {
+        stackLyt->setCurrentIndex(TABLE_WIDGET);
+    }
     table->setCurrentCell(row, 0);
     //emit variableAdded(name);
 }
@@ -356,8 +360,12 @@ void CharacterPropertiesUI::removeVariable()
         if (message.isEmpty())
         {
             loadedData->removeVariable(index);
-            (index < table->rowCount()) ? table->removeRow(index) : NULL;
-            (stackLyt->currentIndex() == VARIABLE_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+            if (index < table->rowCount()) {
+                table->removeRow(index);
+            }
+            if (stackLyt->currentIndex() == VARIABLE_WIDGET) {
+                stackLyt->setCurrentIndex(TABLE_WIDGET);
+            }
             for (auto behaviorFile : characterFile->getProjectFile()->getBehaviorFiles())
             {
                 behaviorFile->updateVariableIndices(index, true);

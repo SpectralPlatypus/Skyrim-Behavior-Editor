@@ -139,7 +139,9 @@ void KeyframeBonesModifierUI::loadData(HkxObject *data){
 void KeyframeBonesModifierUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_KEYFRAME_INFO_ROW + bsData->getNumberOfKeyframeInfos() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_KEYFRAME_INFO_ROW + 1, j = 0; j < bsData->getNumberOfKeyframeInfos(); i++, j++){
             UIHelper::setRowItems(i, "KeyframeInfo "+QString::number(j), "hkKeyframeInfo", "Remove", "Edit", "Double click to remove this KeyframeInfo", "Double click to edit this KeyframeInfo", table);
         }
@@ -153,7 +155,9 @@ void KeyframeBonesModifierUI::setBindingVariable(int index, const QString & name
         auto isProperty = false;
         auto row = table->currentRow();
         if (row == ENABLE_ROW){
-            (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? isProperty = true : NULL;
+            if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                isProperty = true;
+            }
             UIHelper::setBinding(index, row, BINDING_COLUMN, name, "enable", VARIABLE_TYPE_BOOL, isProperty, table, bsData);
         }
     }else{
@@ -208,7 +212,9 @@ void KeyframeBonesModifierUI::viewSelectedChild(int row, int column){
             auto properties = false;
             if (column == BINDING_COLUMN){
                 if (row == ENABLE_ROW){
-                    (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? properties = true : NULL;
+                    if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                        properties = true;
+                    }
                     selectTableToView(properties, "enable");
                 }
             }
@@ -288,7 +294,9 @@ void KeyframeBonesModifierUI::variableRenamed(const QString & name, int index){
             auto bind = bsData->getVariableBindingSetData();
             if (bind){
                 auto bindIndex = bind->getVariableIndexOfBinding("enable");
-                (bindIndex == index) ? table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name);
+                }
             }
         }else{
             keyframeInfoUI->variableRenamed(name, index);

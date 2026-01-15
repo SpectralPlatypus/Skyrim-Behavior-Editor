@@ -343,7 +343,9 @@ void StateUI::removeEvent(HkxSharedPtr & eventarray, int index){  //Make sure bs
     if (events){
         if (index < events->getNumOfEvents() && index >= 0){
             events->removeEvent(index);
-            (!events->getNumOfEvents()) ? eventarray = HkxSharedPtr() : NULL;
+            if (!events->getNumOfEvents()) {
+                eventarray = HkxSharedPtr();
+            }
             loadDynamicTableRows();
         }else{
             WARNING_MESSAGE("StateUI::removeEvent(): Invalid row index selected!!");
@@ -389,7 +391,9 @@ void StateUI::removeTransition(int index){
         if (trans){
             if (index < trans->getNumTransitions() && index >= 0){
                 trans->removeTransition(index);
-                (!trans->getNumTransitions()) ? bsData->transitions = HkxSharedPtr() : NULL;
+                if (!trans->getNumTransitions()) {
+                    bsData->transitions = HkxSharedPtr();
+                }
                 loadDynamicTableRows();
             }else{
                 WARNING_MESSAGE("StateUI::removeTransition(): Invalid row index selected!!");
@@ -438,9 +442,13 @@ void StateUI::viewSelectedChild(int row, int column){
             viewevent(exitEvents, exitEventsButtonRow, true);
         }else if (row > exitEventsButtonRow && row < table->rowCount()){
             auto enterEvents = static_cast<hkbStateMachineEventPropertyArray *>(bsData->enterNotifyEvents.data());
-            (enterEvents) ? count = enterEvents->events.size() : NULL;
+            if (enterEvents) {
+                count = enterEvents->events.size();
+            }
             auto exitEvents = static_cast<hkbStateMachineEventPropertyArray *>(bsData->exitNotifyEvents.data());
-            (exitEvents) ? count = count + exitEvents->events.size() : NULL;
+            if (exitEvents) {
+                count = count + exitEvents->events.size();
+            }
             result = row - BASE_NUMBER_OF_ROWS - count;
             auto trans = static_cast<hkbStateMachineTransitionInfoArray *>(bsData->transitions.data());
             if (trans && result < trans->getNumTransitions() && result >= 0){

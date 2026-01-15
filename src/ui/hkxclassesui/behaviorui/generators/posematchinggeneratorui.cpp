@@ -354,7 +354,9 @@ void PoseMatchingGeneratorUI::loadData(HkxObject *data){
             fillbonelists(otherBoneIndex, bsData->getOtherBoneIndex() + 1);
             fillbonelists(anotherBoneIndex, bsData->getAnotherBoneIndex() + 1);
             fillbonelists(pelvisIndex, bsData->getPelvisIndex() + 1);
-            (!mode->count()) ? mode->insertItems(0, bsData->Mode) : NULL;
+            if (!mode->count()) {
+                mode->insertItems(0, bsData->Mode);
+            }
             mode->setCurrentIndex(bsData->Mode.indexOf(bsData->mode));
             auto varBind = bsData->getVariableBindingSetData();
             UIHelper::loadBinding(REFERENCE_POSE_WEIGHT_THRESHOLD_ROW, BINDING_COLUMN, varBind, "referencePoseWeightThreshold", table, bsData);
@@ -385,7 +387,9 @@ void PoseMatchingGeneratorUI::loadData(HkxObject *data){
 void PoseMatchingGeneratorUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_CHILD_ROW + bsData->getNumberOfChildren() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_CHILD_ROW + 1, j = 0; j < bsData->getNumberOfChildren(); i++, j++){
             auto child = static_cast<hkbBlenderGeneratorChild *>(bsData->children.at(j).data());
             if (child){
@@ -707,14 +711,20 @@ void PoseMatchingGeneratorUI::viewSelectedChild(int row, int column){
 }
 
 void PoseMatchingGeneratorUI::returnToWidget(bool reloadData){
-    (reloadData) ? loadDynamicTableRows() : NULL;
+    if (reloadData) {
+        loadDynamicTableRows();
+    }
     setCurrentIndex(MAIN_WIDGET);
 }
 
 void PoseMatchingGeneratorUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (index == bsData->startPlayingEventId) ? table->item(START_PLAYING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
-        (index == bsData->startMatchingEventId) ? table->item(START_MATCHING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->startPlayingEventId) {
+            table->item(START_PLAYING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
+        if (index == bsData->startMatchingEventId) {
+            table->item(START_MATCHING_EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("PoseMatchingGeneratorUI::eventRenamed(): The data is nullptr!!");
     }
@@ -805,7 +815,9 @@ void PoseMatchingGeneratorUI::variableRenamed(const QString & name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("referencePoseWeightThreshold", REFERENCE_POSE_WEIGHT_THRESHOLD_ROW);
                 setname("blendParameter", BLEND_PARAMETER_ROW);
@@ -824,14 +836,18 @@ void PoseMatchingGeneratorUI::variableRenamed(const QString & name, int index){
                 setname("pelvisIndex", PELVIS_INDEX_ROW);
             }
         }
-        (currentIndex() == CHILD_WIDGET) ? childUI->variableRenamed(name, index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            childUI->variableRenamed(name, index);
+        }
     }else{
         LogFile::writeToLog("PoseMatchingGeneratorUI::variableRenamed(): The data is nullptr!!");
     }
 }
 
 void PoseMatchingGeneratorUI::generatorRenamed(const QString &name, int index){
-    (currentIndex() == CHILD_WIDGET) ? childUI->generatorRenamed(name, index) : NULL;
+    if (currentIndex() == CHILD_WIDGET) {
+        childUI->generatorRenamed(name, index);
+    }
 }
 
 void PoseMatchingGeneratorUI::setBehaviorView(BehaviorGraphView *view){

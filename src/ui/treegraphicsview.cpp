@@ -52,12 +52,16 @@ void TreeGraphicsView::zoom(int delta){
 }
 
 void TreeGraphicsView::mousePressEvent(QMouseEvent *event){
-    (event->button() == Qt::LeftButton) ? setDragMode(QGraphicsView::ScrollHandDrag) : NULL;
+    if (event->button() == Qt::LeftButton) {
+        setDragMode(QGraphicsView::ScrollHandDrag);
+    }
     QGraphicsView::mousePressEvent(event);
 }
 
 void TreeGraphicsView::mouseReleaseEvent(QMouseEvent *event){
-    (event->button() == Qt::LeftButton) ? setDragMode(QGraphicsView::NoDrag) : NULL;
+    if (event->button() == Qt::LeftButton) {
+        setDragMode(QGraphicsView::NoDrag);
+    }
     QGraphicsView::mouseReleaseEvent(event);
 }
 

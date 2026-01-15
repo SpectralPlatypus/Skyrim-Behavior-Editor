@@ -110,7 +110,9 @@ bool HkxXMLWriter::writeLine(const QString & tag, bool opening){
             nestLevel++;
             stream << text+"<"+tag+">\n";
         }else{
-            (nestLevel > 0) ? nestLevel-- : NULL;
+            if (nestLevel > 0) {
+                nestLevel--;
+            }
             appendtabs();
             stream << text+"</"+tag+">\n";
         }

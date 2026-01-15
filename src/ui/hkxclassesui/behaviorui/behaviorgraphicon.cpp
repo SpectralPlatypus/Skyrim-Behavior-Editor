@@ -106,7 +106,9 @@ void BehaviorGraphIcon::paint(QPainter *painter, const QStyleOptionGraphicsItem 
             }else if (hkxdata->getFirstIcon() == this){
                 if (!childItems().isEmpty()){
                     painter->drawLine(horiz);
-                    (!getIsExpanded() || !childItems().first()->isVisible()) ? painter->drawLine(vert) : NULL;
+                    if (!getIsExpanded() || !childItems().first()->isVisible()) {
+                        painter->drawLine(vert);
+                    }
                 }
             }else{
                 painter->drawPolygon(arrowHead);

@@ -210,7 +210,9 @@ void PoweredRagdollControlsModifierUI::loadData(HkxObject *data){
             loadbones(poseMatchingBone0, bsData->getPoseMatchingBone0() + 1);
             loadbones(poseMatchingBone1, bsData->getPoseMatchingBone1() + 1);
             loadbones(poseMatchingBone2, bsData->getPoseMatchingBone2() + 1);
-            (!mode->count()) ? mode->insertItems(0, bsData->Mode) : NULL;
+            if (!mode->count()) {
+                mode->insertItems(0, bsData->Mode);
+            }
             mode->setCurrentIndex(bsData->Mode.indexOf(bsData->getMode()));
             (bsData->getBoneWeights()) ? boneWeights->setChecked(true), boneWeights->setText("Edit") : boneWeights->setChecked(false), boneWeights->setText("nullptr");
             auto varBind = bsData->getVariableBindingSetData();
@@ -391,7 +393,9 @@ void PoweredRagdollControlsModifierUI::variableRenamed(const QString & name, int
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("maxForce", MAX_FORCE_ROW);

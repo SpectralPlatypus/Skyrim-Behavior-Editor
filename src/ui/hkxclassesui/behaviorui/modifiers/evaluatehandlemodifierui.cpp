@@ -142,7 +142,9 @@ void EvaluateHandleModifierUI::loadData(HkxObject *data){
             isValidOut->setChecked(bsData->getIsValidOut());
             extrapolationTimeStep->setValue(bsData->getExtrapolationTimeStep());
             handleChangeSpeed->setValue(bsData->getHandleChangeSpeed());
-            (!handleChangeMode->count()) ? handleChangeMode->insertItems(0, bsData->HandleChangeMode) : NULL;
+            if (!handleChangeMode->count()) {
+                handleChangeMode->insertItems(0, bsData->HandleChangeMode);
+            }
             handleChangeMode->setCurrentIndex(bsData->HandleChangeMode.indexOf(bsData->getHandleChangeMode()));
             auto varBind = bsData->getVariableBindingSetData();
             UIHelper::loadBinding(ENABLE_ROW, BINDING_COLUMN, varBind, "enable", table, bsData);
@@ -256,7 +258,9 @@ void EvaluateHandleModifierUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("handle", HANDLE_ROW);

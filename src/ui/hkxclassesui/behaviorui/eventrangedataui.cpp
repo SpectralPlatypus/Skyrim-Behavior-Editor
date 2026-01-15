@@ -99,7 +99,9 @@ void EventRangeDataUI::loadData(BehaviorFile *parentFile, hkbEventRangeDataArray
         (eventName != "") ? item->setText(eventName) : item->setText("NONE");
         (ranges->event.payload.data()) ? payload->setText(static_cast<hkbStringEventPayload *>(ranges->event.payload.data())->getData()) : payload->setText("");
         upperBound->setValue(bsData->upperBound);
-        (!eventMode->count()) ? eventMode->insertItems(0, bsData->EventRangeMode) : NULL;
+        if (!eventMode->count()) {
+            eventMode->insertItems(0, bsData->EventRangeMode);
+        }
         eventMode->setCurrentIndex(bsData->EventRangeMode.indexOf(bsData->eventMode));
     }else{
         LogFile::writeToLog("EventRangeDataUI::loadData(): Behavior file, bind or data is null!!!");
@@ -143,7 +145,9 @@ void EventRangeDataUI::setEventPayload(){
 
 void EventRangeDataUI::setUpperBound(){
     if (bsData && file){
-        (bsData->upperBound != upperBound->value()) ? bsData->upperBound = upperBound->value(), file->setIsChanged(true) : NULL;
+        if (bsData->upperBound != upperBound->value()) {
+            bsData->upperBound = upperBound->value(), file->setIsChanged(true);
+        }
     }else{
         LogFile::writeToLog("EventRangeDataUI::setupperBound(): Behavior file or data is null!!!");
     }
@@ -165,7 +169,9 @@ void EventRangeDataUI::viewSelectedChild(int row, int column){
 
 void EventRangeDataUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (index == bsData->event.id) ? table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->event.id) {
+            table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("EventRangeDataUI::eventRenamed(): The data is nullptr!!");
     }

@@ -24,7 +24,9 @@ void TreeGraphicsScene::setCanDeleteRoot(bool value){
 }
 
 void TreeGraphicsScene::selectIcon(TreeGraphicsItem *icon, BranchBehaviorEnum expand){    //Change so expand all sub branches on right click on expand box!!!!!!
-    (selectedIcon) ? selectedIcon->unselect() : NULL;
+    if (selectedIcon) {
+        selectedIcon->unselect();
+    }
     selectedIcon = icon;
     if (selectedIcon){
         if (expand > EXPAND_CONTRACT_ZERO){
@@ -177,9 +179,13 @@ TreeGraphicsItem * TreeGraphicsScene::addItemToGraph(TreeGraphicsItem *selectedI
                 delete newIcon;
                 return nullptr;
             }
-            (!newIcon->scene()) ? addItem(newIcon) : NULL;  //newIcon is added to scene already???
+            if (!newIcon->scene()) {
+                addItem(newIcon);
+            }
             //newIcon->reposition();
-            (!newIcon->path->scene()) ? addItem(newIcon->path) : NULL;
+            if (!newIcon->path->scene()) {
+                addItem(newIcon->path);
+            }
         }
     }else{
         CRITICAL_ERROR_MESSAGE("TreeGraphicsScene::addItemToGraph(): selectedIcon is nullptr!!!");
@@ -198,7 +204,9 @@ bool TreeGraphicsScene::reconnectIcon(TreeGraphicsItem *oldIconParent, DataIconM
                 removeItemFromGraph(iconToReplace, replaceindex, removeData);
             }else if ((!oldIconParent->isDataDescendant(replacementData) && !oldIconParent->hasSameData(replacementData))){
                 auto replacementIcon = oldIconParent->getReplacementIcon(replacementData);
-                (iconToReplace) ? removeItemFromGraph(iconToReplace, replaceindex, removeData, false, replacementData) : NULL;
+                if (iconToReplace) {
+                    removeItemFromGraph(iconToReplace, replaceindex, removeData, false, replacementData);
+                }
                 if (replacementIcon){
                     auto oldParent = replacementIcon->setParent(oldIconParent, replaceindex);
                     addItemToGraph(oldParent, replacementData, replaceindex);

@@ -260,7 +260,9 @@ void BlenderGeneratorUI::loadData(HkxObject *data){
 void BlenderGeneratorUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_CHILD_ROW + bsData->getNumberOfChildren() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_CHILD_ROW + 1, j = 0; j < bsData->getNumberOfChildren(); i++, j++){
             auto child = bsData->getChildDataAt(j);
             if (child){
@@ -488,7 +490,9 @@ void BlenderGeneratorUI::viewSelectedChild(int row, int column){
 }
 
 void BlenderGeneratorUI::returnToWidget(bool reloadData){
-    (reloadData) ? loadDynamicTableRows() : NULL;
+    if (reloadData) {
+        loadDynamicTableRows();
+    }
     setCurrentIndex(MAIN_WIDGET);
 }
 
@@ -556,7 +560,9 @@ void BlenderGeneratorUI::variableRenamed(const QString & name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("referencePoseWeightThreshold", REFERENCE_POSE_WEIGHT_THRESHOLD_ROW);
                 setname("blendParameter", BLEND_PARAMETER_ROW);
@@ -565,7 +571,9 @@ void BlenderGeneratorUI::variableRenamed(const QString & name, int index){
                 setname("indexOfSyncMasterChild", INDEX_OF_SYNC_MASTER_CHILD_ROW);
                 setname("subtractLastChild", SUBTRACT_LAST_CHILD_ROW);
             }
-            (currentIndex() == CHILD_WIDGET) ? childUI->variableRenamed(name, index) : NULL;
+            if (currentIndex() == CHILD_WIDGET) {
+                childUI->variableRenamed(name, index);
+            }
         }else{
             WARNING_MESSAGE("BlenderGeneratorUI::variableRenamed(): The new variable name is the empty string!!");
         }

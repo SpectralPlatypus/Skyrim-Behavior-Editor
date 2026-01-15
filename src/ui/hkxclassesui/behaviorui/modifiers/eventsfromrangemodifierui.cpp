@@ -109,7 +109,9 @@ void EventsFromRangeModifierUI::toggleSignals(bool toggleconnections){
 void EventsFromRangeModifierUI::addRange(){
     if (bsData){
         auto exps = bsData->getEventRanges();
-        (!exps) ? bsData->setEventRanges(new hkbEventRangeDataArray(bsData->getParentFile())) : NULL;
+        if (!exps) {
+            bsData->setEventRanges(new hkbEventRangeDataArray(bsData->getParentFile()));
+        }
         exps->addEventRange();
         loadDynamicTableRows();
     }else{
@@ -158,7 +160,9 @@ void EventsFromRangeModifierUI::loadData(HkxObject *data){
 void EventsFromRangeModifierUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_RANGE_ROW + bsData->getNumberOfRanges() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         auto exps = bsData->getEventRanges();
         if (exps){
             for (auto i = ADD_RANGE_ROW + 1, j = 0; j < bsData->getNumberOfRanges(); i++, j++){
@@ -308,7 +312,9 @@ void EventsFromRangeModifierUI::selectTableToView(bool viewproperties, const QSt
 
 void EventsFromRangeModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (currentIndex() == CHILD_WIDGET) ? rangeUI->eventRenamed(name, index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            rangeUI->eventRenamed(name, index);
+        }
     }else{
         LogFile::writeToLog("EventsFromRangeModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -322,7 +328,9 @@ void EventsFromRangeModifierUI::variableRenamed(const QString & name, int index)
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("enable", ENABLE_ROW);
                 setname("inputValue", INPUT_VALUE_ROW);

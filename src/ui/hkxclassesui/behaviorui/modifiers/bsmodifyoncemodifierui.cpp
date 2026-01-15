@@ -167,7 +167,9 @@ void BSModifyOnceModifierUI::setBindingVariable(int index, const QString & name)
         auto row = table->currentRow();
         switch (row){
         case ENABLE_ROW:
-            (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? isProperty = true : NULL;
+            if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                isProperty = true;
+            }
             UIHelper::setBinding(index, row, BINDING_COLUMN, name, "enable", VARIABLE_TYPE_BOOL, isProperty, table, bsData);
         }
     }else{
@@ -195,7 +197,9 @@ void BSModifyOnceModifierUI::variableRenamed(const QString & name, int index){
         auto bind = bsData->getVariableBindingSetData();
         if (bind){
             auto bindIndex = bind->getVariableIndexOfBinding("enable");
-            (bindIndex == index) ? table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name) : NULL;
+            if (bindIndex == index) {
+                table->item(ENABLE_ROW, BINDING_COLUMN)->setText(name);
+            }
         }
     }else{
         LogFile::writeToLog("BSModifyOnceModifierUI::variableRenamed(): The 'bsData' pointer is nullptr!!");

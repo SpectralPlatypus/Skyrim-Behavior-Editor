@@ -133,7 +133,9 @@ void BSCyclicBlendTransitionGeneratorUI::loadData(HkxObject *data){
             name->setText(bsData->getName());
             (bsData->getEventToFreezeBlendValueId() > -1) ? eventToFreezeBlendValue->setChecked(true) : eventToFreezeBlendValue->setChecked(false);
             (bsData->getEventToCrossBlendId() > -1) ? eventToCrossBlend->setChecked(true) : eventToCrossBlend->setChecked(false);
-            (!eBlendCurve->count()) ? eBlendCurve->insertItems(0, bsData->BlendCurve) : NULL;
+            if (!eBlendCurve->count()) {
+                eBlendCurve->insertItems(0, bsData->BlendCurve);
+            }
             fTransitionDuration->setValue(bsData->getFTransitionDuration());
             eBlendCurve->setCurrentIndex(bsData->BlendCurve.indexOf(bsData->getEBlendCurve()));
             table->item(BLENDER_GENERATOR_ROW, VALUE_COLUMN)->setText(bsData->getBlenderGeneratorName());
@@ -182,7 +184,9 @@ void BSCyclicBlendTransitionGeneratorUI::viewEventToFreezeBlendValue(){
 
 void BSCyclicBlendTransitionGeneratorUI::toggleEventToFreezeBlendValue(bool enable){
     if (bsData){
-        (!enable) ? bsData->nullEventToFreezeBlendValue() : NULL;
+        if (!enable) {
+            bsData->nullEventToFreezeBlendValue();
+        }
     }else{
         LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::toggleEventToFreezeBlendValue(): The data is nullptr!!");
     }
@@ -199,7 +203,9 @@ void BSCyclicBlendTransitionGeneratorUI::viewEventToCrossBlend(){
 
 void BSCyclicBlendTransitionGeneratorUI::toggleEventToCrossBlend(bool enable){
     if (bsData){
-        (!enable) ? bsData->nullEventToCrossBlend() : NULL;
+        if (!enable) {
+            bsData->nullEventToCrossBlend();
+        }
     }else{
         LogFile::writeToLog("BSCyclicBlendTransitionGeneratorUI::toggleEventToCrossBlend(): The data is nullptr!!");
     }
@@ -314,7 +320,9 @@ void BSCyclicBlendTransitionGeneratorUI::variableRenamed(const QString & name, i
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("fBlendParameter", BLEND_PARAMETER_ROW);
             setname("fTransitionDuration", TRANSITION_DURATION_ROW);

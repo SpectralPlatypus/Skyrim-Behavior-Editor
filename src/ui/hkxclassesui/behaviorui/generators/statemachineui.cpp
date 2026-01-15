@@ -256,9 +256,13 @@ void StateMachineUI::loadData(HkxObject *data){
         labeleventnamme(SYNC_VARIABLE_INDEX_ROW, eventname);
         wrapAroundStateId->setChecked(bsData->getWrapAroundStateId());
         maxSimultaneousTransitions->setValue(bsData->getMaxSimultaneousTransitions());
-        (!startStateMode->count()) ? startStateMode->insertItems(0, bsData->StartStateMode) : NULL;
+        if (!startStateMode->count()) {
+            startStateMode->insertItems(0, bsData->StartStateMode);
+        }
         startStateMode->setCurrentIndex(bsData->StartStateMode.indexOf(bsData->startStateMode));
-        (!selfTransitionMode->count()) ? selfTransitionMode->insertItems(0, bsData->SelfTransitionMode) : NULL;
+        if (!selfTransitionMode->count()) {
+            selfTransitionMode->insertItems(0, bsData->SelfTransitionMode);
+        }
         selfTransitionMode->setCurrentIndex(bsData->SelfTransitionMode.indexOf(bsData->getSelfTransitionMode()));
         loadDynamicTableRows();
     }else{
@@ -679,7 +683,9 @@ void StateMachineUI::removeState(int index){
         disconnect(startStateId, SIGNAL(currentIndexChanged(int)), this, SLOT(setStartStateId(int)));
         currentindex = startStateId->currentIndex();
         startStateId->removeItem(index);
-        (currentindex == index) ? startStateId->setCurrentIndex(0) : NULL;
+        if (currentindex == index) {
+            startStateId->setCurrentIndex(0);
+        }
         connect(startStateId, SIGNAL(currentIndexChanged(int)), this, SLOT(setStartStateId(int)), Qt::UniqueConnection);
         loadDynamicTableRows();
     }else{
@@ -720,7 +726,9 @@ void StateMachineUI::addTransition(){
 }
 
 void StateMachineUI::returnToWidget(bool reloadData){
-    (reloadData) ? loadData(bsData) : NULL;
+    if (reloadData) {
+        loadData(bsData);
+    }
     setCurrentIndex(MAIN_WIDGET);
 }
 
@@ -764,7 +772,9 @@ void StateMachineUI::variableRenamed(const QString & name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("startStateId", START_STATE_ID_ROW);
                 setname("syncVariableIndex", SYNC_VARIABLE_INDEX_ROW);
@@ -781,7 +791,9 @@ void StateMachineUI::eventRenamed(const QString & name, int index){
     if (bsData){
         if (currentIndex() == MAIN_WIDGET){
             auto checkindex = [&](int eventid, int row){
-                (index == eventid) ? table->item(row, VALUE_COLUMN)->setText(name) : NULL;
+                if (index == eventid) {
+                    table->item(row, VALUE_COLUMN)->setText(name);
+                }
             };
             checkindex(bsData->getReturnToPreviousStateEventId(), RETURN_TO_PREVIOUS_STATE_EVENT_ID_ROW);
             checkindex(bsData->getRandomTransitionEventId(), RANDOM_TRANSITION_EVENT_ID_ROW);

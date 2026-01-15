@@ -244,7 +244,9 @@ void RangesUI::selectTableToView(bool viewproperties, const QString & path){
 
 void RangesUI::eventRenamed(const QString & name, int index){
     if (bsData){
-        (index == bsData->event.id) ? table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->event.id) {
+            table->item(EVENT_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("RangesUI::eventRenamed(): The data is nullptr!!");
     }
@@ -257,7 +259,9 @@ void RangesUI::variableRenamed(const QString & name, int index){
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("ranges:"+QString::number(rangeIndex)+"/minDistance", MINIMUM_DISTANCE_ROW);
             setname("ranges:"+QString::number(rangeIndex)+"/maxDistance", MAXIMUM_DISTANCE_ROW);

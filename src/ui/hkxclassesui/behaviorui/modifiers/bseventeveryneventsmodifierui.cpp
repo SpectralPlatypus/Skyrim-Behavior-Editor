@@ -306,8 +306,12 @@ void BSEventEveryNEventsModifierUI::selectTableToView(bool viewisProperty, const
 void BSEventEveryNEventsModifierUI::eventRenamed(const QString & name, int index){
     if (bsData){
         index--;
-        (index == bsData->getEventToCheckForID()) ? table->item(EVENT_TO_CHECK_FOR_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
-        (index == bsData->getEventToSendID()) ? table->item(EVENT_TO_SEND_ID_ROW, VALUE_COLUMN)->setText(name) : NULL;
+        if (index == bsData->getEventToCheckForID()) {
+            table->item(EVENT_TO_CHECK_FOR_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
+        if (index == bsData->getEventToSendID()) {
+            table->item(EVENT_TO_SEND_ID_ROW, VALUE_COLUMN)->setText(name);
+        }
     }else{
         LogFile::writeToLog("BSEventEveryNEventsModifierUI::eventRenamed(): The data is nullptr!!");
     }
@@ -320,7 +324,9 @@ void BSEventEveryNEventsModifierUI::variableRenamed(const QString & name, int in
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("enable", ENABLE_ROW);
             setname("numberOfEventsBeforeSend", NUMBER_OF_EVENTS_BEFORE_SEND_ROW);

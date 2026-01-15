@@ -143,7 +143,9 @@ void AnimationsUI::addAnimation(){
             table->setRowCount(row + 1);
             table->setItem(row, 0, new QTableWidgetItem(animationNames.last()));
             table->setItem(row, 1, new QTableWidgetItem("Edit"));
-            (stackLyt->currentIndex() == ANIMATION_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+            if (stackLyt->currentIndex() == ANIMATION_WIDGET) {
+                stackLyt->setCurrentIndex(TABLE_WIDGET);
+            }
             table->setCurrentCell(row, 0);
             emit openAnimationFile(filename);
             emit animationAdded(animationNames.last());
@@ -154,10 +156,16 @@ void AnimationsUI::addAnimation(){
 void AnimationsUI::removeAnimation(){
     if (loadedData && !static_cast<CharacterFile *>(loadedData->getParentFile())->isAnimationUsed(table->item(table->currentRow(), table->currentColumn())->text())){
         auto index = table->currentRow();
-        (!animData->removeAnimation(index)) ? LogFile::writeToLog("AnimationsUI::removeAnimation(): Failed!") : NULL;
+        if (!animData->removeAnimation(index)) {
+            LogFile::writeToLog("AnimationsUI::removeAnimation(): Failed!");
+        }
         loadedData->animationNames.removeAt(index);
-        (index < table->rowCount()) ? table->removeRow(index) : NULL;
-        (stackLyt->currentIndex() == ANIMATION_WIDGET) ? stackLyt->setCurrentIndex(TABLE_WIDGET) : NULL;
+        if (index < table->rowCount()) {
+            table->removeRow(index);
+        }
+        if (stackLyt->currentIndex() == ANIMATION_WIDGET) {
+            stackLyt->setCurrentIndex(TABLE_WIDGET);
+        }
         loadedData->setIsFileChanged(true);
         emit animationRemoved(index);
         table->setFocus();

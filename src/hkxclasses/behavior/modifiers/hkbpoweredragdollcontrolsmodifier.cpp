@@ -45,7 +45,9 @@ bool hkbPoweredRagdollControlsModifier::readData(const HkxXmlReader &reader, lon
     QByteArray text;
     auto ref = reader.getNthAttributeValueAt(index - 1, 0);
     auto checkvalue = [&](bool value, const QString & fieldname){
-        (!value) ? LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref) : NULL;
+        if (!value) {
+            LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref);
+        }
     };
     for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
         text = reader.getNthAttributeValueAt(index, 0);
@@ -106,7 +108,9 @@ bool hkbPoweredRagdollControlsModifier::write(HkxXMLWriter *writer){
     };
     auto writeref = [&](const HkxSharedPtr & shdptr, const QString & name){
         QString refString = "null";
-        (shdptr.data()) ? refString = shdptr->getReferenceString() : NULL;
+        if (shdptr.data()) {
+            refString = shdptr->getReferenceString();
+        }
         writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), refString);
     };
     auto writechild = [&](const HkxSharedPtr & shdptr, const QString & datafield){
@@ -153,7 +157,9 @@ bool hkbPoweredRagdollControlsModifier::write(HkxXMLWriter *writer){
 void hkbPoweredRagdollControlsModifier::updateReferences(long &ref){
     std::lock_guard <std::mutex> guard(mutex);
     auto updateref = [&](const HkxSharedPtr & shdptr){
-        (shdptr.data()) ? shdptr->updateReferences(++ref) : NULL;
+        if (shdptr.data()) {
+            shdptr->updateReferences(++ref);
+        }
     };
     setReference(ref);
     setBindingReference(++ref);

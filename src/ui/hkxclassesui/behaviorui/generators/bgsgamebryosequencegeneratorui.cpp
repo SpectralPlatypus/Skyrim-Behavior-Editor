@@ -81,7 +81,9 @@ void BGSGamebryoSequenceGeneratorUI::loadData(HkxObject *data){
             bsData = static_cast<BGSGamebryoSequenceGenerator *>(data);
             name->setText(bsData->getName());
             pSequence->setText(bsData->getPSequence());
-            (!eBlendModeFunction->count()) ? eBlendModeFunction->insertItems(0, bsData->BlendModeFunction) : NULL;
+            if (!eBlendModeFunction->count()) {
+                eBlendModeFunction->insertItems(0, bsData->BlendModeFunction);
+            }
             eBlendModeFunction->setCurrentIndex(bsData->BlendModeFunction.indexOf(bsData->getEBlendModeFunction()));
             fPercent->setValue(bsData->getFPercent());
         }else{

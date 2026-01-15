@@ -53,7 +53,9 @@ void EventUI::loadData(BehaviorFile *parentFile, hkEventPayload * event){
         file = parentFile;
         eventData = event;
         auto text = file->getEventNameAt(event->id);
-        (text == "") ? text = "NONE" : NULL;
+        if (text == "") {
+            text = "NONE";
+        }
         selectEvent->setText(text);
         (event->payload.data()) ? eventPayload->setText(static_cast<hkbStringEventPayload *>(event->payload.data())->getData()) : eventPayload->setText("");
     }else{
@@ -104,7 +106,9 @@ void EventUI::emitViewEvent(){
 
 void EventUI::eventRenamed(const QString & name, int index){
     if (eventData){
-        (index == eventData->id) ? selectEvent->setText(name) : NULL;
+        if (index == eventData->id) {
+            selectEvent->setText(name);
+        }
     }else{
         LogFile::writeToLog("EventUI::eventRenamed(): The data is nullptr!!");
     }

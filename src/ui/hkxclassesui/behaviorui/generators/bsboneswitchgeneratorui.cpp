@@ -136,7 +136,9 @@ void BSBoneSwitchGeneratorUI::loadData(HkxObject *data){
 void BSBoneSwitchGeneratorUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_CHILD_ROW + bsData->ChildrenA.size() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         BSBoneSwitchGeneratorBoneData *child = nullptr;
         for (auto i = ADD_CHILD_ROW + 1, j = 0; j < bsData->ChildrenA.size(); i++, j++){
             child = static_cast<BSBoneSwitchGeneratorBoneData *>(bsData->ChildrenA.at(j).data());
@@ -264,7 +266,9 @@ void BSBoneSwitchGeneratorUI::setDefaultGenerator(int index, const QString & nam
 }
 
 void BSBoneSwitchGeneratorUI::returnToWidget(bool reloadData){
-    (reloadData) ? loadDynamicTableRows() : NULL;
+    if (reloadData) {
+        loadDynamicTableRows();
+    }
     setCurrentIndex(MAIN_WIDGET);
 }
 
@@ -306,7 +310,9 @@ void BSBoneSwitchGeneratorUI::connectToTables(GenericTableWidget *generators, Ge
 
 void BSBoneSwitchGeneratorUI::variableRenamed(const QString & name, int index){
     if (bsData){
-        (currentIndex() == CHILD_WIDGET) ? childUI->variableRenamed(name, --index) : NULL;
+        if (currentIndex() == CHILD_WIDGET) {
+            childUI->variableRenamed(name, --index);
+        }
     }else{
         LogFile::writeToLog("BSBoneSwitchGeneratorUI::variableRenamed(): The data is nullptr!!");
     }

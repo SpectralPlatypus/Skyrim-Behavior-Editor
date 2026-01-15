@@ -254,7 +254,9 @@ void BSOffsetAnimationGeneratorUI::variableRenamed(const QString & name, int ind
         if (bind){
             auto setname = [&](const QString & fieldname, int row){
                 auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                if (bindIndex == index) {
+                    table->item(row, BINDING_COLUMN)->setText(name);
+                }
             };
             setname("fOffsetVariable", FOFFSET_VARIABLE_ROW);
             setname("fOffsetRangeStart", FOFFSET_RANGE_START_ROW);

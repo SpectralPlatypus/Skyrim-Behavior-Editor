@@ -88,7 +88,9 @@ void ProjectUI::setDisabled(bool disable){
 
 void ProjectUI::setProject(ProjectFile *file){
     project = file;
-    (project) ? fileView->setRootIndex(fileSys->setRootPath(lastFileSelectedPath+"/"+project->getBehaviorDirectoryName())) : NULL;
+    if (project) {
+        fileView->setRootIndex(fileSys->setRootPath(lastFileSelectedPath+"/"+project->getBehaviorDirectoryName()));
+    }
 }
 
 void ProjectUI::loadData(){

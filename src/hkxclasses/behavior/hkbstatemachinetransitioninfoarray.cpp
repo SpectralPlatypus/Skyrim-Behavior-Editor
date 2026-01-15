@@ -134,14 +134,18 @@ bool hkbStateMachineTransitionInfoArray::readData(const HkxXmlReader &reader, lo
     Interval_Type intervalType;
     auto ref = reader.getNthAttributeValueAt(index - 1, 0);
     auto checkvalue = [&](bool value, const QString & fieldname){
-        (!value) ? LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref) : NULL;
+        if (!value) {
+            LogFile::writeToLog(getParentFilename()+": "+getClassname()+": readData()!\n'"+fieldname+"' has invalid data!\nObject Reference: "+ref);
+        }
     };
     for (; index < reader.getNumElements() && reader.getNthAttributeNameAt(index, 1) != "class"; index++){
         text = reader.getNthAttributeValueAt(index, 0);
         if (text == "transitions"){
             numtrans = reader.getNthAttributeValueAt(index, 1).toInt(&ok);
             checkvalue(ok, "transitions");
-            (numtrans > 0) ? index++ : NULL;
+            if (numtrans > 0) {
+                index++;
+            }
             for (auto j = 0; j < numtrans; j++, index++){
                 transitions.append(HkTransition());
                 for (; index < reader.getNumElements(); index++){
@@ -201,7 +205,9 @@ bool hkbStateMachineTransitionInfoArray::readData(const HkxXmlReader &reader, lo
                     }
                 }
             }
-            (numtrans > 0) ? index-- : NULL;
+            if (numtrans > 0) {
+                index--;
+            }
         }
     }
     index--;
@@ -215,7 +221,9 @@ bool hkbStateMachineTransitionInfoArray::write(HkxXMLWriter *writer){
     };
     auto writeref = [&](const HkxSharedPtr & shdptr, const QString & name){
         QString refString = "null";
-        (shdptr.data()) ? refString = shdptr->getReferenceString() : NULL;
+        if (shdptr.data()) {
+            refString = shdptr->getReferenceString();
+        }
         writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), refString);
     };
     auto writechild = [&](const HkxSharedPtr & shdptr, const QString & datafield){

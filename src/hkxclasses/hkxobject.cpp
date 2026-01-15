@@ -68,14 +68,18 @@ void HkxObject::setRefsUpdated(bool value){
 
 void HkxObject::setParentFile(HkxFile *parent){
     std::lock_guard <std::mutex> guard(mutex);
-    (parent) ? parentFile = parent : NULL;
+    if (parent) {
+        parentFile = parent;
+    }
 }
 
 int HkxObject::getIndexOfGenerator(const HkxSharedPtr &gen) const{
     std::lock_guard <std::mutex> guard(mutex);
     auto index = -1;
     BehaviorFile *behavior = dynamic_cast<BehaviorFile *>(parentFile);
-    (behavior) ? index = behavior->getIndexOfGenerator(gen) : NULL;
+    if (behavior) {
+        index = behavior->getIndexOfGenerator(gen);
+    }
     return index;
 }
 

@@ -116,7 +116,9 @@ void HandIkControlsModifierUI::loadData(HkxObject *data){
 void HandIkControlsModifierUI::loadDynamicTableRows(){
     if (bsData){
         auto temp = ADD_HAND_ROW + bsData->getNumberOfHands() + 1;
-        (table->rowCount() != temp) ? table->setRowCount(temp) : NULL;
+        if (table->rowCount() != temp) {
+            table->setRowCount(temp);
+        }
         for (auto i = ADD_HAND_ROW + 1, j = 0; j < bsData->getNumberOfHands(); i++, j++){
             UIHelper::setRowItems(i, "Hand "+QString::number(j), "hkHand", "Remove", "Edit", "Double click to remove this Hand", "Double click to edit this Hand", table);
         }
@@ -130,7 +132,9 @@ void HandIkControlsModifierUI::setBindingVariable(int index, const QString & nam
         auto isProperty = false;
         auto row = table->currentRow();
         if (row == ENABLE_ROW){
-            (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? isProperty = true : NULL;
+            if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                isProperty = true;
+            }
             UIHelper::setBinding(index, row, BINDING_COLUMN, name, "enable", VARIABLE_TYPE_BOOL, isProperty, table, bsData);
         }
     }else{
@@ -163,7 +167,9 @@ void HandIkControlsModifierUI::viewSelectedChild(int row, int column){
             auto properties = false;
             if (column == BINDING_COLUMN){
                 if (row == ENABLE_ROW){
-                    (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) ? properties = true : NULL;
+                    if (table->item(ENABLE_ROW, BINDING_COLUMN)->checkState() != Qt::Unchecked) {
+                        properties = true;
+                    }
                     selectTableToView(properties, "enable");
                 }
             }
@@ -241,7 +247,9 @@ void HandIkControlsModifierUI::variableRenamed(const QString & name, int index){
             if (bind){
                 auto setname = [&](const QString & fieldname, int row){
                     auto bindIndex = bind->getVariableIndexOfBinding(fieldname);
-                    (bindIndex == index) ? table->item(row, BINDING_COLUMN)->setText(name) : NULL;
+                    if (bindIndex == index) {
+                        table->item(row, BINDING_COLUMN)->setText(name);
+                    }
                 };
                 setname("enable", ENABLE_ROW);
             }

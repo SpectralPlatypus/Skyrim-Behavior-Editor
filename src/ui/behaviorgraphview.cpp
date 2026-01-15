@@ -415,7 +415,9 @@ bool BehaviorGraphView::refocus(){
 }
 
 void BehaviorGraphView::setSelectedItem(TreeGraphicsItem *item){
-    (scene()) ? static_cast<TreeGraphicsScene *>(scene())->selectIcon(item, TreeGraphicsScene::EXPAND_CONTRACT_ONE) : NULL;
+    if (scene()) {
+        static_cast<TreeGraphicsScene *>(scene())->selectIcon(item, TreeGraphicsScene::EXPAND_CONTRACT_ONE);
+    }
 }
 
 QString BehaviorGraphView::getBehaviorFilename() const{
