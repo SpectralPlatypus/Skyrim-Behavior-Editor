@@ -206,7 +206,7 @@ public:
         return result;
     }
 
-    void fixup(QString & input) const{
+    void fixup(QString & input) const override{
         input.replace(">", "gt;");
         input.replace("<", "lt;");
     }
@@ -233,7 +233,7 @@ public:
     TableWidgetItem(const TableWidgetItem &) = delete;
     ~TableWidgetItem() = default;
 public:
-    TableWidgetItem(const QString & text, int align = Qt::AlignLeft | Qt::AlignVCenter, const QColor & backgroundColor = QColor(Qt::white), const QBrush & textColor = QBrush(Qt::black), const QString & tip = "", bool checkable = false)
+    TableWidgetItem(const QString & text, Qt::Alignment align = Qt::AlignLeft | Qt::AlignVCenter, const QColor & backgroundColor = QColor(Qt::white), const QBrush & textColor = QBrush(Qt::black), const QString & tip = "", bool checkable = false)
         : QTableWidgetItem(text)
     {
         if (checkable) {
@@ -276,7 +276,7 @@ public:
     }
 
     void dropEvent(QDropEvent *event) Q_DECL_OVERRIDE{
-        auto item = itemAt(event->pos());
+        auto item = itemAt(event->position().toPoint());
         auto oldRow = currentRow();
         auto newRow = row(item);
         if ((oldRow >= range.min && newRow >= range.min) && (oldRow <= range.max && newRow <= range.max)){
@@ -301,7 +301,7 @@ public:
         return false;
     }
 
-    QSize sizeHint() const{
+    QSize sizeHint() const override{
         return QSize(100, 400);
     }
 

@@ -358,7 +358,7 @@ QString ProjectFile::detectErrorsInProject(){
     ProgressDialog progress("Detecting possible errors...", "", 0, 100, getUI());
     progress.setWindowModality(Qt::WindowModal);
     std::vector <std::future<QString>> futures;
-    auto percent = 0;
+    /*auto percent = 0;
     auto numbehaviors = behaviorFiles.size();
     auto taskCount = numbehaviors;
     auto previousCount = taskCount;
@@ -366,7 +366,7 @@ QString ProjectFile::detectErrorsInProject(){
     auto maxThreads = std::thread::hardware_concurrency() - 1;
     auto taskdifference = 0;
     qreal difference = ((1.0)/((qreal)(numbehaviors)))*(100.0);
-    /*std::unique_lock<std::mutex> locker(mutex);
+    std::unique_lock<std::mutex> locker(mutex);
     for (uint i = 0; i < maxThreads, fileIndex < numbehaviors; i++, fileIndex++){
         futures.push_back(std::async(std::launch::async, &BehaviorFile::detectErrorsMT, behaviorFiles.at(fileIndex), std::ref(taskCount), std::ref(mutex), std::ref(conditionVar)));
     }

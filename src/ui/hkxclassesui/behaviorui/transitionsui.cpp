@@ -6,7 +6,7 @@
 #include "src/hkxclasses/behavior/generators/hkbstatemachinestateinfo.h"
 #include "src/hkxclasses/behavior/hkbstatemachinetransitioninfoarray.h"
 #include "src/hkxclasses/behavior/hkbstringeventpayload.h"
-#include "src/hkxclasses/behavior/hkbExpressionCondition.h"
+#include "src/hkxclasses/behavior/hkbexpressioncondition.h"
 #include "src/ui/genericdatawidgets.h"
 #include "src/filetypes/behaviorfile.h"
 #include "src/ui/behaviorgraphview.h"
