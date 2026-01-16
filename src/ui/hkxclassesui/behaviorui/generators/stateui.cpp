@@ -286,8 +286,7 @@ void StateUI::connectToTables(GenericTableWidget *generators, GenericTableWidget
             {
                 transitionEffects->loadTable(behaviorView->getBehavior()->getTransitionEffectNames(), behaviorView->getBehavior()->getTransitionEffectTypeNames(), "New...");
                 transitionEffects->showTable(index, typeallowed, typesdisallowed);
-            }, 
-            Qt::UniqueConnection);
+            });
     }else{
         LogFile::writeToLog("StateUI::connectToTables(): One or more arguments are nullptr!!");
     }

@@ -133,7 +133,7 @@ public:
     {
         auto pal = palette();
         pal.setColor(QPalette::Base, Qt::lightGray);
-        setPalette(pal);
+        //setPalette(pal);
         auto lyt = new QHBoxLayout;
         pushButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         pushButton->setDisabled(disablebutton);
@@ -261,7 +261,7 @@ public:
     {
         auto pal = palette();
         pal.setColor(QPalette::Base, background);
-        setPalette(pal);
+        //setPalette(pal);
         setMouseTracking(true);
         //setStyleSheet("QTableWidget { background:cyan }");
         setStyleSheet("QHeaderView::section { background-color:grey }");

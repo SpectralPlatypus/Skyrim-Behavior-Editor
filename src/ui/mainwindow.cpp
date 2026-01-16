@@ -73,6 +73,7 @@ MainWindow::MainWindow()
     //setStyleSheet("QComboBox {background: yellow};QWidget {background: darkGray}");
     projectUI->setDisabled(true);
     hkxcmdPath = QDir::currentPath()+"/hkxcmd.exe";
+    hkxconvPath = QDir::currentPath()+"/hkxconv.exe";
     newProjectA->setStatusTip("Create a new character project!");
     newProjectA->setShortcut(QKeySequence::New);
     openPackedProjectA->setStatusTip("Open a hkx project file!");
@@ -1382,6 +1383,21 @@ MainWindow::HKXCMD_RETURN MainWindow::hkxcmd(const QString &filepath, const QStr
     }
     return value;
 }
+/*
+MainWindow::HKXCMD_RETURN MainWindow::hkxconv(const QString &filepath, const QString &outputDirectory, int & taskcount){
+    auto command = "\""+hkxconv+"\" convert \""+filepath+"\" \""+outputDirectory;
+    command.replace("/", "\\");
+    auto value = (HKXCMD_RETURN)QProcess().execute(command);
+    if (value == HKXCMD_SUCCESS){
+        mutex.lock();
+        taskcount--;
+        conditionVar.notify_one();
+        mutex.unlock();
+    }else{
+        LogFile::writeToLog("MainWindow: hkxcmd() failed!\nThe command \""+command+"\" failed!");
+    }
+    return value;
+}*/
 
 bool MainWindow::exitProgram(){
     if (closeAll()){

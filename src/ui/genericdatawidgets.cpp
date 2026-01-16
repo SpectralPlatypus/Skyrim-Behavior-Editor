@@ -23,6 +23,7 @@ GenericTableWidget::GenericTableWidget(const QString & title)
     resize(500, 800);
     setWindowModality(Qt::ApplicationModal);
     QStringList list = {"Name", "Type"};
+    setPalette(qApp->palette());
     table->setColumnCount(2);
     table->setHorizontalHeaderLabels(list);
     table->hideColumn(1);

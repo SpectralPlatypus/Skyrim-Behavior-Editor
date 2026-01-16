@@ -101,6 +101,7 @@ private:
 private:
     static const int zoomFactor = 120;
     QString hkxcmdPath;
+    QString hkxconvPath;
     QString skyrimDirectory;
     QString skyrimSpecialEdtionDirectory;
     QString skyrimBehaviorUpdateToolFullPath;
