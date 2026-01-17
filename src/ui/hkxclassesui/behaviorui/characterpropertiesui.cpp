@@ -121,8 +121,8 @@ CharacterPropertiesUI::CharacterPropertiesUI(const QString &title)
     setLayout(verLyt);
     connect(removeObjectPB, SIGNAL(pressed()), this, SLOT(removeVariable()), Qt::UniqueConnection);
     connect(addObjectPB, SIGNAL(pressed()), this, SLOT(addVariable()), Qt::UniqueConnection);
-    connect(nameMapper, SIGNAL(mapped(int)), this, SLOT(renameSelectedVariable(int)), Qt::UniqueConnection);
-    connect(valueMapper, SIGNAL(mapped(int)), this, SLOT(setVariableValue(int)), Qt::UniqueConnection);
+    connect(nameMapper, SIGNAL(mappedInt(int)), this, SLOT(renameSelectedVariable(int)), Qt::UniqueConnection);
+    connect(valueMapper, SIGNAL(mappedInt(int)), this, SLOT(setVariableValue(int)), Qt::UniqueConnection);
     connect(table, SIGNAL(cellClicked(int,int)), this, SLOT(viewVariable(int,int)), Qt::UniqueConnection);
     connect(returnBoolPB, SIGNAL(released()), this, SLOT(returnToTable()), Qt::UniqueConnection);
     connect(returnIntPB, SIGNAL(released()), this, SLOT(returnToTable()), Qt::UniqueConnection);

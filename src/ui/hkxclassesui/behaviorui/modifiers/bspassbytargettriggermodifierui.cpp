@@ -90,7 +90,6 @@ void BSPassByTargetTriggerModifierUI::toggleSignals(bool toggleconnections){
         connect(radius, SIGNAL(editingFinished()), this, SLOT(setRadius()), Qt::UniqueConnection);
         connect(movementDirection, SIGNAL(editingFinished()), this, SLOT(setMovementDirection()), Qt::UniqueConnection);
         connect(triggerEventPayload, SIGNAL(editingFinished()), this, SLOT(setTriggerEventPayload()), Qt::UniqueConnection);
-        connect(enable, SIGNAL(released()), this, SLOT(setResetAlarm()), Qt::UniqueConnection);
         connect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)), Qt::UniqueConnection);
     }else{
         disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)));

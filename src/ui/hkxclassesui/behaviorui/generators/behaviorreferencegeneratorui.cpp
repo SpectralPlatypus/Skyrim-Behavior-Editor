@@ -51,7 +51,7 @@ void BehaviorReferenceGeneratorUI::toggleSignals(bool toggleconnections){
         connect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)), Qt::UniqueConnection);
         connect(behaviorName, SIGNAL(currentTextChanged(QString)), this, SLOT(setBehaviorName(QString)), Qt::UniqueConnection);
     }else{
-        disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName()));
+        disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)));
         disconnect(behaviorName, SIGNAL(currentTextChanged(QString)), this, SLOT(setBehaviorName(QString)));
     }
 }

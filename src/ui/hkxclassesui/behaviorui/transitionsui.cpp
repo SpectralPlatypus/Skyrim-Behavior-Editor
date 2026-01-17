@@ -175,9 +175,9 @@ void TransitionsUI::toggleSignals(bool toggleconnections){
         connect(transition, SIGNAL(enabled(bool)), this, SLOT(toggleTransitionEffect(bool)), Qt::UniqueConnection);
         connect(transition, &CheckButtonCombo::choicePressed, this, &TransitionsUI::showTransitions, Qt::UniqueConnection);
         connect(condition, SIGNAL(editingFinished()), this, SLOT(setCondition()), Qt::UniqueConnection);
-        connect(toStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setToStateId(QString)), Qt::UniqueConnection);
-        connect(fromNestedStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setFromNestedStateId(QString)), Qt::UniqueConnection);
-        connect(toNestedStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setToNestedStateId(QString)), Qt::UniqueConnection);
+        connect(toStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setToStateId(QString)), Qt::UniqueConnection);
+        connect(fromNestedStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setFromNestedStateId(QString)), Qt::UniqueConnection);
+        connect(toNestedStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setToNestedStateId(QString)), Qt::UniqueConnection);
         connect(priority, SIGNAL(editingFinished()), this, SLOT(setPriority()), Qt::UniqueConnection);
         connect(flagGlobalWildcard, SIGNAL(released()), this, SLOT(toggleGlobalWildcardFlag()), Qt::UniqueConnection);
         connect(flagLocalWildcard, SIGNAL(released()), this, SLOT(toggleLocalWildcardFlag()), Qt::UniqueConnection);
@@ -202,9 +202,9 @@ void TransitionsUI::toggleSignals(bool toggleconnections){
         disconnect(transition, SIGNAL(enabled(bool)), this, SLOT(toggleTransitionEffect(bool)));
         disconnect(transition, &CheckButtonCombo::choicePressed, this, &TransitionsUI::showTransitions);
         disconnect(condition, SIGNAL(editingFinished()), this, SLOT(setCondition()));
-        disconnect(toStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setToStateId(QString)));
-        disconnect(fromNestedStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setFromNestedStateId(QString)));
-        disconnect(toNestedStateId, SIGNAL(currentIndexChanged(QString)), this, SLOT(setToNestedStateId(QString)));
+        disconnect(toStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setToStateId(QString)));
+        disconnect(fromNestedStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setFromNestedStateId(QString)));
+        disconnect(toNestedStateId, SIGNAL(currentTextChanged(QString)), this, SLOT(setToNestedStateId(QString)));
         disconnect(priority, SIGNAL(editingFinished()), this, SLOT(setPriority()));
         disconnect(flagGlobalWildcard, SIGNAL(released()), this, SLOT(toggleGlobalWildcardFlag()));
         disconnect(flagLocalWildcard, SIGNAL(released()), this, SLOT(toggleLocalWildcardFlag()));

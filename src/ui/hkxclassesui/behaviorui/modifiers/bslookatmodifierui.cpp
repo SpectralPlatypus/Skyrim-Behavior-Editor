@@ -2,7 +2,7 @@
 
 #include "src/hkxclasses/hkxobject.h"
 #include "src/hkxclasses/behavior/hkbstringeventpayload.h"
-#include "src/hkxclasses/behavior/modifiers/BSLookAtModifier.h"
+#include "src/hkxclasses/behavior/modifiers/bslookatmodifier.h"
 #include "src/ui/genericdatawidgets.h"
 #include "src/ui/hkxclassesui/behaviorui/bsboneui.h"
 #include "src/filetypes/behaviorfile.h"

@@ -105,9 +105,9 @@ void GetUpModifierUI::toggleSignals(bool toggleconnections){
         disconnect(groundNormal, SIGNAL(editingFinished()), this, SLOT(setGroundNormal()));
         disconnect(duration, SIGNAL(editingFinished()), this, SLOT(setDuration()));
         disconnect(alignWithGroundDuration, SIGNAL(editingFinished()), this, SLOT(setAlignWithGroundDuration()));
-        disconnect(rootBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setRootBoneIndex()));
-        disconnect(otherBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setOtherBoneIndex()));
-        disconnect(anotherBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setAnotherBoneIndex()));
+        disconnect(rootBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setRootBoneIndex(int)));
+        disconnect(otherBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setOtherBoneIndex(int)));
+        disconnect(anotherBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setAnotherBoneIndex(int)));
         disconnect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)));
     }
 }

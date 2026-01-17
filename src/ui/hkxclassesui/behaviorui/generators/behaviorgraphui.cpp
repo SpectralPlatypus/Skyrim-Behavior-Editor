@@ -58,7 +58,7 @@ void BehaviorGraphUI::toggleSignals(bool toggleconnections){
         connect(variableMode, SIGNAL(currentIndexChanged(int)), this, SLOT(setVariableMode(int)), Qt::UniqueConnection);
         connect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelectedChild(int,int)), Qt::UniqueConnection);
     }else{
-        disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName()));
+        disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)));
         disconnect(variableMode, SIGNAL(currentIndexChanged(int)), this, SLOT(setVariableMode(int)));
         disconnect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelectedChild(int,int)));
     }

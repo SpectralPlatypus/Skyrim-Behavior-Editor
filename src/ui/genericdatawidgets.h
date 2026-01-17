@@ -233,7 +233,7 @@ public:
     TableWidgetItem(const TableWidgetItem &) = delete;
     ~TableWidgetItem() = default;
 public:
-    TableWidgetItem(const QString & text, Qt::Alignment align = Qt::AlignLeft | Qt::AlignVCenter, const QColor & backgroundColor = QColor(Qt::white), const QBrush & textColor = QBrush(Qt::black), const QString & tip = "", bool checkable = false)
+    TableWidgetItem(const QString & text, Qt::Alignment align = Qt::AlignLeft | Qt::AlignVCenter, const QColor & backgroundColor = QColor(53, 53, 53), const QBrush & textColor = QBrush(Qt::white), const QString & tip = "", bool checkable = false)
         : QTableWidgetItem(text)
     {
         if (checkable) {
@@ -259,16 +259,17 @@ public:
     TableWidget(const QColor & background = QColor(Qt::white), QWidget *parent = 0)
         : QTableWidget(parent)
     {
-        auto pal = palette();
-        pal.setColor(QPalette::Base, background);
+        //auto pal = palette();
+        //pal.setColor(QPalette::Base, background);
         //setPalette(pal);
         setMouseTracking(true);
         //setStyleSheet("QTableWidget { background:cyan }");
-        setStyleSheet("QHeaderView::section { background-color:grey }");
+        //setStyleSheet("QHeaderView::section { background-color:grey }");
         //verticalHeader()->setVisible(false);
         setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
         horizontalHeader()->setSectionsClickable(false);
+        horizontalHeader()->setStretchLastSection(true);
         setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         //setSelectionBehavior(QAbstractItemView::SelectRows);
         setSelectionMode(QAbstractItemView::SingleSelection);

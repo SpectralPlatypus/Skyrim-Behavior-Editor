@@ -165,7 +165,7 @@ void LookAtModifierUI::toggleSignals(bool toggleconnections){
     if (toggleconnections){
         connect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)), Qt::UniqueConnection);
         connect(enable, SIGNAL(released()), this, SLOT(setEnable()), Qt::UniqueConnection);
-        connect(targetWS, SIGNAL(released()), this, SLOT(setTargetWS()), Qt::UniqueConnection);
+        connect(targetWS, SIGNAL(editingFinished()), this, SLOT(setTargetWS()), Qt::UniqueConnection);
         connect(headForwardLS, SIGNAL(currentIndexChanged(int)), this, SLOT(setHeadForwardLS(int)), Qt::UniqueConnection);
         connect(neckForwardLS, SIGNAL(currentIndexChanged(int)), this, SLOT(setNeckForwardLS(int)), Qt::UniqueConnection);
         connect(neckRightLS, SIGNAL(currentIndexChanged(int)), this, SLOT(setNeckRightLS(int)), Qt::UniqueConnection);
@@ -180,9 +180,9 @@ void LookAtModifierUI::toggleSignals(bool toggleconnections){
         connect(limitAngleDown, SIGNAL(released()), this, SLOT(setLimitAngleDown()), Qt::UniqueConnection);
         connect(headIndex, SIGNAL(editingFinished()), this, SLOT(setHeadIndex()), Qt::UniqueConnection);
         connect(neckIndex, SIGNAL(editingFinished()), this, SLOT(setNeckIndex()), Qt::UniqueConnection);
-        connect(isOn, SIGNAL(editingFinished()), this, SLOT(setIsOn()), Qt::UniqueConnection);
+        connect(isOn, SIGNAL(released()), this, SLOT(setIsOn()), Qt::UniqueConnection);
         connect(individualLimitsOn, SIGNAL(released()), this, SLOT(setIndividualLimitsOn()), Qt::UniqueConnection);
-        connect(isTargetInsideLimitCone, SIGNAL(editingFinished()), this, SLOT(setIsTargetInsideLimitCone()), Qt::UniqueConnection);
+        connect(isTargetInsideLimitCone, SIGNAL(released()), this, SLOT(setIsTargetInsideLimitCone()), Qt::UniqueConnection);
         connect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)), Qt::UniqueConnection);
     }else{
         disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)));
@@ -200,11 +200,11 @@ void LookAtModifierUI::toggleSignals(bool toggleconnections){
         disconnect(limitAngleRight, SIGNAL(editingFinished()), this, SLOT(setLimitAngleRight()));
         disconnect(limitAngleUp, SIGNAL(editingFinished()), this, SLOT(setLimitAngleUp()));
         disconnect(limitAngleDown, SIGNAL(released()), this, SLOT(setLimitAngleDown()));
-        disconnect(headIndex, SIGNAL(editingFinished()), this, SLOT(setHeadIndex()));
-        disconnect(neckIndex, SIGNAL(editingFinished()), this, SLOT(setNeckIndex()));
-        disconnect(isOn, SIGNAL(editingFinished()), this, SLOT(setIsOn()));
+        disconnect(headIndex->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setHeadIndex()));
+        disconnect(neckIndex->lineEdit(), SIGNAL(editingFinished()), this, SLOT(setNeckIndex()));
+        disconnect(isOn, SIGNAL(released()), this, SLOT(setIsOn()));
         disconnect(individualLimitsOn, SIGNAL(released()), this, SLOT(setIndividualLimitsOn()));
-        disconnect(isTargetInsideLimitCone, SIGNAL(editingFinished()), this, SLOT(setIsTargetInsideLimitCone()));
+        disconnect(isTargetInsideLimitCone, SIGNAL(released()), this, SLOT(setIsTargetInsideLimitCone()));
         disconnect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)));
     }
 }
@@ -422,6 +422,7 @@ void LookAtModifierUI::setNeckIndex(int index){
 }
 
 void LookAtModifierUI::setIsOn(){
+
     if (bsData) {
         bsData->setIsOn(isOn->isChecked());
     } else {

@@ -79,14 +79,14 @@ void GetHandleOnBoneModifierUI::toggleSignals(bool toggleconnections){
     if (toggleconnections){
         connect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)), Qt::UniqueConnection);
         connect(enable, SIGNAL(released()), this, SLOT(setEnable()), Qt::UniqueConnection);
-        connect(localFrameName, SIGNAL(currentTextChanged(QString)), this, SLOT(setLocalFrameName(QString)), Qt::UniqueConnection);
+        connect(localFrameName, SIGNAL(currentIndexChanged(int)), this, SLOT(setLocalFrameName(int)), Qt::UniqueConnection);
         connect(ragdollBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setRagdollBoneIndex(int)), Qt::UniqueConnection);
         connect(animationBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setAnimationBoneIndex(int)), Qt::UniqueConnection);
         connect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)), Qt::UniqueConnection);
     }else{
         disconnect(name, SIGNAL(textEdited(QString)), this, SLOT(setName(QString)));
         disconnect(enable, SIGNAL(released()), this, SLOT(setEnable()));
-        disconnect(localFrameName, SIGNAL(currentTextChanged(QString)), this, SLOT(setLocalFrameName(QString)));
+        disconnect(localFrameName, SIGNAL(currentIndexChanged(int)), this, SLOT(setLocalFrameName(int)));
         disconnect(ragdollBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setRagdollBoneIndex(int)));
         disconnect(animationBoneIndex, SIGNAL(currentIndexChanged(int)), this, SLOT(setAnimationBoneIndex(int)));
         disconnect(table, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(viewSelected(int,int)));

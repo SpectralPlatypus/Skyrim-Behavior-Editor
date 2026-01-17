@@ -37,8 +37,6 @@ int main(int argc, char *argv[])
     a.setPalette(mPalette);
     a.setStyle("fusion");
 
-
-
     w.setWindowTitle("Skyrim Behavior Tool");
     w.show();
 
