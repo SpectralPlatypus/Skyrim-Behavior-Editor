@@ -17,7 +17,7 @@ bool HkxXmlReader::parse(){
         auto line = hkxXmlFile->readLine(MAX_HKXXML_LINE_LENGTH);
         lineNumber = 1;
         isEOF = false;
-        if (line == "<?xml version=\"1.0\" encoding=\"ascii\"?>\n" || line == "<?xml version=\"1.0\" encoding=\"ascii\"?>\r\n"){
+        if (line == "<?xml version=\"1.0\" encoding=\"ascii\"?>\n" || line == "<?xml version=\"1.0\" encoding=\"ascii\"?>\r\n" || line == "<?xml version=\"1.0\" encoding=\"us-ascii\"?>\r\n"){
             while (!isEOF){
                 result = readNextLine();
                 if (result != NoError && result != EmptyLine && result != EmptyLineEndFile) {
@@ -203,6 +203,7 @@ HkxXmlReader::HkxXmlParseLine HkxXmlReader::readNextLine(){
             return EmptyLine;
         }
     }
+    line = line.trimmed() + "\n";
     auto isIsolatedEndElemTag = true;
     auto isValueSplitOnMultipleLines = true;
     auto temp = 0;

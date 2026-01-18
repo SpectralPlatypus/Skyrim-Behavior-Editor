@@ -170,12 +170,14 @@ MainWindow::MainWindow()
     }
     if (!findGameDirectory(QString("Skyrim Special Edition"), skyrimSpecialEdtionDirectory)){
         WARNING_MESSAGE("The SSE executable was not found!");
-    }else{
+        skyrimDirectory = skyrimSpecialEdtionDirectory;
+    }
+    /*else{
         skyrimBehaviorUpdateToolFullPath = skyrimSpecialEdtionDirectory+"/Tools/HavokBehaviorPostProcess/HavokBehaviorPostProcess.exe";
         if (!QFile(skyrimBehaviorUpdateToolFullPath).exists()){
             WARNING_MESSAGE(QString("The tool for the conversion of Havok 32bit to Havok 64bit \"HavokBehaviorPostProcess.exe\" was not found!\n\nTo obtain it, you need to download the Creation Kit for Skyrim Special Edition!"));
         }
-    }
+    }*/
     connect(newProjectA, SIGNAL(triggered(bool)), this, SLOT(createNewProject()), Qt::UniqueConnection);
     connect(openPackedProjectA, SIGNAL(triggered(bool)), this, SLOT(openPackedProject()), Qt::UniqueConnection);
     connect(openUnpackedProjectA, SIGNAL(triggered(bool)), this, SLOT(openUnpackedProject()), Qt::UniqueConnection);
@@ -536,6 +538,7 @@ void MainWindow::packAndExportFileToSkyrimDirectory(bool exportanimdata){
             auto projectFolder = path+"/"+lastFileSelectedPath.section("/", -1, -1);
             auto filename = tabs->tabText(tabs->currentIndex());
             auto temppath = projectFolder+"/"+projectFile->character->getBehaviorDirectoryName()+"/"+filename;
+            // TODO: Convert
             if (hkxcmd(lastFileSelectedPath+"/"+projectFile->character->getBehaviorDirectoryName()+"/"+filename, temppath, count) == HKXCMD_SUCCESS){
                 if (exportanimdata) {
                     exportAnimationData();
@@ -1248,11 +1251,12 @@ bool MainWindow::findGameDirectory(const QString & gamename, QString & gamedirec
     for (auto i = 0; i < drives.size(); i++){
         auto driveName = drives.at(i).absolutePath();
         auto dir = QDir(driveName);
-        auto path = driveName+"Program Files/Steam/steamapps/common/"+gamename;
+        auto path = driveName+"Program Files (x86)/Steam/steamapps/common/"+gamename;
         if (dir.exists(path)){
             gamedirectory = path;
             value = true;
-        }else{
+        }
+        /*else{
             path = driveName+"Steam/steamapps/common/"+gamename;
             if (dir.exists(path)){
                 gamedirectory = path;
@@ -1264,8 +1268,42 @@ bool MainWindow::findGameDirectory(const QString & gamename, QString & gamedirec
                     value = true;
                 }
             }
+        }*/
+    }
+    if(value) return value;
+    // Time to dive into registry hell (Steam only)
+    auto regDir = QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Valve\\Steam", QSettings::NativeFormat);
+    auto steamPath = regDir.value("SteamPath").toString();
+
+    QFile libFile(steamPath.append("\\config\\libraryfolders.vdf"));
+    QStringList libPaths{};
+    QRegularExpression pathRegex("^\\s+\"path\"\\s+\"(.+)\"$");
+    if(libFile.exists() && libFile.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&libFile);
+        while (!in.atEnd())
+        {
+            QString line = in.readLine();
+            auto match = pathRegex.match(line);
+            if(match.hasMatch())
+                libPaths.append(match.captured(1));
+        }
+        libFile.close();
+    }
+
+    if(libPaths.empty()) return false;
+    // Search each path for Skyrim Release
+    for(const auto& libPath : libPaths)
+    {
+        QFile gameDir(libPath + "\\steamapps\\common\\"+gamename);
+        if(gameDir.exists())
+        {
+            gamedirectory = gameDir.fileName();
+            value = true;
+            break;
         }
     }
+
     return value;
 }
 
@@ -1294,21 +1332,42 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
             }
         }else{
             for (auto i = 0; i < filelist.size(); i++){
-                pathtoallfiles.append("");
+                QFile inFile(filelist.at(i));
+                pathtoallfiles.append(inFile.fileName().replace(".hkx",".xml"));
             }
         }
+        bool is64Bit = (GetFileType(filelist.first()) == HKX_64BIT);
         QProgressDialog progress("Converting packed hkx binaries to hkx xml...", "", 0, 100, this);
         progress.setWindowModality(Qt::WindowModal);
         std::vector <std::thread> threads;
         auto percent = 0;
-        int taskCount = filelist.size();
-        auto previousCount = taskCount;
-        auto fileIndex = 0;
+        std::size_t taskCount = filelist.size();
+        //auto previousCount = taskCount;
+        //auto fileIndex = 0;
         auto maxThreads = std::thread::hardware_concurrency() - 1;
-        auto taskdifference = 0;
-        qreal difference = ((1.0)/((qreal)(filelist.size())))*(100.0);
+        //auto taskdifference = 0;
+        qreal difference = ((1.0)/((qreal)(maxThreads)))*(100.0);
         std::unique_lock<std::mutex> locker(mutex);
         //Read files...
+        std::atomic_size_t fileIndexAtm{0};
+        for (uint i = 0; i < maxThreads; i++){
+            threads.push_back(std::thread([&]()
+                              {
+                                  while(true){
+                                    std::size_t idx = fileIndexAtm.fetch_add(1);
+                                    if(idx >= taskCount) return;
+                                    this->ConvertToXml(filelist.at(idx), pathtoallfiles.at(idx), is64Bit);
+                                  }
+                              }));
+        }
+
+        for(auto& th : threads) {
+            th.join();
+            percent += difference;
+            progress.setValue(percent);
+        }
+
+        /*
         for (uint i = 0; i < maxThreads, fileIndex < filelist.size(); i++, fileIndex++){
             threads.push_back(std::thread(&MainWindow::hkxcmd, this, filelist.at(fileIndex), pathtoallfiles.at(fileIndex), std::ref(taskCount), flags));
             threads.back().detach();
@@ -1328,7 +1387,7 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
                 }
             }
             conditionVar.wait(locker, [&](){return (taskCount < previousCount);});
-        }
+        }*/
         threads.clear();
         if (newpath == ""){
             progress.setLabelText("Renaming converted files, cleaning up extras...");
@@ -1383,21 +1442,42 @@ MainWindow::HKXCMD_RETURN MainWindow::hkxcmd(const QString &filepath, const QStr
     }
     return value;
 }
-/*
-MainWindow::HKXCMD_RETURN MainWindow::hkxconv(const QString &filepath, const QString &outputDirectory, int & taskcount){
-    auto command = "\""+hkxconv+"\" convert \""+filepath+"\" \""+outputDirectory;
+
+MainWindow::HKXCMD_RETURN MainWindow::ConvertToXml(const QString &filepath, const QString &outputDirectory, bool is64Bit){
+
+    auto command = "\""+(is64Bit ? hkxconvPath : hkxcmdPath) +"\" convert \""+filepath+"\" \""+ outputDirectory +"\" ";
     command.replace("/", "\\");
     auto value = (HKXCMD_RETURN)QProcess().execute(command);
-    if (value == HKXCMD_SUCCESS){
-        mutex.lock();
-        taskcount--;
-        conditionVar.notify_one();
-        mutex.unlock();
-    }else{
+    if (value != HKXCMD_SUCCESS){
         LogFile::writeToLog("MainWindow: hkxcmd() failed!\nThe command \""+command+"\" failed!");
     }
     return value;
-}*/
+}
+
+
+MainWindow::HKX_FILETYPE MainWindow::GetFileType(const QString& filepath) const
+{
+    auto reader = std::ifstream(filepath.toStdString(), std::ifstream::in | std::ifstream::binary);
+    if(reader.fail()){
+        return HKX_FILETYPE::INVALID;
+    }
+    reader.seekg(0, std::ios::beg);
+    //Read first 8-bytes and compare to HKX signature
+    uint32_t chunk{0};
+    reader.read((char*)&chunk, 4);
+    if(chunk == 0x6d783f3c) return HKX_FILETYPE::XML; // XML file -- treat it as 32-bit HKX
+    if(chunk != 0x57e0e057) return HKX_FILETYPE::INVALID;
+
+    reader.read((char*)&chunk, 4);
+    if(chunk != 0x10c0c010) return HKX_FILETYPE::INVALID;
+
+    reader.seekg(0x10, std::ios::beg);
+    uint8_t ptrSize{0};
+    reader.read((char*)&ptrSize, 1);
+    if(ptrSize == 8) return HKX_FILETYPE::HKX_64BIT;
+
+    return HKX_FILETYPE::HKX_32BIT; // Likely 32-bit
+}
 
 bool MainWindow::exitProgram(){
     if (closeAll()){

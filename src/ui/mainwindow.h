@@ -83,6 +83,13 @@ private:
     enum HKXCMD_RETURN{
         HKXCMD_SUCCESS
     };
+    enum HKX_FILETYPE {
+        HKX_32BIT,
+        HKX_64BIT,
+        XML,
+        INVALID
+    };
+
     QString generateUniqueBehaviorName();
     BehaviorFile *openBehaviorForMerger(QString & filepath);
     void openProject(QString &filepath, bool loadui = true, bool loadanimdata = true, bool isFNIS = false);
@@ -92,6 +99,8 @@ private:
     bool findGameDirectory(const QString &gamename, QString &gamedirectory);
     bool convertProject(const QString &filepath, const QString &newpath = "", const QString &flags = "-v:xml");
     HKXCMD_RETURN hkxcmd(const QString &filepath, const QString &outputDirectory, int &taskcount, const QString &flags = "-f SAVE_CONCISE");
+    HKXCMD_RETURN ConvertToXml(const QString &filepath, const QString &outputDirectory, bool is64Bit);
+    HKX_FILETYPE GetFileType(const QString& filepath) const;
     int getBehaviorGraphIndex(const QString & filename);
     void readSettings();
     void writeSettings();
