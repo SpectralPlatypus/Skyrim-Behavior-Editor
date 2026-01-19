@@ -118,13 +118,13 @@ MainWindow::MainWindow()
     //settingsM->addAction(setGameModeA);
     mergeM->addAction(mergeBehaviorsA);
     mergeM->addAction(mergeProjectsA);
-    mergeM->addAction(generateFNISPatchA);
+    //mergeM->addAction(generateFNISPatchA);
     mergeBehaviorsA->setStatusTip("Merge Two Behavior Files Together!");
     mergeBehaviorsA->setShortcut(QKeySequence("Ctrl+I"));
     mergeProjectsA->setStatusTip("Merge Two Projects Together!");
     //mergeProjectsA->setShortcut(QKeySequence("Ctrl+P"));
-    generateFNISPatchA->setStatusTip("Merge Project With FNIS!");
-    generateFNISPatchA->setShortcut(QKeySequence("Ctrl+P"));
+    //generateFNISPatchA->setStatusTip("Merge Project With FNIS!");
+    //generateFNISPatchA->setShortcut(QKeySequence("Ctrl+P"));
     findGeneratorA->setStatusTip("Find Generator In Current Behavior!");
     findGeneratorA->setShortcut(QKeySequence("Ctrl+G"));
     findModifierA->setStatusTip("Find Modifier In Current Behavior!");
@@ -170,6 +170,9 @@ MainWindow::MainWindow()
     }
     if (!findGameDirectory(QString("Skyrim Special Edition"), skyrimSpecialEdtionDirectory)){
         WARNING_MESSAGE("The SSE executable was not found!");
+    }
+    else
+    {
         skyrimDirectory = skyrimSpecialEdtionDirectory;
     }
     /*else{
@@ -479,7 +482,7 @@ void MainWindow::packAndExportProjectToSkyrimDirectory(bool exportanimdata){
         LogFile::writeToLog("Exporting the current project to the Skyrim game directory...");
         auto path = skyrimDirectory+"/"+projectExportPath;
         auto projectFolder = path+"/"+lastFileSelectedPath.section("/", -1, -1);
-        convertProject(lastFileSelectedPath, projectFolder, "-f SAVE_CONCISE");
+        convertProject(lastFileSelected, projectFolder, false);
         if (exportanimdata){
             exportAnimationData();
         }
@@ -872,8 +875,10 @@ void MainWindow::openProject(QString & filepath, bool loadui, bool loadanimdata,
             path1 = lastFileSelectedPath.section("/", 0, -3)+"/animationdatasinglefile.txt";
             path2 = lastFileSelectedPath.section("/", 0, -3)+"/animationsetdatasinglefile.txt";
         }else{
-            path1 = lastFileSelectedPath+"/animationdatasinglefile.txt";
-            path2 = lastFileSelectedPath+"/animationsetdatasinglefile.txt";
+            path1 = lastFileSelectedPath.section("/", 0, -3)+"/animationdatasinglefile.txt";
+            path2 = lastFileSelectedPath.section("/", 0, -3)+"/animationsetdatasinglefile.txt";
+            //path1 = lastFileSelectedPath+"/animationdatasinglefile.txt";
+            //path2 = lastFileSelectedPath+"/animationsetdatasinglefile.txt";
         }
         std::thread thread(&ProjectFile::readAnimationSetData, projectFile, path2);
         if (!projectFile->readAnimationData(path1)){
@@ -886,14 +891,14 @@ void MainWindow::openProject(QString & filepath, bool loadui, bool loadanimdata,
         LogFile::writeToLog("Time taken to open file \""+filepath+"\" is approximately "+QString::number(timer.elapsed() - timeelapsed)+" milliseconds\n");
         progress.setProgress("Loading character data...", 50);
         timeelapsed = timer.elapsed();
-        auto character = new CharacterFile(this, projectFile, lastFileSelectedPath+"/"+projectFile->getCharacterFilePathAt(0));
+        auto character = new CharacterFile(this, projectFile, lastFileSelectedPath+"/"+projectFile->getCharacterFilePathAt(0).replace(".hkx",".xml", Qt::CaseInsensitive));
         if (character->parse()){
             projectFile->setCharacterFile(character);
             projectFile->loadEncryptedAnimationNames();
             LogFile::writeToLog("Time taken to open file \""+lastFileSelectedPath+"/"+projectFile->getCharacterFilePathAt(0)+"\" is approximately "+QString::number(timer.elapsed() - timeelapsed)+" milliseconds\n");
             timeelapsed = timer.elapsed();
             progress.setProgress("Loading skeleton data...", 50);
-            skeletonFile = new SkeletonFile(this, lastFileSelectedPath+"/"+character->getRigName());
+            skeletonFile = new SkeletonFile(this, lastFileSelectedPath+"/"+character->getRigName().replace(".hkx",".xml", Qt::CaseInsensitive));
             if (skeletonFile->parse() || isFNIS){
                 character->setSkeletonFile(skeletonFile);
                 if (loadui){
@@ -908,7 +913,7 @@ void MainWindow::openProject(QString & filepath, bool loadui, bool loadanimdata,
                 QDirIterator it(lastFileSelectedPath+"/behaviors"); //Wont work for dogs, wolves!!!
                 while (it.hasNext()){
                     behavior = it.next();
-                    if (behavior.contains(".hkx")) {
+                    if (behavior.contains(".xml", Qt::CaseInsensitive)) {
                         behaviornames.append(behavior);
                     }
                 }
@@ -942,7 +947,7 @@ void MainWindow::openProject(QString & filepath, bool loadui, bool loadanimdata,
                     }
                     conditionVar.wait(locker, [&](){return (taskCount < previousCount);});
                 }
-                for (auto i = 0; i < futures.size(); i++){
+                for (std::size_t i = 0; i < futures.size(); i++){
                     if (!futures.at(i).get()){
                         LogFile::writeToLog("Open project failed! \""+behaviornames.at(i)+"\" failed to parse!");
                         cleanup();
@@ -1112,14 +1117,14 @@ void MainWindow::removeBehaviorGraphs(const QStringList & filenames){
 void MainWindow::openPackedProject(){
     auto filename = QFileDialog::getOpenFileName(this, tr("Open hkx project file..."), lastFileSelected, tr("hkx Files (*.hkx)"));
     if (filename != "") {
-        convertProject(filename), openProject(filename);
+        convertProject(filename), openProject(filename.replace(".hkx",".xml"));
     } else {
         LogFile::writeToLog("MainWindow::openPackedProject(): Null string filename!!!");
     }
 }
 
 void MainWindow::openUnpackedProject(){
-    auto filename = QFileDialog::getOpenFileName(this, tr("Open hkx xml project file..."), lastFileSelected, tr("hkx Files (*.hkx)"));
+    auto filename = QFileDialog::getOpenFileName(this, tr("Open hkx xml project file..."), lastFileSelected, tr("hkx Files (*.xml)"));
     if (filename != "") {
         openProject(filename);
     } else {
@@ -1307,10 +1312,11 @@ bool MainWindow::findGameDirectory(const QString & gamename, QString & gamedirec
     return value;
 }
 
-bool MainWindow::convertProject(const QString &filepath, const QString &newpath, const QString &flags){
+bool MainWindow::convertProject(const QString &filepath, const QString &newpath, bool toXml){
     QStringList pathtoallfiles;
     QStringList filelist;
     {
+        auto aaa = filepath.section("/", 0, -2);
         QDirIterator it(filepath.section("/", 0, -2), QDirIterator::Subdirectories);
         while (it.hasNext()){
             auto temp = it.next();
@@ -1333,7 +1339,10 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
         }else{
             for (auto i = 0; i < filelist.size(); i++){
                 QFile inFile(filelist.at(i));
-                pathtoallfiles.append(inFile.fileName().replace(".hkx",".xml"));
+                if(toXml)
+                    pathtoallfiles.append(inFile.fileName().replace(".hkx",".xml"));
+                else
+                    pathtoallfiles.append(inFile.fileName().replace(".xml",".hkx"));
             }
         }
         bool is64Bit = (GetFileType(filelist.first()) == HKX_64BIT);
@@ -1356,7 +1365,10 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
                                   while(true){
                                     std::size_t idx = fileIndexAtm.fetch_add(1);
                                     if(idx >= taskCount) return;
-                                    this->ConvertToXml(filelist.at(idx), pathtoallfiles.at(idx), is64Bit);
+                                    if(toXml)
+                                        this->ConvertToXml(filelist.at(idx), pathtoallfiles.at(idx), is64Bit);
+                                    else
+                                        this->ConvertToHkx(filelist.at(idx), pathtoallfiles.at(idx), is64Bit);
                                   }
                               }));
         }
@@ -1389,7 +1401,7 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
             conditionVar.wait(locker, [&](){return (taskCount < previousCount);});
         }*/
         threads.clear();
-        if (newpath == ""){
+        /*if (newpath == ""){
             progress.setLabelText("Renaming converted files, cleaning up extras...");
             progress.setValue(10);
             //remove all hkx files then rename the rest to hkx files...
@@ -1405,7 +1417,7 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
                 }
             }
             progress.setValue(50);
-            {
+            /*{
                 QDirIterator it(filepath.section("/", 0, -2), QDirIterator::Subdirectories);
                 while (it.hasNext()){
                     auto temp = it.next();
@@ -1420,8 +1432,8 @@ bool MainWindow::convertProject(const QString &filepath, const QString &newpath,
                     }
                 }
             }
-        }
-        progress.setValue(100);
+        }*/
+        //progress.setValue(100);
     }else{
         return false;
     }
@@ -1454,6 +1466,16 @@ MainWindow::HKXCMD_RETURN MainWindow::ConvertToXml(const QString &filepath, cons
     return value;
 }
 
+MainWindow::HKXCMD_RETURN MainWindow::ConvertToHkx(const QString &filepath, const QString &outputDirectory, bool is64Bit){
+
+    auto command = "\""+ hkxcmdPath +"\" convert -v:" + (is64Bit ? "AMD64" : "WIN32") + " \""+filepath+"\" \""+ outputDirectory +"\" ";
+    command.replace("/", "\\");
+    auto value = (HKXCMD_RETURN)QProcess().execute(command);
+    if (value != HKXCMD_SUCCESS){
+        LogFile::writeToLog("MainWindow: hkxcmd() failed!\nThe command \""+command+"\" failed!");
+    }
+    return value;
+}
 
 MainWindow::HKX_FILETYPE MainWindow::GetFileType(const QString& filepath) const
 {

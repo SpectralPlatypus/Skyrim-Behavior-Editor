@@ -239,7 +239,7 @@ bool hkbCharacterStringData::readData(const HkxXmlReader &reader, long & index){
 bool hkbCharacterStringData::write(HkxXMLWriter *writer){
     std::lock_guard <std::mutex> guard(mutex);
     auto writedatafield = [&](const QString & name, const QString & value){
-        writer->writeLine(writer->parameter, QStringList(writer->name), QStringList(name), value);
+        writer->writeLine(writer->string, QStringList(writer->name), QStringList(name), value);
     };
     if (writer && !getIsWritten()){
         QStringList list1 = {writer->name, writer->clas, writer->signature};

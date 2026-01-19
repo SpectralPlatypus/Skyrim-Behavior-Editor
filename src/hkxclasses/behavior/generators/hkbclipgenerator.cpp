@@ -79,7 +79,7 @@ bool hkbClipGenerator::readData(const HkxXmlReader &reader, long & index){
             checkvalue((name != ""), "name");
         }else if (text == "animationName"){
             animationName = reader.getElementValueAt(index);
-            checkvalue((animationName == ""), "animationName");
+            checkvalue((animationName != ""), "animationName");
         }else if (text == "triggers"){
             checkvalue(triggers.readShdPtrReference(index, reader), "triggers");
         }else if (text == "cropStartAmountLocalTime"){

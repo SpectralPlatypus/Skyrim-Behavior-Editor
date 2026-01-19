@@ -33,7 +33,7 @@ ProjectFile::ProjectFile(MainWindow *window, const QString & name, bool autogene
       skyrimAnimData(new SkyrimAnimData),
       skyrimAnimSetData(new SkyrimAnimSetData)
 {
-    projectName = getFileName().remove(".hkx");
+    projectName = QFileInfo(getFileName()).baseName();
     projectFolderName = fileName().section("/", -2, -2);
     projectAnimationsPath = "meshes/actors/"+projectFolderName+"/animations";
     getReader().setFile(this);

@@ -432,6 +432,7 @@ void CharacterFile::write(){
     //std::lock_guard <std::mutex> guard(mutex);
     if (getRootObject().data()){
         ulong ref = getRootObject()->getReference();
+        ++ref;
         getRootObject()->setIsWritten(false);
         stringData->setIsWritten(false);
         characterData->setIsWritten(false);
@@ -447,9 +448,13 @@ void CharacterFile::write(){
         if (footIkDriverInfo.data()) {
             footIkDriverInfo->setIsWritten(false);
         }
-        stringData->setReference(ref++);
         characterData->setReference(ref++);
         characterPropertyValues->setReference(ref++);
+        for (auto i = 0; i < boneWeightArrays.size(); i++, ref++){
+            boneWeightArrays.at(i)->setIsWritten(false);
+            boneWeightArrays.at(i)->setReference(ref);
+        }
+        stringData->setReference(ref++);
         mirroredSkeletonInfo->setReference(ref++);
         if (handIkDriverInfo.data()) {
             handIkDriverInfo->setReference(ref++);
@@ -458,10 +463,6 @@ void CharacterFile::write(){
             footIkDriverInfo->setReference(ref++);
         }
         ref++;
-        for (auto i = 0; i < boneWeightArrays.size(); i++, ref++){
-            boneWeightArrays.at(i)->setIsWritten(false);
-            boneWeightArrays.at(i)->setReference(ref);
-        }
         getWriter().setFile(this);
         if (!getWriter().writeToXMLFile()) {
             LogFile::writeToLog("CharacterFile::write(): writeToXMLFile() failed!!");

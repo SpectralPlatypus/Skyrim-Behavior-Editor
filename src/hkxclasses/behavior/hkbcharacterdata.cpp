@@ -347,6 +347,9 @@ bool hkbCharacterData::write(HkxXMLWriter *writer){
         writeref(characterControllerInfo.characterControllerCinfo, "characterControllerCinfo");
         writer->writeLine(writer->object, false);
         writer->writeLine(writer->parameter, false);
+        writedatafield("modelUpMS", modelUpMS.getValueAsString());
+        writedatafield("modelForwardMS", modelForwardMS.getValueAsString());
+        writedatafield("modelRightMS", modelRightMS.getValueAsString());
         list1 = QStringList{writer->name, writer->numelements};
         list2 = QStringList{"characterPropertyInfos", QString::number(characterPropertyInfos.size())};
         writer->writeLine(writer->parameter, list1, list2, "");
@@ -373,15 +376,20 @@ bool hkbCharacterData::write(HkxXMLWriter *writer){
         if (numBonesPerLod.size() > 0){
             writer->writeLine(writer->parameter, false);
         }
-        writedatafield("scale", QString::number(scale, char('f'), 6));
-        writer->writeLine(writer->object, false);
-        setIsWritten();
-        writer->writeLine("\n");
         writeref(characterPropertyValues, "characterPropertyValues");
         writeref(footIkDriverInfo, "footIkDriverInfo");
         writeref(handIkDriverInfo, "handIkDriverInfo");
         writeref(stringData, "stringData");
         writeref(mirroredSkeletonInfo, "mirroredSkeletonInfo");
+        writedatafield("scale", QString::number(scale, char('f'), 6));
+        writer->writeLine(writer->object, false);
+        setIsWritten();
+        writer->writeLine("\n");
+        writechild(characterPropertyValues, "characterPropertyValues");
+        writechild(footIkDriverInfo, "footIkDriverInfo");
+        writechild(footIkDriverInfo, "handIkDriverInfo");
+        writechild(stringData, "stringData");
+        writechild(mirroredSkeletonInfo, "mirroredSkeletonInfo");
     }
     return true;
 }
