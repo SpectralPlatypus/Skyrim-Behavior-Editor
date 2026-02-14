@@ -1133,7 +1133,7 @@ void MainWindow::openUnpackedProject(){
 }
 
 void MainWindow::openBehaviorFile(const QModelIndex & index){
-    auto fileName = index.data().toString();
+    auto fileName = index.data().toString().replace(".hkx",".xml");
     for (auto j = 0; j < behaviorGraphs.size(); j++){
         if (!fileName.compare(behaviorGraphs.at(j)->getBehaviorFilename().section("/", -1, -1), Qt::CaseInsensitive)){
             objectDataWid->loadBehaviorView(behaviorGraphs.at(j));

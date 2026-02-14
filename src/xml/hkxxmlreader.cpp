@@ -190,7 +190,7 @@ int HkxXmlReader::skipComment(const QByteArray & line, int index){
 }
 
 HkxXmlReader::HkxXmlParseLine HkxXmlReader::readNextLine(){
-    auto line = hkxXmlFile->readLine(MAX_HKXXML_LINE_LENGTH);
+    auto line = hkxXmlFile->readLine();
     lineNumber++;
     if (line.isEmpty()){
         isEOF = true;

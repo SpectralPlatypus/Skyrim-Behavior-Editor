@@ -256,7 +256,7 @@ public:
 signals:
     void itemDropped(int row1, int row2);
 public:
-    TableWidget(const QColor & background = QColor(Qt::white), QWidget *parent = 0)
+    TableWidget(const QColor & background = QColor(Qt::darkGray), QWidget *parent = 0)
         : QTableWidget(parent)
     {
         //auto pal = palette();

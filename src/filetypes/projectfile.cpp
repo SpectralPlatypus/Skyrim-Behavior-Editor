@@ -824,7 +824,7 @@ void ProjectFile::writeOrderOfFiles() const{
 hkbStateMachine *ProjectFile::findRootStateMachineFromBehavior(const QString behaviorname) const{
     //std::lock_guard <std::mutex> guard(mutex);
     for (auto i = 0; i < behaviorFiles.size(); i++){
-        if (behaviorFiles.at(i)->fileName().contains(QString(behaviorname).replace("\\", "/"), Qt::CaseInsensitive)){
+        if (behaviorFiles.at(i)->fileName().contains(QString(behaviorname).replace("\\", "/").replace(".hkx",".xml"), Qt::CaseInsensitive)){
             return static_cast<hkbStateMachine *>(behaviorFiles.at(i)->getRootStateMachine());
         }
     }

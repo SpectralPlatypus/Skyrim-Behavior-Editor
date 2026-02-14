@@ -70,12 +70,12 @@ void BoneWeightArrayUI::loadData(HkxObject *data, bool isRagdoll){
                 auto itemname = bones->item(i, NAME_COLUMN);
                 auto itemvalue = bones->item(i, VALUE_COLUMN);
                 bones->setRowHidden(i, false);
-                (itemname) ? itemname->setText(boneNames.at(i)) : bones->setItem(i, NAME_COLUMN, new TableWidgetItem(boneNames.at(i), Qt::AlignCenter, QColor(Qt::white)));
+                (itemname) ? itemname->setText(boneNames.at(i)) : bones->setItem(i, NAME_COLUMN, new TableWidgetItem(boneNames.at(i), Qt::AlignCenter));
                 (itemvalue) ? itemvalue->setText(QString::number(bsData->getBoneWeightAt(i), char('f'), 6)) : bones->setItem(i, VALUE_COLUMN, new TableWidgetItem(QString::number(bsData->getBoneWeightAt(i), char('f'), 6), Qt::AlignCenter, QColor(Qt::white)));
             }else{
                 bones->setRowCount(rowCount + 1);
-                bones->setItem(rowCount, NAME_COLUMN, new TableWidgetItem(boneNames.at(i), Qt::AlignCenter, QColor(Qt::white)));
-                bones->setItem(i, VALUE_COLUMN, new TableWidgetItem(QString::number(bsData->getBoneWeightAt(i), char('f'), 6), Qt::AlignCenter, QColor(Qt::white)));
+                bones->setItem(rowCount, NAME_COLUMN, new TableWidgetItem(boneNames.at(i), Qt::AlignCenter));
+                bones->setItem(i, VALUE_COLUMN, new TableWidgetItem(QString::number(bsData->getBoneWeightAt(i), char('f'), 6), Qt::AlignCenter));
             }
         }
         for (auto j = bsData->getBoneWeightsSize(); j < bones->rowCount(); j++){
